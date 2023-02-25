@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pwdvault", "pwdvault\pwdvault.csproj", "{8B7FE6E1-1768-4851-B1E4-90C47B0C1FD8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B7FE6E1-1768-4851-B1E4-90C47B0C1FD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B7FE6E1-1768-4851-B1E4-90C47B0C1FD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B7FE6E1-1768-4851-B1E4-90C47B0C1FD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B7FE6E1-1768-4851-B1E4-90C47B0C1FD8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E940D8D-B8D7-49F2-9CAB-A1B8E62D730C}
+	EndGlobalSection
+EndGlobal
