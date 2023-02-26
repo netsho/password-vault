@@ -12,9 +12,16 @@ namespace pwdvault.Forms
 {
     public partial class LoginForm : Form
     {
+        public bool UserSuccessfullyAuthenticated { get; private set; }
         public LoginForm()
         {
             InitializeComponent();
+        }
+
+        private void btConnect_Click(object sender, EventArgs e)
+        {
+            UserSuccessfullyAuthenticated = true;
+            Close();
         }
     }
 }

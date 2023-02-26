@@ -63,9 +63,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ed8a3323_2e23_4d7d_b292_f9d2bafb5d92 {
+        internal static System.Drawing.Bitmap digital_secure_background_lock_circle_icons_dark_blue_6837396 {
             get {
-                object obj = ResourceManager.GetObject("ed8a3323-2e23-4d7d-b292-f9d2bafb5d92", resourceCulture);
+                object obj = ResourceManager.GetObject("digital_secure_background_lock_circle_icons_dark_blue_6837396", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
