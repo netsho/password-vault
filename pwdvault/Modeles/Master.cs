@@ -8,5 +8,10 @@ namespace pwdvault.Modeles
 {
     internal class Master
     {
+        private string username;
+        private string password;
+        private string passwordHash;
+        private string passwordSalt;
+
     }
 }
