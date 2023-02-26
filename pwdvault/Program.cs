@@ -14,7 +14,7 @@ namespace pwdvault
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             LoginForm loginForm = new LoginForm();
-            Application.Run(new MainForm());
+            Application.Run(new LoginForm());
 
             //if(loginForm.UserSuccessfullyAuthenticated)
             //{

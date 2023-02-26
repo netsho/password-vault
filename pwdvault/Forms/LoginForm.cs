@@ -21,8 +21,14 @@ namespace pwdvault.Forms
 
         private void btConnect_Click(object sender, EventArgs e)
         {
-            UserSuccessfullyAuthenticated = true;
-            Close();
+            if (String.IsNullOrWhiteSpace(txtBoxUser.Text) || String.IsNullOrWhiteSpace(txtBoxPwd.Text))
+            {
+                MessageBox.Show("Please fill in username and password.");
+            } else
+            {
+                UserSuccessfullyAuthenticated = true;
+                Close();
+            }
         }
 
         private void btnEye_MouseUp(object sender, MouseEventArgs e)

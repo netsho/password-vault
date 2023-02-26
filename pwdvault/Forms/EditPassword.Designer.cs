@@ -97,12 +97,13 @@
             // btnEdit
             // 
             btnEdit.FlatStyle = FlatStyle.System;
-            btnEdit.Location = new Point(194, 637);
+            btnEdit.Location = new Point(192, 618);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(112, 34);
             btnEdit.TabIndex = 15;
             btnEdit.Text = "Save";
             btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // lbPwd
             // 

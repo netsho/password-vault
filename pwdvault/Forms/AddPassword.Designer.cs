@@ -89,12 +89,13 @@
             // btnAdd
             // 
             btnAdd.FlatStyle = FlatStyle.System;
-            btnAdd.Location = new Point(185, 637);
+            btnAdd.Location = new Point(185, 613);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(112, 34);
             btnAdd.TabIndex = 4;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // txtBoxApp
             // 

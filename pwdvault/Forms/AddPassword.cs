@@ -22,5 +22,19 @@ namespace pwdvault.Forms
         {
             txtBoxPwd.Text = PasswordService.GeneratePassword();
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if(String.IsNullOrWhiteSpace(txtBoxApp.Text) ||
+                String.IsNullOrWhiteSpace(txtBoxUser.Text) || 
+                String.IsNullOrWhiteSpace(txtBoxPwd.Text) || 
+                String.IsNullOrWhiteSpace(comBoxCat.Text)) 
+            {
+                MessageBox.Show("Please complete all fields.");
+            } else
+            {
+
+            }
+        }
     }
 }
