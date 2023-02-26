@@ -16,12 +16,25 @@ namespace pwdvault.Forms
         public LoginForm()
         {
             InitializeComponent();
+
         }
 
         private void btConnect_Click(object sender, EventArgs e)
         {
             UserSuccessfullyAuthenticated = true;
             Close();
+        }
+
+        private void picEyeIcon_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtBoxPwd.PasswordChar = '*';
+            txtBoxPwd.UseSystemPasswordChar = true;
+        }
+
+        private void picEyeIcon_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtBoxPwd.PasswordChar = '\0';
+            txtBoxPwd.UseSystemPasswordChar = false;
         }
     }
 }

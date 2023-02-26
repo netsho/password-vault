@@ -36,11 +36,13 @@
             lbPwd = new Label();
             lbTitle = new Label();
             splitContainer1 = new SplitContainer();
+            picEyeIcon = new PictureBox();
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picEyeIcon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -68,7 +70,6 @@
             txtBoxPwd.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxPwd.Location = new Point(116, 367);
             txtBoxPwd.Name = "txtBoxPwd";
-            txtBoxPwd.PasswordChar = '*';
             txtBoxPwd.Size = new Size(330, 31);
             txtBoxPwd.TabIndex = 2;
             // 
@@ -114,6 +115,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(picEyeIcon);
             splitContainer1.Panel1.Controls.Add(lbTitle);
             splitContainer1.Panel1.Controls.Add(txtBoxPwd);
             splitContainer1.Panel1.Controls.Add(lbPwd);
@@ -125,8 +127,21 @@
             // 
             splitContainer1.Panel2.Controls.Add(pictureBox1);
             splitContainer1.Size = new Size(1117, 602);
-            splitContainer1.SplitterDistance = 534;
+            splitContainer1.SplitterDistance = 554;
             splitContainer1.TabIndex = 6;
+            // 
+            // picEyeIcon
+            // 
+            picEyeIcon.Cursor = Cursors.Hand;
+            picEyeIcon.Image = Properties.Resources.oeil;
+            picEyeIcon.Location = new Point(454, 365);
+            picEyeIcon.Name = "picEyeIcon";
+            picEyeIcon.Size = new Size(36, 35);
+            picEyeIcon.SizeMode = PictureBoxSizeMode.Zoom;
+            picEyeIcon.TabIndex = 6;
+            picEyeIcon.TabStop = false;
+            picEyeIcon.MouseDown += picEyeIcon_MouseDown;
+            picEyeIcon.MouseUp += picEyeIcon_MouseUp;
             // 
             // pictureBox1
             // 
@@ -134,7 +149,7 @@
             pictureBox1.Image = Properties.Resources.digital_secure_background_lock_circle_icons_dark_blue_6837396;
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(579, 602);
+            pictureBox1.Size = new Size(559, 602);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -154,6 +169,7 @@
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picEyeIcon).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -168,5 +184,6 @@
         private Label lbTitle;
         private SplitContainer splitContainer1;
         private PictureBox pictureBox1;
+        private PictureBox picEyeIcon;
     }
 }
