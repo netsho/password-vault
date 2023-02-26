@@ -62,6 +62,7 @@
             btnGenerate.TabIndex = 20;
             btnGenerate.Text = "Generate random password";
             btnGenerate.UseVisualStyleBackColor = true;
+            btnGenerate.Click += btnGenerate_Click;
             // 
             // txtBoxPwd
             // 
