@@ -34,11 +34,12 @@
             lbUser = new Label();
             lbPwd = new Label();
             btnAdd = new Button();
-            textBox1 = new TextBox();
-            comboBox1 = new ComboBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            txtBoxApp = new TextBox();
+            comBoxCat = new ComboBox();
+            txtBoxUser = new TextBox();
+            txtBoxPwd = new TextBox();
             btnGenerate = new Button();
+            lbTitle = new Label();
             SuspendLayout();
             // 
             // lbApp
@@ -46,7 +47,7 @@
             lbApp.AutoSize = true;
             lbApp.FlatStyle = FlatStyle.System;
             lbApp.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbApp.Location = new Point(105, 54);
+            lbApp.Location = new Point(100, 104);
             lbApp.Name = "lbApp";
             lbApp.Size = new Size(137, 32);
             lbApp.TabIndex = 0;
@@ -57,7 +58,7 @@
             lbCategory.AutoSize = true;
             lbCategory.FlatStyle = FlatStyle.System;
             lbCategory.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbCategory.Location = new Point(105, 170);
+            lbCategory.Location = new Point(100, 200);
             lbCategory.Name = "lbCategory";
             lbCategory.Size = new Size(114, 32);
             lbCategory.TabIndex = 1;
@@ -68,7 +69,7 @@
             lbUser.AutoSize = true;
             lbUser.FlatStyle = FlatStyle.System;
             lbUser.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbUser.Location = new Point(105, 294);
+            lbUser.Location = new Point(100, 308);
             lbUser.Name = "lbUser";
             lbUser.Size = new Size(206, 32);
             lbUser.TabIndex = 2;
@@ -79,7 +80,7 @@
             lbPwd.AutoSize = true;
             lbPwd.FlatStyle = FlatStyle.System;
             lbPwd.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbPwd.Location = new Point(105, 416);
+            lbPwd.Location = new Point(100, 413);
             lbPwd.Name = "lbPwd";
             lbPwd.Size = new Size(115, 32);
             lbPwd.TabIndex = 3;
@@ -88,51 +89,62 @@
             // btnAdd
             // 
             btnAdd.FlatStyle = FlatStyle.System;
-            btnAdd.Location = new Point(190, 623);
+            btnAdd.Location = new Point(185, 637);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(112, 34);
             btnAdd.TabIndex = 4;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtBoxApp
             // 
-            textBox1.Location = new Point(105, 89);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(284, 31);
-            textBox1.TabIndex = 5;
+            txtBoxApp.Location = new Point(100, 139);
+            txtBoxApp.Name = "txtBoxApp";
+            txtBoxApp.Size = new Size(284, 31);
+            txtBoxApp.TabIndex = 5;
             // 
-            // comboBox1
+            // comBoxCat
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(105, 205);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(284, 33);
-            comboBox1.TabIndex = 6;
+            comBoxCat.FlatStyle = FlatStyle.System;
+            comBoxCat.FormattingEnabled = true;
+            comBoxCat.Location = new Point(100, 235);
+            comBoxCat.Name = "comBoxCat";
+            comBoxCat.Size = new Size(284, 33);
+            comBoxCat.TabIndex = 6;
             // 
-            // textBox2
+            // txtBoxUser
             // 
-            textBox2.Location = new Point(105, 329);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(284, 31);
-            textBox2.TabIndex = 7;
+            txtBoxUser.Location = new Point(100, 343);
+            txtBoxUser.Name = "txtBoxUser";
+            txtBoxUser.Size = new Size(284, 31);
+            txtBoxUser.TabIndex = 7;
             // 
-            // textBox3
+            // txtBoxPwd
             // 
-            textBox3.Location = new Point(105, 451);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(284, 31);
-            textBox3.TabIndex = 8;
+            txtBoxPwd.Location = new Point(100, 448);
+            txtBoxPwd.Name = "txtBoxPwd";
+            txtBoxPwd.Size = new Size(284, 31);
+            txtBoxPwd.TabIndex = 8;
             // 
             // btnGenerate
             // 
             btnGenerate.FlatStyle = FlatStyle.System;
-            btnGenerate.Location = new Point(129, 499);
+            btnGenerate.Location = new Point(124, 496);
             btnGenerate.Name = "btnGenerate";
             btnGenerate.Size = new Size(237, 62);
             btnGenerate.TabIndex = 9;
             btnGenerate.Text = "Generate random password";
             btnGenerate.UseVisualStyleBackColor = true;
+            // 
+            // lbTitle
+            // 
+            lbTitle.AutoSize = true;
+            lbTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lbTitle.Location = new Point(33, 25);
+            lbTitle.Name = "lbTitle";
+            lbTitle.Size = new Size(264, 38);
+            lbTitle.TabIndex = 10;
+            lbTitle.Text = "Add new password";
             // 
             // AddPassword
             // 
@@ -140,11 +152,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
             ClientSize = new Size(478, 694);
+            Controls.Add(lbTitle);
             Controls.Add(btnGenerate);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(comboBox1);
-            Controls.Add(textBox1);
+            Controls.Add(txtBoxPwd);
+            Controls.Add(txtBoxUser);
+            Controls.Add(comBoxCat);
+            Controls.Add(txtBoxApp);
             Controls.Add(btnAdd);
             Controls.Add(lbPwd);
             Controls.Add(lbUser);
@@ -166,10 +179,11 @@
         private Label lbUser;
         private Label lbPwd;
         private Button btnAdd;
-        private TextBox textBox1;
-        private ComboBox comboBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox txtBoxApp;
+        private ComboBox comBoxCat;
+        private TextBox txtBoxUser;
+        private TextBox txtBoxPwd;
         private Button btnGenerate;
+        private Label lbTitle;
     }
 }
