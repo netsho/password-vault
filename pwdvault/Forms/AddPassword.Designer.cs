@@ -135,6 +135,7 @@
             btnGenerate.TabIndex = 9;
             btnGenerate.Text = "Generate random password";
             btnGenerate.UseVisualStyleBackColor = true;
+            btnGenerate.Click += btnGenerate_Click;
             // 
             // lbTitle
             // 

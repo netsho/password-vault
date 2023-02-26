@@ -25,13 +25,13 @@ namespace pwdvault.Forms
             Close();
         }
 
-        private void picEyeIcon_MouseUp(object sender, MouseEventArgs e)
+        private void btnEye_MouseUp(object sender, MouseEventArgs e)
         {
             txtBoxPwd.PasswordChar = '*';
             txtBoxPwd.UseSystemPasswordChar = true;
         }
 
-        private void picEyeIcon_MouseDown(object sender, MouseEventArgs e)
+        private void btnEye_MouseDown(object sender, MouseEventArgs e)
         {
             txtBoxPwd.PasswordChar = '\0';
             txtBoxPwd.UseSystemPasswordChar = false;

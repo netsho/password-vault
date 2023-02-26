@@ -12,9 +12,25 @@ namespace pwdvault.Forms
 {
     public partial class MainForm : Form
     {
+
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new AddPassword().Show();
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCopyUser_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

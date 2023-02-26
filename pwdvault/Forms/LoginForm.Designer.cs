@@ -36,13 +36,12 @@
             lbPwd = new Label();
             lbTitle = new Label();
             splitContainer1 = new SplitContainer();
-            picEyeIcon = new PictureBox();
+            btnEye = new Button();
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picEyeIcon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -72,6 +71,7 @@
             txtBoxPwd.Name = "txtBoxPwd";
             txtBoxPwd.Size = new Size(330, 31);
             txtBoxPwd.TabIndex = 2;
+            txtBoxPwd.UseSystemPasswordChar = true;
             // 
             // lbUser
             // 
@@ -115,7 +115,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.Controls.Add(picEyeIcon);
+            splitContainer1.Panel1.Controls.Add(btnEye);
             splitContainer1.Panel1.Controls.Add(lbTitle);
             splitContainer1.Panel1.Controls.Add(txtBoxPwd);
             splitContainer1.Panel1.Controls.Add(lbPwd);
@@ -130,18 +130,17 @@
             splitContainer1.SplitterDistance = 554;
             splitContainer1.TabIndex = 6;
             // 
-            // picEyeIcon
+            // btnEye
             // 
-            picEyeIcon.Cursor = Cursors.Hand;
-            picEyeIcon.Image = Properties.Resources.oeil;
-            picEyeIcon.Location = new Point(454, 365);
-            picEyeIcon.Name = "picEyeIcon";
-            picEyeIcon.Size = new Size(36, 35);
-            picEyeIcon.SizeMode = PictureBoxSizeMode.Zoom;
-            picEyeIcon.TabIndex = 6;
-            picEyeIcon.TabStop = false;
-            picEyeIcon.MouseDown += picEyeIcon_MouseDown;
-            picEyeIcon.MouseUp += picEyeIcon_MouseUp;
+            btnEye.BackgroundImage = Properties.Resources.eye;
+            btnEye.BackgroundImageLayout = ImageLayout.Stretch;
+            btnEye.Location = new Point(452, 368);
+            btnEye.Name = "btnEye";
+            btnEye.Size = new Size(31, 31);
+            btnEye.TabIndex = 7;
+            btnEye.UseVisualStyleBackColor = true;
+            btnEye.MouseDown += btnEye_MouseDown;
+            btnEye.MouseUp += btnEye_MouseUp;
             // 
             // pictureBox1
             // 
@@ -169,7 +168,6 @@
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picEyeIcon).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -184,6 +182,6 @@
         private Label lbTitle;
         private SplitContainer splitContainer1;
         private PictureBox pictureBox1;
-        private PictureBox picEyeIcon;
+        private Button btnEye;
     }
 }

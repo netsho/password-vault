@@ -40,8 +40,7 @@
             lbUser = new Label();
             lbCategory = new Label();
             lbApp = new Label();
-            picEyeIcon = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)picEyeIcon).BeginInit();
+            btnEye = new Button();
             SuspendLayout();
             // 
             // lbTitle
@@ -70,6 +69,7 @@
             txtBoxPwd.Name = "txtBoxPwd";
             txtBoxPwd.Size = new Size(284, 31);
             txtBoxPwd.TabIndex = 19;
+            txtBoxPwd.UseSystemPasswordChar = true;
             // 
             // txtBoxUser
             // 
@@ -148,18 +148,18 @@
             lbApp.TabIndex = 11;
             lbApp.Text = "Application";
             // 
-            // picEyeIcon
+            // btnEye
             // 
-            picEyeIcon.Cursor = Cursors.Hand;
-            picEyeIcon.Image = Properties.Resources.oeil;
-            picEyeIcon.Location = new Point(399, 448);
-            picEyeIcon.Name = "picEyeIcon";
-            picEyeIcon.Size = new Size(36, 35);
-            picEyeIcon.SizeMode = PictureBoxSizeMode.Zoom;
-            picEyeIcon.TabIndex = 22;
-            picEyeIcon.TabStop = false;
-            picEyeIcon.MouseDown += picEyeIcon_MouseDown;
-            picEyeIcon.MouseUp += picEyeIcon_MouseUp;
+            btnEye.BackColor = Color.Transparent;
+            btnEye.BackgroundImage = Properties.Resources.eye;
+            btnEye.BackgroundImageLayout = ImageLayout.Stretch;
+            btnEye.Location = new Point(399, 449);
+            btnEye.Name = "btnEye";
+            btnEye.Size = new Size(31, 31);
+            btnEye.TabIndex = 23;
+            btnEye.UseVisualStyleBackColor = false;
+            btnEye.MouseDown += btnEye_MouseDown;
+            btnEye.MouseUp += btnEye_MouseUp;
             // 
             // EditPassword
             // 
@@ -167,7 +167,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(478, 694);
-            Controls.Add(picEyeIcon);
+            Controls.Add(btnEye);
             Controls.Add(lbTitle);
             Controls.Add(btnGenerate);
             Controls.Add(txtBoxPwd);
@@ -184,7 +184,6 @@
             Name = "EditPassword";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Edit password";
-            ((System.ComponentModel.ISupportInitialize)picEyeIcon).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -202,6 +201,6 @@
         private Label lbUser;
         private Label lbCategory;
         private Label lbApp;
-        private PictureBox picEyeIcon;
+        private Button btnEye;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pwdvault.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,11 @@ namespace pwdvault.Forms
         public AddPassword()
         {
             InitializeComponent();
+        }
+
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            txtBoxPwd.Text = PasswordService.GeneratePassword();
         }
     }
 }
