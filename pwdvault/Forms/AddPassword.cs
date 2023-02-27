@@ -1,14 +1,5 @@
 ﻿using pwdvault.Modeles;
 using pwdvault.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace pwdvault.Forms
 {
@@ -17,9 +8,7 @@ namespace pwdvault.Forms
         public AddPassword()
         {
             InitializeComponent();
-            IEnumerable<Categories> categoriesValues = Enum.GetValues(typeof(Categories)).Cast<Categories>();
-            List<string> categories = new List<string>(categoriesValues.Select(category => category.ToString().Replace("_", " ")));
-            comBoxCat.DataSource = categories;
+            comBoxCat.DataSource = Enum.GetValues(typeof(Categories));
         }
 
         private void btnGenerate_Click(object sender, EventArgs e)

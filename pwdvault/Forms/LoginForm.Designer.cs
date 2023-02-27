@@ -48,11 +48,12 @@
             // btConnect
             // 
             btConnect.FlatStyle = FlatStyle.System;
+            btConnect.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btConnect.Location = new Point(198, 468);
             btConnect.Name = "btConnect";
             btConnect.Size = new Size(163, 34);
             btConnect.TabIndex = 0;
-            btConnect.Text = "Se connecter";
+            btConnect.Text = "LOGIN";
             btConnect.UseVisualStyleBackColor = true;
             btConnect.Click += btConnect_Click;
             // 
@@ -81,9 +82,9 @@
             lbUser.ForeColor = SystemColors.MenuText;
             lbUser.Location = new Point(116, 180);
             lbUser.Name = "lbUser";
-            lbUser.Size = new Size(74, 32);
+            lbUser.Size = new Size(124, 32);
             lbUser.TabIndex = 3;
-            lbUser.Text = "Login";
+            lbUser.Text = "Username";
             // 
             // lbPwd
             // 
@@ -92,9 +93,9 @@
             lbPwd.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lbPwd.Location = new Point(116, 318);
             lbPwd.Name = "lbPwd";
-            lbPwd.Size = new Size(160, 32);
+            lbPwd.Size = new Size(115, 32);
             lbPwd.TabIndex = 4;
-            lbPwd.Text = "Mot de passe";
+            lbPwd.Text = "Password";
             // 
             // lbTitle
             // 
@@ -115,6 +116,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.BackColor = Color.White;
             splitContainer1.Panel1.Controls.Add(btnEye);
             splitContainer1.Panel1.Controls.Add(lbTitle);
             splitContainer1.Panel1.Controls.Add(txtBoxPwd);

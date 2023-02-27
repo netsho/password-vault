@@ -123,9 +123,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap lock_icon {
+        internal static System.Drawing.Bitmap lock_main {
             get {
-                object obj = ResourceManager.GetObject("lock-icon", resourceCulture);
+                object obj = ResourceManager.GetObject("lock_main", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

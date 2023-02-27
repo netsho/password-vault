@@ -30,6 +30,21 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             splitContainer1 = new SplitContainer();
+            label12 = new Label();
+            lbEntert = new Label();
+            lbGames = new Label();
+            lbEmail = new Label();
+            lbFinance = new Label();
+            lbRetail = new Label();
+            lbSocial = new Label();
+            lbStudy = new Label();
+            lbWork = new Label();
+            lbAdmin = new Label();
+            label1 = new Label();
+            btnExit = new Button();
+            pictureBox1 = new PictureBox();
+            lbTitleVault = new Label();
+            lbTitlePwd = new Label();
             picBoxBackgroundCat = new PictureBox();
             groupBox1 = new GroupBox();
             btnCopyPwd = new Button();
@@ -47,6 +62,7 @@
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBoxBackgroundCat).BeginInit();
             groupBox1.SuspendLayout();
             panelTop.SuspendLayout();
@@ -62,6 +78,20 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.BackColor = SystemColors.GradientActiveCaption;
+            splitContainer1.Panel1.Controls.Add(label12);
+            splitContainer1.Panel1.Controls.Add(lbEntert);
+            splitContainer1.Panel1.Controls.Add(lbGames);
+            splitContainer1.Panel1.Controls.Add(lbEmail);
+            splitContainer1.Panel1.Controls.Add(lbFinance);
+            splitContainer1.Panel1.Controls.Add(lbRetail);
+            splitContainer1.Panel1.Controls.Add(lbSocial);
+            splitContainer1.Panel1.Controls.Add(lbStudy);
+            splitContainer1.Panel1.Controls.Add(lbWork);
+            splitContainer1.Panel1.Controls.Add(lbAdmin);
+            splitContainer1.Panel1.Controls.Add(label1);
+            splitContainer1.Panel1.Controls.Add(pictureBox1);
+            splitContainer1.Panel1.Controls.Add(lbTitleVault);
+            splitContainer1.Panel1.Controls.Add(lbTitlePwd);
             splitContainer1.Panel1.Controls.Add(picBoxBackgroundCat);
             // 
             // splitContainer1.Panel2
@@ -76,6 +106,158 @@
             splitContainer1.SplitterDistance = 417;
             splitContainer1.SplitterWidth = 1;
             splitContainer1.TabIndex = 0;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.Location = new Point(45, 223);
+            label12.Name = "label12";
+            label12.Size = new Size(129, 29);
+            label12.TabIndex = 17;
+            label12.Text = "Catégories";
+            // 
+            // lbEntert
+            // 
+            lbEntert.AutoSize = true;
+            lbEntert.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbEntert.Location = new Point(129, 675);
+            lbEntert.Name = "lbEntert";
+            lbEntert.Size = new Size(91, 32);
+            lbEntert.TabIndex = 15;
+            lbEntert.Text = "Coding";
+            // 
+            // lbGames
+            // 
+            lbGames.AutoSize = true;
+            lbGames.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbGames.Location = new Point(129, 625);
+            lbGames.Name = "lbGames";
+            lbGames.Size = new Size(86, 32);
+            lbGames.TabIndex = 14;
+            lbGames.Text = "Games";
+            // 
+            // lbEmail
+            // 
+            lbEmail.AutoSize = true;
+            lbEmail.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbEmail.Location = new Point(129, 575);
+            lbEmail.Name = "lbEmail";
+            lbEmail.Size = new Size(122, 32);
+            lbEmail.TabIndex = 13;
+            lbEmail.Text = "Institution";
+            // 
+            // lbFinance
+            // 
+            lbFinance.AutoSize = true;
+            lbFinance.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbFinance.Location = new Point(129, 525);
+            lbFinance.Name = "lbFinance";
+            lbFinance.Size = new Size(96, 32);
+            lbFinance.TabIndex = 12;
+            lbFinance.Text = "Finance";
+            // 
+            // lbRetail
+            // 
+            lbRetail.AutoSize = true;
+            lbRetail.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbRetail.Location = new Point(129, 475);
+            lbRetail.Name = "lbRetail";
+            lbRetail.Size = new Size(72, 32);
+            lbRetail.TabIndex = 11;
+            lbRetail.Text = "Retail";
+            // 
+            // lbSocial
+            // 
+            lbSocial.AutoSize = true;
+            lbSocial.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbSocial.Location = new Point(129, 425);
+            lbSocial.Name = "lbSocial";
+            lbSocial.Size = new Size(86, 32);
+            lbSocial.TabIndex = 10;
+            lbSocial.Text = "Socials";
+            // 
+            // lbStudy
+            // 
+            lbStudy.AutoSize = true;
+            lbStudy.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbStudy.Location = new Point(129, 375);
+            lbStudy.Name = "lbStudy";
+            lbStudy.Size = new Size(74, 32);
+            lbStudy.TabIndex = 9;
+            lbStudy.Text = "Study";
+            // 
+            // lbWork
+            // 
+            lbWork.AutoSize = true;
+            lbWork.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbWork.Location = new Point(129, 325);
+            lbWork.Name = "lbWork";
+            lbWork.Size = new Size(69, 32);
+            lbWork.TabIndex = 8;
+            lbWork.Text = "Work";
+            // 
+            // lbAdmin
+            // 
+            lbAdmin.AutoSize = true;
+            lbAdmin.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbAdmin.Location = new Point(129, 275);
+            lbAdmin.Name = "lbAdmin";
+            lbAdmin.Size = new Size(167, 32);
+            lbAdmin.TabIndex = 7;
+            lbAdmin.Text = "Administrative";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(129, 154);
+            label1.Name = "label1";
+            label1.Size = new Size(41, 32);
+            label1.TabIndex = 6;
+            label1.Text = "All";
+            // 
+            // btnExit
+            // 
+            btnExit.Location = new Point(1187, 38);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(81, 36);
+            btnExit.TabIndex = 5;
+            btnExit.Text = "Exit";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.lock_main;
+            pictureBox1.Location = new Point(45, 29);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(78, 78);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 4;
+            pictureBox1.TabStop = false;
+            // 
+            // lbTitleVault
+            // 
+            lbTitleVault.AutoSize = true;
+            lbTitleVault.Font = new Font("Bahnschrift SemiLight", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            lbTitleVault.Location = new Point(153, 68);
+            lbTitleVault.Name = "lbTitleVault";
+            lbTitleVault.Size = new Size(108, 39);
+            lbTitleVault.TabIndex = 3;
+            lbTitleVault.Text = "VAULT";
+            lbTitleVault.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // lbTitlePwd
+            // 
+            lbTitlePwd.AutoSize = true;
+            lbTitlePwd.Font = new Font("Bahnschrift SemiBold SemiConden", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            lbTitlePwd.Location = new Point(129, 29);
+            lbTitlePwd.Name = "lbTitlePwd";
+            lbTitlePwd.Size = new Size(158, 39);
+            lbTitlePwd.TabIndex = 2;
+            lbTitlePwd.Text = "PASSWORD";
+            lbTitlePwd.TextAlign = ContentAlignment.TopCenter;
             // 
             // picBoxBackgroundCat
             // 
@@ -183,6 +365,7 @@
             panelTop.Controls.Add(btnFilter);
             panelTop.Controls.Add(txtBoxFilter);
             panelTop.Controls.Add(btnAdd);
+            panelTop.Controls.Add(btnExit);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
@@ -240,9 +423,11 @@
             MouseMove += MainForm_MouseMove;
             MouseUp += MainForm_MouseUp;
             splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)picBoxBackgroundCat).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -267,5 +452,20 @@
         private Button btnCopyUser;
         private Button btnEyePwd;
         private PictureBox picBoxBackgroundCat;
+        private Label lbTitleVault;
+        private Label lbTitlePwd;
+        private PictureBox pictureBox1;
+        private Button btnExit;
+        private Label lbSocial;
+        private Label lbStudy;
+        private Label lbWork;
+        private Label lbAdmin;
+        private Label label1;
+        private Label label12;
+        private Label lbEntert;
+        private Label lbGames;
+        private Label lbEmail;
+        private Label lbFinance;
+        private Label lbRetail;
     }
 }

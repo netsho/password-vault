@@ -4,13 +4,12 @@
     {
         Administrative,
         Work,
-        School,
-        Social_media,
+        Study,
+        Socials,
         Retail,
         Finance,
-        Email,
+        Institution,
         Games,
-        Entertainment,
-        Forum
+        Coding
     }
 }

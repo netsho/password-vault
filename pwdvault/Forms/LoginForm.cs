@@ -24,7 +24,8 @@ namespace pwdvault.Forms
             if (String.IsNullOrWhiteSpace(txtBoxUser.Text) || String.IsNullOrWhiteSpace(txtBoxPwd.Text))
             {
                 MessageBox.Show("Please fill in username and password.");
-            } else
+            }
+            else
             {
                 UserSuccessfullyAuthenticated = true;
                 Close();
