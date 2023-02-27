@@ -106,6 +106,7 @@
             // 
             // comBoxCat
             // 
+            comBoxCat.DropDownStyle = ComboBoxStyle.DropDownList;
             comBoxCat.FlatStyle = FlatStyle.System;
             comBoxCat.FormattingEnabled = true;
             comBoxCat.Location = new Point(100, 235);

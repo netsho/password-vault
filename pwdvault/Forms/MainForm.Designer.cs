@@ -30,24 +30,26 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             splitContainer1 = new SplitContainer();
+            label1 = new Label();
+            lbTitle = new Label();
             groupBox1 = new GroupBox();
             btnCopyPwd = new Button();
             btnCopyUser = new Button();
-            button1 = new Button();
-            label3 = new Label();
-            label2 = new Label();
+            btnEyePwd = new Button();
+            lbPwdFilled = new Label();
+            lbUserFilled = new Label();
             lbPwd = new Label();
             lbUser = new Label();
-            label1 = new Label();
-            panel1 = new Panel();
+            panelTop = new Panel();
             btnFilter = new Button();
-            textBox1 = new TextBox();
+            txtBoxFilter = new TextBox();
             btnAdd = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             groupBox1.SuspendLayout();
-            panel1.SuspendLayout();
+            panelTop.SuspendLayout();
             SuspendLayout();
             // 
             // splitContainer1
@@ -59,24 +61,47 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.BackColor = SystemColors.GradientActiveCaption;
+            splitContainer1.Panel1.Controls.Add(label1);
+            splitContainer1.Panel1.Controls.Add(lbTitle);
             // 
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.BackColor = SystemColors.Window;
             splitContainer1.Panel2.Controls.Add(groupBox1);
-            splitContainer1.Panel2.Controls.Add(label1);
-            splitContainer1.Panel2.Controls.Add(panel1);
+            splitContainer1.Panel2.Controls.Add(panelTop);
             splitContainer1.Size = new Size(1717, 777);
             splitContainer1.SplitterDistance = 417;
             splitContainer1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(220, 324);
+            label1.Name = "label1";
+            label1.Size = new Size(88, 38);
+            label1.TabIndex = 1;
+            label1.Text = "All";
+            // 
+            // lbTitle
+            // 
+            lbTitle.Dock = DockStyle.Top;
+            lbTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            lbTitle.ForeColor = Color.AliceBlue;
+            lbTitle.Image = Properties.Resources.background_main;
+            lbTitle.Location = new Point(0, 0);
+            lbTitle.Name = "lbTitle";
+            lbTitle.Size = new Size(417, 175);
+            lbTitle.TabIndex = 0;
+            lbTitle.TextAlign = ContentAlignment.BottomCenter;
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(btnCopyPwd);
             groupBox1.Controls.Add(btnCopyUser);
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(btnEyePwd);
+            groupBox1.Controls.Add(lbPwdFilled);
+            groupBox1.Controls.Add(lbUserFilled);
             groupBox1.Controls.Add(lbPwd);
             groupBox1.Controls.Add(lbUser);
             groupBox1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -110,35 +135,35 @@
             btnCopyUser.UseVisualStyleBackColor = true;
             btnCopyUser.Click += btnCopyUser_Click;
             // 
-            // button1
+            // btnEyePwd
             // 
-            button1.BackgroundImage = Properties.Resources.eye;
-            button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.Location = new Point(1045, 87);
-            button1.Name = "button1";
-            button1.Size = new Size(34, 34);
-            button1.TabIndex = 3;
-            button1.UseVisualStyleBackColor = true;
+            btnEyePwd.BackgroundImage = Properties.Resources.eye;
+            btnEyePwd.BackgroundImageLayout = ImageLayout.Stretch;
+            btnEyePwd.Location = new Point(1045, 87);
+            btnEyePwd.Name = "btnEyePwd";
+            btnEyePwd.Size = new Size(34, 34);
+            btnEyePwd.TabIndex = 3;
+            btnEyePwd.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // lbPwdFilled
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(751, 57);
-            label3.Name = "label3";
-            label3.Size = new Size(268, 28);
-            label3.TabIndex = 5;
-            label3.Text = "testtesttesttestetstrtbfdfgytyt";
+            lbPwdFilled.AutoSize = true;
+            lbPwdFilled.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lbPwdFilled.Location = new Point(751, 57);
+            lbPwdFilled.Name = "lbPwdFilled";
+            lbPwdFilled.Size = new Size(268, 28);
+            lbPwdFilled.TabIndex = 5;
+            lbPwdFilled.Text = "testtesttesttestetstrtbfdfgytyt";
             // 
-            // label2
+            // lbUserFilled
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(175, 58);
-            label2.Name = "label2";
-            label2.Size = new Size(252, 28);
-            label2.TabIndex = 3;
-            label2.Text = "oussamabricha@gmail.com";
+            lbUserFilled.AutoSize = true;
+            lbUserFilled.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lbUserFilled.Location = new Point(175, 58);
+            lbUserFilled.Name = "lbUserFilled";
+            lbUserFilled.Size = new Size(252, 28);
+            lbUserFilled.TabIndex = 3;
+            lbUserFilled.Text = "oussamabricha@gmail.com";
             // 
             // lbPwd
             // 
@@ -158,24 +183,16 @@
             lbUser.TabIndex = 3;
             lbUser.Text = "Username";
             // 
-            // label1
+            // panelTop
             // 
-            label1.BorderStyle = BorderStyle.Fixed3D;
-            label1.Location = new Point(16, 113);
-            label1.Name = "label1";
-            label1.Size = new Size(1036, 2);
-            label1.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(btnFilter);
-            panel1.Controls.Add(textBox1);
-            panel1.Controls.Add(btnAdd);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1296, 113);
-            panel1.TabIndex = 0;
+            panelTop.Controls.Add(btnFilter);
+            panelTop.Controls.Add(txtBoxFilter);
+            panelTop.Controls.Add(btnAdd);
+            panelTop.Dock = DockStyle.Top;
+            panelTop.Location = new Point(0, 0);
+            panelTop.Name = "panelTop";
+            panelTop.Size = new Size(1296, 113);
+            panelTop.TabIndex = 0;
             // 
             // btnFilter
             // 
@@ -188,13 +205,13 @@
             btnFilter.UseVisualStyleBackColor = true;
             btnFilter.Click += btnFilter_Click;
             // 
-            // textBox1
+            // txtBoxFilter
             // 
-            textBox1.Location = new Point(396, 40);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Filter";
-            textBox1.Size = new Size(479, 31);
-            textBox1.TabIndex = 1;
+            txtBoxFilter.Location = new Point(396, 40);
+            txtBoxFilter.Name = "txtBoxFilter";
+            txtBoxFilter.PlaceholderText = "Filter";
+            txtBoxFilter.Size = new Size(479, 31);
+            txtBoxFilter.TabIndex = 1;
             // 
             // btnAdd
             // 
@@ -220,31 +237,33 @@
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Password Vault";
+            splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            panelTop.ResumeLayout(false);
+            panelTop.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private SplitContainer splitContainer1;
-        private Panel panel1;
+        private Panel panelTop;
         private Button btnAdd;
         private Button btnFilter;
-        private TextBox textBox1;
-        private Label label1;
+        private TextBox txtBoxFilter;
         private GroupBox groupBox1;
-        private Label label3;
-        private Label label2;
+        private Label lbPwdFilled;
+        private Label lbUserFilled;
         private Label lbPwd;
         private Label lbUser;
         private Button btnCopyPwd;
         private Button btnCopyUser;
-        private Button button1;
+        private Button btnEyePwd;
+        private Label lbTitle;
+        private Label label1;
     }
 }

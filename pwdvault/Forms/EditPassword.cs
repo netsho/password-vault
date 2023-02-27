@@ -1,4 +1,5 @@
-﻿using pwdvault.Services;
+﻿using pwdvault.Modeles;
+using pwdvault.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,9 @@ namespace pwdvault.Forms
         public EditPassword()
         {
             InitializeComponent();
+            IEnumerable<Categories> categoriesValues = Enum.GetValues(typeof(Categories)).Cast<Categories>();
+            List<string> categories = new List<string>(categoriesValues.Select(category => category.ToString().Replace("_", " ")));
+            comBoxCat.DataSource = categories;
         }
 
         private void btnEye_MouseUp(object sender, MouseEventArgs e)
@@ -41,6 +45,7 @@ namespace pwdvault.Forms
                 {
                     // Encrypt password and store it, success message and hide the form
                     MessageBox.Show("ok");
+                    Close();
                 }
                 else
                 {

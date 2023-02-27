@@ -1,4 +1,5 @@
-﻿using pwdvault.Services;
+﻿using pwdvault.Modeles;
+using pwdvault.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,9 @@ namespace pwdvault.Forms
         public AddPassword()
         {
             InitializeComponent();
+            IEnumerable<Categories> categoriesValues = Enum.GetValues(typeof(Categories)).Cast<Categories>();
+            List<string> categories = new List<string>(categoriesValues.Select(category => category.ToString().Replace("_", " ")));
+            comBoxCat.DataSource = categories;
         }
 
         private void btnGenerate_Click(object sender, EventArgs e)
@@ -25,21 +29,24 @@ namespace pwdvault.Forms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if(!String.IsNullOrWhiteSpace(txtBoxApp.Text) &&
-                !String.IsNullOrWhiteSpace(txtBoxUser.Text) && 
-                !String.IsNullOrWhiteSpace(txtBoxPwd.Text) && 
-                !String.IsNullOrWhiteSpace(comBoxCat.Text)) 
+            if (!String.IsNullOrWhiteSpace(txtBoxApp.Text) &&
+                !String.IsNullOrWhiteSpace(txtBoxUser.Text) &&
+                !String.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
+                !String.IsNullOrWhiteSpace(comBoxCat.Text))
             {
                 if (PasswordService.IsPasswordStrong(txtBoxPwd.Text))
                 {
                     // Encrypt password and store it, success message and hide the form
                     MessageBox.Show("ok");
-                } else
+                    Close();
+                }
+                else
                 {
                     MessageBox.Show("Password must be atleast 16 characters long and contain the following : " + Environment.NewLine +
                         "- Uppercase" + Environment.NewLine + "- Lowercase" + Environment.NewLine + "- Numbers" + Environment.NewLine + "- Symbols");
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show("Please complete all fields.");
 
