@@ -30,8 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             splitContainer1 = new SplitContainer();
-            label1 = new Label();
-            lbTitle = new Label();
+            picBoxBackgroundCat = new PictureBox();
             groupBox1 = new GroupBox();
             btnCopyPwd = new Button();
             btnCopyUser = new Button();
@@ -48,6 +47,7 @@
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxBackgroundCat).BeginInit();
             groupBox1.SuspendLayout();
             panelTop.SuspendLayout();
             SuspendLayout();
@@ -55,45 +55,40 @@
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.IsSplitterFixed = true;
             splitContainer1.Location = new Point(0, 0);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.BackColor = SystemColors.GradientActiveCaption;
-            splitContainer1.Panel1.Controls.Add(label1);
-            splitContainer1.Panel1.Controls.Add(lbTitle);
+            splitContainer1.Panel1.Controls.Add(picBoxBackgroundCat);
             // 
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.BackColor = SystemColors.Window;
             splitContainer1.Panel2.Controls.Add(groupBox1);
             splitContainer1.Panel2.Controls.Add(panelTop);
+            splitContainer1.Panel2.MouseDown += splitContainer1_Panel2_MouseDown;
+            splitContainer1.Panel2.MouseMove += splitContainer1_Panel2_MouseMove;
+            splitContainer1.Panel2.MouseUp += splitContainer1_Panel2_MouseUp;
             splitContainer1.Size = new Size(1717, 777);
             splitContainer1.SplitterDistance = 417;
+            splitContainer1.SplitterWidth = 1;
             splitContainer1.TabIndex = 0;
             // 
-            // label1
+            // picBoxBackgroundCat
             // 
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(220, 324);
-            label1.Name = "label1";
-            label1.Size = new Size(88, 38);
-            label1.TabIndex = 1;
-            label1.Text = "All";
-            // 
-            // lbTitle
-            // 
-            lbTitle.Dock = DockStyle.Top;
-            lbTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            lbTitle.ForeColor = Color.AliceBlue;
-            lbTitle.Image = Properties.Resources.background_main;
-            lbTitle.Location = new Point(0, 0);
-            lbTitle.Name = "lbTitle";
-            lbTitle.Size = new Size(417, 175);
-            lbTitle.TabIndex = 0;
-            lbTitle.TextAlign = ContentAlignment.BottomCenter;
+            picBoxBackgroundCat.BackgroundImage = Properties.Resources.background_categories;
+            picBoxBackgroundCat.Dock = DockStyle.Fill;
+            picBoxBackgroundCat.Location = new Point(0, 0);
+            picBoxBackgroundCat.Name = "picBoxBackgroundCat";
+            picBoxBackgroundCat.Size = new Size(417, 777);
+            picBoxBackgroundCat.TabIndex = 1;
+            picBoxBackgroundCat.TabStop = false;
+            picBoxBackgroundCat.MouseDown += pictureBox1_MouseDown;
+            picBoxBackgroundCat.MouseMove += pictureBox1_MouseMove;
+            picBoxBackgroundCat.MouseUp += pictureBox1_MouseUp;
             // 
             // groupBox1
             // 
@@ -191,8 +186,11 @@
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(1296, 113);
+            panelTop.Size = new Size(1299, 113);
             panelTop.TabIndex = 0;
+            panelTop.MouseDown += panelTop_MouseDown;
+            panelTop.MouseMove += panelTop_MouseMove;
+            panelTop.MouseUp += panelTop_MouseUp;
             // 
             // btnFilter
             // 
@@ -224,7 +222,7 @@
             btnAdd.TabIndex = 0;
             btnAdd.Text = "Add password";
             btnAdd.UseVisualStyleBackColor = false;
-            btnAdd.Click += button1_Click;
+            btnAdd.Click += btnAdd_Click;
             // 
             // MainForm
             // 
@@ -232,15 +230,20 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1717, 777);
             Controls.Add(splitContainer1);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Password Vault";
+            MouseDown += MainForm_MouseDown;
+            MouseMove += MainForm_MouseMove;
+            MouseUp += MainForm_MouseUp;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picBoxBackgroundCat).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             panelTop.ResumeLayout(false);
@@ -263,7 +266,6 @@
         private Button btnCopyPwd;
         private Button btnCopyUser;
         private Button btnEyePwd;
-        private Label lbTitle;
-        private Label label1;
+        private PictureBox picBoxBackgroundCat;
     }
 }
