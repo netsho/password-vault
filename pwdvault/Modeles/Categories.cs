@@ -8,7 +8,6 @@
         Socials,
         Retail,
         Finance,
-        Institution,
         Games,
         Coding
     }

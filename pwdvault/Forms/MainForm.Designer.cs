@@ -30,22 +30,21 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             splitContainer1 = new SplitContainer();
-            label12 = new Label();
+            label2 = new Label();
+            lbCatTitle = new Label();
             lbEntert = new Label();
             lbGames = new Label();
-            lbEmail = new Label();
             lbFinance = new Label();
             lbRetail = new Label();
             lbSocial = new Label();
             lbStudy = new Label();
             lbWork = new Label();
-            lbAdmin = new Label();
             label1 = new Label();
-            btnExit = new Button();
             pictureBox1 = new PictureBox();
             lbTitleVault = new Label();
             lbTitlePwd = new Label();
             picBoxBackgroundCat = new PictureBox();
+            separator = new Label();
             groupBox1 = new GroupBox();
             btnCopyPwd = new Button();
             btnCopyUser = new Button();
@@ -58,6 +57,8 @@
             btnFilter = new Button();
             txtBoxFilter = new TextBox();
             btnAdd = new Button();
+            btnExit = new Button();
+            saveFileDialog1 = new SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -78,16 +79,15 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.BackColor = SystemColors.GradientActiveCaption;
-            splitContainer1.Panel1.Controls.Add(label12);
+            splitContainer1.Panel1.Controls.Add(label2);
+            splitContainer1.Panel1.Controls.Add(lbCatTitle);
             splitContainer1.Panel1.Controls.Add(lbEntert);
             splitContainer1.Panel1.Controls.Add(lbGames);
-            splitContainer1.Panel1.Controls.Add(lbEmail);
             splitContainer1.Panel1.Controls.Add(lbFinance);
             splitContainer1.Panel1.Controls.Add(lbRetail);
             splitContainer1.Panel1.Controls.Add(lbSocial);
             splitContainer1.Panel1.Controls.Add(lbStudy);
             splitContainer1.Panel1.Controls.Add(lbWork);
-            splitContainer1.Panel1.Controls.Add(lbAdmin);
             splitContainer1.Panel1.Controls.Add(label1);
             splitContainer1.Panel1.Controls.Add(pictureBox1);
             splitContainer1.Panel1.Controls.Add(lbTitleVault);
@@ -96,7 +96,8 @@
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.BackColor = SystemColors.Window;
+            splitContainer1.Panel2.BackColor = Color.White;
+            splitContainer1.Panel2.Controls.Add(separator);
             splitContainer1.Panel2.Controls.Add(groupBox1);
             splitContainer1.Panel2.Controls.Add(panelTop);
             splitContainer1.Panel2.MouseDown += splitContainer1_Panel2_MouseDown;
@@ -107,125 +108,146 @@
             splitContainer1.SplitterWidth = 1;
             splitContainer1.TabIndex = 0;
             // 
-            // label12
+            // label2
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.Location = new Point(45, 223);
-            label12.Name = "label12";
-            label12.Size = new Size(129, 29);
-            label12.TabIndex = 17;
-            label12.Text = "Catégories";
+            label2.BackColor = Color.FromArgb(103, 138, 178);
+            label2.Cursor = Cursors.Hand;
+            label2.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.Black;
+            label2.Image = Properties.Resources.institution;
+            label2.ImageAlign = ContentAlignment.MiddleLeft;
+            label2.Location = new Point(82, 285);
+            label2.Name = "label2";
+            label2.Size = new Size(244, 34);
+            label2.TabIndex = 9;
+            label2.Text = "Administrative";
+            label2.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lbCatTitle
+            // 
+            lbCatTitle.AutoSize = true;
+            lbCatTitle.BackColor = Color.FromArgb(103, 138, 178);
+            lbCatTitle.Font = new Font("Bahnschrift", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            lbCatTitle.ForeColor = Color.White;
+            lbCatTitle.Location = new Point(34, 211);
+            lbCatTitle.Name = "lbCatTitle";
+            lbCatTitle.Size = new Size(192, 43);
+            lbCatTitle.TabIndex = 17;
+            lbCatTitle.Text = "Categories";
             // 
             // lbEntert
             // 
-            lbEntert.AutoSize = true;
-            lbEntert.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbEntert.Location = new Point(129, 675);
+            lbEntert.BackColor = Color.FromArgb(103, 138, 178);
+            lbEntert.Cursor = Cursors.Hand;
+            lbEntert.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbEntert.Image = Properties.Resources.coding;
+            lbEntert.ImageAlign = ContentAlignment.MiddleLeft;
+            lbEntert.Location = new Point(82, 635);
             lbEntert.Name = "lbEntert";
-            lbEntert.Size = new Size(91, 32);
+            lbEntert.Size = new Size(156, 32);
             lbEntert.TabIndex = 15;
             lbEntert.Text = "Coding";
+            lbEntert.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lbGames
             // 
-            lbGames.AutoSize = true;
-            lbGames.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbGames.Location = new Point(129, 625);
+            lbGames.BackColor = Color.FromArgb(103, 138, 178);
+            lbGames.Cursor = Cursors.Hand;
+            lbGames.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbGames.Image = Properties.Resources.console;
+            lbGames.ImageAlign = ContentAlignment.MiddleLeft;
+            lbGames.Location = new Point(82, 585);
             lbGames.Name = "lbGames";
-            lbGames.Size = new Size(86, 32);
+            lbGames.Size = new Size(158, 32);
             lbGames.TabIndex = 14;
             lbGames.Text = "Games";
-            // 
-            // lbEmail
-            // 
-            lbEmail.AutoSize = true;
-            lbEmail.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbEmail.Location = new Point(129, 575);
-            lbEmail.Name = "lbEmail";
-            lbEmail.Size = new Size(122, 32);
-            lbEmail.TabIndex = 13;
-            lbEmail.Text = "Institution";
+            lbGames.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lbFinance
             // 
-            lbFinance.AutoSize = true;
-            lbFinance.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbFinance.Location = new Point(129, 525);
+            lbFinance.BackColor = Color.FromArgb(103, 138, 178);
+            lbFinance.Cursor = Cursors.Hand;
+            lbFinance.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbFinance.Image = Properties.Resources.euro;
+            lbFinance.ImageAlign = ContentAlignment.MiddleLeft;
+            lbFinance.Location = new Point(82, 525);
             lbFinance.Name = "lbFinance";
-            lbFinance.Size = new Size(96, 32);
+            lbFinance.Size = new Size(167, 50);
             lbFinance.TabIndex = 12;
             lbFinance.Text = "Finance";
+            lbFinance.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lbRetail
             // 
-            lbRetail.AutoSize = true;
-            lbRetail.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbRetail.Location = new Point(129, 475);
+            lbRetail.BackColor = Color.FromArgb(103, 138, 178);
+            lbRetail.Cursor = Cursors.Hand;
+            lbRetail.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbRetail.Image = Properties.Resources.shopping_bag;
+            lbRetail.ImageAlign = ContentAlignment.MiddleLeft;
+            lbRetail.Location = new Point(82, 475);
             lbRetail.Name = "lbRetail";
-            lbRetail.Size = new Size(72, 32);
+            lbRetail.Size = new Size(146, 50);
             lbRetail.TabIndex = 11;
             lbRetail.Text = "Retail";
+            lbRetail.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lbSocial
             // 
-            lbSocial.AutoSize = true;
-            lbSocial.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbSocial.Location = new Point(129, 425);
+            lbSocial.BackColor = Color.FromArgb(103, 138, 178);
+            lbSocial.Cursor = Cursors.Hand;
+            lbSocial.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbSocial.Image = Properties.Resources.internet;
+            lbSocial.ImageAlign = ContentAlignment.MiddleLeft;
+            lbSocial.Location = new Point(82, 425);
             lbSocial.Name = "lbSocial";
-            lbSocial.Size = new Size(86, 32);
+            lbSocial.Size = new Size(161, 50);
             lbSocial.TabIndex = 10;
             lbSocial.Text = "Socials";
+            lbSocial.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lbStudy
             // 
-            lbStudy.AutoSize = true;
-            lbStudy.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbStudy.Location = new Point(129, 375);
+            lbStudy.BackColor = Color.FromArgb(103, 138, 178);
+            lbStudy.Cursor = Cursors.Hand;
+            lbStudy.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbStudy.Image = Properties.Resources.graduation_cap;
+            lbStudy.ImageAlign = ContentAlignment.MiddleLeft;
+            lbStudy.Location = new Point(82, 385);
             lbStudy.Name = "lbStudy";
-            lbStudy.Size = new Size(74, 32);
+            lbStudy.Size = new Size(146, 32);
             lbStudy.TabIndex = 9;
             lbStudy.Text = "Study";
+            lbStudy.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lbWork
             // 
-            lbWork.AutoSize = true;
-            lbWork.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbWork.Location = new Point(129, 325);
+            lbWork.BackColor = Color.FromArgb(103, 138, 178);
+            lbWork.Cursor = Cursors.Hand;
+            lbWork.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbWork.ForeColor = Color.Black;
+            lbWork.Image = Properties.Resources.portfolio;
+            lbWork.ImageAlign = ContentAlignment.MiddleLeft;
+            lbWork.Location = new Point(81, 335);
             lbWork.Name = "lbWork";
-            lbWork.Size = new Size(69, 32);
+            lbWork.Size = new Size(143, 34);
             lbWork.TabIndex = 8;
             lbWork.Text = "Work";
-            // 
-            // lbAdmin
-            // 
-            lbAdmin.AutoSize = true;
-            lbAdmin.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbAdmin.Location = new Point(129, 275);
-            lbAdmin.Name = "lbAdmin";
-            lbAdmin.Size = new Size(167, 32);
-            lbAdmin.TabIndex = 7;
-            lbAdmin.Text = "Administrative";
+            lbWork.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(129, 154);
+            label1.BackColor = Color.FromArgb(103, 138, 178);
+            label1.Cursor = Cursors.Hand;
+            label1.Font = new Font("Bahnschrift SemiBold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.Black;
+            label1.Image = Properties.Resources.app1;
+            label1.ImageAlign = ContentAlignment.MiddleLeft;
+            label1.Location = new Point(81, 155);
             label1.Name = "label1";
-            label1.Size = new Size(41, 32);
+            label1.Size = new Size(124, 49);
             label1.TabIndex = 6;
             label1.Text = "All";
-            // 
-            // btnExit
-            // 
-            btnExit.Location = new Point(1187, 38);
-            btnExit.Name = "btnExit";
-            btnExit.Size = new Size(81, 36);
-            btnExit.TabIndex = 5;
-            btnExit.Text = "Exit";
-            btnExit.UseVisualStyleBackColor = true;
-            btnExit.Click += btnExit_Click;
+            label1.TextAlign = ContentAlignment.MiddleRight;
             // 
             // pictureBox1
             // 
@@ -240,7 +262,9 @@
             // lbTitleVault
             // 
             lbTitleVault.AutoSize = true;
+            lbTitleVault.BackColor = Color.FromArgb(103, 138, 178);
             lbTitleVault.Font = new Font("Bahnschrift SemiLight", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            lbTitleVault.ForeColor = Color.White;
             lbTitleVault.Location = new Point(153, 68);
             lbTitleVault.Name = "lbTitleVault";
             lbTitleVault.Size = new Size(108, 39);
@@ -251,7 +275,9 @@
             // lbTitlePwd
             // 
             lbTitlePwd.AutoSize = true;
+            lbTitlePwd.BackColor = Color.FromArgb(103, 138, 178);
             lbTitlePwd.Font = new Font("Bahnschrift SemiBold SemiConden", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            lbTitlePwd.ForeColor = Color.White;
             lbTitlePwd.Location = new Point(129, 29);
             lbTitlePwd.Name = "lbTitlePwd";
             lbTitlePwd.Size = new Size(158, 39);
@@ -261,7 +287,7 @@
             // 
             // picBoxBackgroundCat
             // 
-            picBoxBackgroundCat.BackgroundImage = Properties.Resources.background_categories;
+            picBoxBackgroundCat.BackColor = Color.FromArgb(103, 138, 178);
             picBoxBackgroundCat.Dock = DockStyle.Fill;
             picBoxBackgroundCat.Location = new Point(0, 0);
             picBoxBackgroundCat.Name = "picBoxBackgroundCat";
@@ -271,6 +297,14 @@
             picBoxBackgroundCat.MouseDown += pictureBox1_MouseDown;
             picBoxBackgroundCat.MouseMove += pictureBox1_MouseMove;
             picBoxBackgroundCat.MouseUp += pictureBox1_MouseUp;
+            // 
+            // separator
+            // 
+            separator.BorderStyle = BorderStyle.Fixed3D;
+            separator.Location = new Point(15, 111);
+            separator.Name = "separator";
+            separator.Size = new Size(1272, 2);
+            separator.TabIndex = 3;
             // 
             // groupBox1
             // 
@@ -407,6 +441,16 @@
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
+            // btnExit
+            // 
+            btnExit.Location = new Point(1187, 38);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(81, 36);
+            btnExit.TabIndex = 5;
+            btnExit.Text = "Exit";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -459,13 +503,14 @@
         private Label lbSocial;
         private Label lbStudy;
         private Label lbWork;
-        private Label lbAdmin;
         private Label label1;
-        private Label label12;
+        private Label lbCatTitle;
         private Label lbEntert;
         private Label lbGames;
-        private Label lbEmail;
         private Label lbFinance;
         private Label lbRetail;
+        private SaveFileDialog saveFileDialog1;
+        private Label separator;
+        private Label label2;
     }
 }
