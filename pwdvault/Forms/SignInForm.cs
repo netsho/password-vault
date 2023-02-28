@@ -62,6 +62,14 @@ namespace pwdvault.Forms
             {
                 folderPath = dialog.FileName;
                 MessageBox.Show("You selected: " + Environment.NewLine + folderPath);
+                Label lbPath = new Label();
+                lbPath.Name = "lbPath";
+                lbPath.FlatStyle = FlatStyle.System;
+                lbPath.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Regular, GraphicsUnit.Point);
+                lbPath.Location = new Point(100, 566);
+                lbPath.Size = new Size(400, 32);
+                lbPath.Text = "The database path is selected.";
+                Controls.Add(lbPath);
             }
         }
     }
