@@ -8,12 +8,6 @@ namespace pwdvault.Modeles
 {
     internal class UserPassword
     {
-        private int cId;
-        private string cAppCategory;
-        private string cAppName;
-        private string cUsername;
-        private string cPassword;
-
         public int Id { get; set; }
         public string AppCategory { get; set; }
         public string AppName { get; set; }

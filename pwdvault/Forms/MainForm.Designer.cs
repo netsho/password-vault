@@ -45,28 +45,21 @@
             lbTitlePwd = new Label();
             picBoxBackgroundCat = new PictureBox();
             separator = new Label();
-            groupBox1 = new GroupBox();
-            btnCopyPwd = new Button();
-            btnCopyUser = new Button();
-            btnEyePwd = new Button();
-            lbPwdFilled = new Label();
-            lbUserFilled = new Label();
-            lbPwd = new Label();
-            lbUser = new Label();
             panelTop = new Panel();
             btnFilter = new Button();
             txtBoxFilter = new TextBox();
             btnAdd = new Button();
             btnExit = new Button();
             saveFileDialog1 = new SaveFileDialog();
+            dataGridTest = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBoxBackgroundCat).BeginInit();
-            groupBox1.SuspendLayout();
             panelTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridTest).BeginInit();
             SuspendLayout();
             // 
             // splitContainer1
@@ -97,8 +90,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.BackColor = Color.White;
+            splitContainer1.Panel2.Controls.Add(dataGridTest);
             splitContainer1.Panel2.Controls.Add(separator);
-            splitContainer1.Panel2.Controls.Add(groupBox1);
             splitContainer1.Panel2.Controls.Add(panelTop);
             splitContainer1.Panel2.MouseDown += splitContainer1_Panel2_MouseDown;
             splitContainer1.Panel2.MouseMove += splitContainer1_Panel2_MouseMove;
@@ -306,94 +299,6 @@
             separator.Size = new Size(1272, 2);
             separator.TabIndex = 3;
             // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(btnCopyPwd);
-            groupBox1.Controls.Add(btnCopyUser);
-            groupBox1.Controls.Add(btnEyePwd);
-            groupBox1.Controls.Add(lbPwdFilled);
-            groupBox1.Controls.Add(lbUserFilled);
-            groupBox1.Controls.Add(lbPwd);
-            groupBox1.Controls.Add(lbUser);
-            groupBox1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox1.Location = new Point(33, 136);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1235, 140);
-            groupBox1.TabIndex = 2;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Paypal";
-            // 
-            // btnCopyPwd
-            // 
-            btnCopyPwd.FlatStyle = FlatStyle.System;
-            btnCopyPwd.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCopyPwd.Location = new Point(1085, 87);
-            btnCopyPwd.Name = "btnCopyPwd";
-            btnCopyPwd.Size = new Size(144, 34);
-            btnCopyPwd.TabIndex = 6;
-            btnCopyPwd.Text = "Copy password";
-            btnCopyPwd.UseVisualStyleBackColor = true;
-            // 
-            // btnCopyUser
-            // 
-            btnCopyUser.FlatStyle = FlatStyle.System;
-            btnCopyUser.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCopyUser.Location = new Point(447, 87);
-            btnCopyUser.Name = "btnCopyUser";
-            btnCopyUser.Size = new Size(154, 34);
-            btnCopyUser.TabIndex = 4;
-            btnCopyUser.Text = "Copy username";
-            btnCopyUser.UseVisualStyleBackColor = true;
-            btnCopyUser.Click += btnCopyUser_Click;
-            // 
-            // btnEyePwd
-            // 
-            btnEyePwd.BackgroundImage = Properties.Resources.eye;
-            btnEyePwd.BackgroundImageLayout = ImageLayout.Stretch;
-            btnEyePwd.Location = new Point(1045, 87);
-            btnEyePwd.Name = "btnEyePwd";
-            btnEyePwd.Size = new Size(34, 34);
-            btnEyePwd.TabIndex = 3;
-            btnEyePwd.UseVisualStyleBackColor = true;
-            // 
-            // lbPwdFilled
-            // 
-            lbPwdFilled.AutoSize = true;
-            lbPwdFilled.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lbPwdFilled.Location = new Point(751, 57);
-            lbPwdFilled.Name = "lbPwdFilled";
-            lbPwdFilled.Size = new Size(268, 28);
-            lbPwdFilled.TabIndex = 5;
-            lbPwdFilled.Text = "testtesttesttestetstrtbfdfgytyt";
-            // 
-            // lbUserFilled
-            // 
-            lbUserFilled.AutoSize = true;
-            lbUserFilled.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lbUserFilled.Location = new Point(175, 58);
-            lbUserFilled.Name = "lbUserFilled";
-            lbUserFilled.Size = new Size(252, 28);
-            lbUserFilled.TabIndex = 3;
-            lbUserFilled.Text = "oussamabricha@gmail.com";
-            // 
-            // lbPwd
-            // 
-            lbPwd.AutoSize = true;
-            lbPwd.Location = new Point(630, 54);
-            lbPwd.Name = "lbPwd";
-            lbPwd.Size = new Size(115, 32);
-            lbPwd.TabIndex = 4;
-            lbPwd.Text = "Password";
-            // 
-            // lbUser
-            // 
-            lbUser.AutoSize = true;
-            lbUser.Location = new Point(45, 54);
-            lbUser.Name = "lbUser";
-            lbUser.Size = new Size(124, 32);
-            lbUser.TabIndex = 3;
-            lbUser.Text = "Username";
-            // 
             // panelTop
             // 
             panelTop.Controls.Add(btnFilter);
@@ -451,6 +356,19 @@
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click;
             // 
+            // dataGridTest
+            // 
+            dataGridTest.AllowUserToAddRows = false;
+            dataGridTest.AllowUserToOrderColumns = true;
+            dataGridTest.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridTest.Dock = DockStyle.Fill;
+            dataGridTest.Location = new Point(0, 113);
+            dataGridTest.Name = "dataGridTest";
+            dataGridTest.RowHeadersWidth = 62;
+            dataGridTest.RowTemplate.Height = 33;
+            dataGridTest.Size = new Size(1299, 664);
+            dataGridTest.TabIndex = 4;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -473,10 +391,9 @@
             splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)picBoxBackgroundCat).EndInit();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridTest).EndInit();
             ResumeLayout(false);
         }
 
@@ -487,14 +404,6 @@
         private Button btnAdd;
         private Button btnFilter;
         private TextBox txtBoxFilter;
-        private GroupBox groupBox1;
-        private Label lbPwdFilled;
-        private Label lbUserFilled;
-        private Label lbPwd;
-        private Label lbUser;
-        private Button btnCopyPwd;
-        private Button btnCopyUser;
-        private Button btnEyePwd;
         private PictureBox picBoxBackgroundCat;
         private Label lbTitleVault;
         private Label lbTitlePwd;
@@ -512,5 +421,6 @@
         private SaveFileDialog saveFileDialog1;
         private Label separator;
         private Label label2;
+        private DataGridView dataGridTest;
     }
 }

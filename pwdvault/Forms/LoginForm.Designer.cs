@@ -38,6 +38,7 @@
             splitContainer1 = new SplitContainer();
             btnEye = new Button();
             pictureBox1 = new PictureBox();
+            btnSignIn = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -49,7 +50,7 @@
             // 
             btConnect.FlatStyle = FlatStyle.System;
             btConnect.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btConnect.Location = new Point(198, 468);
+            btConnect.Location = new Point(320, 469);
             btConnect.Name = "btConnect";
             btConnect.Size = new Size(163, 34);
             btConnect.TabIndex = 0;
@@ -117,6 +118,7 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.BackColor = Color.White;
+            splitContainer1.Panel1.Controls.Add(btnSignIn);
             splitContainer1.Panel1.Controls.Add(btnEye);
             splitContainer1.Panel1.Controls.Add(lbTitle);
             splitContainer1.Panel1.Controls.Add(txtBoxPwd);
@@ -154,6 +156,18 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // btnSignIn
+            // 
+            btnSignIn.FlatStyle = FlatStyle.System;
+            btnSignIn.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSignIn.Location = new Point(116, 469);
+            btnSignIn.Name = "btnSignIn";
+            btnSignIn.Size = new Size(163, 34);
+            btnSignIn.TabIndex = 8;
+            btnSignIn.Text = "SIGN IN";
+            btnSignIn.UseVisualStyleBackColor = true;
+            btnSignIn.Click += btnSignIn_Click;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -185,5 +199,6 @@
         private SplitContainer splitContainer1;
         private PictureBox pictureBox1;
         private Button btnEye;
+        private Button btnSignIn;
     }
 }
