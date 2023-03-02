@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditPassword));
             lbTitle = new Label();
             btnGenerate = new Button();
@@ -41,6 +42,8 @@
             lbCategory = new Label();
             lbApp = new Label();
             btnEye = new Button();
+            errorProvider = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // lbTitle
@@ -71,6 +74,7 @@
             txtBoxPwd.Size = new Size(284, 31);
             txtBoxPwd.TabIndex = 19;
             txtBoxPwd.UseSystemPasswordChar = true;
+            txtBoxPwd.TextChanged += txtBoxPwd_TextChanged;
             // 
             // txtBoxUser
             // 
@@ -156,13 +160,19 @@
             btnEye.BackColor = Color.Transparent;
             btnEye.BackgroundImage = Properties.Resources.eye;
             btnEye.BackgroundImageLayout = ImageLayout.Stretch;
-            btnEye.Location = new Point(399, 449);
+            errorProvider.SetIconPadding(btnEye, 434);
+            btnEye.Location = new Point(398, 449);
             btnEye.Name = "btnEye";
             btnEye.Size = new Size(31, 31);
             btnEye.TabIndex = 23;
             btnEye.UseVisualStyleBackColor = false;
             btnEye.MouseDown += btnEye_MouseDown;
             btnEye.MouseUp += btnEye_MouseUp;
+            // 
+            // errorProvider
+            // 
+            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider.ContainerControl = this;
             // 
             // EditPassword
             // 
@@ -187,6 +197,7 @@
             Name = "EditPassword";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Edit password";
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -205,5 +216,6 @@
         private Label lbCategory;
         private Label lbApp;
         private Button btnEye;
+        private ErrorProvider errorProvider;
     }
 }

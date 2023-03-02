@@ -26,15 +26,6 @@ namespace pwdvault.Forms
             new AddPassword().Show();
         }
 
-        private void btnFilter_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCopyUser_Click(object sender, EventArgs e)
-        {
-
-        }
         /*-----------------------------------------------------------------------------------------------------------------*/
         /*-----------------------------------------------------------------------------------------------------------------*/
         /*---  When the mouse is pressed, the dragging is set to true and gets the window + cursor position ---------------*/
@@ -117,6 +108,11 @@ namespace pwdvault.Forms
         private void btnExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void txtBoxFilter_TextChanged(object sender, EventArgs e)
+        {
+            // filter password by app names
         }
     }
 }

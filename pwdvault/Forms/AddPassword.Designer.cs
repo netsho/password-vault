@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddPassword));
             lbApp = new Label();
             lbCategory = new Label();
@@ -40,6 +41,8 @@
             txtBoxPwd = new TextBox();
             btnGenerate = new Button();
             lbTitle = new Label();
+            errorProvider = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // lbApp
@@ -123,10 +126,12 @@
             // 
             // txtBoxPwd
             // 
+            errorProvider.SetIconPadding(txtBoxPwd, 5);
             txtBoxPwd.Location = new Point(100, 448);
             txtBoxPwd.Name = "txtBoxPwd";
             txtBoxPwd.Size = new Size(284, 31);
             txtBoxPwd.TabIndex = 8;
+            txtBoxPwd.TextChanged += txtBoxPwd_TextChanged;
             // 
             // btnGenerate
             // 
@@ -148,6 +153,11 @@
             lbTitle.Size = new Size(264, 38);
             lbTitle.TabIndex = 10;
             lbTitle.Text = "Add new password";
+            // 
+            // errorProvider
+            // 
+            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider.ContainerControl = this;
             // 
             // AddPassword
             // 
@@ -171,6 +181,7 @@
             Name = "AddPassword";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "New password";
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -188,5 +199,6 @@
         private TextBox txtBoxPwd;
         private Button btnGenerate;
         private Label lbTitle;
+        private ErrorProvider errorProvider;
     }
 }

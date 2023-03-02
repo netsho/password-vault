@@ -1,5 +1,6 @@
 ﻿using pwdvault.Modeles;
 using pwdvault.Services;
+using System.Windows.Forms;
 
 namespace pwdvault.Forms
 {
@@ -23,22 +24,28 @@ namespace pwdvault.Forms
                 !String.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
                 !String.IsNullOrWhiteSpace(comBoxCat.Text))
             {
-                if (PasswordService.IsPasswordStrong(txtBoxPwd.Text))
-                {
-                    // Encrypt password and store it, success message and hide the form
-                    MessageBox.Show("ok");
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("Password must be atleast 16 characters long and contain the following : " + Environment.NewLine +
-                        "- Uppercase" + Environment.NewLine + "- Lowercase" + Environment.NewLine + "- Numbers" + Environment.NewLine + "- Symbols");
-                }
+                // Encrypt password and store it, success message and hide the form
+                MessageBox.Show("ok");
+                Close();
             }
             else
             {
-                MessageBox.Show("Please complete all fields.");
+                MessageBox.Show("Please complete all fields.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
+        }
+
+        private void txtBoxPwd_TextChanged(object sender, EventArgs e)
+        {
+            if (!PasswordService.IsPasswordStrong(txtBoxPwd.Text))
+            {
+                errorProvider.SetError(txtBoxPwd, "Password must be atleast 16 characters long and contain the following : " + Environment.NewLine +
+                        "- Uppercase" + Environment.NewLine + "- Lowercase" + Environment.NewLine + "- Numbers" + Environment.NewLine + "- Symbols");
+            }
+            else
+            {
+                errorProvider.SetError(txtBoxPwd, String.Empty);
+                errorProvider.Clear();
             }
         }
     }

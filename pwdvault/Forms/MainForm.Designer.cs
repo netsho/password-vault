@@ -44,6 +44,7 @@
             lbTitleVault = new Label();
             lbTitlePwd = new Label();
             picBoxBackgroundCat = new PictureBox();
+            dataGridTest = new DataGridView();
             separator = new Label();
             panelTop = new Panel();
             btnFilter = new Button();
@@ -51,15 +52,14 @@
             btnAdd = new Button();
             btnExit = new Button();
             saveFileDialog1 = new SaveFileDialog();
-            dataGridTest = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBoxBackgroundCat).BeginInit();
-            panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridTest).BeginInit();
+            panelTop.SuspendLayout();
             SuspendLayout();
             // 
             // splitContainer1
@@ -109,9 +109,9 @@
             label2.ForeColor = Color.Black;
             label2.Image = Properties.Resources.institution;
             label2.ImageAlign = ContentAlignment.MiddleLeft;
-            label2.Location = new Point(82, 285);
+            label2.Location = new Point(82, 280);
             label2.Name = "label2";
-            label2.Size = new Size(244, 34);
+            label2.Size = new Size(244, 40);
             label2.TabIndex = 9;
             label2.Text = "Administrative";
             label2.TextAlign = ContentAlignment.MiddleRight;
@@ -135,9 +135,9 @@
             lbEntert.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lbEntert.Image = Properties.Resources.coding;
             lbEntert.ImageAlign = ContentAlignment.MiddleLeft;
-            lbEntert.Location = new Point(82, 635);
+            lbEntert.Location = new Point(82, 625);
             lbEntert.Name = "lbEntert";
-            lbEntert.Size = new Size(156, 32);
+            lbEntert.Size = new Size(156, 40);
             lbEntert.TabIndex = 15;
             lbEntert.Text = "Coding";
             lbEntert.TextAlign = ContentAlignment.MiddleRight;
@@ -149,9 +149,9 @@
             lbGames.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lbGames.Image = Properties.Resources.console;
             lbGames.ImageAlign = ContentAlignment.MiddleLeft;
-            lbGames.Location = new Point(82, 585);
+            lbGames.Location = new Point(82, 575);
             lbGames.Name = "lbGames";
-            lbGames.Size = new Size(158, 32);
+            lbGames.Size = new Size(158, 40);
             lbGames.TabIndex = 14;
             lbGames.Text = "Games";
             lbGames.TextAlign = ContentAlignment.MiddleRight;
@@ -165,7 +165,7 @@
             lbFinance.ImageAlign = ContentAlignment.MiddleLeft;
             lbFinance.Location = new Point(82, 525);
             lbFinance.Name = "lbFinance";
-            lbFinance.Size = new Size(167, 50);
+            lbFinance.Size = new Size(167, 40);
             lbFinance.TabIndex = 12;
             lbFinance.Text = "Finance";
             lbFinance.TextAlign = ContentAlignment.MiddleRight;
@@ -179,7 +179,7 @@
             lbRetail.ImageAlign = ContentAlignment.MiddleLeft;
             lbRetail.Location = new Point(82, 475);
             lbRetail.Name = "lbRetail";
-            lbRetail.Size = new Size(146, 50);
+            lbRetail.Size = new Size(146, 40);
             lbRetail.TabIndex = 11;
             lbRetail.Text = "Retail";
             lbRetail.TextAlign = ContentAlignment.MiddleRight;
@@ -193,7 +193,7 @@
             lbSocial.ImageAlign = ContentAlignment.MiddleLeft;
             lbSocial.Location = new Point(82, 425);
             lbSocial.Name = "lbSocial";
-            lbSocial.Size = new Size(161, 50);
+            lbSocial.Size = new Size(161, 40);
             lbSocial.TabIndex = 10;
             lbSocial.Text = "Socials";
             lbSocial.TextAlign = ContentAlignment.MiddleRight;
@@ -205,9 +205,9 @@
             lbStudy.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lbStudy.Image = Properties.Resources.graduation_cap;
             lbStudy.ImageAlign = ContentAlignment.MiddleLeft;
-            lbStudy.Location = new Point(82, 385);
+            lbStudy.Location = new Point(82, 380);
             lbStudy.Name = "lbStudy";
-            lbStudy.Size = new Size(146, 32);
+            lbStudy.Size = new Size(146, 40);
             lbStudy.TabIndex = 9;
             lbStudy.Text = "Study";
             lbStudy.TextAlign = ContentAlignment.MiddleRight;
@@ -220,9 +220,9 @@
             lbWork.ForeColor = Color.Black;
             lbWork.Image = Properties.Resources.portfolio;
             lbWork.ImageAlign = ContentAlignment.MiddleLeft;
-            lbWork.Location = new Point(81, 335);
+            lbWork.Location = new Point(81, 330);
             lbWork.Name = "lbWork";
-            lbWork.Size = new Size(143, 34);
+            lbWork.Size = new Size(143, 40);
             lbWork.TabIndex = 8;
             lbWork.Text = "Work";
             lbWork.TextAlign = ContentAlignment.MiddleRight;
@@ -291,6 +291,19 @@
             picBoxBackgroundCat.MouseMove += pictureBox1_MouseMove;
             picBoxBackgroundCat.MouseUp += pictureBox1_MouseUp;
             // 
+            // dataGridTest
+            // 
+            dataGridTest.AllowUserToAddRows = false;
+            dataGridTest.AllowUserToOrderColumns = true;
+            dataGridTest.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridTest.Dock = DockStyle.Fill;
+            dataGridTest.Location = new Point(0, 113);
+            dataGridTest.Name = "dataGridTest";
+            dataGridTest.RowHeadersWidth = 62;
+            dataGridTest.RowTemplate.Height = 33;
+            dataGridTest.Size = new Size(1299, 664);
+            dataGridTest.TabIndex = 4;
+            // 
             // separator
             // 
             separator.BorderStyle = BorderStyle.Fixed3D;
@@ -323,15 +336,15 @@
             btnFilter.Size = new Size(35, 34);
             btnFilter.TabIndex = 2;
             btnFilter.UseVisualStyleBackColor = true;
-            btnFilter.Click += btnFilter_Click;
             // 
             // txtBoxFilter
             // 
             txtBoxFilter.Location = new Point(396, 40);
             txtBoxFilter.Name = "txtBoxFilter";
-            txtBoxFilter.PlaceholderText = "Filter";
+            txtBoxFilter.PlaceholderText = "Filter by application or website name";
             txtBoxFilter.Size = new Size(479, 31);
             txtBoxFilter.TabIndex = 1;
+            txtBoxFilter.TextChanged += txtBoxFilter_TextChanged;
             // 
             // btnAdd
             // 
@@ -356,19 +369,6 @@
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click;
             // 
-            // dataGridTest
-            // 
-            dataGridTest.AllowUserToAddRows = false;
-            dataGridTest.AllowUserToOrderColumns = true;
-            dataGridTest.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridTest.Dock = DockStyle.Fill;
-            dataGridTest.Location = new Point(0, 113);
-            dataGridTest.Name = "dataGridTest";
-            dataGridTest.RowHeadersWidth = 62;
-            dataGridTest.RowTemplate.Height = 33;
-            dataGridTest.Size = new Size(1299, 664);
-            dataGridTest.TabIndex = 4;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -391,9 +391,9 @@
             splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)picBoxBackgroundCat).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridTest).EndInit();
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridTest).EndInit();
             ResumeLayout(false);
         }
 

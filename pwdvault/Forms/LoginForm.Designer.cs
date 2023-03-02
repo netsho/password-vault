@@ -36,9 +36,9 @@
             lbPwd = new Label();
             lbTitle = new Label();
             splitContainer1 = new SplitContainer();
+            btnSignIn = new Button();
             btnEye = new Button();
             pictureBox1 = new PictureBox();
-            btnSignIn = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -134,6 +134,18 @@
             splitContainer1.SplitterDistance = 554;
             splitContainer1.TabIndex = 6;
             // 
+            // btnSignIn
+            // 
+            btnSignIn.FlatStyle = FlatStyle.System;
+            btnSignIn.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSignIn.Location = new Point(116, 469);
+            btnSignIn.Name = "btnSignIn";
+            btnSignIn.Size = new Size(163, 34);
+            btnSignIn.TabIndex = 8;
+            btnSignIn.Text = "SIGN IN";
+            btnSignIn.UseVisualStyleBackColor = true;
+            btnSignIn.Click += btnSignIn_Click;
+            // 
             // btnEye
             // 
             btnEye.BackgroundImage = Properties.Resources.eye;
@@ -155,18 +167,6 @@
             pictureBox1.Size = new Size(559, 602);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            // 
-            // btnSignIn
-            // 
-            btnSignIn.FlatStyle = FlatStyle.System;
-            btnSignIn.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSignIn.Location = new Point(116, 469);
-            btnSignIn.Name = "btnSignIn";
-            btnSignIn.Size = new Size(163, 34);
-            btnSignIn.TabIndex = 8;
-            btnSignIn.Text = "SIGN IN";
-            btnSignIn.UseVisualStyleBackColor = true;
-            btnSignIn.Click += btnSignIn_Click;
             // 
             // LoginForm
             // 

@@ -1,5 +1,4 @@
 ﻿using pwdvault.Services;
-using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,7 +15,6 @@ namespace pwdvault.Forms
 {
     public partial class SignInForm : Form
     {
-        private string folderPath;
         public SignInForm()
         {
             InitializeComponent();
@@ -24,27 +23,30 @@ namespace pwdvault.Forms
         private void btnSign_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrWhiteSpace(txtBoxUser.Text) &&
-                !String.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
-                !String.IsNullOrWhiteSpace(txtBoxDb.Text) &&
-                !String.IsNullOrWhiteSpace(folderPath)
+                !String.IsNullOrWhiteSpace(txtBoxPwd.Text)
                 )
             {
-                if (PasswordService.IsPasswordStrong(txtBoxPwd.Text))
-                {
-                    // Encrypt password and store it, success message and hide the form
-                    MessageBox.Show("ok");
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("Password must be atleast 16 characters long and contain the following : " + Environment.NewLine +
-                        "- Uppercase" + Environment.NewLine + "- Lowercase" + Environment.NewLine + "- Numbers" + Environment.NewLine + "- Symbols");
-                }
+                //Test
+                /*RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
+                byte[] key = new byte[32];
+                randomNumberGenerator.GetBytes(key);
+                string text = "c'est le texte";
+                // Encrypt password and store it, success message and hide the form
+                byte[] encryptedpss = EncryptionService.EncryptPassword(text, key);
+                MessageBox.Show("Password : " + text + ",\n key : " + Encoding.UTF8.GetString(key) + ",\n encrypted pass : " + Encoding.UTF8.GetString(encryptedpss));
+
+                string pass = EncryptionService.DecryptPassword(encryptedpss, key);
+                MessageBox.Show("Encrypted Password : " + Encoding.UTF8.GetString(encryptedpss) + ", key : " + Encoding.UTF8.GetString(key) + ", decrypted pass : " + pass);
+                MessageBox.Show("Meme mdp ? : " + (text == pass).ToString());
+                */
+                //Create database with name : PasswordVault
+                // Success message to user
+                MessageBox.Show("New account and database created successfully !", "Successful creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //Close();
             }
             else
             {
-                MessageBox.Show("Please complete all fields and create the database.");
-
+                MessageBox.Show("Please complete all fields.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -53,23 +55,17 @@ namespace pwdvault.Forms
             txtBoxPwd.Text = PasswordService.GeneratePassword();
         }
 
-        private void btnCreateDB_Click(object sender, EventArgs e)
+        private void txtBoxPwd_TextChanged(object sender, EventArgs e)
         {
-            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-            dialog.InitialDirectory = "C:\\Users";
-            dialog.IsFolderPicker = true;
-            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            if (!PasswordService.IsPasswordStrong(txtBoxPwd.Text))
             {
-                folderPath = dialog.FileName;
-                MessageBox.Show("You selected: " + Environment.NewLine + folderPath);
-                Label lbPath = new Label();
-                lbPath.Name = "lbPath";
-                lbPath.FlatStyle = FlatStyle.System;
-                lbPath.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Regular, GraphicsUnit.Point);
-                lbPath.Location = new Point(100, 566);
-                lbPath.Size = new Size(400, 32);
-                lbPath.Text = "The database path is selected.";
-                Controls.Add(lbPath);
+                errorProvider.SetError(txtBoxPwd, "Password must be atleast 16 characters long and contain the following : " + Environment.NewLine +
+                        "- Uppercase" + Environment.NewLine + "- Lowercase" + Environment.NewLine + "- Numbers" + Environment.NewLine + "- Symbols");
+            }
+            else
+            {
+                errorProvider.SetError(txtBoxPwd, String.Empty);
+                errorProvider.Clear();
             }
         }
     }
