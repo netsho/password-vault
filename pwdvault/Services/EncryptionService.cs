@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -25,11 +26,11 @@ namespace pwdvault.Services
         {
             if(String.IsNullOrEmpty(password))
             {
-                throw new ArgumentException("Password cannot be empty.");
+                throw new ArgumentException("The password is empty.");
             }
             if(key == null || key.Length == 0)
             {
-                throw new ArgumentException("The key cannot be null or empty.");
+                throw new ArgumentException("The encryption key is either null or empty.");
             }
 
             byte[] encryptedPassword;
@@ -43,9 +44,8 @@ namespace pwdvault.Services
                     memoryStream.Write(aes.IV, 0, 16);
                     using(CryptoStream cryptoStream = new CryptoStream(memoryStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
                     {
-                        byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+                        byte[] passwordBytes = Encoding.UTF32.GetBytes(password);
                         cryptoStream.Write(passwordBytes, 0, passwordBytes.Length);
-                        cryptoStream.Close();
                     }
                     encryptedPassword = memoryStream.ToArray();
                 } 
@@ -56,9 +56,9 @@ namespace pwdvault.Services
 
         /// <summary>
         /// <para>
-        /// This method take the encrypted password and the useer's key and returns the deecrypted password using AES256 decryption algorithm.
+        /// This method take the encrypted password and the user's key and returns the decrypted password using AES256 decryption algorithm.
         /// The key is used to derive the encryption key.
-        /// The initialization vector is stored in the encrypted password as the first 16 bytes. 
+        /// The initialization vector is retrieved from the encrypted password, it corresponds to the first 16 bytes. 
         /// </para>
         /// </summary>
         /// <param name="encryptedPassword"></param>
@@ -69,11 +69,11 @@ namespace pwdvault.Services
         {
             if (encryptedPassword == null || encryptedPassword.Length == 0)
             {
-                throw new ArgumentException("The encrypted password cannot be null or empty.");
+                throw new ArgumentException("The encrypted password is either null or empty.");
             }
             if (key == null || key.Length == 0)
             {
-                throw new ArgumentException("The key cannot be null or empty.");
+                throw new ArgumentException("The decryption key is either null or empty.");
             }
             using (Aes aes = Aes.Create())
             {
@@ -84,14 +84,124 @@ namespace pwdvault.Services
                     byte[] iv = new byte[16];
                     memoryStream.Read(iv, 0, 16);
                     aes.IV = iv;
-                    using (CryptoStream cryptoStream = new CryptoStream(memoryStream, aes.CreateEncryptor(), CryptoStreamMode.Read))
+                    using (CryptoStream cryptoStream = new CryptoStream(memoryStream, aes.CreateDecryptor(), CryptoStreamMode.Read))
                     {
                         byte[] decryptedPasswordByte = new byte[encryptedPassword.Length];
                         var byteCountPassword = cryptoStream.Read(decryptedPasswordByte, 0, encryptedPassword.Length);
-                        return Encoding.UTF8.GetString(decryptedPasswordByte, 0, byteCountPassword);
+                        return Encoding.UTF32.GetString(decryptedPasswordByte, 0, byteCountPassword);
                     }
                 }
             }
+        }
+
+        //public static byte[] EncryptFile(string inputFilePath, string password)
+        //{
+        //    if (String.IsNullOrEmpty(password))
+        //    {
+        //        throw new ArgumentException("The password is empty.");
+        //    }
+        //    if (String.IsNullOrEmpty(inputFilePath))
+        //    {
+        //        throw new ArgumentException("Input file path cannot be empty.");
+        //    }
+
+        //    byte[] salt = new byte[16];
+        //    RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
+        //    randomNumberGenerator.GetBytes(salt);
+
+        //    Rfc2898DeriveBytes keyGenerator = new Rfc2898DeriveBytes(password, salt, 10000, HashAlgorithmName.SHA256);
+        //    byte[] keyFileEncryption = keyGenerator.GetBytes(32);
+
+        //    using (Aes aes = Aes.Create())
+        //    {
+        //        aes.Key = keyFileEncryption;
+        //        aes.IV = new byte[16];
+        //        aes.Mode = CipherMode.CBC;
+
+        //        using (FileStream inputFileStream = new FileStream(inputFilePath, FileMode.Open))
+        //        {
+        //            using (MemoryStream outputEncryptedByteFile = new MemoryStream())
+        //            {
+        //                using (CryptoStream cryptoStream = new CryptoStream(outputEncryptedByteFile, aes.CreateEncryptor(), CryptoStreamMode.Write))
+        //                {
+        //                    inputFileStream.CopyTo(cryptoStream);
+        //                    cryptoStream.Close();
+        //                    return outputEncryptedByteFile.ToArray();
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+        public static byte[] GetKeyFromFile()
+        {
+            var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string keyFilePath = Path.Combine(appDataPath, "fileKey");
+            return File.ReadAllBytes(keyFilePath);
+        }
+
+        //public static byte[] DecryptFile(byte[] inputFileEncryptedBytes, string password)
+        //{
+        //    if (String.IsNullOrEmpty(password))
+        //    {
+        //        throw new ArgumentException("Password cannot be empty.");
+        //    }
+        //    if (inputFileEncryptedBytes == null || inputFileEncryptedBytes.Length == 0)
+        //    {
+        //        throw new ArgumentException("Encrypted input file bytes cannot be null or empty.");
+        //    }
+        //    var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        //    string keyFilePathDecrypted = Path.Combine(appDataPath, "fileKeyDecrypted");
+        //    byte[] passwordKeyEncryption;
+        //    byte[] salt = new byte[16];
+        //    Array.Copy(inputFileEncryptedBytes, 0, salt, 0, salt.Length);
+        //    Rfc2898DeriveBytes keyGenerator = new Rfc2898DeriveBytes(password, salt, 10000, HashAlgorithmName.SHA256);
+        //    byte[] keyFileDecryption = keyGenerator.GetBytes(32);
+
+        //    using(Aes aes = Aes.Create())
+        //    {
+        //        aes.Key = keyFileDecryption;
+        //        aes.IV = new byte[16];
+        //        aes.Mode = CipherMode.CBC;
+
+        //        using(MemoryStream inputStream = new MemoryStream(inputFileEncryptedBytes, salt.Length, inputFileEncryptedBytes.Length - salt.Length, false))
+        //        {
+        //            using(CryptoStream cryptoStream = new CryptoStream(inputStream, aes.CreateDecryptor(), CryptoStreamMode.Read))
+        //            {
+        //                using(FileStream outputFileStream = new FileStream(keyFilePathDecrypted, FileMode.Create))
+        //                {
+        //                    cryptoStream.CopyTo(outputFileStream);
+        //                    passwordKeyEncryption = File.ReadAllBytes(keyFilePathDecrypted);
+        //                    File.Delete(keyFilePathDecrypted);
+        //                    return passwordKeyEncryption;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+        /// <summary>
+        /// <para>
+        /// This method takes the user's password and generate a new key for encrypting further added passwords. The key generation is derived froṁ the password.
+        /// </para>
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public static byte[] GenerateKey(string password)
+        {
+            if (String.IsNullOrEmpty(password))
+            {
+                throw new ArgumentException("The password is empty.");
+            }
+            byte[] generatedKey;
+            byte[] salt = new byte[16];
+            RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
+            randomNumberGenerator.GetBytes(salt);
+
+            Rfc2898DeriveBytes keyGenerator = new Rfc2898DeriveBytes(password, salt, 10000, HashAlgorithmName.SHA256);
+            generatedKey = keyGenerator.GetBytes(32);
+
+            return generatedKey;
         }
     }
 }

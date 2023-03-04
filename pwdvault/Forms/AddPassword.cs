@@ -1,6 +1,6 @@
 ﻿using pwdvault.Modeles;
 using pwdvault.Services;
-using System.Windows.Forms;
+using Serilog;
 
 namespace pwdvault.Forms
 {
@@ -22,9 +22,20 @@ namespace pwdvault.Forms
             if (!String.IsNullOrWhiteSpace(txtBoxApp.Text) &&
                 !String.IsNullOrWhiteSpace(txtBoxUser.Text) &&
                 !String.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
-                !String.IsNullOrWhiteSpace(comBoxCat.Text))
+                !String.IsNullOrWhiteSpace(comBoxCat.Text) && 
+                !errorProvider.HasErrors)
             {
-                // Encrypt password and store it, success message and hide the form
+                try
+                {
+                    // Encrypt password and store it, success message and hide the form
+                    byte[] encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
+                    UserPassword userPassword = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword) { CreationTime = DateTime.Now };
+
+                } catch(Exception ex)
+                {
+                    Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                }
+
                 MessageBox.Show("ok");
                 Close();
             }

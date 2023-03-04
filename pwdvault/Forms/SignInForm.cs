@@ -1,15 +1,6 @@
 ﻿using pwdvault.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using Serilog;
+
 
 namespace pwdvault.Forms
 {
@@ -23,23 +14,26 @@ namespace pwdvault.Forms
         private void btnSign_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrWhiteSpace(txtBoxUser.Text) &&
-                !String.IsNullOrWhiteSpace(txtBoxPwd.Text)
+                !String.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
+                !errorProvider.HasErrors
                 )
             {
-                //Test
-                /*RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
-                byte[] key = new byte[32];
-                randomNumberGenerator.GetBytes(key);
-                string text = "c'est le texte";
-                // Encrypt password and store it, success message and hide the form
-                byte[] encryptedpss = EncryptionService.EncryptPassword(text, key);
-                MessageBox.Show("Password : " + text + ",\n key : " + Encoding.UTF8.GetString(key) + ",\n encrypted pass : " + Encoding.UTF8.GetString(encryptedpss));
+                try
+                {
+                    byte[] generatedKey = EncryptionService.GenerateKey(txtBoxPwd.Text);
+                    // V2 : Store the key in HashiCorp Vault and encrypt database file
+                    string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                    string passwordVaultFolderPath = Path.Combine(appDataPath, "PasswordVault");
+                    string keyFilePath = Path.Combine(passwordVaultFolderPath, "fileKey");
+                    File.WriteAllBytes(keyFilePath, generatedKey);
 
-                string pass = EncryptionService.DecryptPassword(encryptedpss, key);
-                MessageBox.Show("Encrypted Password : " + Encoding.UTF8.GetString(encryptedpss) + ", key : " + Encoding.UTF8.GetString(key) + ", decrypted pass : " + pass);
-                MessageBox.Show("Meme mdp ? : " + (text == pass).ToString());
-                */
-                //Create database with name : PasswordVault
+                    //Create database with name : PasswordVault
+
+                }
+                catch (Exception ex)
+                {
+                    Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                }
                 // Success message to user
                 MessageBox.Show("New account and database created successfully !", "Successful creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //Close();
