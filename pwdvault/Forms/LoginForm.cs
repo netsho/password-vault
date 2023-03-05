@@ -23,7 +23,7 @@ namespace pwdvault.Forms
         {
             if (String.IsNullOrWhiteSpace(txtBoxUser.Text) || String.IsNullOrWhiteSpace(txtBoxPwd.Text))
             {
-                MessageBox.Show("Please fill in username and password.", "Incomplete login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please fill in username and password.", "Incomplete login form", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -47,6 +47,7 @@ namespace pwdvault.Forms
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             new SignInForm().Show();
+            this.Hide();
         }
     }
 }

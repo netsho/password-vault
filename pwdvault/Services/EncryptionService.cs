@@ -135,8 +135,8 @@ namespace pwdvault.Services
 
         public static byte[] GetKeyFromFile()
         {
-            var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string keyFilePath = Path.Combine(appDataPath, "fileKey");
+            var folderDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault");
+            string keyFilePath = Path.Combine(folderDataPath, "fileKey");
             return File.ReadAllBytes(keyFilePath);
         }
 

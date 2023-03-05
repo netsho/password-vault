@@ -30,16 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             splitContainer1 = new SplitContainer();
-            label2 = new Label();
+            lbAdmini = new Label();
             lbCatTitle = new Label();
-            lbEntert = new Label();
+            lbCoding = new Label();
             lbGames = new Label();
             lbFinance = new Label();
             lbRetail = new Label();
             lbSocial = new Label();
             lbStudy = new Label();
             lbWork = new Label();
-            label1 = new Label();
+            lbAll = new Label();
             pictureBox1 = new PictureBox();
             lbTitleVault = new Label();
             lbTitlePwd = new Label();
@@ -47,6 +47,7 @@
             dataGridTest = new DataGridView();
             separator = new Label();
             panelTop = new Panel();
+            btnEdit = new Button();
             btnFilter = new Button();
             txtBoxFilter = new TextBox();
             btnAdd = new Button();
@@ -72,16 +73,16 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.BackColor = SystemColors.GradientActiveCaption;
-            splitContainer1.Panel1.Controls.Add(label2);
+            splitContainer1.Panel1.Controls.Add(lbAdmini);
             splitContainer1.Panel1.Controls.Add(lbCatTitle);
-            splitContainer1.Panel1.Controls.Add(lbEntert);
+            splitContainer1.Panel1.Controls.Add(lbCoding);
             splitContainer1.Panel1.Controls.Add(lbGames);
             splitContainer1.Panel1.Controls.Add(lbFinance);
             splitContainer1.Panel1.Controls.Add(lbRetail);
             splitContainer1.Panel1.Controls.Add(lbSocial);
             splitContainer1.Panel1.Controls.Add(lbStudy);
             splitContainer1.Panel1.Controls.Add(lbWork);
-            splitContainer1.Panel1.Controls.Add(label1);
+            splitContainer1.Panel1.Controls.Add(lbAll);
             splitContainer1.Panel1.Controls.Add(pictureBox1);
             splitContainer1.Panel1.Controls.Add(lbTitleVault);
             splitContainer1.Panel1.Controls.Add(lbTitlePwd);
@@ -101,20 +102,21 @@
             splitContainer1.SplitterWidth = 1;
             splitContainer1.TabIndex = 0;
             // 
-            // label2
+            // lbAdmini
             // 
-            label2.BackColor = Color.FromArgb(103, 138, 178);
-            label2.Cursor = Cursors.Hand;
-            label2.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.Black;
-            label2.Image = Properties.Resources.institution;
-            label2.ImageAlign = ContentAlignment.MiddleLeft;
-            label2.Location = new Point(82, 280);
-            label2.Name = "label2";
-            label2.Size = new Size(244, 40);
-            label2.TabIndex = 9;
-            label2.Text = "Administrative";
-            label2.TextAlign = ContentAlignment.MiddleRight;
+            lbAdmini.BackColor = Color.FromArgb(103, 138, 178);
+            lbAdmini.Cursor = Cursors.Hand;
+            lbAdmini.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbAdmini.ForeColor = Color.Black;
+            lbAdmini.Image = Properties.Resources.institution;
+            lbAdmini.ImageAlign = ContentAlignment.MiddleLeft;
+            lbAdmini.Location = new Point(82, 280);
+            lbAdmini.Name = "lbAdmini";
+            lbAdmini.Size = new Size(244, 40);
+            lbAdmini.TabIndex = 9;
+            lbAdmini.Text = "Administrative";
+            lbAdmini.TextAlign = ContentAlignment.MiddleRight;
+            lbAdmini.Click += lbAdmini_Click;
             // 
             // lbCatTitle
             // 
@@ -128,19 +130,20 @@
             lbCatTitle.TabIndex = 17;
             lbCatTitle.Text = "Categories";
             // 
-            // lbEntert
+            // lbCoding
             // 
-            lbEntert.BackColor = Color.FromArgb(103, 138, 178);
-            lbEntert.Cursor = Cursors.Hand;
-            lbEntert.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbEntert.Image = Properties.Resources.coding;
-            lbEntert.ImageAlign = ContentAlignment.MiddleLeft;
-            lbEntert.Location = new Point(82, 625);
-            lbEntert.Name = "lbEntert";
-            lbEntert.Size = new Size(156, 40);
-            lbEntert.TabIndex = 15;
-            lbEntert.Text = "Coding";
-            lbEntert.TextAlign = ContentAlignment.MiddleRight;
+            lbCoding.BackColor = Color.FromArgb(103, 138, 178);
+            lbCoding.Cursor = Cursors.Hand;
+            lbCoding.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbCoding.Image = Properties.Resources.coding;
+            lbCoding.ImageAlign = ContentAlignment.MiddleLeft;
+            lbCoding.Location = new Point(82, 625);
+            lbCoding.Name = "lbCoding";
+            lbCoding.Size = new Size(156, 40);
+            lbCoding.TabIndex = 15;
+            lbCoding.Text = "Coding";
+            lbCoding.TextAlign = ContentAlignment.MiddleRight;
+            lbCoding.Click += lbCoding_Click;
             // 
             // lbGames
             // 
@@ -155,6 +158,7 @@
             lbGames.TabIndex = 14;
             lbGames.Text = "Games";
             lbGames.TextAlign = ContentAlignment.MiddleRight;
+            lbGames.Click += lbGames_Click;
             // 
             // lbFinance
             // 
@@ -169,6 +173,7 @@
             lbFinance.TabIndex = 12;
             lbFinance.Text = "Finance";
             lbFinance.TextAlign = ContentAlignment.MiddleRight;
+            lbFinance.Click += lbFinance_Click;
             // 
             // lbRetail
             // 
@@ -183,6 +188,7 @@
             lbRetail.TabIndex = 11;
             lbRetail.Text = "Retail";
             lbRetail.TextAlign = ContentAlignment.MiddleRight;
+            lbRetail.Click += lbRetail_Click;
             // 
             // lbSocial
             // 
@@ -197,6 +203,7 @@
             lbSocial.TabIndex = 10;
             lbSocial.Text = "Socials";
             lbSocial.TextAlign = ContentAlignment.MiddleRight;
+            lbSocial.Click += lbSocial_Click;
             // 
             // lbStudy
             // 
@@ -211,6 +218,7 @@
             lbStudy.TabIndex = 9;
             lbStudy.Text = "Study";
             lbStudy.TextAlign = ContentAlignment.MiddleRight;
+            lbStudy.Click += lbStudy_Click;
             // 
             // lbWork
             // 
@@ -226,21 +234,23 @@
             lbWork.TabIndex = 8;
             lbWork.Text = "Work";
             lbWork.TextAlign = ContentAlignment.MiddleRight;
+            lbWork.Click += lbWork_Click;
             // 
-            // label1
+            // lbAll
             // 
-            label1.BackColor = Color.FromArgb(103, 138, 178);
-            label1.Cursor = Cursors.Hand;
-            label1.Font = new Font("Bahnschrift SemiBold", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.Black;
-            label1.Image = Properties.Resources.app1;
-            label1.ImageAlign = ContentAlignment.MiddleLeft;
-            label1.Location = new Point(81, 155);
-            label1.Name = "label1";
-            label1.Size = new Size(124, 49);
-            label1.TabIndex = 6;
-            label1.Text = "All";
-            label1.TextAlign = ContentAlignment.MiddleRight;
+            lbAll.BackColor = Color.FromArgb(103, 138, 178);
+            lbAll.Cursor = Cursors.Hand;
+            lbAll.Font = new Font("Bahnschrift SemiBold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lbAll.ForeColor = Color.Black;
+            lbAll.Image = Properties.Resources.app1;
+            lbAll.ImageAlign = ContentAlignment.MiddleLeft;
+            lbAll.Location = new Point(81, 155);
+            lbAll.Name = "lbAll";
+            lbAll.Size = new Size(124, 49);
+            lbAll.TabIndex = 6;
+            lbAll.Text = "All";
+            lbAll.TextAlign = ContentAlignment.MiddleRight;
+            lbAll.Click += lbAll_Click;
             // 
             // pictureBox1
             // 
@@ -314,6 +324,7 @@
             // 
             // panelTop
             // 
+            panelTop.Controls.Add(btnEdit);
             panelTop.Controls.Add(btnFilter);
             panelTop.Controls.Add(txtBoxFilter);
             panelTop.Controls.Add(btnAdd);
@@ -326,6 +337,16 @@
             panelTop.MouseDown += panelTop_MouseDown;
             panelTop.MouseMove += panelTop_MouseMove;
             panelTop.MouseUp += panelTop_MouseUp;
+            // 
+            // btnEdit
+            // 
+            btnEdit.Location = new Point(990, 40);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(112, 34);
+            btnEdit.TabIndex = 6;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // btnFilter
             // 
@@ -412,15 +433,16 @@
         private Label lbSocial;
         private Label lbStudy;
         private Label lbWork;
-        private Label label1;
+        private Label lbAll;
         private Label lbCatTitle;
-        private Label lbEntert;
+        private Label lbCoding;
         private Label lbGames;
         private Label lbFinance;
         private Label lbRetail;
         private SaveFileDialog saveFileDialog1;
         private Label separator;
-        private Label label2;
+        private Label lbAdmini;
         private DataGridView dataGridTest;
+        private Button btnEdit;
     }
 }

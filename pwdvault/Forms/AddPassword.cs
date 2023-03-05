@@ -27,17 +27,26 @@ namespace pwdvault.Forms
             {
                 try
                 {
+                    Cursor = Cursors.WaitCursor;
                     // Encrypt password and store it, success message and hide the form
                     byte[] encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
-                    UserPassword userPassword = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword) { CreationTime = DateTime.Now };
+                    UserPassword userPassword = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
+                    using(var context = new PasswordVaultContext())
+                    {
+                        UserPasswordService userPasswordService = new(context);
+                        userPasswordService.CreateUserPassword(userPassword);
+                    }
+                    Cursor = Cursors.Default;
+                    DialogResult result = MessageBox.Show($"{userPassword.AppName} account has been added !", "Succes add password", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (result == DialogResult.OK)
+                    {
+                        Close();
+                    }
 
                 } catch(Exception ex)
                 {
                     Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
                 }
-
-                MessageBox.Show("ok");
-                Close();
             }
             else
             {

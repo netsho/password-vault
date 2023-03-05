@@ -4,11 +4,11 @@ using pwdvault.Services.Exceptions;
 
 namespace pwdvault.Services
 {
-    internal class UserPasswordService
+    public class UserPasswordService
     {
         private readonly PasswordVaultContext dbContext;
 
-        UserPasswordService(PasswordVaultContext dbContext)
+        public UserPasswordService(PasswordVaultContext dbContext)
         {
             this.dbContext = dbContext;
             dbContext.SaveChangesFailed += SaveChangesOnFail;

@@ -36,14 +36,26 @@ namespace pwdvault.Forms
                 // Encrypt password and store it, success message and hide the form
                 try
                 {
+                    Cursor = Cursors.WaitCursor;
                     byte[] encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
                     UserPassword userPasswordEdited = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword) { UpdateTime = DateTime.Now };
+                    using (var context = new PasswordVaultContext())
+                    {
+                        UserPasswordService userPasswordService = new(context);
+                        userPasswordService.UpdateUserPassword(1, userPasswordEdited);
+                    }
+                    Cursor = Cursors.Default;
+                    DialogResult result = MessageBox.Show($"{userPasswordEdited.AppName} password has been updated !", "Succes update password", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (result == DialogResult.OK)
+                    {
+                        Close();
+                    }
 
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
                 }
-                MessageBox.Show("ok");
                 Close();
             }
             else

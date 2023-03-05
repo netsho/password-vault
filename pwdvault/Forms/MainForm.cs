@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using pwdvault.Modeles;
+using pwdvault.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,10 +18,17 @@ namespace pwdvault.Forms
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
+        private List<UserPassword> passwords = new();
 
         public MainForm()
         {
             InitializeComponent();
+            using (var context = new PasswordVaultContext())
+            {
+                UserPasswordService userPasswordService = new(context);
+                passwords = userPasswordService.GetAllUserPassword();
+            }
+            dataGridTest.DataSource = passwords;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -113,6 +123,136 @@ namespace pwdvault.Forms
         private void txtBoxFilter_TextChanged(object sender, EventArgs e)
         {
             // filter password by app names
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            new EditPassword().Show();
+        }
+
+        private void lbAll_Click(object sender, EventArgs e)
+        {
+            dataGridTest.DataSource = null;
+            using (var context = new PasswordVaultContext())
+            {
+                UserPasswordService userPasswordService = new(context);
+                passwords = userPasswordService.GetAllUserPassword();
+            }
+            dataGridTest.DataSource = passwords;
+            dataGridTest.Columns["Id"].Visible = false;
+            dataGridTest.Columns["Password"].Visible = false;
+        }
+
+        private void lbAdmini_Click(object sender, EventArgs e)
+        {
+            dataGridTest.DataSource = null;
+            using (var context = new PasswordVaultContext())
+            {
+                UserPasswordService userPasswordService = new(context);
+                passwords = userPasswordService.GetAllUserPassword();
+            }
+            List<UserPassword> administrativePasswords = passwords.Where(userPassword => userPassword.AppCategory == "Administrative").ToList();
+            dataGridTest.DataSource = administrativePasswords;
+            dataGridTest.Columns["Id"].Visible = false;
+            dataGridTest.Columns["Password"].Visible = false;
+        }
+
+        private void lbWork_Click(object sender, EventArgs e)
+        {
+            dataGridTest.DataSource = null;
+            using (var context = new PasswordVaultContext())
+            {
+                UserPasswordService userPasswordService = new(context);
+                passwords = userPasswordService.GetAllUserPassword();
+            }
+            List<UserPassword> workPasswords = passwords.Where(userPassword => userPassword.AppCategory == "Work").ToList();
+            dataGridTest.DataSource = workPasswords;
+            dataGridTest.Columns["Id"].Visible = false;
+            dataGridTest.Columns["Password"].Visible = false;
+        }
+
+        private void lbStudy_Click(object sender, EventArgs e)
+        {
+            dataGridTest.DataSource = null;
+            using (var context = new PasswordVaultContext())
+            {
+                UserPasswordService userPasswordService = new(context);
+                passwords = userPasswordService.GetAllUserPassword();
+            }
+            List<UserPassword> studyPasswords = passwords.Where(userPassword => userPassword.AppCategory == "Study").ToList();
+            dataGridTest.DataSource = studyPasswords;
+            dataGridTest.Columns["Id"].Visible = false;
+            dataGridTest.Columns["Password"].Visible = false;
+        }
+
+        private void lbSocial_Click(object sender, EventArgs e)
+        {
+            dataGridTest.DataSource = null;
+            using (var context = new PasswordVaultContext())
+            {
+                UserPasswordService userPasswordService = new(context);
+                passwords = userPasswordService.GetAllUserPassword();
+            }
+            List<UserPassword> socialPasswords = passwords.Where(userPassword => userPassword.AppCategory == "Socials").ToList();
+            dataGridTest.DataSource = socialPasswords;
+            dataGridTest.Columns["Id"].Visible = false;
+            dataGridTest.Columns["Password"].Visible = false;
+        }
+
+        private void lbRetail_Click(object sender, EventArgs e)
+        {
+            dataGridTest.DataSource = null;
+            using (var context = new PasswordVaultContext())
+            {
+                UserPasswordService userPasswordService = new(context);
+                passwords = userPasswordService.GetAllUserPassword();
+            }
+            List<UserPassword> retailPasswords = passwords.Where(userPassword => userPassword.AppCategory == "Retail").ToList();
+            dataGridTest.DataSource = retailPasswords;
+            dataGridTest.Columns["Id"].Visible = false;
+            dataGridTest.Columns["Password"].Visible = false;
+        }
+
+        private void lbFinance_Click(object sender, EventArgs e)
+        {
+            dataGridTest.DataSource = null;
+            using (var context = new PasswordVaultContext())
+            {
+                UserPasswordService userPasswordService = new(context);
+                passwords = userPasswordService.GetAllUserPassword();
+            }
+            List<UserPassword> financePasswords = passwords.Where(userPassword => userPassword.AppCategory == "Finance").ToList();
+            dataGridTest.DataSource = financePasswords;
+            dataGridTest.Columns["Id"].Visible = false;
+            dataGridTest.Columns["Password"].Visible = false;
+        }
+
+        private void lbGames_Click(object sender, EventArgs e)
+        {
+            dataGridTest.DataSource = null;
+            using (var context = new PasswordVaultContext())
+            {
+                UserPasswordService userPasswordService = new(context);
+                passwords = userPasswordService.GetAllUserPassword();
+            }
+            List<UserPassword> gamesPasswords = passwords.Where(userPassword => userPassword.AppCategory == "Games").ToList();
+            dataGridTest.DataSource = gamesPasswords;
+            dataGridTest.Columns["Id"].Visible = false;
+            dataGridTest.Columns["Password"].Visible = false;
+        }
+
+        private void lbCoding_Click(object sender, EventArgs e)
+        {
+            dataGridTest.DataSource = null;
+            using (var context = new PasswordVaultContext())
+            {
+                UserPasswordService userPasswordService = new(context);
+                passwords = userPasswordService.GetAllUserPassword();
+            }
+            List<UserPassword> codingPasswords = passwords.Where(userPassword => userPassword.AppCategory == "Coding").ToList();
+            dataGridTest.DataSource = codingPasswords;
+            dataGridTest.Columns["Id"].Visible = false;
+            dataGridTest.Columns["Password"].Visible = false;
         }
     }
 }

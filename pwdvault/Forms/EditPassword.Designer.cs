@@ -69,6 +69,7 @@
             // 
             // txtBoxPwd
             // 
+            errorProvider.SetIconPadding(txtBoxPwd, 10);
             txtBoxPwd.Location = new Point(109, 448);
             txtBoxPwd.Name = "txtBoxPwd";
             txtBoxPwd.Size = new Size(284, 31);

@@ -36,12 +36,12 @@ namespace pwdvault
             }
 
             LoginForm loginForm = new LoginForm();
-            Application.Run(new SignInForm());
+            Application.Run(loginForm);
 
-            //if(loginForm.UserSuccessfullyAuthenticated)
-            //{
-            //    Application.Run(new MainForm());
-            //}
+            if(loginForm.UserSuccessfullyAuthenticated)
+            {
+                Application.Run(new MainForm());
+            }
         }
     }
 }

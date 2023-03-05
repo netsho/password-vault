@@ -21,6 +21,7 @@ namespace pwdvault.Forms
             {
                 try
                 {
+                    Cursor = Cursors.WaitCursor;
                     byte[] generatedKey = EncryptionService.GenerateKey(txtBoxPwd.Text);
                     // V2 : Store the key in HashiCorp Vault and encrypt database file
                     string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -29,19 +30,20 @@ namespace pwdvault.Forms
                     File.WriteAllBytes(keyFilePath, generatedKey);
 
                     /* --------------------- Create the database PasswordVault and the passwords table */
-                    using(var context = new PasswordVaultContext())
+                    using (var context = new PasswordVaultContext())
                     {
                         context.Database.EnsureDeleted();
                         context.Database.EnsureCreated();
                     }
+                    Cursor = Cursors.Default;
+                    MessageBox.Show("New account created successfully !\nPassword Vault database created successfully !", "Successful creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new MainForm().Show();
+                    Close();
                 }
                 catch (Exception ex)
                 {
                     Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
-                }
-                // Success message to user
-                MessageBox.Show("New account and database created successfully !", "Successful creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //Close();
+                }                
             }
             else
             {
