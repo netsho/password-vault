@@ -1,4 +1,5 @@
-﻿using pwdvault.Services;
+﻿using pwdvault.Modeles;
+using pwdvault.Services;
 using Serilog;
 
 
@@ -27,8 +28,12 @@ namespace pwdvault.Forms
                     string keyFilePath = Path.Combine(passwordVaultFolderPath, "fileKey");
                     File.WriteAllBytes(keyFilePath, generatedKey);
 
-                    //Create database with name : PasswordVault
-
+                    /* --------------------- Create the database PasswordVault and the passwords table */
+                    using(var context = new PasswordVaultContext())
+                    {
+                        context.Database.EnsureDeleted();
+                        context.Database.EnsureCreated();
+                    }
                 }
                 catch (Exception ex)
                 {

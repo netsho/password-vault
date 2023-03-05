@@ -17,7 +17,7 @@ namespace pwdvault
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            /* ---------------------Create the logger for the application */
+            /* --------------------- Create the logger for the application */
             string passwordVaultFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault");
 
             using var logger = new LoggerConfiguration()
@@ -27,14 +27,13 @@ namespace pwdvault
 
             Log.Logger = logger;
 
-            /* -------------------Create a new Password Vault folder in Local App Data to store any file and/or information related to the application */
+            /* --------------------- Create a new Password Vault folder in Local App Data to store any file and/or information related to the application */
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string PasswordVaultFolder = Path.Combine(appDataPath, "PasswordVault");
             if(!Directory.Exists(PasswordVaultFolder))
             {
                 Directory.CreateDirectory(PasswordVaultFolder);
             }
-            
 
             LoginForm loginForm = new LoginForm();
             Application.Run(new SignInForm());
