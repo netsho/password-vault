@@ -94,91 +94,12 @@ namespace pwdvault.Services
             }
         }
 
-        //public static byte[] EncryptFile(string inputFilePath, string password)
-        //{
-        //    if (String.IsNullOrEmpty(password))
-        //    {
-        //        throw new ArgumentException("The password is empty.");
-        //    }
-        //    if (String.IsNullOrEmpty(inputFilePath))
-        //    {
-        //        throw new ArgumentException("Input file path cannot be empty.");
-        //    }
-
-        //    byte[] salt = new byte[16];
-        //    RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
-        //    randomNumberGenerator.GetBytes(salt);
-
-        //    Rfc2898DeriveBytes keyGenerator = new Rfc2898DeriveBytes(password, salt, 10000, HashAlgorithmName.SHA256);
-        //    byte[] keyFileEncryption = keyGenerator.GetBytes(32);
-
-        //    using (Aes aes = Aes.Create())
-        //    {
-        //        aes.Key = keyFileEncryption;
-        //        aes.IV = new byte[16];
-        //        aes.Mode = CipherMode.CBC;
-
-        //        using (FileStream inputFileStream = new FileStream(inputFilePath, FileMode.Open))
-        //        {
-        //            using (MemoryStream outputEncryptedByteFile = new MemoryStream())
-        //            {
-        //                using (CryptoStream cryptoStream = new CryptoStream(outputEncryptedByteFile, aes.CreateEncryptor(), CryptoStreamMode.Write))
-        //                {
-        //                    inputFileStream.CopyTo(cryptoStream);
-        //                    cryptoStream.Close();
-        //                    return outputEncryptedByteFile.ToArray();
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
         public static byte[] GetKeyFromFile()
         {
             var folderDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault");
             string keyFilePath = Path.Combine(folderDataPath, "fileKey");
             return File.ReadAllBytes(keyFilePath);
         }
-
-        //public static byte[] DecryptFile(byte[] inputFileEncryptedBytes, string password)
-        //{
-        //    if (String.IsNullOrEmpty(password))
-        //    {
-        //        throw new ArgumentException("Password cannot be empty.");
-        //    }
-        //    if (inputFileEncryptedBytes == null || inputFileEncryptedBytes.Length == 0)
-        //    {
-        //        throw new ArgumentException("Encrypted input file bytes cannot be null or empty.");
-        //    }
-        //    var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        //    string keyFilePathDecrypted = Path.Combine(appDataPath, "fileKeyDecrypted");
-        //    byte[] passwordKeyEncryption;
-        //    byte[] salt = new byte[16];
-        //    Array.Copy(inputFileEncryptedBytes, 0, salt, 0, salt.Length);
-        //    Rfc2898DeriveBytes keyGenerator = new Rfc2898DeriveBytes(password, salt, 10000, HashAlgorithmName.SHA256);
-        //    byte[] keyFileDecryption = keyGenerator.GetBytes(32);
-
-        //    using(Aes aes = Aes.Create())
-        //    {
-        //        aes.Key = keyFileDecryption;
-        //        aes.IV = new byte[16];
-        //        aes.Mode = CipherMode.CBC;
-
-        //        using(MemoryStream inputStream = new MemoryStream(inputFileEncryptedBytes, salt.Length, inputFileEncryptedBytes.Length - salt.Length, false))
-        //        {
-        //            using(CryptoStream cryptoStream = new CryptoStream(inputStream, aes.CreateDecryptor(), CryptoStreamMode.Read))
-        //            {
-        //                using(FileStream outputFileStream = new FileStream(keyFilePathDecrypted, FileMode.Create))
-        //                {
-        //                    cryptoStream.CopyTo(outputFileStream);
-        //                    passwordKeyEncryption = File.ReadAllBytes(keyFilePathDecrypted);
-        //                    File.Delete(keyFilePathDecrypted);
-        //                    return passwordKeyEncryption;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
 
         /// <summary>
         /// <para>

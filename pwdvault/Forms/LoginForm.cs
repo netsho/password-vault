@@ -1,4 +1,7 @@
-﻿using System;
+﻿using pwdvault.Modeles;
+using pwdvault.Services;
+using Serilog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +16,6 @@ namespace pwdvault.Forms
 {
     public partial class LoginForm : Form
     {
-        public bool UserSuccessfullyAuthenticated { get; private set; }
         public LoginForm()
         {
             InitializeComponent();
@@ -27,8 +29,27 @@ namespace pwdvault.Forms
             }
             else
             {
-                UserSuccessfullyAuthenticated = true;
-                Close();
+                try
+                {
+                    using (var context = new PasswordVaultContext())
+                    {
+                        UserService userService = new(context);
+                        List<User> userAccounts = userService.GetUserAccounts();
+                        User userAccount = userAccounts[0];
+                        if(txtBoxUser.Text.Equals(userAccount.Username) && 
+                            AccountPasswordSecurity.VerifyPassword(txtBoxPwd.Text, userAccount.PasswordSalt, userAccount.PasswordHash))
+                        {
+                            new MainForm();
+                            this.Hide();
+                        } else
+                        {
+                            MessageBox.Show("The username and/or password is incorrect.", "Username/Password incorrect", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                } catch (Exception ex)
+                {
+                    Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                }
             }
         }
 
@@ -47,7 +68,6 @@ namespace pwdvault.Forms
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             new SignInForm().Show();
-            this.Hide();
         }
     }
 }

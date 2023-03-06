@@ -1,16 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace pwdvault.Modeles
 {
     public class UserPassword
     {
+        [Key]
         public int Id { get; set; }
         public string AppCategory { get; set; }
         public string AppName { get; set; }
@@ -28,12 +25,30 @@ namespace pwdvault.Modeles
         }
     }
 
+    public class User
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
+
+        public User(string username, byte[] passwordHash, byte[] passwordSalt)
+        {
+            Username = username;
+            PasswordHash = passwordHash;
+            PasswordSalt = passwordSalt;
+        }
+    }
+
     /// <summary>
     /// Setting the Db Context of Entity Framework on UserPassword Model, to create the corresponding table in the database.
     /// </summary>
     public class PasswordVaultContext : DbContext
     {
         public DbSet<UserPassword> Passwords { get; set;}
+        public DbSet<User> Accounts { get; set; }
+
 
         // Delegate that writes database logs to the dbLog.txt in Local AppData folder
         Action<string> writeLogsToFile = (message) =>

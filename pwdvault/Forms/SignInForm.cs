@@ -29,15 +29,22 @@ namespace pwdvault.Forms
                     string keyFilePath = Path.Combine(passwordVaultFolderPath, "fileKey");
                     File.WriteAllBytes(keyFilePath, generatedKey);
 
-                    /* --------------------- Create the database PasswordVault and the passwords table */
+                    /* --------------------- Create the new user while salting and hashing the user's password */
+                    var salt = AccountPasswordSecurity.GenerateSalt();
+                    var hash = AccountPasswordSecurity.GenerateHash(txtBoxPwd.Text, salt);
+                    User user = new User(txtBoxUser.Text, hash, salt);
+                    
+                    /* --------------------- Create the database PasswordVault, the user and passwords table, insert the user into user table */
                     using (var context = new PasswordVaultContext())
                     {
                         context.Database.EnsureDeleted();
                         context.Database.EnsureCreated();
+                        UserService userService = new UserService(context);
+                        userService.CreateUserAccount(user);
                     }
                     Cursor = Cursors.Default;
-                    MessageBox.Show("New account created successfully !\nPassword Vault database created successfully !", "Successful creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    new MainForm().Show();
+                    MessageBox.Show("New account created successfully !\nPassword Vault database created successfully !\nYou can login to the application now.", "Successful creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new LoginForm().Show();
                     Close();
                 }
                 catch (Exception ex)
