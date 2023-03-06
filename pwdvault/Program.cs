@@ -40,6 +40,7 @@ namespace pwdvault
 
             if(loginForm.UserSuccessfullyAuthenticated)
             {
+                loginForm.Close();
                 Application.Run(new MainForm());
             }
         }

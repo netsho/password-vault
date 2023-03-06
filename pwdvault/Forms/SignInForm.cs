@@ -44,7 +44,6 @@ namespace pwdvault.Forms
                     }
                     Cursor = Cursors.Default;
                     MessageBox.Show("New account created successfully !\nPassword Vault database created successfully !\nYou can login to the application now.", "Successful creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    new LoginForm().Show();
                     Close();
                 }
                 catch (Exception ex)

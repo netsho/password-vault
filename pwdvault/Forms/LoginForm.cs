@@ -16,6 +16,7 @@ namespace pwdvault.Forms
 {
     public partial class LoginForm : Form
     {
+        public bool UserSuccessfullyAuthenticated { get; private set; }
         public LoginForm()
         {
             InitializeComponent();
@@ -39,8 +40,7 @@ namespace pwdvault.Forms
                         if(txtBoxUser.Text.Equals(userAccount.Username) && 
                             AccountPasswordSecurity.VerifyPassword(txtBoxPwd.Text, userAccount.PasswordSalt, userAccount.PasswordHash))
                         {
-                            new MainForm();
-                            this.Hide();
+                            UserSuccessfullyAuthenticated = true;
                         } else
                         {
                             MessageBox.Show("The username and/or password is incorrect.", "Username/Password incorrect", MessageBoxButtons.OK, MessageBoxIcon.Error);
