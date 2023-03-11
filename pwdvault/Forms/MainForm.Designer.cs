@@ -44,10 +44,9 @@
             lbTitleVault = new Label();
             lbTitlePwd = new Label();
             picBoxBackgroundCat = new PictureBox();
-            dataGridTest = new DataGridView();
+            listPwdPanel = new Panel();
             separator = new Label();
             panelTop = new Panel();
-            btnEdit = new Button();
             btnFilter = new Button();
             txtBoxFilter = new TextBox();
             btnAdd = new Button();
@@ -59,7 +58,6 @@
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBoxBackgroundCat).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridTest).BeginInit();
             panelTop.SuspendLayout();
             SuspendLayout();
             // 
@@ -91,7 +89,7 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.BackColor = Color.White;
-            splitContainer1.Panel2.Controls.Add(dataGridTest);
+            splitContainer1.Panel2.Controls.Add(listPwdPanel);
             splitContainer1.Panel2.Controls.Add(separator);
             splitContainer1.Panel2.Controls.Add(panelTop);
             splitContainer1.Panel2.MouseDown += splitContainer1_Panel2_MouseDown;
@@ -301,18 +299,16 @@
             picBoxBackgroundCat.MouseMove += pictureBox1_MouseMove;
             picBoxBackgroundCat.MouseUp += pictureBox1_MouseUp;
             // 
-            // dataGridTest
+            // listPwdPanel
             // 
-            dataGridTest.AllowUserToAddRows = false;
-            dataGridTest.AllowUserToOrderColumns = true;
-            dataGridTest.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridTest.Dock = DockStyle.Fill;
-            dataGridTest.Location = new Point(0, 113);
-            dataGridTest.Name = "dataGridTest";
-            dataGridTest.RowHeadersWidth = 62;
-            dataGridTest.RowTemplate.Height = 33;
-            dataGridTest.Size = new Size(1299, 664);
-            dataGridTest.TabIndex = 4;
+            listPwdPanel.AutoScroll = true;
+            listPwdPanel.Location = new Point(0, 119);
+            listPwdPanel.Name = "listPwdPanel";
+            listPwdPanel.Size = new Size(1299, 658);
+            listPwdPanel.TabIndex = 4;
+            listPwdPanel.MouseDown += MainForm_MouseDown;
+            listPwdPanel.MouseMove += MainForm_MouseMove;
+            listPwdPanel.MouseUp += MainForm_MouseUp;
             // 
             // separator
             // 
@@ -324,7 +320,6 @@
             // 
             // panelTop
             // 
-            panelTop.Controls.Add(btnEdit);
             panelTop.Controls.Add(btnFilter);
             panelTop.Controls.Add(txtBoxFilter);
             panelTop.Controls.Add(btnAdd);
@@ -337,16 +332,6 @@
             panelTop.MouseDown += panelTop_MouseDown;
             panelTop.MouseMove += panelTop_MouseMove;
             panelTop.MouseUp += panelTop_MouseUp;
-            // 
-            // btnEdit
-            // 
-            btnEdit.Location = new Point(990, 40);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(112, 34);
-            btnEdit.TabIndex = 6;
-            btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = true;
-            btnEdit.Click += btnEdit_Click;
             // 
             // btnFilter
             // 
@@ -412,7 +397,6 @@
             splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)picBoxBackgroundCat).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridTest).EndInit();
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             ResumeLayout(false);
@@ -442,7 +426,6 @@
         private SaveFileDialog saveFileDialog1;
         private Label separator;
         private Label lbAdmini;
-        private DataGridView dataGridTest;
-        private Button btnEdit;
+        private Panel listPwdPanel;
     }
 }

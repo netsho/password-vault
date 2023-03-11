@@ -6,10 +6,11 @@ namespace pwdvault.Forms
 {
     public partial class EditPassword : Form
     {
-        public EditPassword()
+        public EditPassword(string AppName)
         {
             InitializeComponent();
             comBoxCat.DataSource = Enum.GetValues(typeof(Categories));
+            lbTitle.Text = $"Edit {AppName} password";
         }
 
         private void btnEye_MouseUp(object sender, MouseEventArgs e)
