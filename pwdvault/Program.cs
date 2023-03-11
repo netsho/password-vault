@@ -35,14 +35,7 @@ namespace pwdvault
                 Directory.CreateDirectory(PasswordVaultFolder);
             }
 
-            LoginForm loginForm = new LoginForm();
-            Application.Run(loginForm);
-
-            if(loginForm.UserSuccessfullyAuthenticated)
-            {
-                loginForm.Close();
-                Application.Run(new MainForm());
-            }
+            Application.Run(new LoginForm());
         }
     }
 }
