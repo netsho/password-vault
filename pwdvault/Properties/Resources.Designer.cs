@@ -63,16 +63,6 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap background_categories {
-            get {
-                object obj = ResourceManager.GetObject("background_categories", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap digital_secure_background_lock_circle_icons_dark_blue_6837396 {
             get {
                 object obj = ResourceManager.GetObject("digital_secure_background_lock_circle_icons_dark_blue_6837396", resourceCulture);
@@ -186,16 +176,6 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap icons8_internet_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-internet-48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_linux_terminal_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-linux-terminal-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

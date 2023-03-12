@@ -31,6 +31,7 @@ namespace pwdvault.Forms
             {
                 try
                 {
+                    Cursor = Cursors.WaitCursor;
                     using (var context = new PasswordVaultContext())
                     {
                         UserService userService = new UserService(context);
@@ -45,6 +46,7 @@ namespace pwdvault.Forms
                         {
                             MessageBox.Show("The username and/or password is incorrect.", "Username/Password incorrect", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                        Cursor = Cursors.Default;
                     }
                 } catch (Exception ex)
                 {

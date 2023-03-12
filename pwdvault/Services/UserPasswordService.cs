@@ -33,17 +33,21 @@ namespace pwdvault.Services
             dbContext.SaveChanges();
         }
 
-        public void UpdateUserPassword(int id, UserPassword userPassword)
+        public void UpdateUserPassword(UserPassword userPasswordEdited)
         {
-            var UserPassword = dbContext.Passwords.Find(id);
+            dbContext.Update(userPasswordEdited);
+            dbContext.SaveChanges();
+        }
 
-            if (UserPassword == null)
+        public UserPassword GetUserPassword(string appName, string username) 
+        {
+            var UserPassword = dbContext.Passwords.FirstOrDefault(userPassword => userPassword.AppName == appName && userPassword.UserName ==  username);
+
+            if( UserPassword == null)
             {
                 throw new PasswordNotFoundException($"The password cannot be found !");
             }
-
-            dbContext.Update(userPassword);
-            dbContext.SaveChanges();
+            return UserPassword;
         }
 
         public List<UserPassword> GetAllUserPassword()

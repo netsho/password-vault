@@ -6,11 +6,19 @@ namespace pwdvault.Forms
 {
     public partial class EditPassword : Form
     {
-        public EditPassword(string AppName)
+        UserPassword userPassword;
+        public EditPassword(string AppName, string Username)
         {
             InitializeComponent();
             comBoxCat.DataSource = Enum.GetValues(typeof(Categories));
             lbTitle.Text = $"Edit {AppName} password";
+            using PasswordVaultContext context = new PasswordVaultContext();
+            UserPasswordService userPasswordService = new(context);
+            userPassword = userPasswordService.GetUserPassword(AppName, Username);
+            txtBoxApp.Text = userPassword.AppName;
+            comBoxCat.Text = userPassword.AppCategory;
+            txtBoxUser.Text = userPassword.UserName;
+            txtBoxPwd.Text = EncryptionService.DecryptPassword(userPassword.Password, EncryptionService.GetKeyFromFile());
         }
 
         private void btnEye_MouseUp(object sender, MouseEventArgs e)
@@ -40,10 +48,11 @@ namespace pwdvault.Forms
                     Cursor = Cursors.WaitCursor;
                     byte[] encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
                     UserPassword userPasswordEdited = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword) { UpdateTime = DateTime.Now };
+                    userPasswordEdited.Id = userPassword.Id;
                     using (var context = new PasswordVaultContext())
                     {
                         UserPasswordService userPasswordService = new(context);
-                        userPasswordService.UpdateUserPassword(1, userPasswordEdited);
+                        userPasswordService.UpdateUserPassword(userPasswordEdited);
                     }
                     Cursor = Cursors.Default;
                     DialogResult result = MessageBox.Show($"{userPasswordEdited.AppName} password has been updated !", "Succes update password", MessageBoxButtons.OK, MessageBoxIcon.Information);

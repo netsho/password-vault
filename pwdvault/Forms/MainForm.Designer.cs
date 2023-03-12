@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             splitContainer1 = new SplitContainer();
             allTable = new TableLayoutPanel();
@@ -61,6 +62,7 @@
             btnAdd = new Button();
             btnExit = new Button();
             saveFileDialog1 = new SaveFileDialog();
+            toolTipExit = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -89,7 +91,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.BackColor = Color.FromArgb(54, 152, 169);
+            splitContainer1.Panel1.BackColor = Color.FromArgb(195, 141, 158);
             splitContainer1.Panel1.Controls.Add(allTable);
             splitContainer1.Panel1.Controls.Add(lbCatTitle);
             splitContainer1.Panel1.Controls.Add(categoriesTable);
@@ -141,7 +143,7 @@
             // lbAll
             // 
             lbAll.AutoSize = true;
-            lbAll.BackColor = Color.FromArgb(103, 138, 178);
+            lbAll.BackColor = Color.FromArgb(195, 141, 158);
             lbAll.Cursor = Cursors.Hand;
             lbAll.Dock = DockStyle.Fill;
             lbAll.Font = new Font("Bahnschrift SemiBold", 14F, FontStyle.Bold, GraphicsUnit.Point);
@@ -158,7 +160,7 @@
             // lbCatTitle
             // 
             lbCatTitle.AutoSize = true;
-            lbCatTitle.BackColor = Color.FromArgb(103, 138, 178);
+            lbCatTitle.BackColor = Color.FromArgb(195, 141, 158);
             lbCatTitle.Font = new Font("Bahnschrift", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lbCatTitle.ForeColor = Color.White;
             lbCatTitle.Location = new Point(22, 190);
@@ -205,7 +207,7 @@
             // lbSocial
             // 
             lbSocial.AutoSize = true;
-            lbSocial.BackColor = Color.FromArgb(103, 138, 178);
+            lbSocial.BackColor = Color.FromArgb(195, 141, 158);
             lbSocial.Cursor = Cursors.Hand;
             lbSocial.Dock = DockStyle.Fill;
             lbSocial.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -221,7 +223,7 @@
             // lbAdmini
             // 
             lbAdmini.AutoSize = true;
-            lbAdmini.BackColor = Color.FromArgb(103, 138, 178);
+            lbAdmini.BackColor = Color.FromArgb(195, 141, 158);
             lbAdmini.Cursor = Cursors.Hand;
             lbAdmini.Dock = DockStyle.Fill;
             lbAdmini.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -238,7 +240,7 @@
             // lbRetail
             // 
             lbRetail.AutoSize = true;
-            lbRetail.BackColor = Color.FromArgb(103, 138, 178);
+            lbRetail.BackColor = Color.FromArgb(195, 141, 158);
             lbRetail.Cursor = Cursors.Hand;
             lbRetail.Dock = DockStyle.Fill;
             lbRetail.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -254,7 +256,7 @@
             // lbCoding
             // 
             lbCoding.AutoSize = true;
-            lbCoding.BackColor = Color.FromArgb(103, 138, 178);
+            lbCoding.BackColor = Color.FromArgb(195, 141, 158);
             lbCoding.Cursor = Cursors.Hand;
             lbCoding.Dock = DockStyle.Fill;
             lbCoding.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -283,7 +285,7 @@
             // lbFinance
             // 
             lbFinance.AutoSize = true;
-            lbFinance.BackColor = Color.FromArgb(103, 138, 178);
+            lbFinance.BackColor = Color.FromArgb(195, 141, 158);
             lbFinance.Cursor = Cursors.Hand;
             lbFinance.Dock = DockStyle.Fill;
             lbFinance.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -364,7 +366,7 @@
             // lbStudy
             // 
             lbStudy.AutoSize = true;
-            lbStudy.BackColor = Color.FromArgb(103, 138, 178);
+            lbStudy.BackColor = Color.FromArgb(195, 141, 158);
             lbStudy.Cursor = Cursors.Hand;
             lbStudy.Dock = DockStyle.Fill;
             lbStudy.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -393,7 +395,7 @@
             // lbWork
             // 
             lbWork.AutoSize = true;
-            lbWork.BackColor = Color.FromArgb(103, 138, 178);
+            lbWork.BackColor = Color.FromArgb(195, 141, 158);
             lbWork.Cursor = Cursors.Hand;
             lbWork.Dock = DockStyle.Fill;
             lbWork.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -410,7 +412,7 @@
             // lbGames
             // 
             lbGames.AutoSize = true;
-            lbGames.BackColor = Color.White;
+            lbGames.BackColor = Color.FromArgb(195, 141, 158);
             lbGames.Cursor = Cursors.Hand;
             lbGames.Dock = DockStyle.Fill;
             lbGames.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -439,7 +441,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.lock_main;
-            pictureBox1.Location = new Point(22, 12);
+            pictureBox1.Location = new Point(50, 9);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(78, 78);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -449,10 +451,10 @@
             // lbTitlePwd
             // 
             lbTitlePwd.AutoSize = true;
-            lbTitlePwd.BackColor = Color.FromArgb(103, 138, 178);
+            lbTitlePwd.BackColor = Color.FromArgb(195, 141, 158);
             lbTitlePwd.Font = new Font("Bahnschrift SemiBold SemiConden", 16F, FontStyle.Bold, GraphicsUnit.Point);
             lbTitlePwd.ForeColor = Color.White;
-            lbTitlePwd.Location = new Point(106, 12);
+            lbTitlePwd.Location = new Point(134, 9);
             lbTitlePwd.Name = "lbTitlePwd";
             lbTitlePwd.Size = new Size(158, 39);
             lbTitlePwd.TabIndex = 2;
@@ -462,10 +464,10 @@
             // lbTitleVault
             // 
             lbTitleVault.AutoSize = true;
-            lbTitleVault.BackColor = Color.FromArgb(103, 138, 178);
+            lbTitleVault.BackColor = Color.FromArgb(195, 141, 158);
             lbTitleVault.Font = new Font("Bahnschrift SemiLight", 16F, FontStyle.Regular, GraphicsUnit.Point);
             lbTitleVault.ForeColor = Color.White;
-            lbTitleVault.Location = new Point(130, 51);
+            lbTitleVault.Location = new Point(158, 48);
             lbTitleVault.Name = "lbTitleVault";
             lbTitleVault.Size = new Size(108, 39);
             lbTitleVault.TabIndex = 3;
@@ -535,6 +537,7 @@
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(48, 48);
             btnExit.TabIndex = 5;
+            toolTipExit.SetToolTip(btnExit, "Exit the application");
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click;
             // 
@@ -611,5 +614,6 @@
         private PictureBox pictureBox8;
         private TableLayoutPanel allTable;
         private PictureBox allPicture;
+        private ToolTip toolTipExit;
     }
 }

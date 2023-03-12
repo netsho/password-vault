@@ -28,13 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             lbApp = new Label();
             lbUser = new Label();
             btnDelete = new Button();
             btnEdit = new Button();
             lbUserTitle = new Label();
-            button1 = new Button();
+            btnCopy = new Button();
             label1 = new Label();
+            toolTipCopy = new ToolTip(components);
+            toolTipEdit = new ToolTip(components);
+            toolTipDelete = new ToolTip(components);
             SuspendLayout();
             // 
             // lbApp
@@ -69,6 +73,7 @@
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(48, 48);
             btnDelete.TabIndex = 3;
+            toolTipDelete.SetToolTip(btnDelete, "Delete password");
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             btnDelete.MouseEnter += Password_MouseEnter;
@@ -82,6 +87,7 @@
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(48, 48);
             btnEdit.TabIndex = 4;
+            toolTipEdit.SetToolTip(btnEdit, "Edit password");
             btnEdit.UseVisualStyleBackColor = true;
             btnEdit.Click += btnEdit_Click;
             btnEdit.MouseEnter += Password_MouseEnter;
@@ -99,17 +105,19 @@
             lbUserTitle.MouseEnter += Password_MouseEnter;
             lbUserTitle.MouseLeave += Password_MouseLeave;
             // 
-            // button1
+            // btnCopy
             // 
-            button1.BackgroundImage = Properties.Resources.icons8_copy_48;
-            button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.Location = new Point(830, 14);
-            button1.Name = "button1";
-            button1.Size = new Size(48, 48);
-            button1.TabIndex = 7;
-            button1.UseVisualStyleBackColor = true;
-            button1.MouseEnter += Password_MouseEnter;
-            button1.MouseLeave += Password_MouseLeave;
+            btnCopy.BackgroundImage = Properties.Resources.icons8_copy_48;
+            btnCopy.BackgroundImageLayout = ImageLayout.Stretch;
+            btnCopy.Location = new Point(830, 14);
+            btnCopy.Name = "btnCopy";
+            btnCopy.Size = new Size(48, 48);
+            btnCopy.TabIndex = 7;
+            toolTipCopy.SetToolTip(btnCopy, "Copy the password to the clipboard");
+            btnCopy.UseVisualStyleBackColor = true;
+            btnCopy.Click += btnCopy_Click;
+            btnCopy.MouseEnter += Password_MouseEnter;
+            btnCopy.MouseLeave += Password_MouseLeave;
             // 
             // label1
             // 
@@ -125,7 +133,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(label1);
-            Controls.Add(button1);
+            Controls.Add(btnCopy);
             Controls.Add(lbUserTitle);
             Controls.Add(btnEdit);
             Controls.Add(btnDelete);
@@ -146,7 +154,10 @@
         private Button btnDelete;
         private Button btnEdit;
         private Label lbUserTitle;
-        private Button button1;
+        private Button btnCopy;
         private Label label1;
+        private ToolTip toolTipDelete;
+        private ToolTip toolTipEdit;
+        private ToolTip toolTipCopy;
     }
 }
