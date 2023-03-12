@@ -233,6 +233,7 @@ namespace pwdvault.Forms
             foreach (UserPassword password in passwords)
             {
                 Password passwordForm = new Password(password.AppName, password.UserName);
+                passwordForm.Width = listPwdPanel.Width;
                 listPwdPanel.Controls.Add(passwordForm);
             }
         }

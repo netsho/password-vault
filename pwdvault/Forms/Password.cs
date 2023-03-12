@@ -36,7 +36,7 @@ namespace pwdvault.Forms
 
         private void Password_MouseEnter(object sender, EventArgs e)
         {
-            this.BackColor = SystemColors.Control;
+            this.BackColor = SystemColors.InactiveBorder;
         }
 
         private void Password_MouseLeave(object sender, EventArgs e)

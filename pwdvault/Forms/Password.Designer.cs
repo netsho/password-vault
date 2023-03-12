@@ -32,15 +32,17 @@
             lbUser = new Label();
             btnDelete = new Button();
             btnEdit = new Button();
-            btnCopy = new Button();
             lbUserTitle = new Label();
+            button1 = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // lbApp
             // 
             lbApp.AutoSize = true;
             lbApp.Font = new Font("Bahnschrift SemiBold", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lbApp.Location = new Point(33, 3);
+            lbApp.ForeColor = Color.FromArgb(25, 155, 226);
+            lbApp.Location = new Point(99, 0);
             lbApp.Name = "lbApp";
             lbApp.Size = new Size(143, 36);
             lbApp.TabIndex = 0;
@@ -51,7 +53,7 @@
             // lbUser
             // 
             lbUser.AutoSize = true;
-            lbUser.Location = new Point(191, 39);
+            lbUser.Location = new Point(267, 37);
             lbUser.Name = "lbUser";
             lbUser.Size = new Size(33, 25);
             lbUser.TabIndex = 1;
@@ -61,11 +63,11 @@
             // 
             // btnDelete
             // 
-            btnDelete.BackgroundImage = Properties.Resources.delete;
+            btnDelete.BackgroundImage = Properties.Resources.icons8_delete_48;
             btnDelete.BackgroundImageLayout = ImageLayout.Stretch;
-            btnDelete.Location = new Point(1200, 34);
+            btnDelete.Location = new Point(976, 14);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(35, 34);
+            btnDelete.Size = new Size(48, 48);
             btnDelete.TabIndex = 3;
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
@@ -74,34 +76,22 @@
             // 
             // btnEdit
             // 
-            btnEdit.BackgroundImage = Properties.Resources.edit;
+            btnEdit.BackgroundImage = Properties.Resources.icons8_edit_48;
             btnEdit.BackgroundImageLayout = ImageLayout.Stretch;
-            btnEdit.Location = new Point(1140, 34);
+            btnEdit.Location = new Point(903, 14);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(35, 34);
+            btnEdit.Size = new Size(48, 48);
             btnEdit.TabIndex = 4;
             btnEdit.UseVisualStyleBackColor = true;
             btnEdit.Click += btnEdit_Click;
             btnEdit.MouseEnter += Password_MouseEnter;
             btnEdit.MouseLeave += Password_MouseLeave;
             // 
-            // btnCopy
-            // 
-            btnCopy.Location = new Point(857, 34);
-            btnCopy.Name = "btnCopy";
-            btnCopy.Size = new Size(258, 34);
-            btnCopy.TabIndex = 5;
-            btnCopy.Text = "Copy password to clipboard";
-            btnCopy.UseVisualStyleBackColor = true;
-            btnCopy.Click += btnCopy_Click;
-            btnCopy.MouseEnter += Password_MouseEnter;
-            btnCopy.MouseLeave += Password_MouseLeave;
-            // 
             // lbUserTitle
             // 
             lbUserTitle.AutoSize = true;
             lbUserTitle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lbUserTitle.Location = new Point(75, 39);
+            lbUserTitle.Location = new Point(141, 37);
             lbUserTitle.Name = "lbUserTitle";
             lbUserTitle.Size = new Size(101, 25);
             lbUserTitle.TabIndex = 6;
@@ -109,19 +99,40 @@
             lbUserTitle.MouseEnter += Password_MouseEnter;
             lbUserTitle.MouseLeave += Password_MouseLeave;
             // 
+            // button1
+            // 
+            button1.BackgroundImage = Properties.Resources.icons8_copy_48;
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
+            button1.Location = new Point(830, 14);
+            button1.Name = "button1";
+            button1.Size = new Size(48, 48);
+            button1.TabIndex = 7;
+            button1.UseVisualStyleBackColor = true;
+            button1.MouseEnter += Password_MouseEnter;
+            button1.MouseLeave += Password_MouseLeave;
+            // 
+            // label1
+            // 
+            label1.Location = new Point(25, 14);
+            label1.Name = "label1";
+            label1.Size = new Size(48, 48);
+            label1.TabIndex = 8;
+            label1.Text = "label1";
+            // 
             // Password
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(label1);
+            Controls.Add(button1);
             Controls.Add(lbUserTitle);
-            Controls.Add(btnCopy);
             Controls.Add(btnEdit);
             Controls.Add(btnDelete);
             Controls.Add(lbUser);
             Controls.Add(lbApp);
             Name = "Password";
-            Size = new Size(1298, 80);
+            Size = new Size(1050, 80);
             MouseEnter += Password_MouseEnter;
             MouseLeave += Password_MouseLeave;
             ResumeLayout(false);
@@ -134,7 +145,8 @@
         private Label lbUser;
         private Button btnDelete;
         private Button btnEdit;
-        private Button btnCopy;
         private Label lbUserTitle;
+        private Button button1;
+        private Label label1;
     }
 }
