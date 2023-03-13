@@ -2,6 +2,8 @@
 using System.Text;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+using System.Collections;
+using Serilog;
 
 namespace pwdvault.Services
 {
@@ -64,6 +66,45 @@ namespace pwdvault.Services
 
             // Return true if password meets all criteria
             return hasLength && hasUpper && hasLower && hasNumber && hasSpecialCharacter;
+        }
+
+        /// <summary>
+        /// <para>
+        /// Get the icon name from the resource manager based on the app name the user typed (The first part of the app name before 'space').
+        /// The Properties.Resources property represents the default resource file for the project, which is Resources.resx. 
+        /// The ResourceManager property of this object allows access to the resource manager, which is responsible for retrieving resources from the resource file.
+        /// The GetResourceSet method of the resource manager returns a ResourceSet object that contains all of the resources in the specified culture and assembly.
+        /// The System.Globalization.CultureInfo.CurrentCulture parameter specifies the culture to use when retrieving resources (in this case, the current culture of the application). 
+        /// The true parameters indicate that the method should look for resources in the satellite assemblies and use the resource fallback process if a resource is not found for the specified culture.
+        /// </para>
+        /// </summary>
+        /// <param name="AppName"></param>
+        /// <returns></returns>
+        public static string GetIconName(string AppName)
+        {
+            try
+            {
+                var resources = Properties.Resources.ResourceManager.GetResourceSet(System.Globalization.CultureInfo.CurrentCulture, true, true);
+                if (resources != null)
+                {
+                    foreach (var resource in resources)
+                    {
+                        string resourceName = ((DictionaryEntry)resource).Key.ToString()!;
+                        if (resourceName.Contains(AppName.Split(' ')[0].ToLower()))
+                        {
+                            return resourceName;
+                        }
+                    }
+                }
+                return "icons8_image_48";
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                return null;
+            }
+
+
         }
     }
 }

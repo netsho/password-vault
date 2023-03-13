@@ -1,6 +1,11 @@
 ﻿using pwdvault.Modeles;
+using pwdvault.Properties;
 using pwdvault.Services;
 using Serilog;
+using System.Collections;
+using System.ComponentModel;
+using System.Reflection.Metadata;
+using System.Text.RegularExpressions;
 
 namespace pwdvault.Forms
 {
@@ -30,7 +35,7 @@ namespace pwdvault.Forms
                     Cursor = Cursors.WaitCursor;
                     // Encrypt password and store it, success message and hide the form
                     byte[] encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
-                    UserPassword userPassword = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
+                    UserPassword userPassword = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text)) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
                     using(var context = new PasswordVaultContext())
                     {
                         UserPasswordService userPasswordService = new(context);

@@ -35,10 +35,11 @@
             btnEdit = new Button();
             lbUserTitle = new Label();
             btnCopy = new Button();
-            label1 = new Label();
             toolTipCopy = new ToolTip(components);
             toolTipEdit = new ToolTip(components);
             toolTipDelete = new ToolTip(components);
+            pictureBoxApp = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxApp).BeginInit();
             SuspendLayout();
             // 
             // lbApp
@@ -46,7 +47,7 @@
             lbApp.AutoSize = true;
             lbApp.Font = new Font("Bahnschrift SemiBold", 15F, FontStyle.Bold, GraphicsUnit.Point);
             lbApp.ForeColor = Color.FromArgb(25, 155, 226);
-            lbApp.Location = new Point(99, 0);
+            lbApp.Location = new Point(122, 5);
             lbApp.Name = "lbApp";
             lbApp.Size = new Size(143, 36);
             lbApp.TabIndex = 0;
@@ -57,7 +58,7 @@
             // lbUser
             // 
             lbUser.AutoSize = true;
-            lbUser.Location = new Point(267, 37);
+            lbUser.Location = new Point(290, 42);
             lbUser.Name = "lbUser";
             lbUser.Size = new Size(33, 25);
             lbUser.TabIndex = 1;
@@ -97,7 +98,7 @@
             // 
             lbUserTitle.AutoSize = true;
             lbUserTitle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lbUserTitle.Location = new Point(141, 37);
+            lbUserTitle.Location = new Point(164, 42);
             lbUserTitle.Name = "lbUserTitle";
             lbUserTitle.Size = new Size(101, 25);
             lbUserTitle.TabIndex = 6;
@@ -119,20 +120,24 @@
             btnCopy.MouseEnter += Password_MouseEnter;
             btnCopy.MouseLeave += Password_MouseLeave;
             // 
-            // label1
+            // pictureBoxApp
             // 
-            label1.Location = new Point(25, 14);
-            label1.Name = "label1";
-            label1.Size = new Size(48, 48);
-            label1.TabIndex = 8;
-            label1.Text = "label1";
+            pictureBoxApp.ErrorImage = Properties.Resources.icons8_image_48;
+            pictureBoxApp.Image = Properties.Resources.icons8_image_48;
+            pictureBoxApp.Location = new Point(54, 14);
+            pictureBoxApp.Name = "pictureBoxApp";
+            pictureBoxApp.Size = new Size(48, 48);
+            pictureBoxApp.TabIndex = 8;
+            pictureBoxApp.TabStop = false;
+            pictureBoxApp.MouseEnter += Password_MouseEnter;
+            pictureBoxApp.MouseLeave += Password_MouseLeave;
             // 
             // Password
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(label1);
+            Controls.Add(pictureBoxApp);
             Controls.Add(btnCopy);
             Controls.Add(lbUserTitle);
             Controls.Add(btnEdit);
@@ -140,9 +145,10 @@
             Controls.Add(lbUser);
             Controls.Add(lbApp);
             Name = "Password";
-            Size = new Size(1050, 80);
+            Size = new Size(1050, 78);
             MouseEnter += Password_MouseEnter;
             MouseLeave += Password_MouseLeave;
+            ((System.ComponentModel.ISupportInitialize)pictureBoxApp).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -155,9 +161,9 @@
         private Button btnEdit;
         private Label lbUserTitle;
         private Button btnCopy;
-        private Label label1;
         private ToolTip toolTipDelete;
         private ToolTip toolTipEdit;
         private ToolTip toolTipCopy;
+        private PictureBox pictureBoxApp;
     }
 }

@@ -232,7 +232,7 @@ namespace pwdvault.Forms
             listPwdPanel.Controls.Clear();
             foreach (UserPassword password in passwords)
             {
-                Password passwordForm = new Password(password.AppName, password.UserName);
+                Password passwordForm = new Password(password.AppName, password.UserName, password.IconName);
                 passwordForm.Width = listPwdPanel.Width;
                 listPwdPanel.Controls.Add(passwordForm);
             }

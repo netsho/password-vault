@@ -16,8 +16,10 @@ namespace pwdvault.Forms
             UserPasswordService userPasswordService = new(context);
             userPassword = userPasswordService.GetUserPassword(AppName, Username);
             txtBoxApp.Text = userPassword.AppName;
+            txtBoxApp.ReadOnly = true;
             comBoxCat.Text = userPassword.AppCategory;
             txtBoxUser.Text = userPassword.UserName;
+            txtBoxUser.ReadOnly = true;
             txtBoxPwd.Text = EncryptionService.DecryptPassword(userPassword.Password, EncryptionService.GetKeyFromFile());
         }
 
@@ -47,8 +49,15 @@ namespace pwdvault.Forms
                 {
                     Cursor = Cursors.WaitCursor;
                     byte[] encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
-                    UserPassword userPasswordEdited = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword) { UpdateTime = DateTime.Now };
-                    userPasswordEdited.Id = userPassword.Id;
+                    UserPassword userPasswordEdited = new UserPassword(comBoxCat.Text, encryptedPassword)
+                    {
+                        Id = userPassword.Id,
+                        AppName = userPassword.AppName,
+                        UserName = userPassword.UserName,
+                        IconName = userPassword.IconName,
+                        CreationTime = userPassword.CreationTime,
+                        UpdateTime = DateTime.Now
+                    };
                     using (var context = new PasswordVaultContext())
                     {
                         UserPasswordService userPasswordService = new(context);

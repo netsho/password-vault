@@ -8,24 +8,31 @@ namespace pwdvault.Forms
     {
         private string appName = "";
         private string username = "";
+        private string iconName = "";
 
         public string AppName
         {
             get { return appName; }
             set { appName = value; lbApp.Text = value; }
         }
-
         public string Username
         {
             get { return username; }
             set { username = value; lbUser.Text = value; }
         }
+        public string IconName
+        {
+            get { return iconName; }
+            set { iconName = value; pictureBoxApp.Image = (Image?)Properties.Resources.ResourceManager.GetObject(value); }
+        }
 
-        public Password(string appName, string username)
+
+        public Password(string appName, string username, string iconName)
         {
             InitializeComponent();
             AppName = appName;
             Username = username;
+            IconName = iconName;
         }
 
         private void Password_MouseEnter(object sender, EventArgs e)
