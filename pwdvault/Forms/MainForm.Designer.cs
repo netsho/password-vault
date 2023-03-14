@@ -533,6 +533,7 @@
             // btnExit
             // 
             btnExit.BackgroundImage = Properties.Resources.icons8_logout_48;
+            btnExit.BackgroundImageLayout = ImageLayout.Stretch;
             btnExit.Location = new Point(964, 21);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(48, 48);

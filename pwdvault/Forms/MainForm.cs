@@ -230,10 +230,13 @@ namespace pwdvault.Forms
         private void AddPasswordsItems(List<UserPassword> passwords)
         {
             listPwdPanel.Controls.Clear();
+            int controlTop = 5;
             foreach (UserPassword password in passwords)
             {
                 Password passwordForm = new Password(password.AppName, password.UserName, password.IconName);
                 passwordForm.Width = listPwdPanel.Width;
+                passwordForm.Location = new Point(0, controlTop);
+                controlTop += passwordForm.Height + 5;
                 listPwdPanel.Controls.Add(passwordForm);
             }
         }
