@@ -43,16 +43,16 @@
             pictureAdmin = new PictureBox();
             lbFinance = new Label();
             pictureWork = new PictureBox();
-            pictureBox5 = new PictureBox();
-            pictureBox6 = new PictureBox();
-            pictureBox7 = new PictureBox();
-            pictureBox2 = new PictureBox();
+            pictureStudy = new PictureBox();
+            pictureSocials = new PictureBox();
+            pictureRetail = new PictureBox();
+            pictureFinance = new PictureBox();
             lbStudy = new Label();
             pictureGames = new PictureBox();
             lbWork = new Label();
             lbGames = new Label();
-            pictureBox8 = new PictureBox();
-            pictureBox1 = new PictureBox();
+            pictureCoding = new PictureBox();
+            picBoxLogo = new PictureBox();
             lbTitlePwd = new Label();
             lbTitleVault = new Label();
             listPwdPanel = new Panel();
@@ -72,13 +72,13 @@
             categoriesTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureAdmin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureWork).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureStudy).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureSocials).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureRetail).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureFinance).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureGames).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureCoding).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picBoxLogo).BeginInit();
             panelTop.SuspendLayout();
             SuspendLayout();
             // 
@@ -95,9 +95,12 @@
             splitContainer1.Panel1.Controls.Add(allTable);
             splitContainer1.Panel1.Controls.Add(lbCatTitle);
             splitContainer1.Panel1.Controls.Add(categoriesTable);
-            splitContainer1.Panel1.Controls.Add(pictureBox1);
+            splitContainer1.Panel1.Controls.Add(picBoxLogo);
             splitContainer1.Panel1.Controls.Add(lbTitlePwd);
             splitContainer1.Panel1.Controls.Add(lbTitleVault);
+            splitContainer1.Panel1.MouseDown += MainForm_MouseDown;
+            splitContainer1.Panel1.MouseMove += MainForm_MouseMove;
+            splitContainer1.Panel1.MouseUp += MainForm_MouseUp;
             // 
             // splitContainer1.Panel2
             // 
@@ -105,9 +108,6 @@
             splitContainer1.Panel2.Controls.Add(listPwdPanel);
             splitContainer1.Panel2.Controls.Add(separator);
             splitContainer1.Panel2.Controls.Add(panelTop);
-            splitContainer1.Panel2.MouseDown += splitContainer1_Panel2_MouseDown;
-            splitContainer1.Panel2.MouseMove += splitContainer1_Panel2_MouseMove;
-            splitContainer1.Panel2.MouseUp += splitContainer1_Panel2_MouseUp;
             splitContainer1.Size = new Size(1389, 750);
             splitContainer1.SplitterDistance = 337;
             splitContainer1.SplitterWidth = 1;
@@ -124,7 +124,7 @@
             allTable.Name = "allTable";
             allTable.RowCount = 1;
             allTable.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            allTable.Size = new Size(249, 53);
+            allTable.Size = new Size(252, 53);
             allTable.TabIndex = 18;
             // 
             // allPicture
@@ -134,7 +134,7 @@
             allPicture.Image = Properties.Resources.icons8_apps_tab_48;
             allPicture.Location = new Point(3, 3);
             allPicture.Name = "allPicture";
-            allPicture.Size = new Size(68, 47);
+            allPicture.Size = new Size(69, 47);
             allPicture.SizeMode = PictureBoxSizeMode.CenterImage;
             allPicture.TabIndex = 0;
             allPicture.TabStop = false;
@@ -149,9 +149,9 @@
             lbAll.Font = new Font("Bahnschrift SemiBold", 14F, FontStyle.Bold, GraphicsUnit.Point);
             lbAll.ForeColor = Color.Black;
             lbAll.ImageAlign = ContentAlignment.MiddleLeft;
-            lbAll.Location = new Point(77, 0);
+            lbAll.Location = new Point(78, 0);
             lbAll.Name = "lbAll";
-            lbAll.Size = new Size(169, 53);
+            lbAll.Size = new Size(171, 53);
             lbAll.TabIndex = 6;
             lbAll.Text = "All";
             lbAll.TextAlign = ContentAlignment.MiddleCenter;
@@ -181,15 +181,15 @@
             categoriesTable.Controls.Add(pictureAdmin, 0, 0);
             categoriesTable.Controls.Add(lbFinance, 1, 5);
             categoriesTable.Controls.Add(pictureWork, 0, 1);
-            categoriesTable.Controls.Add(pictureBox5, 0, 2);
-            categoriesTable.Controls.Add(pictureBox6, 0, 3);
-            categoriesTable.Controls.Add(pictureBox7, 0, 4);
-            categoriesTable.Controls.Add(pictureBox2, 0, 5);
+            categoriesTable.Controls.Add(pictureStudy, 0, 2);
+            categoriesTable.Controls.Add(pictureSocials, 0, 3);
+            categoriesTable.Controls.Add(pictureRetail, 0, 4);
+            categoriesTable.Controls.Add(pictureFinance, 0, 5);
             categoriesTable.Controls.Add(lbStudy, 1, 2);
             categoriesTable.Controls.Add(pictureGames, 0, 6);
             categoriesTable.Controls.Add(lbWork, 1, 1);
             categoriesTable.Controls.Add(lbGames, 1, 6);
-            categoriesTable.Controls.Add(pictureBox8, 0, 7);
+            categoriesTable.Controls.Add(pictureCoding, 0, 7);
             categoriesTable.Location = new Point(56, 254);
             categoriesTable.Name = "categoriesTable";
             categoriesTable.RowCount = 8;
@@ -311,57 +311,57 @@
             pictureWork.TabStop = false;
             pictureWork.Click += lbWork_Click;
             // 
-            // pictureBox5
+            // pictureStudy
             // 
-            pictureBox5.Cursor = Cursors.Hand;
-            pictureBox5.Dock = DockStyle.Fill;
-            pictureBox5.Image = Properties.Resources.icons8_books_48;
-            pictureBox5.Location = new Point(3, 117);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(69, 51);
-            pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox5.TabIndex = 19;
-            pictureBox5.TabStop = false;
-            pictureBox5.Click += lbStudy_Click;
+            pictureStudy.Cursor = Cursors.Hand;
+            pictureStudy.Dock = DockStyle.Fill;
+            pictureStudy.Image = Properties.Resources.icons8_books_48;
+            pictureStudy.Location = new Point(3, 117);
+            pictureStudy.Name = "pictureStudy";
+            pictureStudy.Size = new Size(69, 51);
+            pictureStudy.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureStudy.TabIndex = 19;
+            pictureStudy.TabStop = false;
+            pictureStudy.Click += lbStudy_Click;
             // 
-            // pictureBox6
+            // pictureSocials
             // 
-            pictureBox6.Cursor = Cursors.Hand;
-            pictureBox6.Dock = DockStyle.Fill;
-            pictureBox6.Image = Properties.Resources.icons8_internet_48;
-            pictureBox6.Location = new Point(3, 174);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(69, 51);
-            pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox6.TabIndex = 20;
-            pictureBox6.TabStop = false;
-            pictureBox6.Click += lbSocial_Click;
+            pictureSocials.Cursor = Cursors.Hand;
+            pictureSocials.Dock = DockStyle.Fill;
+            pictureSocials.Image = Properties.Resources.icons8_internet_48;
+            pictureSocials.Location = new Point(3, 174);
+            pictureSocials.Name = "pictureSocials";
+            pictureSocials.Size = new Size(69, 51);
+            pictureSocials.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureSocials.TabIndex = 20;
+            pictureSocials.TabStop = false;
+            pictureSocials.Click += lbSocial_Click;
             // 
-            // pictureBox7
+            // pictureRetail
             // 
-            pictureBox7.Cursor = Cursors.Hand;
-            pictureBox7.Dock = DockStyle.Fill;
-            pictureBox7.Image = Properties.Resources.icons8_shopping_bag_48;
-            pictureBox7.Location = new Point(3, 231);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(69, 51);
-            pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox7.TabIndex = 21;
-            pictureBox7.TabStop = false;
-            pictureBox7.Click += lbRetail_Click;
+            pictureRetail.Cursor = Cursors.Hand;
+            pictureRetail.Dock = DockStyle.Fill;
+            pictureRetail.Image = Properties.Resources.icons8_shopping_bag_48;
+            pictureRetail.Location = new Point(3, 231);
+            pictureRetail.Name = "pictureRetail";
+            pictureRetail.Size = new Size(69, 51);
+            pictureRetail.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureRetail.TabIndex = 21;
+            pictureRetail.TabStop = false;
+            pictureRetail.Click += lbRetail_Click;
             // 
-            // pictureBox2
+            // pictureFinance
             // 
-            pictureBox2.Cursor = Cursors.Hand;
-            pictureBox2.Dock = DockStyle.Fill;
-            pictureBox2.Image = Properties.Resources.icons8_banknotes_48;
-            pictureBox2.Location = new Point(3, 288);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(69, 51);
-            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox2.TabIndex = 16;
-            pictureBox2.TabStop = false;
-            pictureBox2.Click += lbFinance_Click;
+            pictureFinance.Cursor = Cursors.Hand;
+            pictureFinance.Dock = DockStyle.Fill;
+            pictureFinance.Image = Properties.Resources.icons8_banknotes_48;
+            pictureFinance.Location = new Point(3, 288);
+            pictureFinance.Name = "pictureFinance";
+            pictureFinance.Size = new Size(69, 51);
+            pictureFinance.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureFinance.TabIndex = 16;
+            pictureFinance.TabStop = false;
+            pictureFinance.Click += lbFinance_Click;
             // 
             // lbStudy
             // 
@@ -425,28 +425,28 @@
             lbGames.TextAlign = ContentAlignment.MiddleCenter;
             lbGames.Click += lbGames_Click;
             // 
-            // pictureBox8
+            // pictureCoding
             // 
-            pictureBox8.Cursor = Cursors.Hand;
-            pictureBox8.Dock = DockStyle.Fill;
-            pictureBox8.Image = Properties.Resources.icons8_console_48;
-            pictureBox8.Location = new Point(3, 402);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(69, 56);
-            pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox8.TabIndex = 22;
-            pictureBox8.TabStop = false;
-            pictureBox8.Click += lbCoding_Click;
+            pictureCoding.Cursor = Cursors.Hand;
+            pictureCoding.Dock = DockStyle.Fill;
+            pictureCoding.Image = Properties.Resources.icons8_console_48;
+            pictureCoding.Location = new Point(3, 402);
+            pictureCoding.Name = "pictureCoding";
+            pictureCoding.Size = new Size(69, 56);
+            pictureCoding.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureCoding.TabIndex = 22;
+            pictureCoding.TabStop = false;
+            pictureCoding.Click += lbCoding_Click;
             // 
-            // pictureBox1
+            // picBoxLogo
             // 
-            pictureBox1.Image = Properties.Resources.lock_main;
-            pictureBox1.Location = new Point(50, 9);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(78, 78);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 4;
-            pictureBox1.TabStop = false;
+            picBoxLogo.Image = Properties.Resources.lock_main;
+            picBoxLogo.Location = new Point(50, 9);
+            picBoxLogo.Name = "picBoxLogo";
+            picBoxLogo.Size = new Size(78, 78);
+            picBoxLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            picBoxLogo.TabIndex = 4;
+            picBoxLogo.TabStop = false;
             // 
             // lbTitlePwd
             // 
@@ -504,9 +504,9 @@
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(1051, 90);
             panelTop.TabIndex = 0;
-            panelTop.MouseDown += panelTop_MouseDown;
-            panelTop.MouseMove += panelTop_MouseMove;
-            panelTop.MouseUp += panelTop_MouseUp;
+            panelTop.MouseDown += MainForm_MouseDown;
+            panelTop.MouseMove += MainForm_MouseMove;
+            panelTop.MouseUp += MainForm_MouseUp;
             // 
             // txtBoxFilter
             // 
@@ -569,13 +569,13 @@
             categoriesTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureAdmin).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureWork).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureStudy).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureSocials).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureRetail).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureFinance).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureGames).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureCoding).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picBoxLogo).EndInit();
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             ResumeLayout(false);
@@ -589,7 +589,7 @@
         private TextBox txtBoxFilter;
         private Label lbTitleVault;
         private Label lbTitlePwd;
-        private PictureBox pictureBox1;
+        private PictureBox picBoxLogo;
         private Button btnExit;
         private Label lbSocial;
         private Label lbStudy;
@@ -608,11 +608,11 @@
         private PictureBox pictureGames;
         private PictureBox pictureAdmin;
         private PictureBox pictureWork;
-        private PictureBox pictureBox5;
-        private PictureBox pictureBox6;
-        private PictureBox pictureBox7;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox8;
+        private PictureBox pictureStudy;
+        private PictureBox pictureSocials;
+        private PictureBox pictureRetail;
+        private PictureBox pictureFinance;
+        private PictureBox pictureCoding;
         private TableLayoutPanel allTable;
         private PictureBox allPicture;
         private ToolTip toolTipExit;

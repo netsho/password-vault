@@ -47,7 +47,7 @@
             lbApp.AutoSize = true;
             lbApp.Font = new Font("Bahnschrift SemiBold", 15F, FontStyle.Bold, GraphicsUnit.Point);
             lbApp.ForeColor = Color.FromArgb(25, 155, 226);
-            lbApp.Location = new Point(122, 5);
+            lbApp.Location = new Point(122, 21);
             lbApp.Name = "lbApp";
             lbApp.Size = new Size(143, 36);
             lbApp.TabIndex = 0;
@@ -58,7 +58,7 @@
             // lbUser
             // 
             lbUser.AutoSize = true;
-            lbUser.Location = new Point(290, 42);
+            lbUser.Location = new Point(339, 39);
             lbUser.Name = "lbUser";
             lbUser.Size = new Size(33, 25);
             lbUser.TabIndex = 1;
@@ -70,7 +70,7 @@
             // 
             btnDelete.BackgroundImage = Properties.Resources.icons8_delete_48;
             btnDelete.BackgroundImageLayout = ImageLayout.Stretch;
-            btnDelete.Location = new Point(976, 14);
+            btnDelete.Location = new Point(955, 14);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(48, 48);
             btnDelete.TabIndex = 3;
@@ -84,7 +84,7 @@
             // 
             btnEdit.BackgroundImage = Properties.Resources.icons8_edit_48;
             btnEdit.BackgroundImageLayout = ImageLayout.Stretch;
-            btnEdit.Location = new Point(903, 14);
+            btnEdit.Location = new Point(882, 14);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(48, 48);
             btnEdit.TabIndex = 4;
@@ -98,7 +98,7 @@
             // 
             lbUserTitle.AutoSize = true;
             lbUserTitle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lbUserTitle.Location = new Point(164, 42);
+            lbUserTitle.Location = new Point(281, 14);
             lbUserTitle.Name = "lbUserTitle";
             lbUserTitle.Size = new Size(101, 25);
             lbUserTitle.TabIndex = 6;
@@ -110,7 +110,7 @@
             // 
             btnCopy.BackgroundImage = Properties.Resources.icons8_copy_48;
             btnCopy.BackgroundImageLayout = ImageLayout.Stretch;
-            btnCopy.Location = new Point(830, 14);
+            btnCopy.Location = new Point(809, 14);
             btnCopy.Name = "btnCopy";
             btnCopy.Size = new Size(48, 48);
             btnCopy.TabIndex = 7;

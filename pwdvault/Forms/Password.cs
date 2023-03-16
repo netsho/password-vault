@@ -1,6 +1,5 @@
 ﻿using pwdvault.Modeles;
 using pwdvault.Services;
-using System.Timers;
 
 namespace pwdvault.Forms
 {
@@ -30,9 +29,23 @@ namespace pwdvault.Forms
         public Password(string appName, string username, string iconName)
         {
             InitializeComponent();
-            AppName = appName;
-            Username = username;
-            IconName = iconName;
+            if (iconName.Equals("icons8_image_48"))
+            {
+                AppName = appName;
+                Username = username;
+                IconName = iconName;
+                lbUserTitle.Location = new Point(lbApp.Location.X + lbApp.Width + 15, 11);
+                lbUser.Location = new Point(lbApp.Location.X + lbApp.Width + 33, 31);
+            }
+            else
+            {
+                AppName = appName;
+                Username = username;
+                IconName = iconName;
+                Controls.Remove(lbApp);
+                lbUserTitle.Location = new Point(120, 11);
+                lbUser.Location = new Point(138, 31);
+            }
         }
 
         private void Password_MouseEnter(object sender, EventArgs e)
@@ -47,7 +60,7 @@ namespace pwdvault.Forms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            new EditPassword(AppName, Username).Show();
+            new EditPassword(AppName, Username).ShowDialog();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -59,13 +72,14 @@ namespace pwdvault.Forms
                 using (var context = new PasswordVaultContext())
                 {
                     UserPasswordService userPasswordService = new(context);
-                    userPassword = userPasswordService.GetUserPassword(appName, username);
+                    userPassword = userPasswordService.GetUserPassword(AppName, Username);
                 }
                 using (var context = new PasswordVaultContext())
                 {
                     UserPasswordService userPasswordService = new(context);
                     userPasswordService.DeleteUserPassword(userPassword.Id);
                 }
+
             }
         }
 

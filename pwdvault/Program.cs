@@ -1,7 +1,5 @@
-using Serilog;
 using pwdvault.Forms;
-using pwdvault.Services;
-using System.Diagnostics;
+using Serilog;
 
 namespace pwdvault
 {
@@ -22,7 +20,7 @@ namespace pwdvault
 
             using var logger = new LoggerConfiguration()
                 .MinimumLevel.Warning()
-                .WriteTo.File($@"{passwordVaultFolder}\log-.txt", rollingInterval: RollingInterval.Day, fileSizeLimitBytes: 1024*1024, rollOnFileSizeLimit: true)
+                .WriteTo.File($@"{passwordVaultFolder}\log-.txt", rollingInterval: RollingInterval.Day, fileSizeLimitBytes: 1024 * 1024, rollOnFileSizeLimit: true)
                 .CreateLogger();
 
             Log.Logger = logger;
@@ -30,7 +28,7 @@ namespace pwdvault
             /* --------------------- Create a new Password Vault folder in Local App Data to store any file and/or information related to the application */
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string PasswordVaultFolder = Path.Combine(appDataPath, "PasswordVault");
-            if(!Directory.Exists(PasswordVaultFolder))
+            if (!Directory.Exists(PasswordVaultFolder))
             {
                 Directory.CreateDirectory(PasswordVaultFolder);
             }

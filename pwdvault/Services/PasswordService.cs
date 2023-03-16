@@ -1,9 +1,8 @@
-﻿using System;
-using System.Text;
-using System.Security.Cryptography;
-using System.Text.RegularExpressions;
+﻿using Serilog;
 using System.Collections;
-using Serilog;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace pwdvault.Services
 {
@@ -101,7 +100,7 @@ namespace pwdvault.Services
             catch (Exception ex)
             {
                 Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
-                return null;
+                return String.Empty;
             }
 
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Security.Cryptography;
 
 namespace pwdvault.Services
 {
@@ -16,7 +11,7 @@ namespace pwdvault.Services
         public static byte[] GenerateSalt()
         {
             byte[] salt = new byte[SaltSize];
-            using(RandomNumberGenerator randomNumberGenerator =  RandomNumberGenerator.Create())
+            using (RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create())
             {
                 randomNumberGenerator.GetBytes(salt);
             }
@@ -25,7 +20,7 @@ namespace pwdvault.Services
 
         public static byte[] GenerateHash(string password, byte[] salt)
         {
-            using(Rfc2898DeriveBytes rfc2898 = new Rfc2898DeriveBytes(password, salt, Iterations, HashAlgorithmName.SHA512))
+            using (Rfc2898DeriveBytes rfc2898 = new Rfc2898DeriveBytes(password, salt, Iterations, HashAlgorithmName.SHA512))
             {
                 return rfc2898.GetBytes(HashSize);
             }
@@ -40,7 +35,7 @@ namespace pwdvault.Services
         private static bool SlowEquals(byte[] a, byte[] b)
         {
             var diff = (uint)a.Length ^ (uint)b.Length;
-            for(var i = 0; i < a.Length && i < b.Length; i++)
+            for (var i = 0; i < a.Length && i < b.Length; i++)
             {
                 diff |= (uint)(a[i] ^ b[i]);
             }

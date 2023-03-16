@@ -33,7 +33,7 @@ namespace pwdvault.Forms
                     var salt = AccountPasswordSecurity.GenerateSalt();
                     var hash = AccountPasswordSecurity.GenerateHash(txtBoxPwd.Text, salt);
                     User user = new User(txtBoxUser.Text, hash, salt);
-                    
+
                     /* --------------------- Create the database PasswordVault, the user and passwords table, insert the user into user table */
                     using (var context = new PasswordVaultContext())
                     {
@@ -49,7 +49,7 @@ namespace pwdvault.Forms
                 catch (Exception ex)
                 {
                     Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
-                }                
+                }
             }
             else
             {

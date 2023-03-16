@@ -1,15 +1,7 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using pwdvault.Modeles;
+﻿using pwdvault.Modeles;
 using pwdvault.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace pwdvault.Forms
 {
@@ -18,22 +10,19 @@ namespace pwdvault.Forms
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
-        private List<UserPassword> passwords = new();
+        public string selectedCategory = String.Empty;
 
         public MainForm()
         {
             InitializeComponent();
-            using (var context = new PasswordVaultContext())
-            {
-                UserPasswordService userPasswordService = new(context);
-                passwords = userPasswordService.GetAllUserPassword();
-            }
-            AddPasswordsItems(passwords);
+            selectedCategory = lbAll.Text;
+            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            new AddPassword().Show();
+            new AddPassword().ShowDialog();
+            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
         /*-----------------------------------------------------------------------------------------------------------------*/
@@ -64,57 +53,6 @@ namespace pwdvault.Forms
         /*-----------------------------------------------------------------------------------------------------------------*/
         /*-----------------------------------------------------------------------------------------------------------------*/
 
-        /*-----------------------------------------------------------------------------------------------------------------*/
-        /*-----------------------------------------------------------------------------------------------------------------*/
-        /*---  The MainForm is composed of a picture box, a main panel and a top panel. Those event methodes are implemented
-         *     to make the main window move by pressing the mouse on any of these components ------------------------------*/
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            MainForm_MouseUp(this, e);
-        }
-
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-            MainForm_MouseMove(this, e);
-        }
-
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-            MainForm_MouseDown(this, e);
-        }
-
-        private void splitContainer1_Panel2_MouseUp(object sender, MouseEventArgs e)
-        {
-            MainForm_MouseUp(this, e);
-        }
-
-        private void splitContainer1_Panel2_MouseMove(object sender, MouseEventArgs e)
-        {
-            MainForm_MouseMove(this, e);
-        }
-
-        private void splitContainer1_Panel2_MouseDown(object sender, MouseEventArgs e)
-        {
-            MainForm_MouseDown(this, e);
-        }
-
-        private void panelTop_MouseUp(object sender, MouseEventArgs e)
-        {
-            MainForm_MouseUp(this, e);
-        }
-
-        private void panelTop_MouseMove(object sender, MouseEventArgs e)
-        {
-            MainForm_MouseMove(this, e);
-        }
-
-        private void panelTop_MouseDown(object sender, MouseEventArgs e)
-        {
-            MainForm_MouseDown(this, e);
-        }
-        /*-----------------------------------------------------------------------------------------------------------------*/
-        /*-----------------------------------------------------------------------------------------------------------------*/
-
         private void btnExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
@@ -122,122 +60,131 @@ namespace pwdvault.Forms
 
         private void txtBoxFilter_TextChanged(object sender, EventArgs e)
         {
-            // filter password by app names
+            string filterText = txtBoxFilter.Text.ToLower();
+            listPwdPanel.Controls.Clear();
+            List<Password> passwordUserControls = GetPasswordUserControls(selectedCategory);
+            List<Password> passwordUserControlsFiltred = new List<Password>();
+            foreach(Password passwordUserControl in passwordUserControls)
+            {
+                if (passwordUserControl.AppName.ToLower().IndexOf(filterText) >= 0)
+                {
+                    passwordUserControlsFiltred.Add(passwordUserControl);
+                }
+            }
+            UpdatePasswordUserControls(passwordUserControlsFiltred);
+
+            if (string.IsNullOrWhiteSpace(txtBoxFilter.Text))
+            {
+                UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+            }
         }
 
         private void lbAll_Click(object sender, EventArgs e)
         {
-            using (var context = new PasswordVaultContext())
-            {
-                UserPasswordService userPasswordService = new(context);
-                passwords = userPasswordService.GetAllUserPassword();
-            }
-            AddPasswordsItems(passwords);
+            selectedCategory = lbAll.Text;
+            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
         private void lbAdmini_Click(object sender, EventArgs e)
         {
-            using (var context = new PasswordVaultContext())
-            {
-                UserPasswordService userPasswordService = new(context);
-                passwords = userPasswordService.GetAllUserPassword();
-            }
-            List<UserPassword> administrativePasswords = passwords.Where(userPassword => userPassword.AppCategory == "Administrative").ToList();
-            AddPasswordsItems(administrativePasswords);
+            selectedCategory = lbAdmini.Text;
+            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
         private void lbWork_Click(object sender, EventArgs e)
         {
-            using (var context = new PasswordVaultContext())
-            {
-                UserPasswordService userPasswordService = new(context);
-                passwords = userPasswordService.GetAllUserPassword();
-            }
-            List<UserPassword> workPasswords = passwords.Where(userPassword => userPassword.AppCategory == "Work").ToList();
-            AddPasswordsItems(workPasswords);
+            selectedCategory = lbWork.Text;
+            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
         private void lbStudy_Click(object sender, EventArgs e)
         {
-            using (var context = new PasswordVaultContext())
-            {
-                UserPasswordService userPasswordService = new(context);
-                passwords = userPasswordService.GetAllUserPassword();
-            }
-            List<UserPassword> studyPasswords = passwords.Where(userPassword => userPassword.AppCategory == "Study").ToList();
-            AddPasswordsItems(studyPasswords);
+            selectedCategory = lbStudy.Text;
+            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
         private void lbSocial_Click(object sender, EventArgs e)
         {
-            using (var context = new PasswordVaultContext())
-            {
-                UserPasswordService userPasswordService = new(context);
-                passwords = userPasswordService.GetAllUserPassword();
-            }
-            List<UserPassword> socialPasswords = passwords.Where(userPassword => userPassword.AppCategory == "Socials").ToList();
-            AddPasswordsItems(socialPasswords);
+            selectedCategory = lbSocial.Text;
+            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
         private void lbRetail_Click(object sender, EventArgs e)
         {
-            using (var context = new PasswordVaultContext())
-            {
-                UserPasswordService userPasswordService = new(context);
-                passwords = userPasswordService.GetAllUserPassword();
-            }
-            List<UserPassword> retailPasswords = passwords.Where(userPassword => userPassword.AppCategory == "Retail").ToList();
-            AddPasswordsItems(retailPasswords);
+            selectedCategory = lbRetail.Text;
+            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
         private void lbFinance_Click(object sender, EventArgs e)
         {
-            using (var context = new PasswordVaultContext())
-            {
-                UserPasswordService userPasswordService = new(context);
-                passwords = userPasswordService.GetAllUserPassword();
-            }
-            List<UserPassword> financePasswords = passwords.Where(userPassword => userPassword.AppCategory == "Finance").ToList();
-            AddPasswordsItems(financePasswords);
+            selectedCategory = lbFinance.Text;
+            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
         private void lbGames_Click(object sender, EventArgs e)
         {
-            using (var context = new PasswordVaultContext())
-            {
-                UserPasswordService userPasswordService = new(context);
-                passwords = userPasswordService.GetAllUserPassword();
-            }
-            List<UserPassword> gamesPasswords = passwords.Where(userPassword => userPassword.AppCategory == "Games").ToList();
-            AddPasswordsItems(gamesPasswords);
+            selectedCategory = lbGames.Text;
+            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
         private void lbCoding_Click(object sender, EventArgs e)
         {
+            selectedCategory = lbCoding.Text;
+            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+        }
+
+        /// <summary>
+        /// <para>
+        /// Function to get the list of password user controls based on the selected category of the user.
+        /// The passwords are retrieved from the database, and then filtred by selected category.
+        /// When creating each password user control, we're subscribing to passwordEdited and passwordDeleted events to update the password user controls list.
+        /// </para>
+        /// </summary>
+        /// <param name="selectedCategory"></param>
+        /// <returns></returns>
+        private List<Password> GetPasswordUserControls(string selectedCategory)
+        {
+            List<Password> passwordUserControls = new List<Password>();
+            List<UserPassword> passwords;
             using (var context = new PasswordVaultContext())
             {
                 UserPasswordService userPasswordService = new(context);
                 passwords = userPasswordService.GetAllUserPassword();
             }
-            List<UserPassword> codingPasswords = passwords.Where(userPassword => userPassword.AppCategory == "Coding").ToList();
-            AddPasswordsItems(codingPasswords);
+            if (selectedCategory.Equals("All"))
+            {
+                foreach (UserPassword userPassword in passwords)
+                {
+                    Password password = new Password(userPassword.AppName, userPassword.UserName, userPassword.IconName);
+                    passwordUserControls.Add(password);
+                }
+            }
+            else
+            {
+                passwords = passwords.Where(userPassword => userPassword.AppCategory.Equals(selectedCategory)).ToList();
+                foreach (UserPassword userPassword in passwords)
+                {
+                    Password password = new Password(userPassword.AppName, userPassword.UserName, userPassword.IconName);
+                    passwordUserControls.Add(password);
+                }
+            }
+            return passwordUserControls;
         }
 
         /// <summary>
-        /// Function to clear the panel and add all the passwords by clicked category
+        /// Function to clear the panel and update the password user controls in the panel
         /// </summary>
         /// <param name="passwords"></param>
-        private void AddPasswordsItems(List<UserPassword> passwords)
+        public void UpdatePasswordUserControls(List<Password> passwordUserControls)
         {
             listPwdPanel.Controls.Clear();
             int controlTop = 5;
-            foreach (UserPassword password in passwords)
+            foreach (Password passwordUserControl in passwordUserControls)
             {
-                Password passwordForm = new Password(password.AppName, password.UserName, password.IconName);
-                passwordForm.Width = listPwdPanel.Width;
-                passwordForm.Location = new Point(0, controlTop);
-                controlTop += passwordForm.Height + 5;
-                listPwdPanel.Controls.Add(passwordForm);
+                passwordUserControl.Width = listPwdPanel.Width - 30;
+                passwordUserControl.Location = new Point(0, controlTop);
+                controlTop += passwordUserControl.Height + 5;
+                listPwdPanel.Controls.Add(passwordUserControl);
             }
         }
     }

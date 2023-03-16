@@ -1,11 +1,6 @@
 ﻿using pwdvault.Modeles;
-using pwdvault.Properties;
 using pwdvault.Services;
 using Serilog;
-using System.Collections;
-using System.ComponentModel;
-using System.Reflection.Metadata;
-using System.Text.RegularExpressions;
 
 namespace pwdvault.Forms
 {

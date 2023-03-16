@@ -53,7 +53,7 @@ namespace pwdvault.Modeles
     /// </summary>
     public class PasswordVaultContext : DbContext
     {
-        public DbSet<UserPassword> Passwords { get; set;}
+        public DbSet<UserPassword> Passwords { get; set; }
         public DbSet<User> Accounts { get; set; }
 
 
@@ -66,7 +66,7 @@ namespace pwdvault.Modeles
             File.AppendAllText(dbLogFilePath, message + Environment.NewLine);
         };
 
-        public PasswordVaultContext() : base() {}
+        public PasswordVaultContext() : base() { }
 
         /// <summary>
         /// Configuring the logging to dbLog.txt file, and configuring the usage the SQL Server connection string from app.config

@@ -1,16 +1,6 @@
 ﻿using pwdvault.Modeles;
 using pwdvault.Services;
 using Serilog;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace pwdvault.Forms
 {
@@ -37,18 +27,20 @@ namespace pwdvault.Forms
                         UserService userService = new UserService(context);
                         List<User> userAccounts = userService.GetUserAccounts();
                         User userAccount = userAccounts[0];
-                        if(txtBoxUser.Text.Equals(userAccount.Username) && 
+                        if (txtBoxUser.Text.Equals(userAccount.Username) &&
                             AccountPasswordSecurity.VerifyPassword(txtBoxPwd.Text, userAccount.PasswordSalt, userAccount.PasswordHash))
                         {
                             new MainForm().Show();
                             this.Hide();
-                        } else
+                        }
+                        else
                         {
                             MessageBox.Show("The username and/or password is incorrect.", "Username/Password incorrect", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         Cursor = Cursors.Default;
                     }
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
                 }

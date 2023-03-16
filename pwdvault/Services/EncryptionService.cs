@@ -1,10 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace pwdvault.Services
 {
@@ -24,31 +19,31 @@ namespace pwdvault.Services
         /// <exception cref="ArgumentException"></exception>
         public static byte[] EncryptPassword(string password, byte[] key)
         {
-            if(String.IsNullOrEmpty(password))
+            if (String.IsNullOrEmpty(password))
             {
                 throw new ArgumentException("The password is empty.");
             }
-            if(key == null || key.Length == 0)
+            if (key == null || key.Length == 0)
             {
                 throw new ArgumentException("The encryption key is either null or empty.");
             }
 
             byte[] encryptedPassword;
-            using(Aes aes = Aes.Create())
+            using (Aes aes = Aes.Create())
             {
                 aes.Key = key;
                 aes.GenerateIV();
 
-                using(MemoryStream memoryStream = new MemoryStream())
+                using (MemoryStream memoryStream = new MemoryStream())
                 {
                     memoryStream.Write(aes.IV, 0, 16);
-                    using(CryptoStream cryptoStream = new CryptoStream(memoryStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                    using (CryptoStream cryptoStream = new CryptoStream(memoryStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
                     {
                         byte[] passwordBytes = Encoding.UTF32.GetBytes(password);
                         cryptoStream.Write(passwordBytes, 0, passwordBytes.Length);
                     }
                     encryptedPassword = memoryStream.ToArray();
-                } 
+                }
             }
 
             return encryptedPassword;
