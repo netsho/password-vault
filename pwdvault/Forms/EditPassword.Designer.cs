@@ -69,10 +69,9 @@
             // 
             // txtBoxPwd
             // 
-            errorProvider.SetIconPadding(txtBoxPwd, 434);
             txtBoxPwd.Location = new Point(109, 448);
             txtBoxPwd.Name = "txtBoxPwd";
-            txtBoxPwd.Size = new Size(284, 31);
+            txtBoxPwd.Size = new Size(320, 31);
             txtBoxPwd.TabIndex = 19;
             txtBoxPwd.UseSystemPasswordChar = true;
             txtBoxPwd.TextChanged += txtBoxPwd_TextChanged;
@@ -161,9 +160,9 @@
             btnEye.BackColor = Color.Transparent;
             btnEye.BackgroundImage = Properties.Resources.eye;
             btnEye.BackgroundImageLayout = ImageLayout.Stretch;
-            btnEye.Location = new Point(398, 449);
+            btnEye.Location = new Point(398, 448);
             btnEye.Name = "btnEye";
-            btnEye.Size = new Size(31, 31);
+            btnEye.Size = new Size(31, 32);
             btnEye.TabIndex = 23;
             btnEye.UseVisualStyleBackColor = false;
             btnEye.MouseDown += btnEye_MouseDown;
