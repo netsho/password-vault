@@ -46,7 +46,7 @@ namespace pwdvault.Services
         public static bool IsPasswordStrong(string password)
         {
             // Minimum length of 16 characters
-            Regex lengthRegex = new Regex(@".{16,}$");
+            Regex lengthRegex = new Regex(@".{12,}$");
             // Uppercase letter
             Regex upperRegex = new Regex(@"[A-Z]");
             // Lowercase letter

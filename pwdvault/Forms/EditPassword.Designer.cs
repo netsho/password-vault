@@ -69,7 +69,7 @@
             // 
             // txtBoxPwd
             // 
-            errorProvider.SetIconPadding(txtBoxPwd, 10);
+            errorProvider.SetIconPadding(txtBoxPwd, 434);
             txtBoxPwd.Location = new Point(109, 448);
             txtBoxPwd.Name = "txtBoxPwd";
             txtBoxPwd.Size = new Size(284, 31);
@@ -161,7 +161,6 @@
             btnEye.BackColor = Color.Transparent;
             btnEye.BackgroundImage = Properties.Resources.eye;
             btnEye.BackgroundImageLayout = ImageLayout.Stretch;
-            errorProvider.SetIconPadding(btnEye, 434);
             btnEye.Location = new Point(398, 449);
             btnEye.Name = "btnEye";
             btnEye.Size = new Size(31, 31);

@@ -93,7 +93,7 @@ namespace pwdvault.Forms
         {
             if (!PasswordService.IsPasswordStrong(txtBoxPwd.Text))
             {
-                errorProvider.SetError(txtBoxPwd, "Password must be atleast 16 characters long and contain the following : " + Environment.NewLine +
+                errorProvider.SetError(txtBoxPwd, "Password must be atleast 12 characters long and contain the following : " + Environment.NewLine +
                         "- Uppercase" + Environment.NewLine + "- Lowercase" + Environment.NewLine + "- Numbers" + Environment.NewLine + "- Symbols");
             }
             else
