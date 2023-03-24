@@ -9,6 +9,9 @@ namespace pwdvault.Forms
         private string username = "";
         private string iconName = "";
 
+        // Define the event to raise after editing or deleting a password.
+        public event EventHandler PasswordEditedOrDeleted;
+
         public string AppName
         {
             get { return appName; }
@@ -61,6 +64,7 @@ namespace pwdvault.Forms
         private void btnEdit_Click(object sender, EventArgs e)
         {
             new EditPassword(AppName, Username).ShowDialog();
+            OnPasswordEditedOrDeleted();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -79,7 +83,7 @@ namespace pwdvault.Forms
                     UserPasswordService userPasswordService = new(context);
                     userPasswordService.DeleteUserPassword(userPassword.Id);
                 }
-
+                OnPasswordEditedOrDeleted();
             }
         }
 
@@ -112,6 +116,17 @@ namespace pwdvault.Forms
             });
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
+        }
+
+        /// <summary>
+        /// Function responsible for raising an event after editing or deleting a password.
+        /// </summary>
+        protected virtual void OnPasswordEditedOrDeleted()
+        {
+            if (PasswordEditedOrDeleted != null)
+            {
+                PasswordEditedOrDeleted(this, EventArgs.Empty);
+            }
         }
     }
 }

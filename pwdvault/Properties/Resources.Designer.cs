@@ -83,6 +83,16 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap aws_logo {
+            get {
+                object obj = ResourceManager.GetObject("aws_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap boursorama {
             get {
                 object obj = ResourceManager.GetObject("boursorama", resourceCulture);
@@ -116,6 +126,16 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap cdiscount {
             get {
                 object obj = ResourceManager.GetObject("cdiscount", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap decathlon_logo {
+            get {
+                object obj = ResourceManager.GetObject("decathlon_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

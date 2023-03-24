@@ -247,9 +247,20 @@ namespace pwdvault.Forms
             {
                 passwordUserControl.Width = listPwdPanel.Width - 30;
                 passwordUserControl.Location = new Point(0, controlTop);
+                passwordUserControl.PasswordEditedOrDeleted += OnPasswordEditOrDelete;
                 controlTop += passwordUserControl.Height + 5;
                 listPwdPanel.Controls.Add(passwordUserControl);
             }
+        }
+
+        /// <summary>
+        /// Event handler raised when a password is edited or deleted to update the passwords list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPasswordEditOrDelete(object? sender, EventArgs e)
+        {
+            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
         /// <summary>
