@@ -253,9 +253,6 @@
   <data name="bouygues_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\bouygues_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="caf" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\appicons\caf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="cdiscount" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\cdiscount.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -295,14 +292,8 @@
   <data name="redby_sfr_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\red_by_sfr_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ryanair_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\appicons\ryanair_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="société_générale" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\société_générale.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sodexo_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\appicons\sodexo_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="uber_eats" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\uber_eats.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -318,5 +309,17 @@
   </data>
   <data name="decathlon_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\decathlon_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="caf_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\appicons\caf_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cinema_pathe_gaumont_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\appicons\cinema_pathe_gaumont_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ryanair_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\appicons\ryanair_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sodexo_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\appicons\sodexo_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

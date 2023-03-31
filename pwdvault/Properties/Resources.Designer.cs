@@ -113,9 +113,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap caf {
+        internal static System.Drawing.Bitmap caf_logo {
             get {
-                object obj = ResourceManager.GetObject("caf", resourceCulture);
+                object obj = ResourceManager.GetObject("caf_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -126,6 +126,16 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap cdiscount {
             get {
                 object obj = ResourceManager.GetObject("cdiscount", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cinema_pathe_gaumont_logo {
+            get {
+                object obj = ResourceManager.GetObject("cinema_pathe_gaumont_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
