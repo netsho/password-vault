@@ -150,7 +150,7 @@
             allPicture.SizeMode = PictureBoxSizeMode.CenterImage;
             allPicture.TabIndex = 0;
             allPicture.TabStop = false;
-            allPicture.Click += lbAll_Click;
+            allPicture.Click += LbAll_Click;
             // 
             // lbAll
             // 
@@ -168,7 +168,7 @@
             lbAll.TabIndex = 6;
             lbAll.Text = "All";
             lbAll.TextAlign = ContentAlignment.MiddleCenter;
-            lbAll.Click += lbAll_Click;
+            lbAll.Click += LbAll_Click;
             // 
             // lbSelectedAll
             // 
@@ -250,7 +250,7 @@
             lbSocial.TabIndex = 10;
             lbSocial.Text = "Socials";
             lbSocial.TextAlign = ContentAlignment.MiddleCenter;
-            lbSocial.Click += lbSocial_Click;
+            lbSocial.Click += LbSocial_Click;
             // 
             // lbAdmini
             // 
@@ -268,7 +268,7 @@
             lbAdmini.TabIndex = 9;
             lbAdmini.Text = "Administrative";
             lbAdmini.TextAlign = ContentAlignment.MiddleCenter;
-            lbAdmini.Click += lbAdmini_Click;
+            lbAdmini.Click += LbAdmini_Click;
             // 
             // lbRetail
             // 
@@ -285,7 +285,7 @@
             lbRetail.TabIndex = 11;
             lbRetail.Text = "Retail";
             lbRetail.TextAlign = ContentAlignment.MiddleCenter;
-            lbRetail.Click += lbRetail_Click;
+            lbRetail.Click += LbRetail_Click;
             // 
             // lbCoding
             // 
@@ -302,7 +302,7 @@
             lbCoding.TabIndex = 15;
             lbCoding.Text = "Coding";
             lbCoding.TextAlign = ContentAlignment.MiddleCenter;
-            lbCoding.Click += lbCoding_Click;
+            lbCoding.Click += LbCoding_Click;
             // 
             // pictureAdmin
             // 
@@ -316,7 +316,7 @@
             pictureAdmin.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureAdmin.TabIndex = 17;
             pictureAdmin.TabStop = false;
-            pictureAdmin.Click += lbAdmini_Click;
+            pictureAdmin.Click += LbAdmini_Click;
             // 
             // lbFinance
             // 
@@ -333,7 +333,7 @@
             lbFinance.TabIndex = 12;
             lbFinance.Text = "Finance";
             lbFinance.TextAlign = ContentAlignment.MiddleCenter;
-            lbFinance.Click += lbFinance_Click;
+            lbFinance.Click += LbFinance_Click;
             // 
             // pictureWork
             // 
@@ -347,7 +347,7 @@
             pictureWork.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureWork.TabIndex = 18;
             pictureWork.TabStop = false;
-            pictureWork.Click += lbWork_Click;
+            pictureWork.Click += LbWork_Click;
             // 
             // pictureStudy
             // 
@@ -361,7 +361,7 @@
             pictureStudy.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureStudy.TabIndex = 19;
             pictureStudy.TabStop = false;
-            pictureStudy.Click += lbStudy_Click;
+            pictureStudy.Click += LbStudy_Click;
             // 
             // pictureSocials
             // 
@@ -375,7 +375,7 @@
             pictureSocials.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureSocials.TabIndex = 20;
             pictureSocials.TabStop = false;
-            pictureSocials.Click += lbSocial_Click;
+            pictureSocials.Click += LbSocial_Click;
             // 
             // pictureRetail
             // 
@@ -389,7 +389,7 @@
             pictureRetail.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureRetail.TabIndex = 21;
             pictureRetail.TabStop = false;
-            pictureRetail.Click += lbRetail_Click;
+            pictureRetail.Click += LbRetail_Click;
             // 
             // pictureFinance
             // 
@@ -403,7 +403,7 @@
             pictureFinance.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureFinance.TabIndex = 16;
             pictureFinance.TabStop = false;
-            pictureFinance.Click += lbFinance_Click;
+            pictureFinance.Click += LbFinance_Click;
             // 
             // lbStudy
             // 
@@ -420,7 +420,7 @@
             lbStudy.TabIndex = 9;
             lbStudy.Text = "Study";
             lbStudy.TextAlign = ContentAlignment.MiddleCenter;
-            lbStudy.Click += lbStudy_Click;
+            lbStudy.Click += LbStudy_Click;
             // 
             // pictureGames
             // 
@@ -434,7 +434,7 @@
             pictureGames.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureGames.TabIndex = 0;
             pictureGames.TabStop = false;
-            pictureGames.Click += lbGames_Click;
+            pictureGames.Click += LbGames_Click;
             // 
             // lbWork
             // 
@@ -452,7 +452,7 @@
             lbWork.TabIndex = 8;
             lbWork.Text = "Work";
             lbWork.TextAlign = ContentAlignment.MiddleCenter;
-            lbWork.Click += lbWork_Click;
+            lbWork.Click += LbWork_Click;
             // 
             // lbGames
             // 
@@ -469,7 +469,7 @@
             lbGames.TabIndex = 14;
             lbGames.Text = "Games";
             lbGames.TextAlign = ContentAlignment.MiddleCenter;
-            lbGames.Click += lbGames_Click;
+            lbGames.Click += LbGames_Click;
             // 
             // pictureCoding
             // 
@@ -483,7 +483,7 @@
             pictureCoding.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureCoding.TabIndex = 22;
             pictureCoding.TabStop = false;
-            pictureCoding.Click += lbCoding_Click;
+            pictureCoding.Click += LbCoding_Click;
             // 
             // lbSelectedAdmini
             // 
@@ -634,7 +634,7 @@
             txtBoxFilter.PlaceholderText = "Filter by application or website name";
             txtBoxFilter.Size = new Size(479, 31);
             txtBoxFilter.TabIndex = 1;
-            txtBoxFilter.TextChanged += txtBoxFilter_TextChanged;
+            txtBoxFilter.TextChanged += TxtBoxFilter_TextChanged;
             // 
             // btnAdd
             // 
@@ -647,7 +647,7 @@
             btnAdd.TabIndex = 0;
             btnAdd.Text = "Add password";
             btnAdd.UseVisualStyleBackColor = false;
-            btnAdd.Click += btnAdd_Click;
+            btnAdd.Click += BtnAdd_Click;
             // 
             // btnExit
             // 
@@ -659,7 +659,7 @@
             btnExit.TabIndex = 5;
             toolTipExit.SetToolTip(btnExit, "Exit the application");
             btnExit.UseVisualStyleBackColor = true;
-            btnExit.Click += btnExit_Click;
+            btnExit.Click += BtnExit_Click;
             // 
             // MainForm
             // 

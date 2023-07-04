@@ -34,12 +34,12 @@ namespace pwdvault.Services
                 aes.Key = key;
                 aes.GenerateIV();
 
-                using (MemoryStream memoryStream = new MemoryStream())
+                using (var memoryStream = new MemoryStream())
                 {
                     memoryStream.Write(aes.IV, 0, 16);
-                    using (CryptoStream cryptoStream = new CryptoStream(memoryStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                    using (var cryptoStream = new CryptoStream(memoryStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
                     {
-                        byte[] passwordBytes = Encoding.UTF32.GetBytes(password);
+                        var passwordBytes = Encoding.UTF32.GetBytes(password);
                         cryptoStream.Write(passwordBytes, 0, passwordBytes.Length);
                     }
                     encryptedPassword = memoryStream.ToArray();
@@ -70,30 +70,31 @@ namespace pwdvault.Services
             {
                 throw new ArgumentException("The decryption key is either null or empty.");
             }
-            using (Aes aes = Aes.Create())
-            {
-                aes.Key = key;
+            using Aes aes = Aes.Create();
+            aes.Key = key;
 
-                using (MemoryStream memoryStream = new MemoryStream(encryptedPassword))
-                {
-                    byte[] iv = new byte[16];
-                    memoryStream.Read(iv, 0, 16);
-                    aes.IV = iv;
-                    using (CryptoStream cryptoStream = new CryptoStream(memoryStream, aes.CreateDecryptor(), CryptoStreamMode.Read))
-                    {
-                        byte[] decryptedPasswordByte = new byte[encryptedPassword.Length];
-                        var byteCountPassword = cryptoStream.Read(decryptedPasswordByte, 0, encryptedPassword.Length);
-                        return Encoding.UTF32.GetString(decryptedPasswordByte, 0, byteCountPassword);
-                    }
-                }
-            }
+            using MemoryStream memoryStream = new(encryptedPassword);
+            var iv = new byte[16];
+            memoryStream.Read(iv, 0, 16);
+            aes.IV = iv;
+
+            using CryptoStream cryptoStream = new(memoryStream, aes.CreateDecryptor(), CryptoStreamMode.Read);
+            var decryptedPasswordByte = new byte[encryptedPassword.Length];
+            var byteCountPassword = cryptoStream.Read(decryptedPasswordByte, 0, encryptedPassword.Length);
+            return Encoding.UTF32.GetString(decryptedPasswordByte, 0, byteCountPassword);
         }
 
-        public static byte[] GetKeyFromFile()
+        /*public static byte[] GetKeyFromFile()
         {
             var folderDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault");
             string keyFilePath = Path.Combine(folderDataPath, "fileKey");
             return File.ReadAllBytes(keyFilePath);
+        }*/
+
+        // A modifier
+        public static byte[] GetKeyFromVault()
+        {
+            return File.ReadAllBytes("");
         }
 
         /// <summary>
@@ -109,13 +110,13 @@ namespace pwdvault.Services
             {
                 throw new ArgumentException("The password is empty.");
             }
-            byte[] generatedKey;
-            byte[] salt = new byte[16];
-            RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
+
+            var salt = new byte[16];
+            var randomNumberGenerator = RandomNumberGenerator.Create();
             randomNumberGenerator.GetBytes(salt);
 
-            Rfc2898DeriveBytes keyGenerator = new Rfc2898DeriveBytes(password, salt, 10000, HashAlgorithmName.SHA256);
-            generatedKey = keyGenerator.GetBytes(32);
+            var keyGenerator = new Rfc2898DeriveBytes(password, salt, 100000, HashAlgorithmName.SHA256);
+            var generatedKey = keyGenerator.GetBytes(32);
 
             return generatedKey;
         }

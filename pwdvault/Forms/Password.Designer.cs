@@ -76,7 +76,7 @@
             btnDelete.TabIndex = 3;
             toolTipDelete.SetToolTip(btnDelete, "Delete password");
             btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
+            btnDelete.Click += BtnDelete_Click;
             btnDelete.MouseEnter += Password_MouseEnter;
             btnDelete.MouseLeave += Password_MouseLeave;
             // 
@@ -90,7 +90,7 @@
             btnEdit.TabIndex = 4;
             toolTipEdit.SetToolTip(btnEdit, "Edit password");
             btnEdit.UseVisualStyleBackColor = true;
-            btnEdit.Click += btnEdit_Click;
+            btnEdit.Click += BtnEdit_Click;
             btnEdit.MouseEnter += Password_MouseEnter;
             btnEdit.MouseLeave += Password_MouseLeave;
             // 
@@ -116,7 +116,7 @@
             btnCopy.TabIndex = 7;
             toolTipCopy.SetToolTip(btnCopy, "Copy the password to the clipboard");
             btnCopy.UseVisualStyleBackColor = true;
-            btnCopy.Click += btnCopy_Click;
+            btnCopy.Click += BtnCopy_Click;
             btnCopy.MouseEnter += Password_MouseEnter;
             btnCopy.MouseLeave += Password_MouseLeave;
             // 

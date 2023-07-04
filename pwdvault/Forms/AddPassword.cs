@@ -12,50 +12,53 @@ namespace pwdvault.Forms
             comBoxCat.DataSource = Enum.GetValues(typeof(Categories));
         }
 
-        private void btnGenerate_Click(object sender, EventArgs e)
+        private void BtnGenerate_Click(object sender, EventArgs e)
         {
             txtBoxPwd.Text = PasswordService.GeneratePassword();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void BtnAdd_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrWhiteSpace(txtBoxApp.Text) &&
                 !String.IsNullOrWhiteSpace(txtBoxUser.Text) &&
                 !String.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
-                !String.IsNullOrWhiteSpace(comBoxCat.Text) && 
+                !String.IsNullOrWhiteSpace(comBoxCat.Text) &&
                 !errorProvider.HasErrors)
             {
                 try
                 {
                     Cursor = Cursors.WaitCursor;
                     // Encrypt password and store it, success message and hide the form
-                    byte[] encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
-                    UserPassword userPassword = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text)) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
-                    using(var context = new PasswordVaultContext())
+                    var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromVault());
+                    var userPassword = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text)) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
+                    using (var context = new PasswordVaultContext())
                     {
-                        UserPasswordService userPasswordService = new(context);
+                        var userPasswordService = new UserPasswordService(context);
                         userPasswordService.CreateUserPassword(userPassword);
                     }
                     Cursor = Cursors.Default;
-                    DialogResult result = MessageBox.Show($"{userPassword.AppName} account has been added !", "Succes add password", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show($"{userPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (result == DialogResult.OK)
                     {
                         Close();
                     }
 
-                } catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
+                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Cursor = Cursors.Default;
                     Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
                 }
             }
             else
             {
-                MessageBox.Show("Please complete all fields.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please complete all fields.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }
         }
 
-        private void txtBoxPwd_TextChanged(object sender, EventArgs e)
+        private void TxtBoxPwd_TextChanged(object sender, EventArgs e)
         {
             if (!PasswordService.IsPasswordStrong(txtBoxPwd.Text))
             {

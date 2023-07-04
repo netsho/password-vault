@@ -1,5 +1,7 @@
 ﻿using pwdvault.Modeles;
 using pwdvault.Services;
+using pwdvault.Services.Exceptions;
+using Serilog;
 
 namespace pwdvault.Forms
 {
@@ -10,7 +12,7 @@ namespace pwdvault.Forms
         private string iconName = "";
 
         // Define the event to raise after editing or deleting a password.
-        public event EventHandler PasswordEditedOrDeleted;
+        public event EventHandler? PasswordEditedOrDeleted;
 
         public string AppName
         {
@@ -53,63 +55,80 @@ namespace pwdvault.Forms
 
         private void Password_MouseEnter(object sender, EventArgs e)
         {
-            this.BackColor = SystemColors.InactiveBorder;
+            BackColor = SystemColors.InactiveBorder;
         }
 
         private void Password_MouseLeave(object sender, EventArgs e)
         {
-            this.BackColor = Color.White;
+            BackColor = Color.White;
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void BtnEdit_Click(object sender, EventArgs e)
         {
-            new EditPassword(AppName, Username).ShowDialog();
-            OnPasswordEditedOrDeleted();
+            try
+            {
+                new EditPassword(AppName, Username).ShowDialog();
+                OnPasswordEditedOrDeleted();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+            }
+
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void BtnDelete_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show($"Are you sure to delete {AppName} password?", "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
-                UserPassword userPassword;
-                using (var context = new PasswordVaultContext())
+                try
                 {
-                    UserPasswordService userPasswordService = new(context);
-                    userPassword = userPasswordService.GetUserPassword(AppName, Username);
-                }
-                using (var context = new PasswordVaultContext())
-                {
-                    UserPasswordService userPasswordService = new(context);
+                    using var context = new PasswordVaultContext();
+                    var userPasswordService = new UserPasswordService(context);
+                    var userPassword = userPasswordService.GetUserPassword(AppName, Username);
                     userPasswordService.DeleteUserPassword(userPassword.Id);
+
+                    OnPasswordEditedOrDeleted();
                 }
-                OnPasswordEditedOrDeleted();
+                catch (PasswordNotFoundException ex)
+                {
+                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                }
             }
         }
 
-        private void btnCopy_Click(object sender, EventArgs e)
+        private void BtnCopy_Click(object sender, EventArgs e)
         {
-            using (var context = new PasswordVaultContext())
+            try
             {
-                UserPasswordService userPasswordService = new(context);
-                UserPassword userPassword = userPasswordService.GetUserPassword(appName, username);
-                Clipboard.SetText(EncryptionService.DecryptPassword(userPassword.Password, EncryptionService.GetKeyFromFile()));
+                using var context = new PasswordVaultContext();
+                var userPasswordService = new UserPasswordService(context);
+                var userPassword = userPasswordService.GetUserPassword(appName, username);
+                Clipboard.SetText(EncryptionService.DecryptPassword(userPassword.Password, EncryptionService.GetKeyFromVault()));
                 ClearClipboardDelayed();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
             }
         }
 
         /// <summary>
         /// <para>
-        /// This method creates a new thread that waits for 5 seconds and then clear the clipboard.
-        /// The apartment state of the thread is set to STA as to interact with the clipboard.
+        /// This method creates a new thread that waits for 10 seconds and then clear the clipboard.
+        /// The apartment state of the thread is set to STA (single-threaded apartment) as to interact with only one thread, the clipboard one.
         /// </para>
         /// </summary>
-        private void ClearClipboardDelayed()
+        private static void ClearClipboardDelayed()
         {
-            Thread thread = new Thread(() =>
+            var thread = new Thread(() =>
             {
-                // Wait for 5 seconds
-                Thread.Sleep(5000);
+                // Wait for 10 seconds
+                Thread.Sleep(10000);
 
                 // Clear the clipboard
                 Clipboard.Clear();
@@ -123,10 +142,7 @@ namespace pwdvault.Forms
         /// </summary>
         protected virtual void OnPasswordEditedOrDeleted()
         {
-            if (PasswordEditedOrDeleted != null)
-            {
-                PasswordEditedOrDeleted(this, EventArgs.Empty);
-            }
+            PasswordEditedOrDeleted?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -17,11 +17,6 @@ namespace pwdvault.Modeles
         public DateTime CreationTime { get; set; }
         public DateTime UpdateTime { get; set; }
 
-        public UserPassword(string appCategory, byte[] password)
-        {
-            AppCategory = appCategory;
-            Password = password;
-        }
         public UserPassword(string appCategory, string appName, string userName, byte[] password, string iconName)
         {
             AppCategory = appCategory;
@@ -58,7 +53,7 @@ namespace pwdvault.Modeles
 
 
         // Delegate that writes database logs to the dbLog.txt in Local AppData folder
-        Action<string> writeLogsToFile = (message) =>
+        private readonly Action<string> writeLogsToFile = (message) =>
         {
             string dbLogFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault");
             string dbLogFilePath = Path.Combine(dbLogFolderPath, "dbLog.txt");

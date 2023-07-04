@@ -22,13 +22,8 @@ namespace pwdvault.Services
 
         public void DeleteUserPassword(int id)
         {
-            var UserPassword = dbContext.Passwords.Find(id);
-
-            if (UserPassword == null)
-            {
-                throw new PasswordNotFoundException($"The password cannot be found !");
-            }
-
+            // If UserPassword is null, throw the exception
+            var UserPassword = dbContext.Passwords.Find(id) ?? throw new PasswordNotFoundException($"The password cannot be found !");
             dbContext.Remove(UserPassword);
             dbContext.SaveChanges();
         }
@@ -39,15 +34,18 @@ namespace pwdvault.Services
             dbContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Get the user password by application name and username.
+        /// Return the user password if not null, else throw an exception.
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        /// <exception cref="PasswordNotFoundException"></exception>
         public UserPassword GetUserPassword(string appName, string username)
         {
             var UserPassword = dbContext.Passwords.FirstOrDefault(userPassword => userPassword.AppName == appName && userPassword.UserName == username);
-
-            if (UserPassword == null)
-            {
-                throw new PasswordNotFoundException($"The password cannot be found !");
-            }
-            return UserPassword;
+            return UserPassword ?? throw new PasswordNotFoundException($"The password cannot be found !");
         }
 
         public List<UserPassword> GetAllUserPassword()

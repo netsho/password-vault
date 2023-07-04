@@ -20,21 +20,21 @@ namespace pwdvault.Forms
             // Attaching the events MouseEnter and MouseLeave for all the cells in the allTable panel
             foreach (Control control in allTable.Controls)
             {
-                control.MouseEnter += allTable_MouseEnter;
-                control.MouseLeave += allTable_MouseLeave;
+                control.MouseEnter += AllTable_MouseEnter;
+                control.MouseLeave += AllTable_MouseLeave;
             }
             // Attaching the events MouseEnter and MouseLeave for all the cells in the categoriesTable panel
             foreach (Control control in categoriesTable.Controls)
             {
-                control.MouseEnter += categoriesTable_MouseEnter;
-                control.MouseLeave += categoriesTable_MouseLeave;
+                control.MouseEnter += CategoriesTable_MouseEnter;
+                control.MouseLeave += CategoriesTable_MouseLeave;
             }
             allTable.GetControlFromPosition(0, 0)!.BackColor = Color.White;
             selectedCategory = lbAll.Text;
             UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void BtnAdd_Click(object sender, EventArgs e)
         {
             new AddPassword().ShowDialog();
             UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
@@ -44,34 +44,34 @@ namespace pwdvault.Forms
         /*------------------------------------------------------------------------------------------------------------------------------*/
         /*---  When the mouse enters a row in the categories tables panels, the back color changes for this row like it's highlighted. -*/
         /*---  When the mouse leaves the row in the categories tables panels, the back color changes to the original one. --------------*/
-        private void allTable_MouseEnter(object? sender, EventArgs e)
+        private void AllTable_MouseEnter(object? sender, EventArgs e)
         {
             // Change the back color of the PictureBox and Label controls in the row
             allTable.GetControlFromPosition(1, 0)!.BackColor = Color.FromArgb(160, 108, 125);
             allTable.GetControlFromPosition(2, 0)!.BackColor = Color.FromArgb(160, 108, 125);
         }
 
-        private void allTable_MouseLeave(object? sender, EventArgs e)
+        private void AllTable_MouseLeave(object? sender, EventArgs e)
         {
             // Change the back color of the PictureBox and Label controls in the row
             allTable.GetControlFromPosition(1, 0)!.BackColor = Color.FromArgb(195, 141, 158);
             allTable.GetControlFromPosition(2, 0)!.BackColor = Color.FromArgb(195, 141, 158);
         }
 
-        private void categoriesTable_MouseEnter(object? sender, EventArgs e)
+        private void CategoriesTable_MouseEnter(object? sender, EventArgs e)
         {
             // Get the row index of the control that raised the event
-            int row = categoriesTable.GetRow((Control)sender!);
+            var row = categoriesTable.GetRow((Control)sender!);
 
             // Change the back color of the PictureBox and Label controls in the row
             categoriesTable.GetControlFromPosition(1, row)!.BackColor = Color.FromArgb(160, 108, 125);
             categoriesTable.GetControlFromPosition(2, row)!.BackColor = Color.FromArgb(160, 108, 125);
         }
 
-        private void categoriesTable_MouseLeave(object? sender, EventArgs e)
+        private void CategoriesTable_MouseLeave(object? sender, EventArgs e)
         {
             // Get the row index of the control that raised the event
-            int row = categoriesTable.GetRow((Control)sender!);
+            var row = categoriesTable.GetRow((Control)sender!);
 
             // Change the back color of the PictureBox and Label controls in the row
             categoriesTable.GetControlFromPosition(1, row)!.BackColor = Color.FromArgb(195, 141, 158);
@@ -87,7 +87,7 @@ namespace pwdvault.Forms
         {
             dragging = true;
             dragCursorPoint = Cursor.Position;
-            dragFormPoint = this.Location;
+            dragFormPoint = Location;
         }
 
         /*---  When the mouse is released, the dragging stops -------------------------------------------------------------*/
@@ -101,27 +101,27 @@ namespace pwdvault.Forms
         {
             if (dragging)
             {
-                Point difference = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
-                this.Location = Point.Add(dragFormPoint, new Size(difference));
+                var difference = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
+                Location = Point.Add(dragFormPoint, new Size(difference));
             }
         }
         /*-----------------------------------------------------------------------------------------------------------------*/
         /*-----------------------------------------------------------------------------------------------------------------*/
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void BtnExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
         }
 
-        private void txtBoxFilter_TextChanged(object sender, EventArgs e)
+        private void TxtBoxFilter_TextChanged(object sender, EventArgs e)
         {
             string filterText = txtBoxFilter.Text.ToLower();
             listPwdPanel.Controls.Clear();
-            List<Password> passwordUserControls = GetPasswordUserControls(selectedCategory);
-            List<Password> passwordUserControlsFiltred = new List<Password>();
+            var passwordUserControls = GetPasswordUserControls(selectedCategory);
+            var passwordUserControlsFiltred = new List<Password>();
             foreach (Password passwordUserControl in passwordUserControls)
             {
-                if (passwordUserControl.AppName.ToLower().IndexOf(filterText) >= 0)
+                if (passwordUserControl.AppName.ToLower().Contains(filterText))
                 {
                     passwordUserControlsFiltred.Add(passwordUserControl);
                 }
@@ -134,63 +134,63 @@ namespace pwdvault.Forms
             }
         }
 
-        private void lbAll_Click(object sender, EventArgs e)
+        private void LbAll_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbAll.Text;
             UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
-        private void lbAdmini_Click(object sender, EventArgs e)
+        private void LbAdmini_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbAdmini.Text;
             UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
-        private void lbWork_Click(object sender, EventArgs e)
+        private void LbWork_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbWork.Text;
             UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
-        private void lbStudy_Click(object sender, EventArgs e)
+        private void LbStudy_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbStudy.Text;
             UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
-        private void lbSocial_Click(object sender, EventArgs e)
+        private void LbSocial_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbSocial.Text;
             UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
-        private void lbRetail_Click(object sender, EventArgs e)
+        private void LbRetail_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbRetail.Text;
             UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
-        private void lbFinance_Click(object sender, EventArgs e)
+        private void LbFinance_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbFinance.Text;
             UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
-        private void lbGames_Click(object sender, EventArgs e)
+        private void LbGames_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbGames.Text;
             UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
         }
 
-        private void lbCoding_Click(object sender, EventArgs e)
+        private void LbCoding_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbCoding.Text;
@@ -206,20 +206,20 @@ namespace pwdvault.Forms
         /// </summary>
         /// <param name="selectedCategory"></param>
         /// <returns></returns>
-        private List<Password> GetPasswordUserControls(string selectedCategory)
+        private static List<Password> GetPasswordUserControls(string selectedCategory)
         {
-            List<Password> passwordUserControls = new List<Password>();
+            var passwordUserControls = new List<Password>();
             List<UserPassword> passwords;
             using (var context = new PasswordVaultContext())
             {
-                UserPasswordService userPasswordService = new(context);
+                var userPasswordService = new UserPasswordService(context);
                 passwords = userPasswordService.GetAllUserPassword();
             }
             if (selectedCategory.Equals("All"))
             {
                 foreach (UserPassword userPassword in passwords)
                 {
-                    Password password = new Password(userPassword.AppName, userPassword.UserName, userPassword.IconName);
+                    var password = new Password(userPassword.AppName, userPassword.UserName, userPassword.IconName);
                     passwordUserControls.Add(password);
                 }
             }
@@ -228,7 +228,7 @@ namespace pwdvault.Forms
                 passwords = passwords.Where(userPassword => userPassword.AppCategory.Equals(selectedCategory)).ToList();
                 foreach (UserPassword userPassword in passwords)
                 {
-                    Password password = new Password(userPassword.AppName, userPassword.UserName, userPassword.IconName);
+                    var password = new Password(userPassword.AppName, userPassword.UserName, userPassword.IconName);
                     passwordUserControls.Add(password);
                 }
             }
@@ -242,7 +242,7 @@ namespace pwdvault.Forms
         private void UpdatePasswordUserControls(List<Password> passwordUserControls)
         {
             listPwdPanel.Controls.Clear();
-            int controlTop = 5;
+            var controlTop = 5;
             foreach (Password passwordUserControl in passwordUserControls)
             {
                 passwordUserControl.Width = listPwdPanel.Width - 30;
@@ -278,7 +278,7 @@ namespace pwdvault.Forms
                 {
                     allTable.GetControlFromPosition(0, 0)!.BackColor = Color.FromArgb(195, 141, 158);
                     // Get the row index of the control that raised the event
-                    int row = categoriesTable.GetRow((Control)sender);
+                    var row = categoriesTable.GetRow((Control)sender);
                     // Change the back color of left column to show which category is selected
                     categoriesTable.GetControlFromPosition(0, row)!.BackColor = Color.White;
                     selectedRowIndex = row;
@@ -298,7 +298,7 @@ namespace pwdvault.Forms
                 {
                     categoriesTable.GetControlFromPosition(0, selectedRowIndex)!.BackColor = Color.FromArgb(195, 141, 158);
                     // Get the row index of the control that raised the event
-                    int row = categoriesTable.GetRow((Control)sender);
+                    var row = categoriesTable.GetRow((Control)sender);
                     categoriesTable.GetControlFromPosition(0, row)!.BackColor = Color.White;
                     selectedRowIndex = row;
                 }

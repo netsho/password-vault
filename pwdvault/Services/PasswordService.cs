@@ -20,21 +20,21 @@ namespace pwdvault.Services
             const int length = 20;
             const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}|;:,.<>?";
 
-            byte[] byteArray = new byte[length * 4];
-            RandomNumberGenerator rng = RandomNumberGenerator.Create();
-            rng.GetBytes(byteArray);
+            var byteArray = new byte[length * 4];
+            var randomNumberGenerator = RandomNumberGenerator.Create();
+            randomNumberGenerator.GetBytes(byteArray);
 
 
-            StringBuilder sb = new StringBuilder(length);
+            var stringBuilder = new StringBuilder(length);
             for (int i = 0; i < length; i++)
             {
                 uint randomInt = BitConverter.ToUInt32(byteArray, i * 4);
                 int randomIndex = (int)(randomInt % validChars.Length);
 
-                sb.Append(validChars[randomIndex]);
+                stringBuilder.Append(validChars[randomIndex]);
             }
 
-            return sb.ToString();
+            return stringBuilder.ToString();
         }
 
 
@@ -43,25 +43,26 @@ namespace pwdvault.Services
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
+        #pragma warning disable SYSLIB1045 // Convert to 'GeneratedRegexAttribute'.
         public static bool IsPasswordStrong(string password)
         {
             // Minimum length of 16 characters
-            Regex lengthRegex = new Regex(@".{12,}$");
+            var lengthRegex = new Regex(@".{12,}$");
             // Uppercase letter
-            Regex upperRegex = new Regex(@"[A-Z]");
+            var upperRegex = new Regex(@"[A-Z]");
             // Lowercase letter
-            Regex lowerRegex = new Regex(@"[a-z]");
+            var lowerRegex = new Regex(@"[a-z]");
             // Number
-            Regex numberRegex = new Regex(@"\d");
+            var numberRegex = new Regex(@"\d");
             // Special character
-            Regex characterRegex = new Regex(@"[!@#$%^&*()_+\-=[\]{}\|;:,.<>?]");
+            var characterRegex = new Regex(@"[!@#$%^&*()_+\-=[\]{}\|;:,.<>?]");
 
             // Checks password against each regular expression
-            bool hasLength = lengthRegex.IsMatch(password);
-            bool hasUpper = upperRegex.IsMatch(password);
-            bool hasLower = lowerRegex.IsMatch(password);
-            bool hasNumber = numberRegex.IsMatch(password);
-            bool hasSpecialCharacter = characterRegex.IsMatch(password);
+            var hasLength = lengthRegex.IsMatch(password);
+            var hasUpper = upperRegex.IsMatch(password);
+            var hasLower = lowerRegex.IsMatch(password);
+            var hasNumber = numberRegex.IsMatch(password);
+            var hasSpecialCharacter = characterRegex.IsMatch(password);
 
             // Return true if password meets all criteria
             return hasLength && hasUpper && hasLower && hasNumber && hasSpecialCharacter;
@@ -88,7 +89,7 @@ namespace pwdvault.Services
                 {
                     foreach (var resource in resources)
                     {
-                        string resourceName = ((DictionaryEntry)resource).Key.ToString()!;
+                        var resourceName = ((DictionaryEntry)resource).Key.ToString()!;
                         if (resourceName.Contains(AppName.Split(' ')[0].ToLower()))
                         {
                             return resourceName;
@@ -102,8 +103,6 @@ namespace pwdvault.Services
                 Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
                 return String.Empty;
             }
-
-
         }
     }
 }
