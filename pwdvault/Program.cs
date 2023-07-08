@@ -31,7 +31,7 @@ namespace pwdvault
 
             Log.Logger = logger;
 
-            Application.Run(new AddPassword());
+            Application.Run(new LoginForm());
         }
     }
 }

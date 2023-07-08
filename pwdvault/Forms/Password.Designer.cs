@@ -33,7 +33,6 @@
             lbUser = new Label();
             btnDelete = new Button();
             btnEdit = new Button();
-            lbUserTitle = new Label();
             btnCopy = new Button();
             toolTipCopy = new ToolTip(components);
             toolTipEdit = new ToolTip(components);
@@ -45,11 +44,12 @@
             // lbApp
             // 
             lbApp.AutoSize = true;
-            lbApp.Font = new Font("Bahnschrift SemiBold", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lbApp.ForeColor = Color.FromArgb(25, 155, 226);
-            lbApp.Location = new Point(122, 21);
+            lbApp.Font = new Font("Bahnschrift SemiBold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            lbApp.ForeColor = Color.Black;
+            lbApp.Location = new Point(136, 10);
+            lbApp.Margin = new Padding(2, 0, 2, 0);
             lbApp.Name = "lbApp";
-            lbApp.Size = new Size(143, 36);
+            lbApp.Size = new Size(107, 27);
             lbApp.TabIndex = 0;
             lbApp.Text = "Facebook";
             lbApp.MouseEnter += Password_MouseEnter;
@@ -58,9 +58,10 @@
             // lbUser
             // 
             lbUser.AutoSize = true;
-            lbUser.Location = new Point(339, 39);
+            lbUser.Location = new Point(138, 36);
+            lbUser.Margin = new Padding(2, 0, 2, 0);
             lbUser.Name = "lbUser";
-            lbUser.Size = new Size(33, 25);
+            lbUser.Size = new Size(26, 20);
             lbUser.TabIndex = 1;
             lbUser.Text = "gh";
             lbUser.MouseEnter += Password_MouseEnter;
@@ -70,9 +71,10 @@
             // 
             btnDelete.BackgroundImage = Properties.Resources.icons8_delete_48;
             btnDelete.BackgroundImageLayout = ImageLayout.Stretch;
-            btnDelete.Location = new Point(955, 14);
+            btnDelete.Location = new Point(764, 18);
+            btnDelete.Margin = new Padding(2);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(48, 48);
+            btnDelete.Size = new Size(38, 38);
             btnDelete.TabIndex = 3;
             toolTipDelete.SetToolTip(btnDelete, "Delete password");
             btnDelete.UseVisualStyleBackColor = true;
@@ -84,9 +86,10 @@
             // 
             btnEdit.BackgroundImage = Properties.Resources.icons8_edit_48;
             btnEdit.BackgroundImageLayout = ImageLayout.Stretch;
-            btnEdit.Location = new Point(882, 14);
+            btnEdit.Location = new Point(706, 18);
+            btnEdit.Margin = new Padding(2);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(48, 48);
+            btnEdit.Size = new Size(38, 38);
             btnEdit.TabIndex = 4;
             toolTipEdit.SetToolTip(btnEdit, "Edit password");
             btnEdit.UseVisualStyleBackColor = true;
@@ -94,25 +97,14 @@
             btnEdit.MouseEnter += Password_MouseEnter;
             btnEdit.MouseLeave += Password_MouseLeave;
             // 
-            // lbUserTitle
-            // 
-            lbUserTitle.AutoSize = true;
-            lbUserTitle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lbUserTitle.Location = new Point(281, 14);
-            lbUserTitle.Name = "lbUserTitle";
-            lbUserTitle.Size = new Size(101, 25);
-            lbUserTitle.TabIndex = 6;
-            lbUserTitle.Text = "Username ";
-            lbUserTitle.MouseEnter += Password_MouseEnter;
-            lbUserTitle.MouseLeave += Password_MouseLeave;
-            // 
             // btnCopy
             // 
             btnCopy.BackgroundImage = Properties.Resources.icons8_copy_48;
             btnCopy.BackgroundImageLayout = ImageLayout.Stretch;
-            btnCopy.Location = new Point(809, 14);
+            btnCopy.Location = new Point(647, 18);
+            btnCopy.Margin = new Padding(2);
             btnCopy.Name = "btnCopy";
-            btnCopy.Size = new Size(48, 48);
+            btnCopy.Size = new Size(38, 38);
             btnCopy.TabIndex = 7;
             toolTipCopy.SetToolTip(btnCopy, "Copy the password to the clipboard");
             btnCopy.UseVisualStyleBackColor = true;
@@ -122,11 +114,15 @@
             // 
             // pictureBoxApp
             // 
+            pictureBoxApp.BackColor = Color.WhiteSmoke;
+            pictureBoxApp.BackgroundImageLayout = ImageLayout.Center;
             pictureBoxApp.ErrorImage = Properties.Resources.icons8_image_48;
             pictureBoxApp.Image = Properties.Resources.icons8_image_48;
-            pictureBoxApp.Location = new Point(54, 14);
+            pictureBoxApp.Location = new Point(44, 4);
+            pictureBoxApp.Margin = new Padding(2);
             pictureBoxApp.Name = "pictureBoxApp";
-            pictureBoxApp.Size = new Size(48, 48);
+            pictureBoxApp.Size = new Size(60, 62);
+            pictureBoxApp.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBoxApp.TabIndex = 8;
             pictureBoxApp.TabStop = false;
             pictureBoxApp.MouseEnter += Password_MouseEnter;
@@ -134,18 +130,18 @@
             // 
             // Password
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(pictureBoxApp);
             Controls.Add(btnCopy);
-            Controls.Add(lbUserTitle);
             Controls.Add(btnEdit);
             Controls.Add(btnDelete);
             Controls.Add(lbUser);
             Controls.Add(lbApp);
+            Margin = new Padding(2);
             Name = "Password";
-            Size = new Size(1050, 78);
+            Size = new Size(840, 74);
             MouseEnter += Password_MouseEnter;
             MouseLeave += Password_MouseLeave;
             ((System.ComponentModel.ISupportInitialize)pictureBoxApp).EndInit();
@@ -159,7 +155,6 @@
         private Label lbUser;
         private Button btnDelete;
         private Button btnEdit;
-        private Label lbUserTitle;
         private Button btnCopy;
         private ToolTip toolTipDelete;
         private ToolTip toolTipEdit;

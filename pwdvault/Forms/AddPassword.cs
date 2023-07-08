@@ -22,33 +22,19 @@ namespace pwdvault.Forms
             if (!String.IsNullOrWhiteSpace(txtBoxApp.Text) &&
                 !String.IsNullOrWhiteSpace(txtBoxUser.Text) &&
                 !String.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
-                !String.IsNullOrWhiteSpace(comBoxCat.Text) &&
-                !errorProvider.HasErrors)
+                !String.IsNullOrWhiteSpace(comBoxCat.Text))
             {
-                try
+                if (errorProvider.HasErrors)
                 {
-                    Cursor = Cursors.WaitCursor;
-                    // Encrypt password and store it, success message and hide the form
-                    var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromVault());
-                    var userPassword = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text)) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
-                    using (var context = new PasswordVaultContext())
+                    var result = MessageBox.Show("The password does not meet the criteria. Are you sure you want to save it?", "Password criteria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes) 
                     {
-                        var userPasswordService = new UserPasswordService(context);
-                        userPasswordService.CreateUserPassword(userPassword);
+                        AddPasswordDb();
                     }
-                    Cursor = Cursors.Default;
-                    DialogResult result = MessageBox.Show($"{userPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (result == DialogResult.OK)
-                    {
-                        Close();
-                    }
-
-                }
-                catch (Exception ex)
+                } 
+                else if(!errorProvider.HasErrors)
                 {
-                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Cursor = Cursors.Default;
-                    Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                    AddPasswordDb();
                 }
             }
             else
@@ -69,6 +55,34 @@ namespace pwdvault.Forms
             {
                 errorProvider.SetError(txtBoxPwd, String.Empty);
                 errorProvider.Clear();
+            }
+        }
+
+        private void AddPasswordDb()
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                // Encrypt password and store it, success message and hide the form
+                var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
+                var userPassword = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text)) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
+                using (var context = new PasswordVaultContext())
+                {
+                    var userPasswordService = new UserPasswordService(context);
+                    userPasswordService.CreateUserPassword(userPassword);
+                }
+                Cursor = Cursors.Default;
+                DialogResult result = MessageBox.Show($"{userPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (result == DialogResult.OK)
+                {
+                    Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Cursor = Cursors.Default;
+                Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
             }
         }
     }

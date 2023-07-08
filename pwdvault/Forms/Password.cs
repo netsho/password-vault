@@ -34,23 +34,9 @@ namespace pwdvault.Forms
         public Password(string appName, string username, string iconName)
         {
             InitializeComponent();
-            if (iconName.Equals("icons8_image_48"))
-            {
-                AppName = appName;
-                Username = username;
-                IconName = iconName;
-                lbUserTitle.Location = new Point(lbApp.Location.X + lbApp.Width + 15, 11);
-                lbUser.Location = new Point(lbApp.Location.X + lbApp.Width + 33, 31);
-            }
-            else
-            {
-                AppName = appName;
-                Username = username;
-                IconName = iconName;
-                Controls.Remove(lbApp);
-                lbUserTitle.Location = new Point(120, 11);
-                lbUser.Location = new Point(138, 31);
-            }
+            AppName = appName;
+            Username = username;
+            IconName = iconName;
         }
 
         private void Password_MouseEnter(object sender, EventArgs e)
@@ -107,7 +93,7 @@ namespace pwdvault.Forms
                 using var context = new PasswordVaultContext();
                 var userPasswordService = new UserPasswordService(context);
                 var userPassword = userPasswordService.GetUserPassword(appName, username);
-                Clipboard.SetText(EncryptionService.DecryptPassword(userPassword.Password, EncryptionService.GetKeyFromVault()));
+                Clipboard.SetText(EncryptionService.DecryptPassword(userPassword.Password, EncryptionService.GetKeyFromFile()));
                 ClearClipboardDelayed();
             }
             catch (Exception ex)

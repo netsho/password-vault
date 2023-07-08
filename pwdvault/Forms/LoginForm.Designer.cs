@@ -38,6 +38,7 @@
             splitContainer1 = new SplitContainer();
             btnEye = new Button();
             pictureBox1 = new PictureBox();
+            btnSignUp = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -49,7 +50,7 @@
             // 
             btnLogin.FlatStyle = FlatStyle.System;
             btnLogin.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnLogin.Location = new Point(159, 383);
+            btnLogin.Location = new Point(228, 380);
             btnLogin.Margin = new Padding(2);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(130, 27);
@@ -124,6 +125,7 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.BackColor = Color.White;
+            splitContainer1.Panel1.Controls.Add(btnSignUp);
             splitContainer1.Panel1.Controls.Add(btnEye);
             splitContainer1.Panel1.Controls.Add(lbTitle);
             splitContainer1.Panel1.Controls.Add(txtBoxPwd);
@@ -164,6 +166,19 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // btnSignUp
+            // 
+            btnSignUp.FlatStyle = FlatStyle.System;
+            btnSignUp.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSignUp.Location = new Point(93, 380);
+            btnSignUp.Margin = new Padding(2);
+            btnSignUp.Name = "btnSignUp";
+            btnSignUp.Size = new Size(130, 27);
+            btnSignUp.TabIndex = 8;
+            btnSignUp.Text = "SIGN UP";
+            btnSignUp.UseVisualStyleBackColor = true;
+            btnSignUp.Click += BtnSignUp_Click;
+            // 
             // LoginForm
             // 
             AcceptButton = btnLogin;
@@ -195,5 +210,6 @@
         private SplitContainer splitContainer1;
         private PictureBox pictureBox1;
         private Button btnEye;
+        private Button btnSignUp;
     }
 }

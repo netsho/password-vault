@@ -1,0 +1,73 @@
+﻿using pwdvault.Modeles;
+using pwdvault.Services;
+using Serilog;
+
+
+namespace pwdvault.Forms
+{
+    public partial class SignUpForm : Form
+    {
+        public SignUpForm()
+        {
+            InitializeComponent();
+        }
+
+        private void BtnSign_Click(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(txtBoxUser.Text) &&
+                !String.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
+                !errorProvider.HasErrors
+                )
+            {
+                try
+                {
+                    Cursor = Cursors.WaitCursor;
+
+                    /* --------------------- Create the new user while salting and hashing the user's password */
+                    var salt = AccountPasswordSecurity.GenerateSalt();
+                    var hash = AccountPasswordSecurity.GenerateHash(txtBoxPwd.Text, salt);
+                    var user = new User(txtBoxUser.Text, hash, salt);
+
+                    /* --------------------- Create the database PasswordVault, the user and passwords table, insert the user into user table */
+                    using (var context = new PasswordVaultContext())
+                    {
+                        var userService = new UserService(context);
+                        userService.CreateUserAccount(user);
+                    }
+                    Cursor = Cursors.Default;
+                    MessageBox.Show("New account created successfully !\nPassword Vault database created successfully !\nYou can login to the application now.", "Successful creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Cursor = Cursors.Default;
+                    Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please complete all fields.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnGenerate_Click(object sender, EventArgs e)
+        {
+            txtBoxPwd.Text = PasswordService.GeneratePassword();
+        }
+
+        private void TxtBoxPwd_TextChanged(object sender, EventArgs e)
+        {
+            if (!PasswordService.IsPasswordStrong(txtBoxPwd.Text))
+            {
+                errorProvider.SetError(txtBoxPwd, "Password must be atleast 16 characters long and contain the following : " + Environment.NewLine +
+                        "- Uppercase" + Environment.NewLine + "- Lowercase" + Environment.NewLine + "- Numbers" + Environment.NewLine + "- Symbols");
+            }
+            else
+            {
+                errorProvider.SetError(txtBoxPwd, String.Empty);
+                errorProvider.Clear();
+            }
+        }
+    }
+}

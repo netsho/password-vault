@@ -21,7 +21,7 @@ namespace pwdvault.Forms
                 comBoxCat.Text = userPassword.AppCategory;
                 txtBoxUser.Text = userPassword.UserName;
                 txtBoxUser.ReadOnly = true;
-                txtBoxPwd.Text = EncryptionService.DecryptPassword(userPassword.Password, EncryptionService.GetKeyFromVault());
+                txtBoxPwd.Text = EncryptionService.DecryptPassword(userPassword.Password, EncryptionService.GetKeyFromFile());
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace pwdvault.Forms
                 try
                 {
                     Cursor = Cursors.WaitCursor;
-                    var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromVault());
+                    var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
                     var userPasswordEdited = new UserPassword(comBoxCat.Text, userPassword.AppName, userPassword.UserName, encryptedPassword, userPassword.IconName)
                     {
                         Id = userPassword.Id,

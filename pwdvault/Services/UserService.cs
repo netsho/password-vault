@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using pwdvault.Modeles;
+using Serilog;
 
 namespace pwdvault.Services
 {
@@ -15,12 +16,14 @@ namespace pwdvault.Services
 
         public void CreateUserAccount(User masterAccount)
         {
+            Log.Logger.Information("Creating user password on database...");
             dbContext.Add(masterAccount);
             dbContext.SaveChanges();
         }
 
         public List<User> GetUserAccounts()
         {
+            Log.Logger.Information("Retrieving user password from database...");
             return dbContext.Accounts.ToList();
         }
 

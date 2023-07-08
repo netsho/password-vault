@@ -97,7 +97,7 @@
             // 
             btnAdd.FlatStyle = FlatStyle.System;
             btnAdd.Location = new Point(148, 490);
-            btnAdd.Margin = new Padding(2, 2, 2, 2);
+            btnAdd.Margin = new Padding(2);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(90, 27);
             btnAdd.TabIndex = 4;
@@ -108,7 +108,7 @@
             // txtBoxApp
             // 
             txtBoxApp.Location = new Point(80, 111);
-            txtBoxApp.Margin = new Padding(2, 2, 2, 2);
+            txtBoxApp.Margin = new Padding(2);
             txtBoxApp.Name = "txtBoxApp";
             txtBoxApp.Size = new Size(228, 27);
             txtBoxApp.TabIndex = 5;
@@ -119,7 +119,7 @@
             comBoxCat.FlatStyle = FlatStyle.System;
             comBoxCat.FormattingEnabled = true;
             comBoxCat.Location = new Point(80, 188);
-            comBoxCat.Margin = new Padding(2, 2, 2, 2);
+            comBoxCat.Margin = new Padding(2);
             comBoxCat.Name = "comBoxCat";
             comBoxCat.Size = new Size(228, 28);
             comBoxCat.TabIndex = 6;
@@ -127,7 +127,7 @@
             // txtBoxUser
             // 
             txtBoxUser.Location = new Point(80, 274);
-            txtBoxUser.Margin = new Padding(2, 2, 2, 2);
+            txtBoxUser.Margin = new Padding(2);
             txtBoxUser.Name = "txtBoxUser";
             txtBoxUser.Size = new Size(228, 27);
             txtBoxUser.TabIndex = 7;
@@ -136,7 +136,7 @@
             // 
             errorProvider.SetIconPadding(txtBoxPwd, 5);
             txtBoxPwd.Location = new Point(80, 358);
-            txtBoxPwd.Margin = new Padding(2, 2, 2, 2);
+            txtBoxPwd.Margin = new Padding(2);
             txtBoxPwd.Name = "txtBoxPwd";
             txtBoxPwd.Size = new Size(228, 27);
             txtBoxPwd.TabIndex = 8;
@@ -146,7 +146,7 @@
             // 
             btnGenerate.FlatStyle = FlatStyle.System;
             btnGenerate.Location = new Point(99, 397);
-            btnGenerate.Margin = new Padding(2, 2, 2, 2);
+            btnGenerate.Margin = new Padding(2);
             btnGenerate.Name = "btnGenerate";
             btnGenerate.Size = new Size(190, 50);
             btnGenerate.TabIndex = 9;

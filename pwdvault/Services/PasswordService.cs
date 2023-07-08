@@ -17,8 +17,9 @@ namespace pwdvault.Services
         /// <returns>The method returns a string that containes the random characters.</returns>
         public static string GeneratePassword()
         {
+            Log.Logger.Information("Generating new password...");
             const int length = 20;
-            const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}|;:,.<>?";
+            const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$€%^&*()_+-=[]{}|;:,.<>?";
 
             var byteArray = new byte[length * 4];
             var randomNumberGenerator = RandomNumberGenerator.Create();
@@ -55,7 +56,7 @@ namespace pwdvault.Services
             // Number
             var numberRegex = new Regex(@"\d");
             // Special character
-            var characterRegex = new Regex(@"[!@#$%^&*()_+\-=[\]{}\|;:,.<>?]");
+            var characterRegex = new Regex(@"[!@#$€%^&*()_+\-=[\]{}\|;:,.<>?]");
 
             // Checks password against each regular expression
             var hasLength = lengthRegex.IsMatch(password);
@@ -84,6 +85,7 @@ namespace pwdvault.Services
         {
             try
             {
+                Log.Logger.Information("Retrieving icon name...");
                 var resources = Properties.Resources.ResourceManager.GetResourceSet(System.Globalization.CultureInfo.CurrentCulture, true, true);
                 if (resources != null)
                 {

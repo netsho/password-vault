@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using Serilog;
 
 namespace pwdvault.Services
 {
@@ -19,6 +20,7 @@ namespace pwdvault.Services
         /// <exception cref="ArgumentException"></exception>
         public static byte[] EncryptPassword(string password, byte[] key)
         {
+            Log.Logger.Information("Encrypting the password...");
             if (String.IsNullOrEmpty(password))
             {
                 throw new ArgumentException("The password is empty.");
@@ -62,6 +64,7 @@ namespace pwdvault.Services
         /// <exception cref="ArgumentException"></exception>
         public static string DecryptPassword(byte[] encryptedPassword, byte[] key)
         {
+            Log.Logger.Information("Decrypting password...");
             if (encryptedPassword == null || encryptedPassword.Length == 0)
             {
                 throw new ArgumentException("The encrypted password is either null or empty.");
@@ -84,12 +87,12 @@ namespace pwdvault.Services
             return Encoding.UTF32.GetString(decryptedPasswordByte, 0, byteCountPassword);
         }
 
-        /*public static byte[] GetKeyFromFile()
+        public static byte[] GetKeyFromFile()
         {
             var folderDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault");
             string keyFilePath = Path.Combine(folderDataPath, "fileKey");
             return File.ReadAllBytes(keyFilePath);
-        }*/
+        }
 
         // A modifier
         public static byte[] GetKeyFromVault()
@@ -106,6 +109,7 @@ namespace pwdvault.Services
         /// <returns></returns>
         public static byte[] GenerateKey(string password)
         {
+            Log.Logger.Information("Generating encryption key...");
             if (String.IsNullOrEmpty(password))
             {
                 throw new ArgumentException("The password is empty.");

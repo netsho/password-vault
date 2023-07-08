@@ -60,5 +60,10 @@ namespace pwdvault.Forms
             txtBoxPwd.PasswordChar = '\0';
             txtBoxPwd.UseSystemPasswordChar = false;
         }
+
+        private void BtnSignUp_Click(object sender, EventArgs e)
+        {
+            new SignUpForm().Show();
+        }
     }
 }

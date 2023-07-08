@@ -61,10 +61,13 @@ namespace pwdvault.Modeles
             File.AppendAllText(dbLogFilePath, message + Environment.NewLine);
         };
 
-        public PasswordVaultContext() : base() { }
+        public PasswordVaultContext() : base()
+        {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        }
 
         /// <summary>
-        /// Configuring the logging to dbLog.txt file, and configuring the usage the SQL Server connection string from app.config
+        /// Configuring the logging to dbLog.txt file, and configuring the usage of the PostgreSQL connection string from app.config
         /// </summary>
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -73,7 +76,7 @@ namespace pwdvault.Modeles
             {
                 optionsBuilder.EnableDetailedErrors(true)
                     .LogTo(writeLogsToFile, LogLevel.Warning)
-                    .UseSqlServer(ConfigurationManager.ConnectionStrings["ConnectionDb"].ConnectionString);
+                    .UseNpgsql(ConfigurationManager.ConnectionStrings["ConnectionDb"].ConnectionString);
             }
         }
 
