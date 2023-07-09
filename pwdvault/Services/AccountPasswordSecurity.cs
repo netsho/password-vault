@@ -14,7 +14,6 @@ namespace pwdvault.Services
 
         public static byte[] GenerateSalt()
         {
-            Log.Logger.Information("Generating salt for user's password...");
             var salt = new byte[SALT_SIZE];
             using RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
             randomNumberGenerator.GetBytes(salt);
@@ -33,7 +32,6 @@ namespace pwdvault.Services
         /// <returns></returns>
         public static byte[] GenerateHash(string password, byte[] salt)
         {
-            Log.Logger.Information("Generating hash for user's password...");
             using var argon2id = new Argon2id(Encoding.UTF8.GetBytes(password));
             argon2id.Salt = salt;
             // Number of CPU Cores x2

@@ -31,6 +31,18 @@ namespace pwdvault
 
             Log.Logger = logger;
 
+            /* --------------------- Delete logs older than 1 month */
+            var OneMonthOld = DateTime.Now.AddMonths(-1).Month;
+            var files = Directory.GetFiles(passwordVaultFolder);
+            foreach(var file in files )
+            {
+                var fileInfo = new FileInfo(file);
+                if(fileInfo.CreationTime.Month < OneMonthOld)
+                {
+                    fileInfo.Delete();
+                }
+            }
+
             Application.Run(new LoginForm());
         }
     }
