@@ -27,12 +27,12 @@ namespace pwdvault.Forms
                 if (errorProvider.HasErrors)
                 {
                     var result = MessageBox.Show("The password does not meet the criteria. Are you sure you want to save it?", "Password criteria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (result == DialogResult.Yes) 
+                    if (result == DialogResult.Yes)
                     {
                         AddPasswordDb();
                     }
-                } 
-                else if(!errorProvider.HasErrors)
+                }
+                else if (!errorProvider.HasErrors)
                 {
                     AddPasswordDb();
                 }

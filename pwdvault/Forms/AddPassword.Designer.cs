@@ -96,12 +96,13 @@
             // btnAdd
             // 
             btnAdd.FlatStyle = FlatStyle.System;
-            btnAdd.Location = new Point(148, 490);
+            btnAdd.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAdd.Location = new Point(127, 497);
             btnAdd.Margin = new Padding(2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(90, 27);
+            btnAdd.Size = new Size(130, 27);
             btnAdd.TabIndex = 4;
-            btnAdd.Text = "Add";
+            btnAdd.Text = "ADD";
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += BtnAdd_Click;
             // 
@@ -145,12 +146,13 @@
             // btnGenerate
             // 
             btnGenerate.FlatStyle = FlatStyle.System;
-            btnGenerate.Location = new Point(99, 397);
+            btnGenerate.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnGenerate.Location = new Point(89, 398);
             btnGenerate.Margin = new Padding(2);
             btnGenerate.Name = "btnGenerate";
-            btnGenerate.Size = new Size(190, 50);
+            btnGenerate.Size = new Size(208, 53);
             btnGenerate.TabIndex = 9;
-            btnGenerate.Text = "Generate random password";
+            btnGenerate.Text = "GENERATE RANDOM PASSWORD";
             btnGenerate.UseVisualStyleBackColor = true;
             btnGenerate.Click += BtnGenerate_Click;
             // 

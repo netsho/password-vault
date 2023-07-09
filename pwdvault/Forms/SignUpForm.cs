@@ -37,7 +37,7 @@ namespace pwdvault.Forms
                         userService.CreateUserAccount(user);
                     }
                     Cursor = Cursors.Default;
-                    MessageBox.Show("New account created successfully !\nPassword Vault database created successfully !\nYou can login to the application now.", "Successful creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("New account created successfully !\nYou can now login to the application.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
                 }
                 catch (Exception ex)
@@ -49,7 +49,7 @@ namespace pwdvault.Forms
             }
             else
             {
-                MessageBox.Show("Please complete all fields.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please complete all fields.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -70,6 +70,11 @@ namespace pwdvault.Forms
                 errorProvider.SetError(txtBoxPwd, String.Empty);
                 errorProvider.Clear();
             }
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

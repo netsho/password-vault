@@ -36,9 +36,9 @@
             lbPwd = new Label();
             lbTitle = new Label();
             splitContainer1 = new SplitContainer();
+            btnSignUp = new Button();
             btnEye = new Button();
             pictureBox1 = new PictureBox();
-            btnSignUp = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -142,6 +142,19 @@
             splitContainer1.SplitterWidth = 3;
             splitContainer1.TabIndex = 6;
             // 
+            // btnSignUp
+            // 
+            btnSignUp.FlatStyle = FlatStyle.System;
+            btnSignUp.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSignUp.Location = new Point(93, 380);
+            btnSignUp.Margin = new Padding(2);
+            btnSignUp.Name = "btnSignUp";
+            btnSignUp.Size = new Size(130, 27);
+            btnSignUp.TabIndex = 8;
+            btnSignUp.Text = "SIGN UP";
+            btnSignUp.UseVisualStyleBackColor = true;
+            btnSignUp.Click += BtnSignUp_Click;
+            // 
             // btnEye
             // 
             btnEye.BackgroundImage = Properties.Resources.eye;
@@ -166,19 +179,6 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // btnSignUp
-            // 
-            btnSignUp.FlatStyle = FlatStyle.System;
-            btnSignUp.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSignUp.Location = new Point(93, 380);
-            btnSignUp.Margin = new Padding(2);
-            btnSignUp.Name = "btnSignUp";
-            btnSignUp.Size = new Size(130, 27);
-            btnSignUp.TabIndex = 8;
-            btnSignUp.Text = "SIGN UP";
-            btnSignUp.UseVisualStyleBackColor = true;
-            btnSignUp.Click += BtnSignUp_Click;
-            // 
             // LoginForm
             // 
             AcceptButton = btnLogin;
@@ -189,7 +189,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Connexion - Password Vault";
+            Text = "Login - Password Vault";
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
