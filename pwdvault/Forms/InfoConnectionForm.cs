@@ -18,9 +18,12 @@ namespace pwdvault.Forms
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(txtBoxCertificate.Text) || String.IsNullOrWhiteSpace(txtBoxSecretId.Text))
+            if (String.IsNullOrWhiteSpace(txtBoxCA.Text) ||
+                String.IsNullOrWhiteSpace(txtBoxCertificate.Text) ||
+                String.IsNullOrWhiteSpace(txtBoxKey.Text) ||
+                String.IsNullOrWhiteSpace(txtBoxSecretId.Text))
             {
-                MessageBox.Show("Please fill in database's certificate and vault's secret id.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please complete all fields.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -57,6 +60,37 @@ namespace pwdvault.Forms
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void BtnFileDialog_Click(object sender, EventArgs e)
+        {
+            var openFileDialogCertificate = new OpenFileDialog
+            {
+                Filter = "Certificates (*.crt)|(*.crt) | All files (*.*)|(*.*)"
+            };
+
+            if (openFileDialogCertificate.ShowDialog() == DialogResult.OK)
+            {
+                txtBoxCA.Text = openFileDialogCertificate.FileName;
+            }
+        }
+
+        private void BtnFileDialogCert_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnFileDialogKey_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CheckBoxInfo_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBoxInfo.CheckState == CheckState.Checked)
+            {
+
+            }
         }
     }
 }
