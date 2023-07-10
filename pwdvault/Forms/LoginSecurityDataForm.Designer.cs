@@ -1,6 +1,6 @@
 ﻿namespace pwdvault.Forms
 {
-    partial class InfoConnectionForm
+    partial class LoginSecurityDataForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InfoConnectionForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginSecurityDataForm));
             btnLogin = new Button();
             btnCancel = new Button();
             txtBoxCA = new TextBox();

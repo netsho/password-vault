@@ -1,15 +1,17 @@
 ﻿using pwdvault.Modeles;
 using pwdvault.Services;
 using Serilog;
+using System.Text.Json;
 
 namespace pwdvault.Forms
 {
-    public partial class InfoConnectionForm : Form
+    public partial class LoginSecurityDataForm : Form
     {
         private readonly string username;
         private readonly string password;
+        private readonly string loginSecurityDataPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault"), "LoginData.json");
 
-        public InfoConnectionForm(string username, string password)
+        public LoginSecurityDataForm(string username, string password)
         {
             InitializeComponent();
             this.username = username;
@@ -104,8 +106,25 @@ namespace pwdvault.Forms
         {
             if(checkBoxInfo.CheckState == CheckState.Checked)
             {
-
+                StoreLoginSecurityData();
             }
+        }
+
+        private void StoreLoginSecurityData()
+        {
+            var loginSecurityData = new List<LoginSecurityData>
+            {
+                new LoginSecurityData()
+                {
+                    CaFilePath = txtBoxCA.Text,
+                    CertificateFilePath = txtBoxCertificate.Text,
+                    KeyFilePath = txtBoxKey.Text,
+                    SecretID = txtBoxSecretId.Text
+                }
+            };
+            var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
+            string jsonLogin = JsonSerializer.Serialize(loginSecurityData, jsonOptions);
+            File.WriteAllText(loginSecurityDataPath, jsonLogin);
         }
     }
 }
