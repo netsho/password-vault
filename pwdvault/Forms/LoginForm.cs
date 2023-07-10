@@ -19,7 +19,7 @@ namespace pwdvault.Forms
             }
             else
             {
-                var dialogResult = new LoginSecurityDataForm(txtBoxUser.Text, txtBoxPwd.Text).ShowDialog();
+                var dialogResult = new LoginDataForm(txtBoxUser.Text, txtBoxPwd.Text).ShowDialog();
                 if(dialogResult == DialogResult.OK)
                 {
                     new MainForm().Show();

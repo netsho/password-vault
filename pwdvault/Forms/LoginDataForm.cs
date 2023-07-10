@@ -5,13 +5,13 @@ using System.Text.Json;
 
 namespace pwdvault.Forms
 {
-    public partial class LoginSecurityDataForm : Form
+    public partial class LoginDataForm : Form
     {
         private readonly string username;
         private readonly string password;
-        private readonly string loginSecurityDataPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault"), "LoginData.json");
+        private readonly string loginDataPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault"), "LoginData.json");
 
-        public LoginSecurityDataForm(string username, string password)
+        public LoginDataForm(string username, string password)
         {
             InitializeComponent();
             this.username = username;
@@ -104,17 +104,17 @@ namespace pwdvault.Forms
 
         private void CheckBoxInfo_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBoxInfo.CheckState == CheckState.Checked)
+            if(checkBoxInfo.Checked)
             {
-                StoreLoginSecurityData();
+                StoreLoginData();
             }
         }
 
-        private void StoreLoginSecurityData()
+        private void StoreLoginData()
         {
-            var loginSecurityData = new List<LoginSecurityData>
+            var loginData = new List<LoginData>
             {
-                new LoginSecurityData()
+                new LoginData()
                 {
                     CaFilePath = txtBoxCA.Text,
                     CertificateFilePath = txtBoxCertificate.Text,
@@ -123,8 +123,10 @@ namespace pwdvault.Forms
                 }
             };
             var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
-            string jsonLogin = JsonSerializer.Serialize(loginSecurityData, jsonOptions);
-            File.WriteAllText(loginSecurityDataPath, jsonLogin);
+            string jsonLogin = JsonSerializer.Serialize(loginData, jsonOptions);
+            File.WriteAllText(loginDataPath, jsonLogin);
         }
+
+
     }
 }

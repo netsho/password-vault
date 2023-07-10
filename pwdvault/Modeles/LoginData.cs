@@ -1,7 +1,7 @@
 ﻿
 namespace pwdvault.Modeles
 {
-    internal class LoginSecurityData
+    internal class LoginData
     {
         public string? CaFilePath { get; set; }
         public string? CertificateFilePath { get; set; }
