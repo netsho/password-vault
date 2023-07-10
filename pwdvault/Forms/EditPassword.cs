@@ -63,26 +63,20 @@ namespace pwdvault.Forms
                         CreationTime = userPassword.CreationTime,
                         UpdateTime = DateTime.Now
                     };
-                    using (var context = new PasswordVaultContext())
-                    {
-                        var userPasswordService = new UserPasswordService(context);
-                        userPasswordService.UpdateUserPassword(userPasswordEdited);
-                    }
+                    using var context = new PasswordVaultContext();
+                    var userPasswordService = new UserPasswordService(context);
+                    userPasswordService.UpdateUserPassword(userPasswordEdited);
+                    
                     Cursor = Cursors.Default;
-                    DialogResult result = MessageBox.Show($"{userPasswordEdited.AppName}'s password successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (result == DialogResult.OK)
-                    {
-                        Close();
-                    }
-
+                    MessageBox.Show($"{userPasswordEdited.AppName}'s password successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Cursor = Cursors.Default;
                     Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                    Close();
                 }
-                Close();
             }
             else
             {

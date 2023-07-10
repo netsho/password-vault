@@ -31,13 +31,12 @@ namespace pwdvault.Forms
                     var user = new User(txtBoxUser.Text, hash, salt);
 
                     /* --------------------- Create the database PasswordVault, the user and passwords table, insert the user into user table */
-                    using (var context = new PasswordVaultContext())
-                    {
-                        var userService = new UserService(context);
-                        userService.CreateUserAccount(user);
-                    }
+                    using var context = new PasswordVaultContext();
+                    var userService = new UserService(context);
+                    userService.CreateUserAccount(user);
+                    
                     Cursor = Cursors.Default;
-                    MessageBox.Show("New account created successfully !\nYou can now login to the application.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("New account successfully created!\nYou can now login to the application.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
                 }
                 catch (Exception ex)

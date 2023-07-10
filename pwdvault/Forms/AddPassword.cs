@@ -40,7 +40,6 @@ namespace pwdvault.Forms
             else
             {
                 MessageBox.Show("Please complete all fields.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
             }
         }
 
@@ -66,23 +65,20 @@ namespace pwdvault.Forms
                 // Encrypt password and store it, success message and hide the form
                 var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
                 var userPassword = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text)) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
-                using (var context = new PasswordVaultContext())
-                {
-                    var userPasswordService = new UserPasswordService(context);
-                    userPasswordService.CreateUserPassword(userPassword);
-                }
+                
+                using var context = new PasswordVaultContext();
+                var userPasswordService = new UserPasswordService(context);
+                userPasswordService.CreateUserPassword(userPassword);
+                
                 Cursor = Cursors.Default;
-                DialogResult result = MessageBox.Show($"{userPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (result == DialogResult.OK)
-                {
-                    Close();
-                }
+                MessageBox.Show($"{userPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Cursor = Cursors.Default;
                 Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                Close();
             }
         }
     }

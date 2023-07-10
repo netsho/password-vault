@@ -19,7 +19,16 @@ namespace pwdvault.Forms
             }
             else
             {
-                new InfoConnectionForm(txtBoxUser.Text, txtBoxPwd.Text).Show();
+                var dialogResult = new InfoConnectionForm(txtBoxUser.Text, txtBoxPwd.Text).ShowDialog();
+                if(dialogResult == DialogResult.OK)
+                {
+                    new MainForm().Show();
+                    Hide();
+                } 
+                else
+                {
+                    Show();
+                }
             }
         }
 

@@ -246,7 +246,7 @@
             lbSocial.BackColor = Color.FromArgb(195, 141, 158);
             lbSocial.Cursor = Cursors.Hand;
             lbSocial.Dock = DockStyle.Fill;
-            lbSocial.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbSocial.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             lbSocial.ImageAlign = ContentAlignment.MiddleLeft;
             lbSocial.Location = new Point(65, 138);
             lbSocial.Margin = new Padding(0);
@@ -281,7 +281,7 @@
             lbRetail.BackColor = Color.FromArgb(195, 141, 158);
             lbRetail.Cursor = Cursors.Hand;
             lbRetail.Dock = DockStyle.Fill;
-            lbRetail.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbRetail.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             lbRetail.ImageAlign = ContentAlignment.MiddleLeft;
             lbRetail.Location = new Point(65, 184);
             lbRetail.Margin = new Padding(0);
@@ -298,7 +298,7 @@
             lbCoding.BackColor = Color.FromArgb(195, 141, 158);
             lbCoding.Cursor = Cursors.Hand;
             lbCoding.Dock = DockStyle.Fill;
-            lbCoding.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbCoding.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             lbCoding.ImageAlign = ContentAlignment.MiddleLeft;
             lbCoding.Location = new Point(65, 322);
             lbCoding.Margin = new Padding(0);
@@ -329,7 +329,7 @@
             lbFinance.BackColor = Color.FromArgb(195, 141, 158);
             lbFinance.Cursor = Cursors.Hand;
             lbFinance.Dock = DockStyle.Fill;
-            lbFinance.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbFinance.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             lbFinance.ImageAlign = ContentAlignment.MiddleLeft;
             lbFinance.Location = new Point(65, 230);
             lbFinance.Margin = new Padding(0);
@@ -416,7 +416,7 @@
             lbStudy.BackColor = Color.FromArgb(195, 141, 158);
             lbStudy.Cursor = Cursors.Hand;
             lbStudy.Dock = DockStyle.Fill;
-            lbStudy.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbStudy.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             lbStudy.ImageAlign = ContentAlignment.MiddleLeft;
             lbStudy.Location = new Point(65, 92);
             lbStudy.Margin = new Padding(0);
@@ -447,7 +447,7 @@
             lbWork.BackColor = Color.FromArgb(195, 141, 158);
             lbWork.Cursor = Cursors.Hand;
             lbWork.Dock = DockStyle.Fill;
-            lbWork.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbWork.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             lbWork.ForeColor = Color.Black;
             lbWork.ImageAlign = ContentAlignment.MiddleLeft;
             lbWork.Location = new Point(65, 46);
@@ -465,7 +465,7 @@
             lbGames.BackColor = Color.FromArgb(195, 141, 158);
             lbGames.Cursor = Cursors.Hand;
             lbGames.Dock = DockStyle.Fill;
-            lbGames.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbGames.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             lbGames.ImageAlign = ContentAlignment.MiddleLeft;
             lbGames.Location = new Point(65, 276);
             lbGames.Margin = new Padding(0);

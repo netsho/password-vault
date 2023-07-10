@@ -37,13 +37,12 @@ namespace pwdvault.Forms
                     if (username.Equals(userAccount.Username) &&
                         AccountPasswordSecurity.VerifyPassword(password, userAccount.PasswordSalt, userAccount.PasswordHash))
                     {
-                        new MainForm().Show();
-                        Hide();
+                        DialogResult = DialogResult.OK;
                     }
                     else
                     {
                         MessageBox.Show("Invalid username or password. Please try again.", "Invalid user's credentiels", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Close();
+                        DialogResult = DialogResult.TryAgain;
                     }
                     Cursor = Cursors.Default;
                 }
@@ -62,27 +61,43 @@ namespace pwdvault.Forms
             Close();
         }
 
-        private void BtnFileDialog_Click(object sender, EventArgs e)
+        private void BtnFileDialogCA_Click(object sender, EventArgs e)
         {
-            var openFileDialogCertificate = new OpenFileDialog
+            var openFileDialogCA = new OpenFileDialog
             {
-                Filter = "Certificates (*.crt)|(*.crt) | All files (*.*)|(*.*)"
+                Filter = "CA files (*.crt)|*.crt|All files (*.*)|*.*" 
             };
 
-            if (openFileDialogCertificate.ShowDialog() == DialogResult.OK)
+            if (openFileDialogCA.ShowDialog() == DialogResult.OK)
             {
-                txtBoxCA.Text = openFileDialogCertificate.FileName;
+                txtBoxCA.Text = openFileDialogCA.FileName;
             }
         }
 
         private void BtnFileDialogCert_Click(object sender, EventArgs e)
         {
+            var openFileDialogCertificate = new OpenFileDialog
+            {
+                Filter = "Certificate files (*.crt)|*.crt|All files (*.*)|*.*"
+            };
 
+            if (openFileDialogCertificate.ShowDialog() == DialogResult.OK)
+            {
+                txtBoxCertificate.Text = openFileDialogCertificate.FileName;
+            }
         }
 
         private void BtnFileDialogKey_Click(object sender, EventArgs e)
         {
+            var openFileDialogKey = new OpenFileDialog
+            {
+                Filter = "Key files (*.key)|*.key|All files (*.*)|*.*"
+            };
 
+            if (openFileDialogKey.ShowDialog() == DialogResult.OK)
+            {
+                txtBoxKey.Text = openFileDialogKey.FileName;
+            }
         }
 
         private void CheckBoxInfo_CheckedChanged(object sender, EventArgs e)

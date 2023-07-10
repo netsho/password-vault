@@ -118,7 +118,7 @@
             btnFileDialogCA.TabIndex = 21;
             toolTipFolder.SetToolTip(btnFileDialogCA, "Browse");
             btnFileDialogCA.UseVisualStyleBackColor = true;
-            btnFileDialogCA.Click += BtnFileDialog_Click;
+            btnFileDialogCA.Click += BtnFileDialogCA_Click;
             // 
             // btnFileDialogCert
             // 
