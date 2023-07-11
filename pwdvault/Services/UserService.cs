@@ -14,6 +14,10 @@ namespace pwdvault.Services
             dbContext.SaveChangesFailed += SaveChangesOnFail;
         }
 
+        /// <summary>
+        /// Adds the user's account in database.
+        /// </summary>
+        /// <param name="masterAccount"></param>
         public void CreateUserAccount(User masterAccount)
         {
             Log.Logger.Information("Creating user password on database...");
@@ -21,6 +25,10 @@ namespace pwdvault.Services
             dbContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Gets the user's account from database.
+        /// </summary>
+        /// <returns></returns>
         public List<User> GetUserAccounts()
         {
             Log.Logger.Information("Retrieving user password from database...");

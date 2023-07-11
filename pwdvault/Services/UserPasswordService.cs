@@ -15,6 +15,10 @@ namespace pwdvault.Services
             dbContext.SaveChangesFailed += SaveChangesOnFail;
         }
 
+        /// <summary>
+        /// Add an application's password in database.
+        /// </summary>
+        /// <param name="userPassword"></param>
         public void CreateUserPassword(UserPassword userPassword)
         {
             Log.Logger.Information("Adding a new password on database...");
@@ -22,6 +26,11 @@ namespace pwdvault.Services
             dbContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Deletes an application's password from database.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <exception cref="PasswordNotFoundException"></exception>
         public void DeleteUserPassword(int id)
         {
             Log.Logger.Information("Deleting a password from database...");
@@ -31,6 +40,10 @@ namespace pwdvault.Services
             dbContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Updates an application's password in database.
+        /// </summary>
+        /// <param name="userPasswordEdited"></param>
         public void UpdateUserPassword(UserPassword userPasswordEdited)
         {
             Log.Logger.Information("Updating a password on database...");
@@ -39,8 +52,8 @@ namespace pwdvault.Services
         }
 
         /// <summary>
-        /// Get the user password by application name and username.
-        /// Return the user password if not null, else throw an exception.
+        /// Gets the application's password by it's name and user's name from database.
+        /// Returns the user password if not null, else throw an exception.
         /// </summary>
         /// <param name="appName"></param>
         /// <param name="username"></param>
@@ -53,6 +66,10 @@ namespace pwdvault.Services
             return UserPassword ?? throw new PasswordNotFoundException($"The password for {appName} cannot be found !");
         }
 
+        /// <summary>
+        /// Gets all the passwords of the connected user from database.
+        /// </summary>
+        /// <returns></returns>
         public List<UserPassword> GetAllUserPassword()
         {
             Log.Logger.Information("Retrieving all passwords from database...");

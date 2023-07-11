@@ -1,6 +1,7 @@
 ﻿using pwdvault.Modeles;
 using pwdvault.Services;
 using Serilog;
+using System.Configuration;
 using System.Text.Json;
 
 namespace pwdvault.Forms
@@ -16,6 +17,14 @@ namespace pwdvault.Forms
             InitializeComponent();
             this.username = username;
             this.password = password;
+            if(File.Exists(loginDataPath))
+            {
+                var loginData = RetrieveLoginData();
+                txtBoxCA.Text = loginData.CaFilePath;
+                txtBoxCertificate.Text = loginData.CertificateFilePath;
+                txtBoxKey.Text = loginData.KeyFilePath;
+                txtBoxSecretId.Text = loginData.SecretID;
+            }
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)
@@ -32,6 +41,8 @@ namespace pwdvault.Forms
                 try
                 {
                     Cursor = Cursors.WaitCursor;
+                    AddLoginDataConfig();
+
                     using var context = new PasswordVaultContext();
                     var userService = new UserService(context);
                     var userAccounts = userService.GetUserAccounts();
@@ -110,6 +121,9 @@ namespace pwdvault.Forms
             }
         }
 
+        /// <summary>
+        /// Creates a JSON in Local Application Data folder to store additional login data.
+        /// </summary>
         private void StoreLoginData()
         {
             var loginData = new List<LoginData>
@@ -127,6 +141,33 @@ namespace pwdvault.Forms
             File.WriteAllText(loginDataPath, jsonLogin);
         }
 
+        /// <summary>
+        /// Retrieves the stored additional login data in the JSON file, LoginData.json
+        /// </summary>
+        /// <returns></returns>
+        private LoginData RetrieveLoginData()
+        {
+            var jsonLoginData = File.ReadAllText(loginDataPath);
+            var listLoginData = JsonSerializer.Deserialize<List<LoginData>>(jsonLoginData);
+            return listLoginData!.FirstOrDefault() ?? new LoginData();
+        }
 
+        /// <summary>
+        /// Updates the connection string in the application's configuration file by adding the username and needed certificates for SSL connection.
+        /// </summary>
+        private void AddLoginDataConfig()
+        {
+            var appConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionDb"].ConnectionString;
+            connectionString += "user id=" + username + ";";
+            connectionString += "ssl mode=verifyfull;";
+            connectionString += "root certificate=" + txtBoxCA.Text + ";";
+            connectionString += "ssl certificate=" + txtBoxCertificate.Text + ";";
+            connectionString += "ssl key=" + txtBoxKey.Text + ";";
+            appConfig.ConnectionStrings.ConnectionStrings.Remove(ConfigurationManager.ConnectionStrings["ConnectionDb"]);
+            appConfig.ConnectionStrings.ConnectionStrings.Add(new ConnectionStringSettings("ConnectionDb", connectionString));
+            appConfig.Save(ConfigurationSaveMode.Modified, true);
+            ConfigurationManager.RefreshSection("connectionStrings");
+        }
     }
 }

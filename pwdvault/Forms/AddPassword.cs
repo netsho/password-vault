@@ -43,6 +43,11 @@ namespace pwdvault.Forms
             }
         }
 
+        /// <summary>
+        /// If the password is not strong enough, an error is shown to the user with the password's criteria.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TxtBoxPwd_TextChanged(object sender, EventArgs e)
         {
             if (!PasswordService.IsPasswordStrong(txtBoxPwd.Text))
@@ -57,6 +62,9 @@ namespace pwdvault.Forms
             }
         }
 
+        /// <summary>
+        /// Encrypts the newly password, creates the corresponding object and saves it in the database.
+        /// </summary>
         private void AddPasswordDb()
         {
             try

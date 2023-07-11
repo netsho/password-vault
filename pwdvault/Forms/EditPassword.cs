@@ -43,6 +43,11 @@ namespace pwdvault.Forms
             txtBoxPwd.UseSystemPasswordChar = false;
         }
 
+        /// <summary>
+        /// Encrypts the updated password and updates it on the database.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrWhiteSpace(txtBoxApp.Text) &&
@@ -52,7 +57,6 @@ namespace pwdvault.Forms
                 !errorProvider.HasErrors
                 )
             {
-                // Encrypt password and store it, success message and hide the form
                 try
                 {
                     Cursor = Cursors.WaitCursor;
@@ -90,6 +94,11 @@ namespace pwdvault.Forms
             txtBoxPwd.Text = PasswordService.GeneratePassword();
         }
 
+        /// <summary>
+        /// If the password is not strong enough, an error is shown to the user with the password's criteria.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TxtBoxPwd_TextChanged(object sender, EventArgs e)
         {
             if (!PasswordService.IsPasswordStrong(txtBoxPwd.Text))

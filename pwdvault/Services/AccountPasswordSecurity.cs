@@ -12,6 +12,10 @@ namespace pwdvault.Services
         private const int ITERATIONS = 4; // Recommanded minimum value
         private const int MEMORY_SIZE = 512000; // 512 MB
 
+        /// <summary>
+        /// Generates 32 bytes salt for user's passwordDB.
+        /// </summary>
+        /// <returns></returns>
         public static byte[] GenerateSalt()
         {
             var salt = new byte[SALT_SIZE];
@@ -21,7 +25,7 @@ namespace pwdvault.Services
         }
 
         /// <summary>
-        /// Generating hash for user's password using Argon2id algorithm to minimize brute force and side channel attacks.
+        /// Generates hash for user's passwordDB using Argon2id algorithm to minimize brute force and side channel attacks.
         /// The parameters affecting security and performance of Argon2id hash algorithm are number of parallelism, iterations and memory size.
         /// Degree of parallelism is equal to number of CPU Cores * 2, which is the specification of Argon2id.
         /// To know what iterations and memory size to use, benchmarking and testing needs to be done to get the amount of time used to compute the hash.
@@ -41,13 +45,27 @@ namespace pwdvault.Services
             return argon2id.GetBytes(HASH_SIZE);
         }
 
-        public static bool VerifyPassword(string password, byte[] salt, byte[] hash)
+        /// <summary>
+        /// Verifies the password stored in the database and the one entered by the user.
+        /// The verification is made by comparing the salt and hash of both the passwords.
+        /// </summary>
+        /// <param name="newPassword"></param>
+        /// <param name="salt"></param>
+        /// <param name="hash"></param>
+        /// <returns></returns>
+        public static bool VerifyPassword(string newPassword, byte[] oldSalt, byte[] oldHash)
         {
-            Log.Logger.Information("User's password verification...");
-            var testHash = GenerateHash(password, salt);
-            return SlowEquals(hash, testHash);
+            Log.Logger.Information("User's passwordDB verification...");
+            var newHash = GenerateHash(newPassword, oldSalt);
+            return SlowEquals(oldHash, newHash);
         }
 
+        /// <summary>
+        /// Compares 2 byte arrays.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         private static bool SlowEquals(byte[] a, byte[] b)
         {
             var diff = (uint)a.Length ^ (uint)b.Length;
