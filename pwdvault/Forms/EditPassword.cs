@@ -73,6 +73,7 @@ namespace pwdvault.Forms
                     
                     Cursor = Cursors.Default;
                     MessageBox.Show($"{userPasswordEdited.AppName}'s password successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
                 }
                 catch (Exception ex)
                 {

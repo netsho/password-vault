@@ -38,7 +38,9 @@ namespace pwdvault.Forms
             }
             else
             {
-                try
+                AddLoginDataConfig();
+                DialogResult = DialogResult.OK;
+                /*try
                 {
                     Cursor = Cursors.WaitCursor;
                     AddLoginDataConfig();
@@ -65,7 +67,7 @@ namespace pwdvault.Forms
                     Cursor = Cursors.Default;
                     Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
                     Close();
-                }
+                }*/
             }
         }
 

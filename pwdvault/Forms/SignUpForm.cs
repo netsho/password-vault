@@ -19,32 +19,39 @@ namespace pwdvault.Forms
                 !errorProvider.HasErrors
                 )
             {
-                try
+                var dialogResult = new LoginDataForm(txtBoxUser.Text, txtBoxPwd.Text).ShowDialog();
+                if(dialogResult == DialogResult.OK )
                 {
-                    Cursor = Cursors.WaitCursor;
+                    try
+                    {
+                        Cursor = Cursors.WaitCursor;
 
-                    /* --------------------- Create the new user while salting and hashing the user's password */
-                    Log.Logger.Information("Generating salt for user's password...");
-                    var salt = AccountPasswordSecurity.GenerateSalt();
-                    Log.Logger.Information("Generating hash for user's password...");
-                    var hash = AccountPasswordSecurity.GenerateHash(txtBoxPwd.Text, salt);
-                    var user = new User(txtBoxUser.Text, hash, salt);
+                        /* --------------------- Create the new user while salting and hashing the user's password */
+                        Log.Logger.Information("Generating salt for user's password...");
+                        var salt = AccountPasswordSecurity.GenerateSalt();
+                        Log.Logger.Information("Generating hash for user's password...");
+                        var hash = AccountPasswordSecurity.GenerateHash(txtBoxPwd.Text, salt);
+                        var user = new User(txtBoxUser.Text, hash, salt);
 
-                    /* --------------------- Create the database PasswordVault, the user and passwords table, insert the user into user table */
-                    using var context = new PasswordVaultContext();
-                    var userService = new UserService(context);
-                    userService.CreateUserAccount(user);
-                    
-                    Cursor = Cursors.Default;
-                    MessageBox.Show("New account successfully created!\nYou can now login to the application.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Close();
+                        /* --------------------- Create the database PasswordVault, the user and passwords table, insert the user into user table */
+                        using var context = new PasswordVaultContext();
+                        context.Database.EnsureCreated(); // A retirer après et utiliser les migrations
+                        var userService = new UserService(context);
+                        userService.CreateUserAccount(user);
+
+                        Cursor = Cursors.Default;
+                        MessageBox.Show("New account successfully created!\nYou can now login to the application.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Cursor = Cursors.Default;
+                        Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Cursor = Cursors.Default;
-                    Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
-                }
+
+                
             }
             else
             {

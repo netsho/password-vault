@@ -80,6 +80,7 @@ namespace pwdvault.Forms
                 
                 Cursor = Cursors.Default;
                 MessageBox.Show($"{userPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
             }
             catch (Exception ex)
             {

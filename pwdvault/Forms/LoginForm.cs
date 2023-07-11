@@ -20,10 +20,39 @@ namespace pwdvault.Forms
             else
             {
                 var dialogResult = new LoginDataForm(txtBoxUser.Text, txtBoxPwd.Text).ShowDialog();
-                if(dialogResult == DialogResult.OK)
+
+                
+
+                if (dialogResult == DialogResult.OK)
                 {
-                    new MainForm().Show();
-                    Hide();
+                    try
+                    {
+                        Cursor = Cursors.WaitCursor;
+
+                        using var context = new PasswordVaultContext();
+                        var userService = new UserService(context);
+                        var userAccounts = userService.GetUserAccounts();
+                        var userAccount = userAccounts[0];
+                        if (txtBoxUser.Text.Equals(userAccount.Username) &&
+                            AccountPasswordSecurity.VerifyPassword(txtBoxPwd.Text, userAccount.PasswordSalt, userAccount.PasswordHash))
+                        {
+                            new MainForm().Show();
+                            Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Invalid username or password. Please try again.", "Invalid user's credentiels", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        Cursor = Cursors.Default;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Cursor = Cursors.Default;
+                        Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                        Close();
+                    }
+                    
                 } 
                 else
                 {
