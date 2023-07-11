@@ -19,10 +19,7 @@ namespace pwdvault.Forms
             }
             else
             {
-                var dialogResult = new LoginDataForm(txtBoxUser.Text, txtBoxPwd.Text).ShowDialog();
-
-                
-
+                var dialogResult = new LoginDataForm(txtBoxUser.Text).ShowDialog();
                 if (dialogResult == DialogResult.OK)
                 {
                     try
@@ -50,7 +47,6 @@ namespace pwdvault.Forms
                         MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Cursor = Cursors.Default;
                         Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
-                        Close();
                     }
                     
                 } 

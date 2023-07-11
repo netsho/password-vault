@@ -19,7 +19,7 @@ namespace pwdvault.Forms
                 !errorProvider.HasErrors
                 )
             {
-                var dialogResult = new LoginDataForm(txtBoxUser.Text, txtBoxPwd.Text).ShowDialog();
+                var dialogResult = new LoginDataForm(txtBoxUser.Text).ShowDialog();
                 if(dialogResult == DialogResult.OK )
                 {
                     try
@@ -35,7 +35,6 @@ namespace pwdvault.Forms
 
                         /* --------------------- Create the database PasswordVault, the user and passwords table, insert the user into user table */
                         using var context = new PasswordVaultContext();
-                        context.Database.EnsureCreated(); // A retirer après et utiliser les migrations
                         var userService = new UserService(context);
                         userService.CreateUserAccount(user);
 

@@ -9,14 +9,12 @@ namespace pwdvault.Forms
     public partial class LoginDataForm : Form
     {
         private readonly string username;
-        private readonly string password;
         private readonly string loginDataPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault"), "LoginData.json");
 
-        public LoginDataForm(string username, string password)
+        public LoginDataForm(string username)
         {
             InitializeComponent();
             this.username = username;
-            this.password = password;
             if(File.Exists(loginDataPath))
             {
                 var loginData = RetrieveLoginData();
@@ -40,34 +38,6 @@ namespace pwdvault.Forms
             {
                 AddLoginDataConfig();
                 DialogResult = DialogResult.OK;
-                /*try
-                {
-                    Cursor = Cursors.WaitCursor;
-                    AddLoginDataConfig();
-
-                    using var context = new PasswordVaultContext();
-                    var userService = new UserService(context);
-                    var userAccounts = userService.GetUserAccounts();
-                    var userAccount = userAccounts[0];
-                    if (username.Equals(userAccount.Username) &&
-                        AccountPasswordSecurity.VerifyPassword(password, userAccount.PasswordSalt, userAccount.PasswordHash))
-                    {
-                        DialogResult = DialogResult.OK;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Invalid username or password. Please try again.", "Invalid user's credentiels", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        DialogResult = DialogResult.TryAgain;
-                    }
-                    Cursor = Cursors.Default;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Cursor = Cursors.Default;
-                    Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
-                    Close();
-                }*/
             }
         }
 
