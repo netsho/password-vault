@@ -4,7 +4,7 @@
 
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)<p align="center">
-[Overview](#general-info) |
+[Overview](#overview) |
 [Technologies](#technologies) |
 [Installation](#installation) |
 [Configuration](#configuration) |
@@ -81,9 +81,26 @@ To use HashiCorp Vault, update the `Vault Address` in `tt.config`
 ```
 tt
 ```
+
+### SSL Certificates and Vault Secret ID
+
+A JSON file serves as a storage for the user's SSL Certificates and Vault Secret ID, allowing for convenient access during repetitive logins :
+
+```
+%LOCALAPPDATA/PasswordVault/LoginData.json
+```
+
+### Logs
+
+Logs are written for all application sessions and deleted within 1 month :
+
+```
+%LOCALAPPDATA/PasswordVault/Logs
+```
+
 ## Documentation
 
-[Documentation](https://github.com/netsho/password-vault.wiki.git)
+[Documentation](https://github.com/netsho/password-vault/wiki)
 
 
 ## License

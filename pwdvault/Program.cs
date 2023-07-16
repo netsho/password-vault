@@ -18,15 +18,15 @@ namespace pwdvault
             /* --------------------- Create a new Password Vault folder in Local App Data to store any file and/or information related to the application */
             var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             var passwordVaultFolder = Path.Combine(appDataPath, "PasswordVault");
-            if (!Directory.Exists(passwordVaultFolder))
-            {
-                Directory.CreateDirectory(passwordVaultFolder);
-            }
+            var passwordVaultLogsFolder = Path.Combine(passwordVaultFolder, "Logs");
+            if (!Directory.Exists(passwordVaultFolder)) Directory.CreateDirectory(passwordVaultFolder);
+            if(!Directory.Exists(passwordVaultLogsFolder)) Directory.CreateDirectory(passwordVaultLogsFolder);
+
 
             /* --------------------- Create the logger for the application */
             using var logger = new LoggerConfiguration()
                 .MinimumLevel.Warning()
-                .WriteTo.File($@"{passwordVaultFolder}\log-.txt", rollingInterval: RollingInterval.Day, fileSizeLimitBytes: 1024 * 1024, rollOnFileSizeLimit: true)
+                .WriteTo.File($@"{passwordVaultLogsFolder}\log-.txt", rollingInterval: RollingInterval.Day, fileSizeLimitBytes: 1024 * 1024, rollOnFileSizeLimit: true)
                 .CreateLogger();
 
             Log.Logger = logger;
