@@ -107,3 +107,4 @@ Logs are written for all application sessions and deleted within 1 month :
 
 This project is licensed under the [GNU GPLv3 License](https://choosealicense.com/licenses/gpl-3.0/).
 
+## Links
