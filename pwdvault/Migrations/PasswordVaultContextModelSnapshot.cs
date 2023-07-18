@@ -44,10 +44,10 @@ namespace pwdvault.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Accounts");
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("pwdvault.Modeles.UserPassword", b =>
+            modelBuilder.Entity("pwdvault.Modeles.AppPassword", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

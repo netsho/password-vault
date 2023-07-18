@@ -5,7 +5,7 @@ using System.Text;
 
 namespace pwdvault.Services
 {
-    internal class AccountPasswordSecurity
+    internal class UserPasswordSecurity
     {
         private const int SALT_SIZE = 32; // 256 bit
         private const int HASH_SIZE = 32; // 256 bit
@@ -13,7 +13,7 @@ namespace pwdvault.Services
         private const int MEMORY_SIZE = 512000; // 512 MB
 
         /// <summary>
-        /// Generates 32 bytes salt for user's passwordDB.
+        /// Generates 32 bytes salt for user's password.
         /// </summary>
         /// <returns></returns>
         public static byte[] GenerateSalt()
@@ -25,7 +25,7 @@ namespace pwdvault.Services
         }
 
         /// <summary>
-        /// Generates hash for user's passwordDB using Argon2id algorithm to minimize brute force and side channel attacks.
+        /// Generates hash for user's password using Argon2id algorithm to minimize brute force and side channel attacks.
         /// The parameters affecting security and performance of Argon2id hash algorithm are number of parallelism, iterations and memory size.
         /// Degree of parallelism is equal to number of CPU Cores * 2, which is the specification of Argon2id.
         /// To know what iterations and memory size to use, benchmarking and testing needs to be done to get the amount of time used to compute the hash.

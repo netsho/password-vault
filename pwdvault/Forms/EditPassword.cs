@@ -6,7 +6,7 @@ namespace pwdvault.Forms
 {
     public partial class EditPassword : Form
     {
-        private readonly UserPassword userPassword;
+        private readonly AppPassword appPassword;
         public EditPassword(string AppName, string Username)
         {
             try
@@ -15,13 +15,13 @@ namespace pwdvault.Forms
                 comBoxCat.DataSource = Enum.GetValues(typeof(Categories));
                 lbTitle.Text = $"Edit {AppName} password";
                 using var context = new PasswordVaultContext();
-                userPassword = new UserPasswordService(context).GetUserPassword(AppName, Username);
-                txtBoxApp.Text = userPassword.AppName;
+                appPassword = new PasswordManager(context).GetPassword(AppName, Username);
+                txtBoxApp.Text = appPassword.AppName;
                 txtBoxApp.ReadOnly = true;
-                comBoxCat.Text = userPassword.AppCategory;
-                txtBoxUser.Text = userPassword.UserName;
+                comBoxCat.Text = appPassword.AppCategory;
+                txtBoxUser.Text = appPassword.UserName;
                 txtBoxUser.ReadOnly = true;
-                txtBoxPwd.Text = EncryptionService.DecryptPassword(userPassword.Password, EncryptionService.GetKeyFromFile());
+                txtBoxPwd.Text = EncryptionService.DecryptPassword(appPassword.Password, EncryptionService.GetKeyFromFile());
             }
             catch (Exception ex)
             {
@@ -61,18 +61,18 @@ namespace pwdvault.Forms
                 {
                     Cursor = Cursors.WaitCursor;
                     var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
-                    var userPasswordEdited = new UserPassword(comBoxCat.Text, userPassword.AppName, userPassword.UserName, encryptedPassword, userPassword.IconName)
+                    var appPasswordEdited = new AppPassword(comBoxCat.Text, appPassword.AppName, appPassword.UserName, encryptedPassword, appPassword.IconName)
                     {
-                        Id = userPassword.Id,
-                        CreationTime = userPassword.CreationTime,
+                        Id = appPassword.Id,
+                        CreationTime = appPassword.CreationTime,
                         UpdateTime = DateTime.Now
                     };
                     using var context = new PasswordVaultContext();
-                    var userPasswordService = new UserPasswordService(context);
-                    userPasswordService.UpdateUserPassword(userPasswordEdited);
+                    var passwordManager = new PasswordManager(context);
+                    passwordManager.UpdatePassword(appPasswordEdited);
                     
                     Cursor = Cursors.Default;
-                    MessageBox.Show($"{userPasswordEdited.AppName}'s password successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"{appPasswordEdited.AppName}'s password successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
                 }
                 catch (Exception ex)

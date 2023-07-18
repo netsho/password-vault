@@ -72,9 +72,9 @@ namespace pwdvault.Forms
                 try
                 {
                     using var context = new PasswordVaultContext();
-                    var userPasswordService = new UserPasswordService(context);
-                    var userPassword = userPasswordService.GetUserPassword(AppName, Username);
-                    userPasswordService.DeleteUserPassword(userPassword.Id);
+                    var passwordManager = new PasswordManager(context);
+                    var password = passwordManager.GetPassword(AppName, Username);
+                    passwordManager.DeletePassword(password.Id);
 
                     OnPasswordEditedOrDeleted();
                 }
@@ -91,9 +91,9 @@ namespace pwdvault.Forms
             try
             {
                 using var context = new PasswordVaultContext();
-                var userPasswordService = new UserPasswordService(context);
-                var userPassword = userPasswordService.GetUserPassword(appName, username);
-                Clipboard.SetText(EncryptionService.DecryptPassword(userPassword.Password, EncryptionService.GetKeyFromFile()));
+                var passwordManager = new PasswordManager(context);
+                var password = passwordManager.GetPassword(appName, username);
+                Clipboard.SetText(EncryptionService.DecryptPassword(password.Password, EncryptionService.GetKeyFromFile()));
                 ClearClipboardDelayed();
             }
             catch (Exception ex)

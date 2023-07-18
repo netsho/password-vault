@@ -29,16 +29,16 @@ namespace pwdvault.Forms
 
                         /* --------------------- Create the new user while salting and hashing the user's password */
                         Log.Logger.Information("Generating salt for user's password...");
-                        var salt = AccountPasswordSecurity.GenerateSalt();
+                        var salt = UserPasswordSecurity.GenerateSalt();
                         Log.Logger.Information("Generating hash for user's password...");
-                        var hash = AccountPasswordSecurity.GenerateHash(txtBoxPwd.Text, salt);
+                        var hash = UserPasswordSecurity.GenerateHash(txtBoxPwd.Text, salt);
                         var user = new User(txtBoxUser.Text, hash, salt);
 
                         /* --------------------- Add the user in database */
                         using var context = new PasswordVaultContext();
                         context.Database.Migrate();
-                        var userService = new UserService(context);
-                        userService.CreateUserAccount(user);
+                        var userManager = new UserManager(context);
+                        userManager.CreateUser(user);
 
                         Cursor = Cursors.Default;
                         MessageBox.Show("New account successfully created!\nYou can now login to the application.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -2,7 +2,6 @@
 using pwdvault.Services;
 using System.Data;
 
-
 namespace pwdvault.Forms
 {
     public partial class MainForm : Form
@@ -31,13 +30,13 @@ namespace pwdvault.Forms
             }
             allTable.GetControlFromPosition(0, 0)!.BackColor = Color.White;
             selectedCategory = lbAll.Text;
-            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(selectedCategory));
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             new AddPassword().ShowDialog();
-            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(selectedCategory));
         }
 
         /*------------------------------------------------------------------------------------------------------------------------------*/
@@ -117,7 +116,7 @@ namespace pwdvault.Forms
         {
             string filterText = txtBoxFilter.Text.ToLower();
             listPwdPanel.Controls.Clear();
-            var passwordUserControls = GetPasswordUserControls(selectedCategory);
+            var passwordUserControls = GetPasswordControls(selectedCategory);
             var passwordUserControlsFiltred = new List<Password>();
             foreach (Password passwordUserControl in passwordUserControls)
             {
@@ -126,11 +125,11 @@ namespace pwdvault.Forms
                     passwordUserControlsFiltred.Add(passwordUserControl);
                 }
             }
-            UpdatePasswordUserControls(passwordUserControlsFiltred);
+            UpdatePasswordControls(passwordUserControlsFiltred);
 
             if (string.IsNullOrWhiteSpace(txtBoxFilter.Text))
             {
-                UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+                UpdatePasswordControls(GetPasswordControls(selectedCategory));
             }
         }
 
@@ -138,129 +137,129 @@ namespace pwdvault.Forms
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbAll.Text;
-            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(selectedCategory));
         }
 
         private void LbAdmini_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbAdmini.Text;
-            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(selectedCategory));
         }
 
         private void LbWork_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbWork.Text;
-            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(selectedCategory));
         }
 
         private void LbStudy_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbStudy.Text;
-            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(selectedCategory));
         }
 
         private void LbSocial_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbSocial.Text;
-            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(selectedCategory));
         }
 
         private void LbRetail_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbRetail.Text;
-            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(selectedCategory));
         }
 
         private void LbFinance_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbFinance.Text;
-            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(selectedCategory));
         }
 
         private void LbGames_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbGames.Text;
-            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(selectedCategory));
         }
 
         private void LbCoding_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             selectedCategory = lbCoding.Text;
-            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(selectedCategory));
         }
 
         /// <summary>
         /// <para>
-        /// Function to get the list of password user controls based on the selected category of the user.
+        /// Function to get the list of appPassword user controls based on the selected category of the user.
         /// The passwords are retrieved from the database, and then filtred by selected category.
-        /// When creating each password user control, we're subscribing to passwordEdited and passwordDeleted events to update the password user controls list.
+        /// When creating each appPassword user control, we're subscribing to passwordEdited and passwordDeleted events to update the appPassword user controls list.
         /// </para>
         /// </summary>
         /// <param name="selectedCategory"></param>
         /// <returns></returns>
-        private static List<Password> GetPasswordUserControls(string selectedCategory)
+        private static List<Password> GetPasswordControls(string selectedCategory)
         {
-            var passwordUserControls = new List<Password>();
-            List<UserPassword> passwords;
+            var passwordControls = new List<Password>();
+            List<AppPassword> passwords;
             using (var context = new PasswordVaultContext())
             {
-                var userPasswordService = new UserPasswordService(context);
-                passwords = userPasswordService.GetAllUserPassword();
+                var passwordManager = new PasswordManager(context);
+                passwords = passwordManager.GetAllPasswords();
             }
             if (selectedCategory.Equals("All"))
             {
-                foreach (UserPassword userPassword in passwords)
+                foreach (var appPassword in passwords)
                 {
-                    var password = new Password(userPassword.AppName, userPassword.UserName, userPassword.IconName);
-                    passwordUserControls.Add(password);
+                    var password = new Password(appPassword.AppName, appPassword.UserName, appPassword.IconName);
+                    passwordControls.Add(password);
                 }
             }
             else
             {
-                passwords = passwords.Where(userPassword => userPassword.AppCategory.Equals(selectedCategory)).ToList();
-                foreach (UserPassword userPassword in passwords)
+                passwords = passwords.Where(password => password.AppCategory.Equals(selectedCategory)).ToList();
+                foreach (var appPassword in passwords)
                 {
-                    var password = new Password(userPassword.AppName, userPassword.UserName, userPassword.IconName);
-                    passwordUserControls.Add(password);
+                    var password = new Password(appPassword.AppName, appPassword.UserName, appPassword.IconName);
+                    passwordControls.Add(password);
                 }
             }
-            return passwordUserControls;
+            return passwordControls;
         }
 
         /// <summary>
-        /// Function to clear the panel and update the password user controls in the panel
+        /// Function to clear the panel and update the appPassword user controls in the panel
         /// </summary>
         /// <param name="passwords"></param>
-        private void UpdatePasswordUserControls(List<Password> passwordUserControls)
+        private void UpdatePasswordControls(List<Password> passwordControls)
         {
             listPwdPanel.Controls.Clear();
             var controlTop = 5;
-            foreach (Password passwordUserControl in passwordUserControls)
+            foreach (Password passwordControl in passwordControls)
             {
-                passwordUserControl.Width = listPwdPanel.Width - 30;
-                passwordUserControl.Location = new Point(0, controlTop);
-                passwordUserControl.PasswordEditedOrDeleted += OnPasswordEditOrDelete;
-                controlTop += passwordUserControl.Height + 5;
-                listPwdPanel.Controls.Add(passwordUserControl);
+                passwordControl.Width = listPwdPanel.Width - 30;
+                passwordControl.Location = new Point(0, controlTop);
+                passwordControl.PasswordEditedOrDeleted += OnPasswordEditOrDelete;
+                controlTop += passwordControl.Height + 5;
+                listPwdPanel.Controls.Add(passwordControl);
             }
         }
 
         /// <summary>
-        /// Event handler raised when a password is edited or deleted to update the passwords list.
+        /// Event handler raised when a appPassword is edited or deleted to update the passwords list.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnPasswordEditOrDelete(object? sender, EventArgs e)
         {
-            UpdatePasswordUserControls(GetPasswordUserControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(selectedCategory));
         }
 
         /// <summary>

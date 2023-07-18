@@ -5,51 +5,13 @@ using System.Configuration;
 
 namespace pwdvault.Modeles
 {
-    public class UserPassword
-    {
-        [Key]
-        public int Id { get; set; }
-        public string AppCategory { get; set; }
-        public string AppName { get; set; }
-        public string UserName { get; set; }
-        public byte[] Password { get; set; }
-        public string IconName { get; set; }
-        public DateTime CreationTime { get; set; }
-        public DateTime UpdateTime { get; set; }
-
-        public UserPassword(string appCategory, string appName, string userName, byte[] password, string iconName)
-        {
-            AppCategory = appCategory;
-            AppName = appName;
-            UserName = userName;
-            Password = password;
-            IconName = iconName;
-        }
-    }
-
-    public class User
-    {
-        [Key]
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
-
-        public User(string username, byte[] passwordHash, byte[] passwordSalt)
-        {
-            Username = username;
-            PasswordHash = passwordHash;
-            PasswordSalt = passwordSalt;
-        }
-    }
-
     /// <summary>
-    /// Setting the Db Context of Entity Framework on UserPassword Model, to create the corresponding table in the database.
+    /// Setting the Db Context of Entity Framework on AppPassword Model, to create the corresponding table in the database.
     /// </summary>
     public class PasswordVaultContext : DbContext
     {
-        public DbSet<UserPassword> Passwords { get; set; }
-        public DbSet<User> Accounts { get; set; }
+        public DbSet<AppPassword> Passwords { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         // Delegate that writes database logs to the dbLog.txt in Local AppData folder
@@ -86,8 +48,46 @@ namespace pwdvault.Modeles
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserPassword>().HasKey(x => x.Id);
-            modelBuilder.Entity<UserPassword>().Property(x => x.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<AppPassword>().HasKey(x => x.Id);
+            modelBuilder.Entity<AppPassword>().Property(x => x.Id).ValueGeneratedOnAdd();
+        }
+    }
+
+    public class AppPassword
+    {
+        [Key]
+        public int Id { get; set; }
+        public string AppCategory { get; set; }
+        public string AppName { get; set; }
+        public string UserName { get; set; }
+        public byte[] Password { get; set; }
+        public string IconName { get; set; }
+        public DateTime CreationTime { get; set; }
+        public DateTime UpdateTime { get; set; }
+
+        public AppPassword(string appCategory, string appName, string userName, byte[] password, string iconName)
+        {
+            AppCategory = appCategory;
+            AppName = appName;
+            UserName = userName;
+            Password = password;
+            IconName = iconName;
+        }
+    }
+
+    public class User
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
+
+        public User(string username, byte[] passwordHash, byte[] passwordSalt)
+        {
+            Username = username;
+            PasswordHash = passwordHash;
+            PasswordSalt = passwordSalt;
         }
     }
 }

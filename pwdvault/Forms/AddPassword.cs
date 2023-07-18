@@ -74,14 +74,14 @@ namespace pwdvault.Forms
                 var keyEncryption = EncryptionService.GenerateKey(txtBoxPwd.Text);
                 //var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, keyEncryption);
                 var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
-                var userPassword = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text)) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
+                var appPassword = new AppPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text)) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
                 
                 using var context = new PasswordVaultContext();
-                var userPasswordService = new UserPasswordService(context);
-                userPasswordService.CreateUserPassword(userPassword);
+                var passwordManager = new PasswordManager(context);
+                passwordManager.CreatePassword(appPassword);
                 
                 Cursor = Cursors.Default;
-                MessageBox.Show($"{userPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"{appPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();
             }
             catch (Exception ex)

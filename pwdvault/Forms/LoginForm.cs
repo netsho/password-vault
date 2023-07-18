@@ -27,11 +27,11 @@ namespace pwdvault.Forms
                         Cursor = Cursors.WaitCursor;
 
                         using var context = new PasswordVaultContext();
-                        var userService = new UserService(context);
-                        var userAccounts = userService.GetUserAccounts();
-                        var userAccount = userAccounts[0];
-                        if (txtBoxUser.Text.Equals(userAccount.Username) &&
-                            AccountPasswordSecurity.VerifyPassword(txtBoxPwd.Text, userAccount.PasswordSalt, userAccount.PasswordHash))
+                        var userManager = new UserManager(context);
+                        var users = userManager.GetUsers();
+                        var user = users[0];
+                        if (txtBoxUser.Text.Equals(user.Username) &&
+                            UserPasswordSecurity.VerifyPassword(txtBoxPwd.Text, user.PasswordSalt, user.PasswordHash))
                         {
                             new MainForm().Show();
                             Hide();
