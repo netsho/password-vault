@@ -5,6 +5,7 @@
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)<p align="center">
 [Overview](#overview) |
+[Features](#features) |
 [Technologies](#technologies) |
 [Installation](#installation) |
 [Configuration](#configuration) |
@@ -22,9 +23,15 @@ This project was developed to explore C#, cryptographic libraries and HashiCorp 
 
 This project is intended to serve as both a learning resource and a practical password management solution for personal use.
 
+## Features
 
-
-
+- Strong password encryption : 
+    - Argon2id for hashing the account's password and key encryption derivation for each app password.
+    - AES256 for app password encryption.
+- PostgreSQL with SSL connection for encrypted password storage.
+- Password generation functionality.
+- Multi-factor authentication (MFA) : Username/password and SSL certificates.
+- Hashicorp Vault for encryption key management.
 
 ## Technologies
 
@@ -100,7 +107,7 @@ Logs are written for all application sessions and deleted within 1 month :
 
 ## Documentation
 
-[Documentation](https://github.com/netsho/password-vault/wiki)
+For detailed documentation of the features and other possible configurations of the application, like using database connection without SSL certificates, please visite the [Wiki](https://github.com/netsho/password-vault/wiki).
 
 
 ## License
@@ -108,3 +115,5 @@ Logs are written for all application sessions and deleted within 1 month :
 This project is licensed under the [GNU GPLv3 License](https://choosealicense.com/licenses/gpl-3.0/).
 
 ## Links
+
+1. [Npgsql Entity Framework Core Provider](https://www.npgsql.org/efcore/index.html)
