@@ -1,4 +1,5 @@
-﻿using pwdvault.Modeles;
+﻿using Microsoft.EntityFrameworkCore;
+using pwdvault.Modeles;
 using pwdvault.Services;
 using Serilog;
 
@@ -33,8 +34,9 @@ namespace pwdvault.Forms
                         var hash = AccountPasswordSecurity.GenerateHash(txtBoxPwd.Text, salt);
                         var user = new User(txtBoxUser.Text, hash, salt);
 
-                        /* --------------------- Create the database PasswordVault, the user and passwords table, insert the user into user table */
+                        /* --------------------- Add the user in database */
                         using var context = new PasswordVaultContext();
+                        context.Database.Migrate();
                         var userService = new UserService(context);
                         userService.CreateUserAccount(user);
 

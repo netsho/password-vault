@@ -71,6 +71,8 @@ namespace pwdvault.Forms
             {
                 Cursor = Cursors.WaitCursor;
                 // Encrypt password and store it, success message and hide the form
+                var keyEncryption = EncryptionService.GenerateKey(txtBoxPwd.Text);
+                //var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, keyEncryption);
                 var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
                 var userPassword = new UserPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text)) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
                 

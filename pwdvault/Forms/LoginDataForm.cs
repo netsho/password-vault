@@ -131,7 +131,7 @@ namespace pwdvault.Forms
         {
             var appConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var connectionString = ConfigurationManager.ConnectionStrings["ConnectionDb"].ConnectionString;
-            connectionString += "user id=" + username + ";";
+            connectionString += "username=" + username + ";";
             connectionString += "ssl mode=verifyfull;";
             connectionString += "root certificate=" + txtBoxCA.Text + ";";
             connectionString += "ssl certificate=" + txtBoxCertificate.Text + ";";
