@@ -1,5 +1,6 @@
 ﻿using pwdvault.Modeles;
 using pwdvault.Services;
+using pwdvault.Services.Exceptions;
 using Serilog;
 
 namespace pwdvault.Forms
@@ -28,8 +29,7 @@ namespace pwdvault.Forms
 
                         using var context = new PasswordVaultContext();
                         var userManager = new UserManager(context);
-                        var users = userManager.GetUsers();
-                        var user = users[0];
+                        var user = userManager.GetUserByUsername(txtBoxUser.Text);
                         if (txtBoxUser.Text.Equals(user.Username) &&
                             UserPasswordSecurity.VerifyPassword(txtBoxPwd.Text, user.PasswordSalt, user.PasswordHash))
                         {
@@ -41,6 +41,12 @@ namespace pwdvault.Forms
                             MessageBox.Show("Invalid username or password. Please try again.", "Invalid user's credentiels", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         Cursor = Cursors.Default;
+                    }
+                    catch (UserException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Cursor = Cursors.Default;
+                        Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
                     }
                     catch (Exception ex)
                     {

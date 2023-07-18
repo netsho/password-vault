@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using pwdvault.Modeles;
 using pwdvault.Services;
+using pwdvault.Services.Exceptions;
 using Serilog;
 
 
@@ -43,6 +44,12 @@ namespace pwdvault.Forms
                         Cursor = Cursors.Default;
                         MessageBox.Show("New account successfully created!\nYou can now login to the application.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Close();
+                    }
+                    catch (UserException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Cursor = Cursors.Default;
+                        Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
                     }
                     catch (Exception ex)
                     {

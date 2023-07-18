@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using pwdvault.Modeles;
+using pwdvault.Services.Exceptions;
 using Serilog;
 
 namespace pwdvault.Services
@@ -20,9 +21,51 @@ namespace pwdvault.Services
         /// <param name="user"></param>
         public void CreateUser(User user)
         {
-            Log.Logger.Information("Creating a new user in database...");
-            dbContext.Add(user);
-            dbContext.SaveChanges();
+            if(!UserExists(user.Username))
+            {
+                Log.Logger.Information("Creating a new user in database...");
+                dbContext.Add(user);
+                dbContext.SaveChanges();
+            }
+            else
+            {
+                throw new UserException("Username already in use. Please try logging in or use a different username.");
+            }
+        }
+
+        /// <summary>
+        /// Checks if the user already exists by username.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public bool UserExists(string username)
+        {
+            foreach(var user in GetUsers())
+            {
+                if(user.Username.ToLower().Equals(username.ToLower())) 
+                {
+                    return true;                
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Gets the user from database by username.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        /// <exception cref="UserException"></exception>
+        public User GetUserByUsername(string username)
+        {
+            foreach (var user in GetUsers())
+            {
+                if (user.Username.ToLower().Equals(username.ToLower()))
+                {
+                    return dbContext.Users.Find(user.Id)!;
+                }
+            }
+            throw new UserException("No account found with this username. Please ensure the username is correct or sign up for a new account.");
         }
 
         /// <summary>
