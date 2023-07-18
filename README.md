@@ -37,7 +37,7 @@ This project is intended to serve as both a learning resource and a practical pa
 
 Ensure you have the following components installed before running the application :
 
-* [.NET](https://example.com): Version 7.0
+* [.NET](https://dotnet.microsoft.com/en-us/download/dotnet/7.0): Version 7.0
 * [PostgreSQL](https://example.com): Version 2.34
 * [HashiCorp Vault](https://example.com): Version 1234
 ## Installation
