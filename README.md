@@ -38,8 +38,8 @@ This project is intended to serve as both a learning resource and a practical pa
 Ensure you have the following components installed before running the application:
 
 * [.NET](https://dotnet.microsoft.com/en-us/download/dotnet/7.0): Version 7.0
-* [PostgreSQL](https://example.com): Version 2.34
-* [HashiCorp Vault](https://example.com): Version 1234
+* [PostgreSQL](https://example.com): Version 2.34 **(To be updated)**
+* [HashiCorp Vault](https://example.com): Version 1234 **(To be updated)**
 ## Installation
 
 Clone the project
@@ -72,6 +72,8 @@ Start the application
   dotnet run
 ```
 
+Sign Up when the application has started to create the scheme in database (only the first time).
+
 ## Configuration
 
 ### PostgreSQL Configuration
@@ -82,8 +84,8 @@ To use SSL connection with PostgreSQL, update the `host` and `database` in `App.
 	<add name="ConnectionDb" connectionString="Host=hostname;database=mydatabase;" providerName="Npgsql"/>
 </connectionStrings>
 ```
-### Vault Configuration
-
+### Vault Configuration 
+**To be updated**
 To use HashiCorp Vault, update the `Vault Address` in `tt.config`
 
 ```
