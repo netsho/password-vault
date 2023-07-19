@@ -15,27 +15,27 @@
 
 ## Overview
 
-Password Vault is a secure desktop password manager developed in C# allowing users to store and manage their passwords in an encrypted format. It uses PostgreSQL as the database for secure storage using SSL connection and Hashicorp Vault for encryption key management.
+Password Vault is a secure desktop password manager developed in C# that allows users to store and manage their passwords in an encrypted format. It uses PostgreSQL as the database for secure storage using an SSL connection and Hashicorp Vault for encryption key management.
 
 ### Purpose
 
-This project was developed to explore C#, cryptographic libraries and HashiCorp Vault. The goal was to create a secure password manager that demonstrates the use of strong encryption techniques and integrates with PostgreSQL for secure password storage using an SSL connection. Additionnaly, the implementation of HashiCorp Vault provides a robust key management system, enhancing the overall security of the application.
+This project was developed to explore C#, cryptographic libraries, and the HashiCorp Vault. The goal was to create a secure password manager that demonstrates the use of strong encryption techniques and integrates with PostgreSQL for secure password storage using an SSL connection. Additionally, the implementation of HashiCorp Vault provides a robust key management system, enhancing the overall security of the application.
 
 This project is intended to serve as both a learning resource and a practical password management solution for personal use.
 
 ## Features
 
-- Strong password encryption : 
-    - Argon2id for hashing the account's password and key encryption derivation for each app password.
-    - AES256 for app password encryption.
-- PostgreSQL with SSL connection for encrypted password storage.
-- Password generation functionality.
-- Multi-factor authentication (MFA) : Username/password and SSL certificates.
-- Hashicorp Vault for encryption key management.
+- Strong password encryption: 
+    - Argon2id for hashing the account's password and key encryption derivation for each app password
+    - AES256 for app password encryption
+- PostgreSQL with an SSL connection for encrypted password storage
+- Password generation functionality
+- Multi-factor authentication (MFA): username/password and SSL certificates
+- Hashicorp Vault for encryption key management
 
 ## Technologies
 
-Ensure you have the following components installed before running the application :
+Ensure you have the following components installed before running the application:
 
 * [.NET](https://dotnet.microsoft.com/en-us/download/dotnet/7.0): Version 7.0
 * [PostgreSQL](https://example.com): Version 2.34
@@ -60,7 +60,7 @@ Build the project
   dotnet build
 ```
 
-Go to pwdvault directory
+Go to the pwdvault directory
 
 ```bash
   cd pwdvault
@@ -71,10 +71,11 @@ Start the application
 ```bash
   dotnet run
 ```
+
 ## Configuration
 
 ### PostgreSQL Configuration
-To use SSL connection with PostgreSQL, update the `Host` and `database` in `App.config` : 
+To use SSL connection with PostgreSQL, update the `host` and `database` in `App.config`: 
 
 ```
 <connectionStrings>
@@ -91,7 +92,7 @@ tt
 
 ### SSL Certificates and Vault Secret ID
 
-A JSON file serves as a storage for the user's SSL Certificates and Vault Secret ID, allowing for convenient access during repetitive logins :
+A JSON file serves as storage for the user's SSL Certificates and Vault Secret ID, allowing for convenient access during repetitive logins:
 
 ```
 %LOCALAPPDATA/PasswordVault/LoginData.json
@@ -99,7 +100,7 @@ A JSON file serves as a storage for the user's SSL Certificates and Vault Secret
 
 ### Logs
 
-Logs are written for all application sessions and deleted within 1 month :
+Logs are written for all application sessions and deleted within 1 month:
 
 ```
 %LOCALAPPDATA/PasswordVault/Logs
@@ -107,7 +108,7 @@ Logs are written for all application sessions and deleted within 1 month :
 
 ## Documentation
 
-For detailed documentation of the features and other possible configurations of the application, like using database connection without SSL certificates, please visite the [Wiki](https://github.com/netsho/password-vault/wiki).
+For detailed documentation of the features and other possible configurations of the application, like using database connections without SSL certificates, please visit the [Wiki](https://github.com/netsho/password-vault/wiki).
 
 
 ## License
