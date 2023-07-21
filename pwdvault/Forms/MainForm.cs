@@ -1,5 +1,5 @@
 ﻿using pwdvault.Modeles;
-using pwdvault.Services;
+using pwdvault.Controllers;
 using System.Data;
 
 namespace pwdvault.Forms
@@ -211,8 +211,8 @@ namespace pwdvault.Forms
             List<AppPassword> passwords;
             using (var context = new PasswordVaultContext())
             {
-                var passwordManager = new PasswordManager(context);
-                passwords = passwordManager.GetAllPasswords();
+                var passwordController = new PasswordController(context);
+                passwords = passwordController.GetAllPasswords();
             }
             if (selectedCategory.Equals("All"))
             {

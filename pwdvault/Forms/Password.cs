@@ -1,6 +1,7 @@
 ﻿using pwdvault.Modeles;
 using pwdvault.Services;
 using pwdvault.Services.Exceptions;
+using pwdvault.Controllers;
 using Serilog;
 
 namespace pwdvault.Forms
@@ -72,9 +73,9 @@ namespace pwdvault.Forms
                 try
                 {
                     using var context = new PasswordVaultContext();
-                    var passwordManager = new PasswordManager(context);
-                    var password = passwordManager.GetPassword(AppName, Username);
-                    passwordManager.DeletePassword(password.Id);
+                    var passwordController = new PasswordController(context);
+                    var password = passwordController.GetPassword(AppName, Username);
+                    passwordController.DeletePassword(password.Id);
 
                     OnPasswordEditedOrDeleted();
                 }
@@ -91,8 +92,8 @@ namespace pwdvault.Forms
             try
             {
                 using var context = new PasswordVaultContext();
-                var passwordManager = new PasswordManager(context);
-                var password = passwordManager.GetPassword(appName, username);
+                var passwordController = new PasswordController(context);
+                var password = passwordController.GetPassword(appName, username);
                 Clipboard.SetText(EncryptionService.DecryptPassword(password.Password, EncryptionService.GetKeyFromFile()));
                 ClearClipboardDelayed();
             }

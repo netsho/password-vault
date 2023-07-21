@@ -1,5 +1,6 @@
 ﻿using pwdvault.Modeles;
 using pwdvault.Services;
+using pwdvault.Controllers;
 using Serilog;
 
 namespace pwdvault.Forms
@@ -15,7 +16,7 @@ namespace pwdvault.Forms
                 comBoxCat.DataSource = Enum.GetValues(typeof(Categories));
                 lbTitle.Text = $"Edit {AppName} password";
                 using var context = new PasswordVaultContext();
-                appPassword = new PasswordManager(context).GetPassword(AppName, Username);
+                appPassword = new PasswordController(context).GetPassword(AppName, Username);
                 txtBoxApp.Text = appPassword.AppName;
                 txtBoxApp.ReadOnly = true;
                 comBoxCat.Text = appPassword.AppCategory;
@@ -68,8 +69,8 @@ namespace pwdvault.Forms
                         UpdateTime = DateTime.Now
                     };
                     using var context = new PasswordVaultContext();
-                    var passwordManager = new PasswordManager(context);
-                    passwordManager.UpdatePassword(appPasswordEdited);
+                    var passwordController = new PasswordController(context);
+                    passwordController.UpdatePassword(appPasswordEdited);
                     
                     Cursor = Cursors.Default;
                     MessageBox.Show($"{appPasswordEdited.AppName}'s password successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

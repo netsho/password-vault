@@ -2,6 +2,7 @@
 using pwdvault.Modeles;
 using pwdvault.Services;
 using pwdvault.Services.Exceptions;
+using pwdvault.Controllers;
 using Serilog;
 
 
@@ -38,8 +39,8 @@ namespace pwdvault.Forms
                         /* --------------------- Add the user in database */
                         using var context = new PasswordVaultContext();
                         context.Database.Migrate();
-                        var userManager = new UserManager(context);
-                        userManager.CreateUser(user);
+                        var userController = new UserController(context);
+                        userController.CreateUser(user);
 
                         Cursor = Cursors.Default;
                         MessageBox.Show("New account successfully created!\nYou can now login to the application.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

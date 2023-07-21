@@ -1,6 +1,7 @@
 ﻿using pwdvault.Modeles;
 using pwdvault.Services;
 using pwdvault.Services.Exceptions;
+using pwdvault.Controllers;
 using Serilog;
 
 namespace pwdvault.Forms
@@ -28,8 +29,8 @@ namespace pwdvault.Forms
                         Cursor = Cursors.WaitCursor;
 
                         using var context = new PasswordVaultContext();
-                        var userManager = new UserManager(context);
-                        var user = userManager.GetUserByUsername(txtBoxUser.Text);
+                        var userController = new UserController(context);
+                        var user = userController.GetUserByUsername(txtBoxUser.Text);
                         if (txtBoxUser.Text.Equals(user.Username) &&
                             UserPasswordSecurity.VerifyPassword(txtBoxPwd.Text, user.PasswordSalt, user.PasswordHash))
                         {

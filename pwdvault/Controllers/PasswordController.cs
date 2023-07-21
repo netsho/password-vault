@@ -5,11 +5,11 @@ using Serilog;
 
 namespace pwdvault.Controllers
 {
-    public class PasswordManager
+    public class PasswordController
     {
         private readonly PasswordVaultContext dbContext;
 
-        public PasswordManager(PasswordVaultContext dbContext)
+        public PasswordController(PasswordVaultContext dbContext)
         {
             this.dbContext = dbContext;
             dbContext.SaveChangesFailed += SaveChangesOnFail;

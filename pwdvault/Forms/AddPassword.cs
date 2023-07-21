@@ -1,5 +1,6 @@
 ﻿using pwdvault.Modeles;
 using pwdvault.Services;
+using pwdvault.Controllers;
 using Serilog;
 
 namespace pwdvault.Forms
@@ -77,8 +78,8 @@ namespace pwdvault.Forms
                 var appPassword = new AppPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text)) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
                 
                 using var context = new PasswordVaultContext();
-                var passwordManager = new PasswordManager(context);
-                passwordManager.CreatePassword(appPassword);
+                var passwordController = new PasswordController(context);
+                passwordController.CreatePassword(appPassword);
                 
                 Cursor = Cursors.Default;
                 MessageBox.Show($"{appPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
