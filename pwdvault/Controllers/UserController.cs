@@ -3,7 +3,7 @@ using pwdvault.Modeles;
 using pwdvault.Services.Exceptions;
 using Serilog;
 
-namespace pwdvault.Services
+namespace pwdvault.Controllers
 {
     public class UserManager
     {
@@ -21,7 +21,7 @@ namespace pwdvault.Services
         /// <param name="user"></param>
         public void CreateUser(User user)
         {
-            if(!UserExists(user.Username))
+            if (!UserExists(user.Username))
             {
                 Log.Logger.Information("Creating a new user in database...");
                 dbContext.Add(user);
@@ -40,11 +40,11 @@ namespace pwdvault.Services
         /// <returns></returns>
         public bool UserExists(string username)
         {
-            foreach(var user in GetUsers())
+            foreach (var user in GetUsers())
             {
-                if(user.Username.ToLower().Equals(username.ToLower())) 
+                if (user.Username.ToLower().Equals(username.ToLower()))
                 {
-                    return true;                
+                    return true;
                 }
             }
             return false;

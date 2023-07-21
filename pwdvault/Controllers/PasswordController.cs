@@ -3,7 +3,7 @@ using pwdvault.Modeles;
 using pwdvault.Services.Exceptions;
 using Serilog;
 
-namespace pwdvault.Services
+namespace pwdvault.Controllers
 {
     public class PasswordManager
     {
