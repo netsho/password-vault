@@ -2,7 +2,6 @@
 # Password Vault
 ![Static Badge](https://img.shields.io/badge/In_development-blue)
 
-
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)<p align="center">
 [Overview](#overview) |
 [Features](#features) |
@@ -120,3 +119,4 @@ This project is licensed under the [GNU GPLv3 License](https://choosealicense.co
 ## Links
 
 1. [Npgsql Entity Framework Core Provider](https://www.npgsql.org/efcore/index.html)
+2. [VaultSharp](https://rajanadar.github.io/VaultSharp/)
