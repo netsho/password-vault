@@ -123,13 +123,13 @@ namespace pwdvault.Forms
         }
 
         /// <summary>
-        /// Updates the connection string in the application's configuration file by adding the username and needed certificates for SSL connection.
+        /// Updates the connection string in the application's configuration file by adding the _username and needed certificates for SSL connection.
         /// </summary>
         private void AddLoginDataConfig()
         {
             var appConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var connectionString = ConfigurationManager.ConnectionStrings["ConnectionDb"].ConnectionString;
-            connectionString += "username=" + username + ";";
+            connectionString += "_username=" + username + ";";
             connectionString += "ssl mode=verifyfull;";
             connectionString += "root certificate=" + txtBoxCA.Text + ";";
             connectionString += "ssl certificate=" + txtBoxCertificate.Text + ";";

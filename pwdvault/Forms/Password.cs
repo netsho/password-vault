@@ -8,27 +8,27 @@ namespace pwdvault.Forms
 {
     public partial class Password : UserControl
     {
-        private string appName = "";
-        private string username = "";
-        private string iconName = "";
+        private string _appName = "";
+        private string _username = "";
+        private string _iconName = "";
 
         // Define the event to raise after editing or deleting a password.
         public event EventHandler? PasswordEditedOrDeleted;
 
         public string AppName
         {
-            get { return appName; }
-            set { appName = value; lbApp.Text = value; }
+            get { return _appName; }
+            set { _appName = value; lbApp.Text = value; }
         }
         public string Username
         {
-            get { return username; }
-            set { username = value; lbUser.Text = value; }
+            get { return _username; }
+            set { _username = value; lbUser.Text = value; }
         }
         public string IconName
         {
-            get { return iconName; }
-            set { iconName = value; pictureBoxApp.Image = (Image?)Properties.Resources.ResourceManager.GetObject(value); }
+            get { return _iconName; }
+            set { _iconName = value; pictureBoxApp.Image = (Image?)Properties.Resources.ResourceManager.GetObject(value); }
         }
 
 
@@ -93,7 +93,7 @@ namespace pwdvault.Forms
             {
                 using var context = new PasswordVaultContext();
                 var passwordController = new PasswordController(context);
-                var password = passwordController.GetPassword(appName, username);
+                var password = passwordController.GetPassword(_appName, _username);
                 Clipboard.SetText(EncryptionService.DecryptPassword(password.Password, EncryptionService.GetKeyFromFile()));
                 ClearClipboardDelayed();
             }

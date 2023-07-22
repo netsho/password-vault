@@ -6,12 +6,12 @@ namespace pwdvault.Forms
 {
     public partial class MainForm : Form
     {
-        private bool dragging = false;
-        private Point dragCursorPoint;
-        private Point dragFormPoint;
-        public string selectedCategory = String.Empty;
+        private bool _dragging = false;
+        private Point _dragCursorPoint;
+        private Point _dragFormPoint;
+        public string _selectedCategory = String.Empty;
         private const int ALL_ROW_INDEX = 10;
-        private int selectedRowIndex = ALL_ROW_INDEX;
+        private int _selectedRowIndex = ALL_ROW_INDEX;
 
         public MainForm()
         {
@@ -29,14 +29,14 @@ namespace pwdvault.Forms
                 control.MouseLeave += CategoriesTable_MouseLeave;
             }
             allTable.GetControlFromPosition(0, 0)!.BackColor = Color.White;
-            selectedCategory = lbAll.Text;
-            UpdatePasswordControls(GetPasswordControls(selectedCategory));
+            _selectedCategory = lbAll.Text;
+            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             new AddPassword().ShowDialog();
-            UpdatePasswordControls(GetPasswordControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
 
         /*------------------------------------------------------------------------------------------------------------------------------*/
@@ -81,27 +81,27 @@ namespace pwdvault.Forms
 
         /*-----------------------------------------------------------------------------------------------------------------*/
         /*-----------------------------------------------------------------------------------------------------------------*/
-        /*---  When the mouse is pressed, the dragging is set to true and gets the window + cursor position ---------------*/
+        /*---  When the mouse is pressed, the _dragging is set to true and gets the window + cursor position ---------------*/
         private void MainForm_MouseDown(object sender, MouseEventArgs e)
         {
-            dragging = true;
-            dragCursorPoint = Cursor.Position;
-            dragFormPoint = Location;
+            _dragging = true;
+            _dragCursorPoint = Cursor.Position;
+            _dragFormPoint = Location;
         }
 
-        /*---  When the mouse is released, the dragging stops -------------------------------------------------------------*/
+        /*---  When the mouse is released, the _dragging stops -------------------------------------------------------------*/
         private void MainForm_MouseUp(object sender, MouseEventArgs e)
         {
-            dragging = false;
+            _dragging = false;
         }
 
         /*---  With each mouse movement, the window moves by adding values to the location points -------------------------*/
         private void MainForm_MouseMove(object sender, MouseEventArgs e)
         {
-            if (dragging)
+            if (_dragging)
             {
-                var difference = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
-                Location = Point.Add(dragFormPoint, new Size(difference));
+                var difference = Point.Subtract(Cursor.Position, new Size(_dragCursorPoint));
+                Location = Point.Add(_dragFormPoint, new Size(difference));
             }
         }
         /*-----------------------------------------------------------------------------------------------------------------*/
@@ -116,7 +116,7 @@ namespace pwdvault.Forms
         {
             string filterText = txtBoxFilter.Text.ToLower();
             listPwdPanel.Controls.Clear();
-            var passwordUserControls = GetPasswordControls(selectedCategory);
+            var passwordUserControls = GetPasswordControls(_selectedCategory);
             var passwordUserControlsFiltred = new List<Password>();
             foreach (Password passwordUserControl in passwordUserControls)
             {
@@ -129,71 +129,71 @@ namespace pwdvault.Forms
 
             if (string.IsNullOrWhiteSpace(txtBoxFilter.Text))
             {
-                UpdatePasswordControls(GetPasswordControls(selectedCategory));
+                UpdatePasswordControls(GetPasswordControls(_selectedCategory));
             }
         }
 
         private void LbAll_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
-            selectedCategory = lbAll.Text;
-            UpdatePasswordControls(GetPasswordControls(selectedCategory));
+            _selectedCategory = lbAll.Text;
+            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
 
         private void LbAdmini_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
-            selectedCategory = lbAdmini.Text;
-            UpdatePasswordControls(GetPasswordControls(selectedCategory));
+            _selectedCategory = lbAdmini.Text;
+            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
 
         private void LbWork_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
-            selectedCategory = lbWork.Text;
-            UpdatePasswordControls(GetPasswordControls(selectedCategory));
+            _selectedCategory = lbWork.Text;
+            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
 
         private void LbStudy_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
-            selectedCategory = lbStudy.Text;
-            UpdatePasswordControls(GetPasswordControls(selectedCategory));
+            _selectedCategory = lbStudy.Text;
+            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
 
         private void LbSocial_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
-            selectedCategory = lbSocial.Text;
-            UpdatePasswordControls(GetPasswordControls(selectedCategory));
+            _selectedCategory = lbSocial.Text;
+            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
 
         private void LbRetail_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
-            selectedCategory = lbRetail.Text;
-            UpdatePasswordControls(GetPasswordControls(selectedCategory));
+            _selectedCategory = lbRetail.Text;
+            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
 
         private void LbFinance_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
-            selectedCategory = lbFinance.Text;
-            UpdatePasswordControls(GetPasswordControls(selectedCategory));
+            _selectedCategory = lbFinance.Text;
+            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
 
         private void LbGames_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
-            selectedCategory = lbGames.Text;
-            UpdatePasswordControls(GetPasswordControls(selectedCategory));
+            _selectedCategory = lbGames.Text;
+            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
 
         private void LbCoding_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
-            selectedCategory = lbCoding.Text;
-            UpdatePasswordControls(GetPasswordControls(selectedCategory));
+            _selectedCategory = lbCoding.Text;
+            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
 
         /// <summary>
@@ -259,7 +259,7 @@ namespace pwdvault.Forms
         /// <param name="e"></param>
         private void OnPasswordEditOrDelete(object? sender, EventArgs e)
         {
-            UpdatePasswordControls(GetPasswordControls(selectedCategory));
+            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
 
         /// <summary>
@@ -270,7 +270,7 @@ namespace pwdvault.Forms
         /// <param name="sender"></param>
         private void ShowSelectedCategory(object sender)
         {
-            if (selectedRowIndex == ALL_ROW_INDEX)
+            if (_selectedRowIndex == ALL_ROW_INDEX)
             {
                 // if the sender is not the category "All", else do nothing.
                 if (!((Control)sender).Name.Equals("lbAll") && !((Control)sender).Name.Equals("allPicture"))
@@ -280,7 +280,7 @@ namespace pwdvault.Forms
                     var row = categoriesTable.GetRow((Control)sender);
                     // Change the back color of left column to show which category is selected
                     categoriesTable.GetControlFromPosition(0, row)!.BackColor = Color.White;
-                    selectedRowIndex = row;
+                    _selectedRowIndex = row;
                 }
             }
             else
@@ -288,18 +288,18 @@ namespace pwdvault.Forms
                 // If the sender is category "All"
                 if (((Control)sender).Name.Equals("lbAll") || ((Control)sender).Name.Equals("allPicture"))
                 {
-                    categoriesTable.GetControlFromPosition(0, selectedRowIndex)!.BackColor = Color.FromArgb(195, 141, 158);
+                    categoriesTable.GetControlFromPosition(0, _selectedRowIndex)!.BackColor = Color.FromArgb(195, 141, 158);
                     // Change the back color of left column to show which category is selected
                     allTable.GetControlFromPosition(0, 0)!.BackColor = Color.White;
-                    selectedRowIndex = ALL_ROW_INDEX;
+                    _selectedRowIndex = ALL_ROW_INDEX;
                 }
                 else
                 {
-                    categoriesTable.GetControlFromPosition(0, selectedRowIndex)!.BackColor = Color.FromArgb(195, 141, 158);
+                    categoriesTable.GetControlFromPosition(0, _selectedRowIndex)!.BackColor = Color.FromArgb(195, 141, 158);
                     // Get the row index of the control that raised the event
                     var row = categoriesTable.GetRow((Control)sender);
                     categoriesTable.GetControlFromPosition(0, row)!.BackColor = Color.White;
-                    selectedRowIndex = row;
+                    _selectedRowIndex = row;
                 }
             }
         }

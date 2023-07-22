@@ -17,7 +17,7 @@ namespace pwdvault.Forms
         {
             if (String.IsNullOrWhiteSpace(txtBoxUser.Text) || String.IsNullOrWhiteSpace(txtBoxPwd.Text))
             {
-                MessageBox.Show("Please fill in username and password.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please fill in _username and password.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -39,7 +39,7 @@ namespace pwdvault.Forms
                         }
                         else
                         {
-                            MessageBox.Show("Invalid username or password. Please try again.", "Invalid user's credentiels", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Invalid _username or password. Please try again.", "Invalid user's credentiels", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         Cursor = Cursors.Default;
                     }

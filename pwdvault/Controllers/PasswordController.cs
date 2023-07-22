@@ -7,11 +7,11 @@ namespace pwdvault.Controllers
 {
     public class PasswordController
     {
-        private readonly PasswordVaultContext dbContext;
+        private readonly PasswordVaultContext _dbContext;
 
         public PasswordController(PasswordVaultContext dbContext)
         {
-            this.dbContext = dbContext;
+            this._dbContext = dbContext;
             dbContext.SaveChangesFailed += SaveChangesOnFail;
         }
 
@@ -22,8 +22,8 @@ namespace pwdvault.Controllers
         public void CreatePassword(AppPassword password)
         {
             Log.Logger.Information("Adding a new password on database...");
-            dbContext.Add(password);
-            dbContext.SaveChanges();
+            _dbContext.Add(password);
+            _dbContext.SaveChanges();
         }
 
         /// <summary>
@@ -35,9 +35,9 @@ namespace pwdvault.Controllers
         {
             Log.Logger.Information("Deleting a password from database...");
             // If AppPassword is null, throw the exception
-            var password = dbContext.Passwords.Find(id) ?? throw new PasswordNotFoundException($"The password cannot be found !");
-            dbContext.Remove(password);
-            dbContext.SaveChanges();
+            var password = _dbContext.Passwords.Find(id) ?? throw new PasswordNotFoundException($"The password cannot be found !");
+            _dbContext.Remove(password);
+            _dbContext.SaveChanges();
         }
 
         /// <summary>
@@ -47,8 +47,8 @@ namespace pwdvault.Controllers
         public void UpdatePassword(AppPassword passwordEdited)
         {
             Log.Logger.Information("Updating a password on database...");
-            dbContext.Update(passwordEdited);
-            dbContext.SaveChanges();
+            _dbContext.Update(passwordEdited);
+            _dbContext.SaveChanges();
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace pwdvault.Controllers
         public AppPassword GetPassword(string appName, string username)
         {
             Log.Logger.Information($"Getting the {appName}'s password from database...");
-            var password = dbContext.Passwords.FirstOrDefault(password => password.AppName == appName && password.UserName == username);
+            var password = _dbContext.Passwords.FirstOrDefault(password => password.AppName == appName && password.UserName == username);
             return password ?? throw new PasswordNotFoundException($"The password for {appName} cannot be found !");
         }
 
@@ -73,7 +73,7 @@ namespace pwdvault.Controllers
         public List<AppPassword> GetAllPasswords()
         {
             Log.Logger.Information("Retrieving all passwords from database...");
-            return dbContext.Passwords.ToList();
+            return _dbContext.Passwords.ToList();
         }
 
         public void SaveChangesOnFail(object? sender, SaveChangesFailedEventArgs e)

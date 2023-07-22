@@ -7,11 +7,11 @@ namespace pwdvault.Controllers
 {
     public class UserController
     {
-        private readonly PasswordVaultContext dbContext;
+        private readonly PasswordVaultContext _dbContext;
 
         public UserController(PasswordVaultContext dbContext)
         {
-            this.dbContext = dbContext;
+            this._dbContext = dbContext;
             dbContext.SaveChangesFailed += SaveChangesOnFail;
         }
 
@@ -24,17 +24,17 @@ namespace pwdvault.Controllers
             if (!UserExists(user.Username))
             {
                 Log.Logger.Information("Creating a new user in database...");
-                dbContext.Add(user);
-                dbContext.SaveChanges();
+                _dbContext.Add(user);
+                _dbContext.SaveChanges();
             }
             else
             {
-                throw new UserException("Username already in use. Please try logging in or use a different username.");
+                throw new UserException("Username already in use. Please try logging in or use a different _username.");
             }
         }
 
         /// <summary>
-        /// Checks if the user already exists by username.
+        /// Checks if the user already exists by _username.
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
@@ -51,7 +51,7 @@ namespace pwdvault.Controllers
         }
 
         /// <summary>
-        /// Gets the user from database by username.
+        /// Gets the user from database by _username.
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
@@ -62,10 +62,10 @@ namespace pwdvault.Controllers
             {
                 if (user.Username.ToLower().Equals(username.ToLower()))
                 {
-                    return dbContext.Users.Find(user.Id)!;
+                    return _dbContext.Users.Find(user.Id)!;
                 }
             }
-            throw new UserException("No account found with this username. Please ensure the username is correct or sign up for a new account.");
+            throw new UserException("No account found with this _username. Please ensure the _username is correct or sign up for a new account.");
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace pwdvault.Controllers
         public List<User> GetUsers()
         {
             Log.Logger.Information("Retrieving users from database...");
-            return dbContext.Users.ToList();
+            return _dbContext.Users.ToList();
         }
 
         public void SaveChangesOnFail(object? sender, SaveChangesFailedEventArgs e)
