@@ -120,3 +120,4 @@ This project is licensed under the [GNU GPLv3 License](https://choosealicense.co
 ## Links
 
 1. [Npgsql Entity Framework Core Provider](https://www.npgsql.org/efcore/index.html)
+2. [VaultSharp](https://rajanadar.github.io/VaultSharp/)
