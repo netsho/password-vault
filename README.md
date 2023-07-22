@@ -1,7 +1,8 @@
 
 # Password Vault
-![Static Badge](https://img.shields.io/badge/In_development-blue)
-
+<p align="center">
+	![Static Badge](https://img.shields.io/badge/In_development-blue)
+</p>
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)<p align="center">
 [Overview](#overview) |
