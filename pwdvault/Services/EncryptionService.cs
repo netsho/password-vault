@@ -90,12 +90,6 @@ namespace pwdvault.Services
             return File.ReadAllBytes(keyFilePath);
         }
 
-        // A modifier
-        public static byte[] GetKeyFromVault()
-        {
-            return File.ReadAllBytes("");
-        }
-
         /// <summary>
         /// <para>
         /// This method takes the app's password and generate a new key for encrypting the password. The key generation is derived from the password.
