@@ -37,8 +37,8 @@ This project is intended to serve as both a learning resource and a practical pa
 Ensure you have the following components installed before running the application:
 
 * [.NET](https://dotnet.microsoft.com/en-us/download/dotnet/7.0): Version 7.0
-* [PostgreSQL](https://example.com): Version 2.34 **(To be updated)**
-* [HashiCorp Vault](https://example.com): Version 1234 **(To be updated)**
+* [PostgreSQL](https://www.postgresql.org/download/): Version 14.8+
+* [HashiCorp Vault](https://developer.hashicorp.com/vault/downloads): Version 1.14.0
 ## Installation
 
 Clone the project
@@ -89,7 +89,7 @@ To use HashiCorp Vault, update the `VaultServerUri`, `RoleID` of the AppRole, an
 
 ```
 <appSettings>
-	<add key="VaultServerURI" value="ServerAddress:Port"/>
+	<add key="VaultServerUri" value="ServerAddress:Port"/>
 	<add key="RoleID" value="RoleId"/>
 	<add key="SecretPath" value="Path_Of_KV2_Engine"/>
 </appSettings>
