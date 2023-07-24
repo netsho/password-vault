@@ -64,7 +64,7 @@ namespace pwdvault.Forms
         }
 
         /// <summary>
-        /// Encrypts the newly password, creates the corresponding object and saves it in the database.
+        /// Encrypts the newly password, creates the corresponding object and saves it in the database, while saving the encryption key in vault.
         /// </summary>
         private void AddPasswordDb()
         {
@@ -72,14 +72,16 @@ namespace pwdvault.Forms
             {
                 Cursor = Cursors.WaitCursor;
                 // Encrypt password and store it, success message and hide the form
-                var keyEncryption = EncryptionService.GenerateKey(txtBoxPwd.Text);
-                //var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, keyEncryption);
-                var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
+                var encryptionKey = EncryptionService.GenerateKey(txtBoxPwd.Text);
+                var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, encryptionKey);
                 var appPassword = new AppPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text)) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
                 
                 using var context = new PasswordVaultContext();
                 var passwordController = new PasswordController(context);
                 passwordController.CreatePassword(appPassword);
+
+                var vaultController = VaultController.GetInstance();
+                vaultController.StoreEncryptionKey(txtBoxApp.Text, encryptionKey);
                 
                 Cursor = Cursors.Default;
                 MessageBox.Show($"{appPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

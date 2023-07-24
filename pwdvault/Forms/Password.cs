@@ -77,6 +77,9 @@ namespace pwdvault.Forms
                     var password = passwordController.GetPassword(AppName, Username);
                     passwordController.DeletePassword(password.Id);
 
+                    var vaultController = VaultController.GetInstance();
+                    vaultController.DeleteEncryptionKey(AppName);
+
                     OnPasswordEditedOrDeleted();
                 }
                 catch (PasswordNotFoundException ex)
@@ -93,8 +96,10 @@ namespace pwdvault.Forms
             {
                 using var context = new PasswordVaultContext();
                 var passwordController = new PasswordController(context);
-                var password = passwordController.GetPassword(_appName, _username);
-                Clipboard.SetText(EncryptionService.DecryptPassword(password.Password, EncryptionService.GetKeyFromFile()));
+                var password = passwordController.GetPassword(AppName, Username);
+
+                var vaultController = VaultController.GetInstance();
+                Clipboard.SetText(EncryptionService.DecryptPassword(password.Password, vaultController.GetEncryptionKey(AppName)));
                 ClearClipboardDelayed();
             }
             catch (Exception ex)
@@ -112,16 +117,24 @@ namespace pwdvault.Forms
         /// </summary>
         private static void ClearClipboardDelayed()
         {
-            var thread = new Thread(() =>
+            try
             {
-                // Wait for 10 seconds
-                Thread.Sleep(10000);
+                var thread = new Thread(() =>
+                {
+                    // Wait for 10 seconds
+                    Thread.Sleep(10000);
 
-                // Clear the clipboard
-                Clipboard.Clear();
-            });
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
+                    // Clear the clipboard
+                    Clipboard.Clear();
+                });
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+            }
         }
 
         /// <summary>

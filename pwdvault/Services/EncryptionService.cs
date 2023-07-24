@@ -21,28 +21,37 @@ namespace pwdvault.Services
         /// <exception cref="ArgumentException"></exception>
         public static byte[] EncryptPassword(string password, byte[] key)
         {
-            Log.Logger.Information("Encrypting the password...");
-            if (String.IsNullOrEmpty(password))
+            try
             {
-                throw new ArgumentException("The password is empty.");
+                Log.Logger.Information("Encrypting the password...");
+                if (String.IsNullOrEmpty(password))
+                {
+                    throw new ArgumentException("The password is empty.");
+                }
+                if (key == null || key.Length == 0)
+                {
+                    throw new ArgumentException("The encryption key is either null or empty.");
+                }
+
+                using var aes = Aes.Create();
+                aes.Key = key;
+                aes.GenerateIV();
+
+                using var memoryStream = new MemoryStream();
+                memoryStream.Write(aes.IV, 0, IV_SIZE);
+
+                using var cryptoStream = new CryptoStream(memoryStream, aes.CreateEncryptor(), CryptoStreamMode.Write);
+                var passwordBytes = Encoding.UTF32.GetBytes(password);
+                cryptoStream.Write(passwordBytes, 0, passwordBytes.Length);
+
+                return memoryStream.ToArray();
             }
-            if (key == null || key.Length == 0)
+            catch (Exception ex)
             {
-                throw new ArgumentException("The encryption key is either null or empty.");
+                Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                throw new Exception(ex.Message, ex);
             }
-
-            using var aes = Aes.Create();
-            aes.Key = key;
-            aes.GenerateIV();
-
-            using var memoryStream = new MemoryStream();
-            memoryStream.Write(aes.IV, 0, IV_SIZE);
-
-            using var cryptoStream = new CryptoStream(memoryStream, aes.CreateEncryptor(), CryptoStreamMode.Write);
-            var passwordBytes = Encoding.UTF32.GetBytes(password);
-            cryptoStream.Write(passwordBytes, 0, passwordBytes.Length);
-             
-            return memoryStream.ToArray();
+            
         }
 
         /// <summary>
@@ -58,36 +67,37 @@ namespace pwdvault.Services
         /// <exception cref="ArgumentException"></exception>
         public static string DecryptPassword(byte[] encryptedPassword, byte[] key)
         {
-            Log.Logger.Information("Decrypting password...");
-            if (encryptedPassword == null || encryptedPassword.Length == 0)
+            try
             {
-                throw new ArgumentException("The encrypted password is either null or empty.");
+                Log.Logger.Information("Decrypting password...");
+                if (encryptedPassword == null || encryptedPassword.Length == 0)
+                {
+                    throw new ArgumentException("The encrypted password is either null or empty.");
+                }
+                if (key == null || key.Length == 0)
+                {
+                    throw new ArgumentException("The decryption key is either null or empty.");
+                }
+
+                using var aes = Aes.Create();
+                aes.Key = key;
+
+                using var memoryStream = new MemoryStream(encryptedPassword);
+                var iv = new byte[IV_SIZE];
+                memoryStream.Read(iv, 0, IV_SIZE);
+                aes.IV = iv;
+
+                using var cryptoStream = new CryptoStream(memoryStream, aes.CreateDecryptor(), CryptoStreamMode.Read);
+                var decryptedPasswordByte = new byte[encryptedPassword.Length];
+                var byteCountPassword = cryptoStream.Read(decryptedPasswordByte, 0, encryptedPassword.Length);
+
+                return Encoding.UTF32.GetString(decryptedPasswordByte, 0, byteCountPassword);
             }
-            if (key == null || key.Length == 0)
+            catch (Exception ex)
             {
-                throw new ArgumentException("The decryption key is either null or empty.");
+                Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                throw new Exception(ex.Message, ex);
             }
-
-            using var aes = Aes.Create();
-            aes.Key = key;
-
-            using var memoryStream = new MemoryStream(encryptedPassword);
-            var iv = new byte[IV_SIZE];
-            memoryStream.Read(iv, 0, IV_SIZE);
-            aes.IV = iv;
-
-            using var cryptoStream = new CryptoStream(memoryStream, aes.CreateDecryptor(), CryptoStreamMode.Read);
-            var decryptedPasswordByte = new byte[encryptedPassword.Length];
-            var byteCountPassword = cryptoStream.Read(decryptedPasswordByte, 0, encryptedPassword.Length);
-
-            return Encoding.UTF32.GetString(decryptedPasswordByte, 0, byteCountPassword);
-        }
-
-        public static byte[] GetKeyFromFile()
-        {
-            var folderDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault");
-            string keyFilePath = Path.Combine(folderDataPath, "fileKey");
-            return File.ReadAllBytes(keyFilePath);
         }
 
         /// <summary>

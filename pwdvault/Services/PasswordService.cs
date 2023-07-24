@@ -17,25 +17,33 @@ namespace pwdvault.Services
         /// <returns>The method returns a string that containes the random characters.</returns>
         public static string GeneratePassword()
         {
-            Log.Logger.Information("Generating new password...");
-            const int length = 20;
-            const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$€%^&*()_+-=[]{}|;:,.<>?";
-
-            var byteArray = new byte[length * 4];
-            var randomNumberGenerator = RandomNumberGenerator.Create();
-            randomNumberGenerator.GetBytes(byteArray);
-
-
-            var stringBuilder = new StringBuilder(length);
-            for (int i = 0; i < length; i++)
+            try
             {
-                uint randomInt = BitConverter.ToUInt32(byteArray, i * 4);
-                int randomIndex = (int)(randomInt % validChars.Length);
+                Log.Logger.Information("Generating new password...");
+                const int length = 20;
+                const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$€%^&*()_+-=[]{}|;:,.<>?";
 
-                stringBuilder.Append(validChars[randomIndex]);
+                var byteArray = new byte[length * 4];
+                var randomNumberGenerator = RandomNumberGenerator.Create();
+                randomNumberGenerator.GetBytes(byteArray);
+
+
+                var stringBuilder = new StringBuilder(length);
+                for (int i = 0; i < length; i++)
+                {
+                    uint randomInt = BitConverter.ToUInt32(byteArray, i * 4);
+                    int randomIndex = (int)(randomInt % validChars.Length);
+
+                    stringBuilder.Append(validChars[randomIndex]);
+                }
+
+                return stringBuilder.ToString();
             }
-
-            return stringBuilder.ToString();
+            catch (Exception ex)
+            {
+                Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                throw new Exception(ex.Message, ex);
+            }
         }
 
 

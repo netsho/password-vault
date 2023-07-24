@@ -1,6 +1,8 @@
 ﻿using pwdvault.Modeles;
 using System.Configuration;
 using System.Text.Json;
+using Serilog;
+using pwdvault.Controllers;
 
 namespace pwdvault.Forms
 {
@@ -34,8 +36,22 @@ namespace pwdvault.Forms
             }
             else
             {
-                AddLoginDataConfig();
-                DialogResult = DialogResult.OK;
+                try
+                {
+                    AddLoginDataConfig();
+
+                    var vaultServerUri = ConfigurationManager.AppSettings["VaultServerUri"];
+                    var roleID = ConfigurationManager.AppSettings["RoleID"];
+                    var secretPath = ConfigurationManager.AppSettings["SecretPath"];
+                    VaultController.GetInstance(roleID!, txtBoxSecretId.Text, vaultServerUri!, secretPath!);
+
+                    DialogResult = DialogResult.OK;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                }
             }
         }
 
@@ -44,6 +60,9 @@ namespace pwdvault.Forms
             Close();
         }
 
+        /*------------------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------------------*/
+        /*------------ File dialogs buttons to retrieve certificates -------------------------------------------------------------------*/
         private void BtnFileDialogCA_Click(object sender, EventArgs e)
         {
             var openFileDialogCA = new OpenFileDialog
@@ -82,6 +101,8 @@ namespace pwdvault.Forms
                 txtBoxKey.Text = openFileDialogKey.FileName;
             }
         }
+        /*------------------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------------------*/
 
         private void CheckBoxInfo_CheckedChanged(object sender, EventArgs e)
         {
@@ -96,7 +117,9 @@ namespace pwdvault.Forms
         /// </summary>
         private void StoreLoginData()
         {
-            var loginData = new List<LoginData>
+            try
+            {
+                var loginData = new List<LoginData>
             {
                 new LoginData()
                 {
@@ -106,9 +129,15 @@ namespace pwdvault.Forms
                     SecretID = txtBoxSecretId.Text
                 }
             };
-            var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
-            string jsonLogin = JsonSerializer.Serialize(loginData, jsonOptions);
-            File.WriteAllText(loginDataPath, jsonLogin);
+                var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
+                string jsonLogin = JsonSerializer.Serialize(loginData, jsonOptions);
+                File.WriteAllText(loginDataPath, jsonLogin);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+            }
         }
 
         /// <summary>
@@ -117,9 +146,18 @@ namespace pwdvault.Forms
         /// <returns></returns>
         private LoginData RetrieveLoginData()
         {
-            var jsonLoginData = File.ReadAllText(loginDataPath);
-            var listLoginData = JsonSerializer.Deserialize<List<LoginData>>(jsonLoginData);
-            return listLoginData!.FirstOrDefault() ?? new LoginData();
+            try
+            {
+                var jsonLoginData = File.ReadAllText(loginDataPath);
+                var listLoginData = JsonSerializer.Deserialize<List<LoginData>>(jsonLoginData);
+                return listLoginData!.FirstOrDefault() ?? new LoginData();
+            } 
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                return new LoginData();
+            }
         }
 
         /// <summary>

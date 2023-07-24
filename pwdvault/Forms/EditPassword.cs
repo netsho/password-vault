@@ -8,21 +8,22 @@ namespace pwdvault.Forms
     public partial class EditPassword : Form
     {
         private readonly AppPassword appPassword;
-        public EditPassword(string AppName, string Username)
+        public EditPassword(string appName, string username)
         {
             try
             {
                 InitializeComponent();
                 comBoxCat.DataSource = Enum.GetValues(typeof(Categories));
-                lbTitle.Text = $"Edit {AppName} password";
+                lbTitle.Text = $"Edit {appName} password";
                 using var context = new PasswordVaultContext();
-                appPassword = new PasswordController(context).GetPassword(AppName, Username);
+                appPassword = new PasswordController(context).GetPassword(appName, username);
                 txtBoxApp.Text = appPassword.AppName;
                 txtBoxApp.ReadOnly = true;
                 comBoxCat.Text = appPassword.AppCategory;
                 txtBoxUser.Text = appPassword.UserName;
                 txtBoxUser.ReadOnly = true;
-                txtBoxPwd.Text = EncryptionService.DecryptPassword(appPassword.Password, EncryptionService.GetKeyFromFile());
+                var vaultController = VaultController.GetInstance();
+                txtBoxPwd.Text = EncryptionService.DecryptPassword(appPassword.Password, vaultController.GetEncryptionKey(appName));
             }
             catch (Exception ex)
             {
@@ -61,7 +62,9 @@ namespace pwdvault.Forms
                 try
                 {
                     Cursor = Cursors.WaitCursor;
-                    var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, EncryptionService.GetKeyFromFile());
+
+                    var encryptionKey = EncryptionService.GenerateKey(txtBoxPwd.Text);
+                    var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, encryptionKey);
                     var appPasswordEdited = new AppPassword(comBoxCat.Text, appPassword.AppName, appPassword.UserName, encryptedPassword, appPassword.IconName)
                     {
                         Id = appPassword.Id,
@@ -71,7 +74,10 @@ namespace pwdvault.Forms
                     using var context = new PasswordVaultContext();
                     var passwordController = new PasswordController(context);
                     passwordController.UpdatePassword(appPasswordEdited);
-                    
+
+                    var vaultController = VaultController.GetInstance();
+                    vaultController.UpdateEncryptionKey(appPassword.AppName, encryptionKey);
+
                     Cursor = Cursors.Default;
                     MessageBox.Show($"{appPasswordEdited.AppName}'s password successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
