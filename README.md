@@ -84,11 +84,15 @@ To use SSL connection with PostgreSQL, update the `host` and `database` in `App.
 </connectionStrings>
 ```
 ### Vault Configuration 
-**To be updated**
-To use HashiCorp Vault, update the `Vault Address` in `tt.config`
+The authentication to HashiCorp Vault is made using AppRole, and the secret engine used to store encryption keys is KV-2 (Key/Value version 2).
+To use HashiCorp Vault, update the `VaultServerUri`, `RoleID` of the AppRole, and `SecretPath` of the KV2 secret engine  in `App.config`
 
 ```
-tt
+<appSettings>
+	<add key="VaultServerURI" value="ServerAddress:Port"/>
+	<add key="RoleID" value="RoleId"/>
+	<add key="SecretPath" value="Path_Of_KV2_Engine"/>
+</appSettings>
 ```
 
 ### SSL Certificates and Vault Secret ID
@@ -118,5 +122,5 @@ This project is licensed under the [GNU GPLv3 License](https://choosealicense.co
 
 ## Links
 
-1. [Npgsql Entity Framework Core Provider](https://www.npgsql.org/efcore/index.html)
-2. [VaultSharp](https://rajanadar.github.io/VaultSharp/)
+1. [PostgreSQL on .NET - Npgsql](https://www.npgsql.org/efcore/index.html)
+2. [Vault on .NET - VaultSharp](https://rajanadar.github.io/VaultSharp/)
