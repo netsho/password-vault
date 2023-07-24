@@ -8,14 +8,14 @@ namespace pwdvault.Forms
 {
     public partial class LoginDataForm : Form
     {
-        private readonly string username;
-        private readonly string loginDataPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault"), "LoginData.json");
+        private readonly string _username;
+        private readonly string _loginDataPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault"), "LoginData.json");
 
         public LoginDataForm(string username)
         {
             InitializeComponent();
-            this.username = username;
-            if(File.Exists(loginDataPath))
+            _username = username;
+            if(File.Exists(_loginDataPath))
             {
                 var loginData = RetrieveLoginData();
                 txtBoxCA.Text = loginData.CaFilePath;
@@ -131,7 +131,7 @@ namespace pwdvault.Forms
             };
                 var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
                 string jsonLogin = JsonSerializer.Serialize(loginData, jsonOptions);
-                File.WriteAllText(loginDataPath, jsonLogin);
+                File.WriteAllText(_loginDataPath, jsonLogin);
             }
             catch (Exception ex)
             {
@@ -148,7 +148,7 @@ namespace pwdvault.Forms
         {
             try
             {
-                var jsonLoginData = File.ReadAllText(loginDataPath);
+                var jsonLoginData = File.ReadAllText(_loginDataPath);
                 var listLoginData = JsonSerializer.Deserialize<List<LoginData>>(jsonLoginData);
                 return listLoginData!.FirstOrDefault() ?? new LoginData();
             } 
@@ -161,13 +161,13 @@ namespace pwdvault.Forms
         }
 
         /// <summary>
-        /// Updates the connection string in the application's configuration file by adding the _username and needed certificates for SSL connection.
+        /// Updates the connection string in the application's configuration file by adding the username and needed certificates for SSL connection.
         /// </summary>
         private void AddLoginDataConfig()
         {
             var appConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var connectionString = ConfigurationManager.ConnectionStrings["ConnectionDb"].ConnectionString;
-            connectionString += "_username=" + username + ";";
+            connectionString += "user id=" + _username + ";";
             connectionString += "ssl mode=verifyfull;";
             connectionString += "root certificate=" + txtBoxCA.Text + ";";
             connectionString += "ssl certificate=" + txtBoxCertificate.Text + ";";
