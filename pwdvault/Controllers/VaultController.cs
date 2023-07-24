@@ -89,10 +89,10 @@ namespace pwdvault.Controllers
         /// </summary>
         /// <param name="appName"></param>
         /// <returns></returns>
-        public async Task<byte[]> GetEncryptionKey(string appName)
+        public byte[] GetEncryptionKey(string appName)
         {
-            var kv2Secret = await _vaultClient!.V1.Secrets.KeyValue.V2.ReadSecretAsync(_secretPath + appName);
-            var secret = (Dictionary<string, object>)kv2Secret.Data.Data;
+            var kv2Secret = _vaultClient!.V1.Secrets.KeyValue.V2.ReadSecretAsync(_secretPath + appName);
+            var secret = (Dictionary<string, object>)kv2Secret.Result.Data.Data;
             return (byte[])secret.Last().Value;
         }
 
