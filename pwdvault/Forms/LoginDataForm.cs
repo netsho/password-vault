@@ -8,13 +8,11 @@ namespace pwdvault.Forms
 {
     public partial class LoginDataForm : Form
     {
-        private readonly string _username;
         private readonly string _loginDataPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault"), "LoginData.json");
 
-        public LoginDataForm(string username)
+        public LoginDataForm()
         {
             InitializeComponent();
-            _username = username;
             if(File.Exists(_loginDataPath))
             {
                 var loginData = RetrieveLoginData();
@@ -167,15 +165,41 @@ namespace pwdvault.Forms
         {
             var appConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var connectionString = ConfigurationManager.ConnectionStrings["ConnectionDb"].ConnectionString;
-            connectionString += "user id=" + _username + ";";
-            connectionString += "ssl mode=verifyfull;";
-            connectionString += "root certificate=" + txtBoxCA.Text + ";";
-            connectionString += "ssl certificate=" + txtBoxCertificate.Text + ";";
-            connectionString += "ssl key=" + txtBoxKey.Text + ";";
+
+            connectionString = UpdateConnectionStringParameter(connectionString, "root certificate", txtBoxCA.Text);
+            connectionString = UpdateConnectionStringParameter(connectionString, "ssl certificate", txtBoxCertificate.Text);
+            connectionString = UpdateConnectionStringParameter(connectionString, "ssl key", txtBoxKey.Text);
+
             appConfig.ConnectionStrings.ConnectionStrings.Remove(ConfigurationManager.ConnectionStrings["ConnectionDb"]);
             appConfig.ConnectionStrings.ConnectionStrings.Add(new ConnectionStringSettings("ConnectionDb", connectionString));
             appConfig.Save(ConfigurationSaveMode.Modified, true);
             ConfigurationManager.RefreshSection("connectionStrings");
+        }
+
+        /// <summary>
+        /// Checks if a parameter already exists in the connection string. If it does, we update its value; otherwise, we add the parameter with its value to the connection string.
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="parameterName"></param>
+        /// <param name="parameterValue"></param>
+        /// <returns></returns>
+        private static string UpdateConnectionStringParameter(string connectionString, string parameterName, string parameterValue)
+        {
+            if (!connectionString.Contains(parameterName + "="))
+            {
+                connectionString += $"{parameterName}={parameterValue};";
+            } 
+            else
+            {
+                var parameterStart = connectionString.IndexOf(parameterName + "=", StringComparison.OrdinalIgnoreCase);
+                var valueStartIndex = parameterStart + parameterName.Length + 1;
+                var valueEndIndex = connectionString.IndexOf(';', valueStartIndex);
+                if (valueEndIndex == -1) valueEndIndex = connectionString.Length;
+
+                var currentValue = connectionString.Substring(valueStartIndex, valueEndIndex - valueStartIndex);
+                connectionString = connectionString.Replace(currentValue, parameterValue);
+            }
+            return connectionString;
         }
     }
 }

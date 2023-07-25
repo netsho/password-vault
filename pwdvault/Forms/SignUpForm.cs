@@ -22,7 +22,7 @@ namespace pwdvault.Forms
                 !errorProvider.HasErrors
                 )
             {
-                var dialogResult = new LoginDataForm(txtBoxUser.Text).ShowDialog();
+                var dialogResult = new LoginDataForm().ShowDialog();
                 if(dialogResult == DialogResult.OK )
                 {
                     try

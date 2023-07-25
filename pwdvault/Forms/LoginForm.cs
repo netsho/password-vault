@@ -21,7 +21,7 @@ namespace pwdvault.Forms
             }
             else
             {
-                var dialogResult = new LoginDataForm(txtBoxUser.Text).ShowDialog();
+                var dialogResult = new LoginDataForm().ShowDialog();
                 if (dialogResult == DialogResult.OK)
                 {
                     try
