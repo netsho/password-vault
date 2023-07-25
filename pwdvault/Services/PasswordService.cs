@@ -41,7 +41,7 @@ namespace pwdvault.Services
             }
             catch (Exception ex)
             {
-                Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
                 throw new Exception(ex.Message, ex);
             }
         }
@@ -110,7 +110,7 @@ namespace pwdvault.Services
             }
             catch (Exception ex)
             {
-                Log.Logger.Error("\nSource : " + ex.Source + "\nMessage : " + ex.Message);
+                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
                 return String.Empty;
             }
         }

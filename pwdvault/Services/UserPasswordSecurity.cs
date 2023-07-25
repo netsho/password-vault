@@ -55,7 +55,6 @@ namespace pwdvault.Services
         /// <returns></returns>
         public static bool VerifyPassword(string newPassword, byte[] oldSalt, byte[] oldHash)
         {
-            Log.Logger.Information("User's passwordDB verification...");
             var newHash = GenerateHash(newPassword, oldSalt);
             return SlowEquals(oldHash, newHash);
         }

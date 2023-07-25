@@ -26,7 +26,8 @@ namespace pwdvault
             /* --------------------- Create the logger for the application */
             using var logger = new LoggerConfiguration()
                 .MinimumLevel.Warning()
-                .WriteTo.File($@"{passwordVaultLogsFolder}\log-.txt", rollingInterval: RollingInterval.Day, fileSizeLimitBytes: 1024 * 1024, rollOnFileSizeLimit: true)
+                .WriteTo.File($@"{passwordVaultLogsFolder}\log-.txt", rollingInterval: RollingInterval.Day, fileSizeLimitBytes: 1024 * 1024, rollOnFileSizeLimit: true,
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Source} {Message}{NewLine}{Exception}")
                 .CreateLogger();
 
             Log.Logger = logger;
