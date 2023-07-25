@@ -76,11 +76,11 @@ Sign Up when the application has started to create the scheme in database (only 
 ## Configuration
 
 ### PostgreSQL Configuration
-To use SSL connection with PostgreSQL, update the `host` and `database` in `App.config`: 
+To use SSL connection with PostgreSQL, update the `host`, `database` and `username` in `App.config`: 
 
 ```
 <connectionStrings>
-	<add name="ConnectionDb" connectionString="Host=hostname;database=mydatabase;" providerName="Npgsql"/>
+	<add name="ConnectionDb" connectionString="Host=hostname;database=mydatabase;username=db_username;ssl mode=verifyfull;" providerName="Npgsql"/>
 </connectionStrings>
 ```
 ### Vault Configuration 
