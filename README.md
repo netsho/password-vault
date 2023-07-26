@@ -1,6 +1,9 @@
 
 # Password Vault
-![Static Badge](https://img.shields.io/badge/In_development-blue)
+![Static Badge](https://img.shields.io/badge/In_development-blue) 
+![Static Badge](https://custom-icon-badges.demolab.com/badge/-password_vault-green?logo=lock_icon)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/netsho/password-vault?color=blue)
+![GitHub](https://img.shields.io/github/license/netsho/password-vault)
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)<p align="center">
 [Overview](#overview) |
