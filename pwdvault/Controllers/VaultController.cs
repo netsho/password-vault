@@ -109,7 +109,7 @@ namespace pwdvault.Controllers
                 {
                     if(kv.Key == username)
                     {
-                        encryptionKey = Convert.FromBase64String(kv.Value);
+                        encryptionKey = Convert.FromBase64String(kv.Value.ToString()!);
                     }
                 }
                 return encryptionKey;
@@ -119,7 +119,6 @@ namespace pwdvault.Controllers
                 Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
                 throw new Exception(ex.Message, ex);
             }
-            
         }
 
         /// <summary>
