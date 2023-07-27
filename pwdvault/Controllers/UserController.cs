@@ -29,7 +29,7 @@ namespace pwdvault.Controllers
             }
             else
             {
-                throw new UserException("Username already in use. Please try logging in or use a different _username.");
+                throw new UserException("Username already in use. Please try logging in or use a different username.");
             }
         }
 

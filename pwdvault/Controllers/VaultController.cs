@@ -3,7 +3,8 @@ using VaultSharp.V1.AuthMethods;
 using VaultSharp.V1.AuthMethods.AppRole;
 using Serilog;
 using VaultSharp.V1.SecretsEngines.KeyValue.V2;
-using VaultSharp.V1.Commons;
+using System.Text;
+using System.Text.Json;
 
 namespace pwdvault.Controllers
 {
@@ -11,12 +12,12 @@ namespace pwdvault.Controllers
     {
         private readonly IVaultClient? _vaultClient;
         private readonly string _secretPath;
+        private const string MOUNT_POINT = "secret";
         /// <summary>
         /// Lock object that will be used to synchronize threads during first access to the Singleton.
         /// </summary>
         private static readonly object _lock = new();
         private static VaultController? _instance;
-        private const string DATA_KEY = "encryption_key";
 
         private VaultController(string roleID, string secretID, string vaultServerUri, string secretPath)
         {
@@ -73,15 +74,23 @@ namespace pwdvault.Controllers
         /// </summary>
         /// <param name="appName"></param>
         /// <param name="encryptionKey"></param>
-        public async void StoreEncryptionKey(string appName, byte[] encryptionKey)
+        public async void StoreEncryptionKey(string appName, string username, byte[] encryptionKey)
         {
-            var secret = new Dictionary<string, object>
+            try
             {
-                { DATA_KEY, encryptionKey }
-            };
-            Log.Logger.Debug("The dictionary value : " + secret.ToString());
-            var writtenValue = await _vaultClient!.V1.Secrets.KeyValue.V2.WriteSecretAsync(_secretPath + appName, secret, 0);
-            Log.Logger.Debug("The return value of write secret : " + writtenValue.ToString());
+                var encodedKey = Convert.ToBase64String(encryptionKey);
+                var secret = new Dictionary<string, string>
+                {
+                    { username, encodedKey }
+                };
+                var writtenValue = await _vaultClient!.V1.Secrets.KeyValue.V2.WriteSecretAsync(_secretPath + appName, secret, 0, MOUNT_POINT);
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                throw new Exception(ex.Message, ex);
+            }
+            
         }
 
         /// <summary>
@@ -89,11 +98,28 @@ namespace pwdvault.Controllers
         /// </summary>
         /// <param name="appName"></param>
         /// <returns></returns>
-        public byte[] GetEncryptionKey(string appName)
+        public byte[] GetEncryptionKey(string appName, string username)
         {
-            var kv2Secret = _vaultClient!.V1.Secrets.KeyValue.V2.ReadSecretAsync(_secretPath + appName);
-            var secret = (Dictionary<string, object>)kv2Secret.Result.Data.Data;
-            return (byte[])secret.Last().Value;
+            var encryptionKey = Array.Empty<byte>();
+            try
+            {
+                var kv2Secret = _vaultClient!.V1.Secrets.KeyValue.V2.ReadSecretAsync(_secretPath + appName, mountPoint: MOUNT_POINT);
+                var secret = (Dictionary<string, object>)kv2Secret.Result.Data.Data;
+                foreach(var kv in secret)
+                {
+                    if(kv.Key == username)
+                    {
+                        encryptionKey = Convert.FromBase64String(kv.Value);
+                    }
+                }
+                return encryptionKey;
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                throw new Exception(ex.Message, ex);
+            }
+            
         }
 
         /// <summary>
@@ -102,16 +128,24 @@ namespace pwdvault.Controllers
         /// </summary>
         /// <param name="appName"></param>
         /// <param name="newEncryptionKey"></param>
-        public async void UpdateEncryptionKey(string appName, byte[] newEncryptionKey)
+        public async void UpdateEncryptionKey(string appName, string username, byte[] newEncryptionKey)
         {
-            var newSecret = new Dictionary<string, object>
+            try
             {
-                { DATA_KEY, GetEncryptionKey(appName) },
-                { DATA_KEY,  newEncryptionKey }
+                var newSecret = new Dictionary<string, object>
+            {
+                { username, GetEncryptionKey(appName, username) },
+                { username,  newEncryptionKey }
             };
-            var patchSecretDataRequest = new PatchSecretDataRequest() { Data = newSecret };
-            var metadata = await _vaultClient!.V1.Secrets.KeyValue.V2.PatchSecretAsync(_secretPath + appName, patchSecretDataRequest);
-            Log.Logger.Debug("The return value of write secret : " + metadata.ToString());
+                var patchSecretDataRequest = new PatchSecretDataRequest() { Data = newSecret };
+                var metadata = await _vaultClient!.V1.Secrets.KeyValue.V2.PatchSecretAsync(_secretPath + appName, patchSecretDataRequest, MOUNT_POINT);
+                Log.Logger.Debug("The return value of write secret : " + metadata.ToString());
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                throw new Exception(ex.Message, ex);
+            }
         }
 
         /// <summary>
@@ -121,7 +155,21 @@ namespace pwdvault.Controllers
         /// <param name="appName"></param>
         public async void DeleteEncryptionKey(string appName)
         {
-            await _vaultClient!.V1.Secrets.KeyValue.V2.DeleteMetadataAsync(_secretPath + appName);
+            try
+            {
+                await _vaultClient!.V1.Secrets.KeyValue.V2.DeleteMetadataAsync(_secretPath + appName, MOUNT_POINT);
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
+        private static byte[] ObjectToByteArray(object obj)
+        {
+
+            return Encoding.UTF8.GetBytes(JsonSerializer.Serialize(obj));
         }
 
     }

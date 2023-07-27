@@ -73,11 +73,12 @@ namespace pwdvault.Forms
                 try
                 {
                     using var context = new PasswordVaultContext();
+                    var vaultController = VaultController.GetInstance();
+
                     var passwordController = new PasswordController(context);
                     var password = passwordController.GetPassword(AppName, Username);
-                    passwordController.DeletePassword(password.Id);
 
-                    var vaultController = VaultController.GetInstance();
+                    passwordController.DeletePassword(password.Id);
                     vaultController.DeleteEncryptionKey(AppName);
 
                     OnPasswordEditedOrDeleted();
@@ -95,11 +96,11 @@ namespace pwdvault.Forms
             try
             {
                 using var context = new PasswordVaultContext();
+                var vaultController = VaultController.GetInstance();
+
                 var passwordController = new PasswordController(context);
                 var password = passwordController.GetPassword(AppName, Username);
-
-                var vaultController = VaultController.GetInstance();
-                Clipboard.SetText(EncryptionService.DecryptPassword(password.Password, vaultController.GetEncryptionKey(AppName)));
+                Clipboard.SetText(EncryptionService.DecryptPassword(password.Password, vaultController.GetEncryptionKey(AppName, Username)));
                 ClearClipboardDelayed();
             }
             catch (Exception ex)

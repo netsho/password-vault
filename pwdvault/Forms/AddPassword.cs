@@ -2,6 +2,7 @@
 using pwdvault.Services;
 using pwdvault.Controllers;
 using Serilog;
+using System.Text;
 
 namespace pwdvault.Forms
 {
@@ -74,15 +75,16 @@ namespace pwdvault.Forms
                 // Encrypt password and store it, success message and hide the form
                 var encryptionKey = EncryptionService.GenerateKey(txtBoxPwd.Text);
                 var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, encryptionKey);
+                var str = Encoding.Default.GetString(encryptionKey);
                 var appPassword = new AppPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text)) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
-                
+
+                var vaultController = VaultController.GetInstance();
+                vaultController.StoreEncryptionKey(txtBoxApp.Text, txtBoxUser.Text, encryptionKey);
+
                 using var context = new PasswordVaultContext();
                 var passwordController = new PasswordController(context);
                 passwordController.CreatePassword(appPassword);
 
-                var vaultController = VaultController.GetInstance();
-                vaultController.StoreEncryptionKey(txtBoxApp.Text, encryptionKey);
-                
                 Cursor = Cursors.Default;
                 MessageBox.Show($"{appPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();

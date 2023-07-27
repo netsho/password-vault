@@ -23,7 +23,7 @@ namespace pwdvault.Forms
                 txtBoxUser.Text = appPassword.UserName;
                 txtBoxUser.ReadOnly = true;
                 var vaultController = VaultController.GetInstance();
-                txtBoxPwd.Text = EncryptionService.DecryptPassword(appPassword.Password, vaultController.GetEncryptionKey(appName));
+                txtBoxPwd.Text = EncryptionService.DecryptPassword(appPassword.Password, vaultController.GetEncryptionKey(appName, username));
             }
             catch (Exception ex)
             {
@@ -71,12 +71,13 @@ namespace pwdvault.Forms
                         CreationTime = appPassword.CreationTime,
                         UpdateTime = DateTime.Now
                     };
+
+                    var vaultController = VaultController.GetInstance();
+                    vaultController.UpdateEncryptionKey(appPassword.AppName, appPassword.UserName, encryptionKey);
+
                     using var context = new PasswordVaultContext();
                     var passwordController = new PasswordController(context);
                     passwordController.UpdatePassword(appPasswordEdited);
-
-                    var vaultController = VaultController.GetInstance();
-                    vaultController.UpdateEncryptionKey(appPassword.AppName, encryptionKey);
 
                     Cursor = Cursors.Default;
                     MessageBox.Show($"{appPasswordEdited.AppName}'s password successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
