@@ -131,11 +131,12 @@ namespace pwdvault.Controllers
         {
             try
             {
+                var newEncodedKey = Convert.ToBase64String(newEncryptionKey);
                 var newSecret = new Dictionary<string, object>
-            {
-                { username, GetEncryptionKey(appName, username) },
-                { username,  newEncryptionKey }
-            };
+                {
+                    { username, Convert.ToBase64String(GetEncryptionKey(appName, username)) },
+                    { username,  newEncodedKey }
+                };
                 var patchSecretDataRequest = new PatchSecretDataRequest() { Data = newSecret };
                 var metadata = await _vaultClient!.V1.Secrets.KeyValue.V2.PatchSecretAsync(_secretPath + appName, patchSecretDataRequest, MOUNT_POINT);
                 Log.Logger.Debug("The return value of write secret : " + metadata.ToString());
