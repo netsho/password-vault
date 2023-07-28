@@ -116,7 +116,7 @@ Logs are written for all application sessions and deleted within 1 month:
 
 ## Documentation
 
-For detailed documentation of the features and other possible configurations of the application, like using database connections without SSL certificates, please visit the [Wiki](https://github.com/netsho/password-vault/wiki).
+For detailed documentation of the other possible configurations of the application, like using database connections without SSL certificates, please visit the [Wiki](https://github.com/netsho/password-vault/wiki).
 
 
 ## License
