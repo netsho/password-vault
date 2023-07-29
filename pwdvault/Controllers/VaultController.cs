@@ -13,6 +13,7 @@ namespace pwdvault.Controllers
         private readonly IVaultClient? _vaultClient;
         private readonly string _secretPath;
         private const string MOUNT_POINT = "secret";
+        private const string DATA_KEY = "encryption_key";
         /// <summary>
         /// Lock object that will be used to synchronize threads during first access to the Singleton.
         /// </summary>
@@ -81,9 +82,9 @@ namespace pwdvault.Controllers
                 var encodedKey = Convert.ToBase64String(encryptionKey);
                 var secret = new Dictionary<string, string>
                 {
-                    { username, encodedKey }
+                    { DATA_KEY, encodedKey }
                 };
-                var writtenValue = await _vaultClient!.V1.Secrets.KeyValue.V2.WriteSecretAsync(_secretPath + appName, secret, 0, MOUNT_POINT);
+                var writtenValue = await _vaultClient!.V1.Secrets.KeyValue.V2.WriteSecretAsync($"{_secretPath}/{appName}/{username}", secret, 0, MOUNT_POINT);
             }
             catch (Exception ex)
             {
@@ -103,7 +104,7 @@ namespace pwdvault.Controllers
             var encryptionKey = Array.Empty<byte>();
             try
             {
-                var kv2Secret = _vaultClient!.V1.Secrets.KeyValue.V2.ReadSecretAsync(_secretPath + appName, mountPoint: MOUNT_POINT);
+                var kv2Secret = _vaultClient!.V1.Secrets.KeyValue.V2.ReadSecretAsync($"{_secretPath}/{appName}/{username}", mountPoint: MOUNT_POINT);
                 var secret = (Dictionary<string, object>)kv2Secret.Result.Data.Data;
                 foreach(var kv in secret)
                 {
@@ -134,12 +135,11 @@ namespace pwdvault.Controllers
                 var newEncodedKey = Convert.ToBase64String(newEncryptionKey);
                 var newSecret = new Dictionary<string, object>
                 {
-                    { username, Convert.ToBase64String(GetEncryptionKey(appName, username)) },
-                    { username,  newEncodedKey }
+                    { DATA_KEY, Convert.ToBase64String(GetEncryptionKey(appName, username)) },
+                    { DATA_KEY,  newEncodedKey }
                 };
                 var patchSecretDataRequest = new PatchSecretDataRequest() { Data = newSecret };
-                var metadata = await _vaultClient!.V1.Secrets.KeyValue.V2.PatchSecretAsync(_secretPath + appName, patchSecretDataRequest, MOUNT_POINT);
-                Log.Logger.Debug("The return value of write secret : " + metadata.ToString());
+                var metadata = await _vaultClient!.V1.Secrets.KeyValue.V2.PatchSecretAsync($"{_secretPath}/{appName}/{username}", patchSecretDataRequest, MOUNT_POINT);
             }
             catch (Exception ex)
             {
@@ -153,11 +153,11 @@ namespace pwdvault.Controllers
         /// All version history is removed.
         /// </summary>
         /// <param name="appName"></param>
-        public async void DeleteEncryptionKey(string appName)
+        public async void DeleteEncryptionKey(string appName, string username)
         {
             try
             {
-                await _vaultClient!.V1.Secrets.KeyValue.V2.DeleteMetadataAsync(_secretPath + appName, MOUNT_POINT);
+                await _vaultClient!.V1.Secrets.KeyValue.V2.DeleteMetadataAsync($"{_secretPath}/{appName}/{username}", MOUNT_POINT);
             }
             catch (Exception ex)
             {
@@ -165,12 +165,5 @@ namespace pwdvault.Controllers
                 throw new Exception(ex.Message, ex);
             }
         }
-
-        private static byte[] ObjectToByteArray(object obj)
-        {
-
-            return Encoding.UTF8.GetBytes(JsonSerializer.Serialize(obj));
-        }
-
     }
 }

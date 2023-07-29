@@ -3,6 +3,7 @@ using pwdvault.Services;
 using pwdvault.Controllers;
 using Serilog;
 using System.Text;
+using pwdvault.Services.Exceptions;
 
 namespace pwdvault.Forms
 {
@@ -78,16 +79,22 @@ namespace pwdvault.Forms
                 var str = Encoding.Default.GetString(encryptionKey);
                 var appPassword = new AppPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text)) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
 
-                var vaultController = VaultController.GetInstance();
-                vaultController.StoreEncryptionKey(txtBoxApp.Text, txtBoxUser.Text, encryptionKey);
-
                 using var context = new PasswordVaultContext();
                 var passwordController = new PasswordController(context);
                 passwordController.CreatePassword(appPassword);
 
+                var vaultController = VaultController.GetInstance();
+                vaultController.StoreEncryptionKey(txtBoxApp.Text, txtBoxUser.Text, encryptionKey);
+
                 Cursor = Cursors.Default;
                 MessageBox.Show($"{appPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();
+            }
+            catch (PasswordException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Cursor = Cursors.Default;
+                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
             }
             catch (Exception ex)
             {

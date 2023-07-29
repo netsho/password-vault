@@ -34,7 +34,7 @@ namespace pwdvault.Controllers
         }
 
         /// <summary>
-        /// Checks if the user already exists by _username.
+        /// Checks if the user already exists by username.
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
@@ -51,7 +51,7 @@ namespace pwdvault.Controllers
         }
 
         /// <summary>
-        /// Gets the user from database by _username.
+        /// Gets the user from database by username.
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>

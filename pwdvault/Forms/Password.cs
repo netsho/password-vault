@@ -79,13 +79,20 @@ namespace pwdvault.Forms
                     var password = passwordController.GetPassword(AppName, Username);
 
                     passwordController.DeletePassword(password.Id);
-                    vaultController.DeleteEncryptionKey(AppName);
+                    vaultController.DeleteEncryptionKey(AppName, Username);
 
                     OnPasswordEditedOrDeleted();
                 }
-                catch (PasswordNotFoundException ex)
+                catch (PasswordException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Cursor = Cursors.Default;
+                    Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Cursor = Cursors.Default;
                     Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
                 }
             }
@@ -102,6 +109,11 @@ namespace pwdvault.Forms
                 var password = passwordController.GetPassword(AppName, Username);
                 Clipboard.SetText(EncryptionService.DecryptPassword(password.Password, vaultController.GetEncryptionKey(AppName, Username)));
                 ClearClipboardDelayed();
+            }
+            catch (PasswordException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
             }
             catch (Exception ex)
             {

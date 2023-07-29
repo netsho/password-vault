@@ -2,6 +2,7 @@
 using pwdvault.Services;
 using pwdvault.Controllers;
 using Serilog;
+using pwdvault.Services.Exceptions;
 
 namespace pwdvault.Forms
 {
@@ -72,15 +73,22 @@ namespace pwdvault.Forms
                         UpdateTime = DateTime.Now
                     };
 
-                    var vaultController = VaultController.GetInstance();
-                    vaultController.UpdateEncryptionKey(appPassword.AppName, appPassword.UserName, encryptionKey);
-
                     using var context = new PasswordVaultContext();
                     var passwordController = new PasswordController(context);
                     passwordController.UpdatePassword(appPasswordEdited);
 
+                    var vaultController = VaultController.GetInstance();
+                    vaultController.UpdateEncryptionKey(appPassword.AppName, appPassword.UserName, encryptionKey);
+
                     Cursor = Cursors.Default;
                     MessageBox.Show($"{appPasswordEdited.AppName}'s password successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
+                }
+                catch (PasswordException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Cursor = Cursors.Default;
+                    Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
                     Close();
                 }
                 catch (Exception ex)

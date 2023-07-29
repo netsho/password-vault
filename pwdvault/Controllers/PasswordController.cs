@@ -21,21 +21,28 @@ namespace pwdvault.Controllers
         /// <param name="password"></param>
         public void CreatePassword(AppPassword password)
         {
-            Log.Logger.Information("Adding a new password on database...");
-            _dbContext.Add(password);
-            _dbContext.SaveChanges();
+            if(!PasswordExists(password.AppName, password.UserName))
+            {
+                Log.Logger.Information("Adding a new password on database...");
+                _dbContext.Add(password);
+                _dbContext.SaveChanges();
+            }
+            else
+            {
+                throw new PasswordException("The password for this account already exists. Please choose a unique name or update the existing password.");
+            }
         }
 
         /// <summary>
         /// Deletes an application's password from database.
         /// </summary>
         /// <param name="id"></param>
-        /// <exception cref="PasswordNotFoundException"></exception>
+        /// <exception cref="PasswordException"></exception>
         public void DeletePassword(int id)
         {
             Log.Logger.Information("Deleting a password from database...");
             // If AppPassword is null, throw the exception
-            var password = _dbContext.Passwords.Find(id) ?? throw new PasswordNotFoundException($"The password cannot be found !");
+            var password = _dbContext.Passwords.Find(id) ?? throw new PasswordException("The password for this account was not found. Please check the account name and try again.");
             _dbContext.Remove(password);
             _dbContext.SaveChanges();
         }
@@ -58,12 +65,30 @@ namespace pwdvault.Controllers
         /// <param name="appName"></param>
         /// <param name="username"></param>
         /// <returns></returns>
-        /// <exception cref="PasswordNotFoundException"></exception>
+        /// <exception cref="PasswordException"></exception>
         public AppPassword GetPassword(string appName, string username)
         {
             Log.Logger.Information($"Getting the {appName}'s password from database...");
             var password = _dbContext.Passwords.FirstOrDefault(password => password.AppName == appName && password.UserName == username);
-            return password ?? throw new PasswordNotFoundException($"The password for {appName} cannot be found !");
+            return password ?? throw new PasswordException($"The password for the {appName} was not found. Please check the account name and try again.");
+        }
+
+        /// <summary>
+        /// Checks if the password already exists by application's name and username.
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public bool PasswordExists(string appName, string username)
+        {
+            foreach (var password in GetAllPasswords())
+            {
+                if (password.AppName.ToLower().Equals(appName.ToLower()) && password.UserName.ToLower().Equals(username.ToLower()))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
