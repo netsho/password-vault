@@ -56,47 +56,19 @@ namespace pwdvault.Forms
             if (!String.IsNullOrWhiteSpace(txtBoxApp.Text) &&
                 !String.IsNullOrWhiteSpace(txtBoxUser.Text) &&
                 !String.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
-                !String.IsNullOrWhiteSpace(comBoxCat.Text) &&
-                !errorProvider.HasErrors
-                )
+                !String.IsNullOrWhiteSpace(comBoxCat.Text))
             {
-                try
+                if (errorProvider.HasErrors)
                 {
-                    Cursor = Cursors.WaitCursor;
-
-                    var encryptionKey = EncryptionService.GenerateKey(txtBoxPwd.Text);
-                    var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, encryptionKey);
-                    var appPasswordEdited = new AppPassword(comBoxCat.Text, appPassword.AppName, appPassword.UserName, encryptedPassword, appPassword.IconName)
+                    var result = MessageBox.Show("The password does not meet the criteria. Are you sure you want to save it?", "Password criteria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
                     {
-                        Id = appPassword.Id,
-                        CreationTime = appPassword.CreationTime,
-                        UpdateTime = DateTime.Now
-                    };
-
-                    using var context = new PasswordVaultContext();
-                    var passwordController = new PasswordController(context);
-                    passwordController.UpdatePassword(appPasswordEdited);
-
-                    var vaultController = VaultController.GetInstance();
-                    vaultController.UpdateEncryptionKey(appPassword.AppName, appPassword.UserName, encryptionKey);
-
-                    Cursor = Cursors.Default;
-                    MessageBox.Show($"{appPasswordEdited.AppName}'s password successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Close();
+                        EditPasswordDb();
+                    }
                 }
-                catch (PasswordException ex)
+                else if (!errorProvider.HasErrors)
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Cursor = Cursors.Default;
-                    Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
-                    Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Cursor = Cursors.Default;
-                    Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
-                    Close();
+                    EditPasswordDb();
                 }
             }
             else
@@ -127,6 +99,51 @@ namespace pwdvault.Forms
             {
                 errorProvider.SetError(txtBoxPwd, String.Empty);
                 errorProvider.Clear();
+            }
+        }
+
+        /// <summary>
+        /// Encrypts the newly password, gets the corresponding object and updates it in the database, while updating the encryption key in vault.
+        /// </summary>
+        private void EditPasswordDb()
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                var encryptionKey = EncryptionService.GenerateKey(txtBoxPwd.Text);
+                var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, encryptionKey);
+                var appPasswordEdited = new AppPassword(comBoxCat.Text, appPassword.AppName, appPassword.UserName, encryptedPassword, appPassword.IconName)
+                {
+                    Id = appPassword.Id,
+                    CreationTime = appPassword.CreationTime,
+                    UpdateTime = DateTime.Now
+                };
+
+                using var context = new PasswordVaultContext();
+                var passwordController = new PasswordController(context);
+                passwordController.UpdatePassword(appPasswordEdited);
+
+                var vaultController = VaultController.GetInstance();
+                vaultController.UpdateEncryptionKey(appPassword.AppName, appPassword.UserName, encryptionKey);
+
+                Cursor = Cursors.Default;
+                MessageBox.Show($"{appPasswordEdited.AppName}'s password successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
+            }
+            catch (PasswordException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Cursor = Cursors.Default;
+                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Cursor = Cursors.Default;
+                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                Close();
             }
         }
     }

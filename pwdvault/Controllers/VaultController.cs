@@ -84,7 +84,7 @@ namespace pwdvault.Controllers
                 {
                     { DATA_KEY, encodedKey }
                 };
-                var writtenValue = await _vaultClient!.V1.Secrets.KeyValue.V2.WriteSecretAsync($"{_secretPath}/{appName}/{username}", secret, 0, MOUNT_POINT);
+                await _vaultClient!.V1.Secrets.KeyValue.V2.WriteSecretAsync($"{_secretPath}/{appName}/{username}", secret, 0, MOUNT_POINT);
             }
             catch (Exception ex)
             {
@@ -108,7 +108,7 @@ namespace pwdvault.Controllers
                 var secret = (Dictionary<string, object>)kv2Secret.Result.Data.Data;
                 foreach(var kv in secret)
                 {
-                    if(kv.Key == username)
+                    if(kv.Key == DATA_KEY)
                     {
                         encryptionKey = Convert.FromBase64String(kv.Value.ToString()!);
                     }
@@ -135,11 +135,11 @@ namespace pwdvault.Controllers
                 var newEncodedKey = Convert.ToBase64String(newEncryptionKey);
                 var newSecret = new Dictionary<string, object>
                 {
-                    { DATA_KEY, Convert.ToBase64String(GetEncryptionKey(appName, username)) },
+                    //{ DATA_KEY, Convert.ToBase64String(GetEncryptionKey(appName, username)) },
                     { DATA_KEY,  newEncodedKey }
                 };
-                var patchSecretDataRequest = new PatchSecretDataRequest() { Data = newSecret };
-                var metadata = await _vaultClient!.V1.Secrets.KeyValue.V2.PatchSecretAsync($"{_secretPath}/{appName}/{username}", patchSecretDataRequest, MOUNT_POINT);
+                //var patchSecretDataRequest = new PatchSecretDataRequest() { Data = newSecret };
+                await _vaultClient!.V1.Secrets.KeyValue.V2.WriteSecretAsync($"{_secretPath}/{appName}/{username}", newSecret, mountPoint: MOUNT_POINT);
             }
             catch (Exception ex)
             {
