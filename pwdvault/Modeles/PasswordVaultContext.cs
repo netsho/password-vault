@@ -62,16 +62,18 @@ namespace pwdvault.Modeles
         public string UserName { get; set; }
         public byte[] Password { get; set; }
         public string IconName { get; set; }
+        public byte[] Bytes { get; set; }
         public DateTime CreationTime { get; set; }
         public DateTime UpdateTime { get; set; }
 
-        public AppPassword(string appCategory, string appName, string userName, byte[] password, string iconName)
+        public AppPassword(string appCategory, string appName, string userName, byte[] password, string iconName, byte[] bytes)
         {
             AppCategory = appCategory;
             AppName = appName;
             UserName = userName;
             Password = password;
             IconName = iconName;
+            Bytes = bytes;
         }
     }
 

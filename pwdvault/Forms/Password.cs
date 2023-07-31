@@ -107,7 +107,7 @@ namespace pwdvault.Forms
 
                 var passwordController = new PasswordController(context);
                 var password = passwordController.GetPassword(AppName, Username);
-                Clipboard.SetText(EncryptionService.DecryptPassword(password.Password, vaultController.GetEncryptionKey(AppName, Username)));
+                Clipboard.SetText(EncryptionService.DecryptPassword(password.Password, vaultController.GetEncryptionKey(AppName, Username), password.Bytes));
                 ClearClipboardDelayed();
             }
             catch (PasswordException ex)

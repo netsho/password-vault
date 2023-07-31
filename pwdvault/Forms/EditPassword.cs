@@ -24,7 +24,7 @@ namespace pwdvault.Forms
                 txtBoxUser.Text = appPassword.UserName;
                 txtBoxUser.ReadOnly = true;
                 var vaultController = VaultController.GetInstance();
-                txtBoxPwd.Text = EncryptionService.DecryptPassword(appPassword.Password, vaultController.GetEncryptionKey(appName, username));
+                txtBoxPwd.Text = EncryptionService.DecryptPassword(appPassword.Password, vaultController.GetEncryptionKey(appName, username), appPassword.Bytes);
             }
             catch (Exception ex)
             {
@@ -112,8 +112,8 @@ namespace pwdvault.Forms
                 Cursor = Cursors.WaitCursor;
 
                 var encryptionKey = EncryptionService.GenerateKey(txtBoxPwd.Text);
-                var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, encryptionKey);
-                var appPasswordEdited = new AppPassword(comBoxCat.Text, appPassword.AppName, appPassword.UserName, encryptedPassword, appPassword.IconName)
+                var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, encryptionKey, out byte[] bytes);
+                var appPasswordEdited = new AppPassword(comBoxCat.Text, appPassword.AppName, appPassword.UserName, encryptedPassword, appPassword.IconName, bytes)
                 {
                     Id = appPassword.Id,
                     CreationTime = appPassword.CreationTime,
