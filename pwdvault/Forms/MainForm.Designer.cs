@@ -572,7 +572,7 @@
             // 
             // picBoxLogo
             // 
-            picBoxLogo.Image = Properties.Resources.lock_main;
+            picBoxLogo.Image = (Image)resources.GetObject("picBoxLogo.Image");
             picBoxLogo.Location = new Point(40, 7);
             picBoxLogo.Margin = new Padding(2);
             picBoxLogo.Name = "picBoxLogo";

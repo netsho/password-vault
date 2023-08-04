@@ -23,7 +23,7 @@ namespace pwdvault.Forms
                 )
             {
                 var dialogResult = new LoginDataForm().ShowDialog();
-                if(dialogResult == DialogResult.OK )
+                if (dialogResult == DialogResult.OK)
                 {
                     try
                     {
@@ -60,7 +60,7 @@ namespace pwdvault.Forms
                     }
                 }
 
-                
+
             }
             else
             {

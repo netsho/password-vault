@@ -13,7 +13,7 @@ namespace pwdvault.Forms
         public LoginDataForm()
         {
             InitializeComponent();
-            if(File.Exists(_loginDataPath))
+            if (File.Exists(_loginDataPath))
             {
                 var loginData = RetrieveLoginData();
                 txtBoxCA.Text = loginData.CaFilePath;
@@ -65,7 +65,7 @@ namespace pwdvault.Forms
         {
             var openFileDialogCA = new OpenFileDialog
             {
-                Filter = "CA files (*.crt)|*.crt|All files (*.*)|*.*" 
+                Filter = "CA files (*.crt)|*.crt|All files (*.*)|*.*"
             };
 
             if (openFileDialogCA.ShowDialog() == DialogResult.OK)
@@ -104,7 +104,7 @@ namespace pwdvault.Forms
 
         private void CheckBoxInfo_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBoxInfo.Checked)
+            if (checkBoxInfo.Checked)
             {
                 StoreLoginData();
             }
@@ -149,7 +149,7 @@ namespace pwdvault.Forms
                 var jsonLoginData = File.ReadAllText(_loginDataPath);
                 var listLoginData = JsonSerializer.Deserialize<List<LoginData>>(jsonLoginData);
                 return listLoginData!.FirstOrDefault() ?? new LoginData();
-            } 
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -188,7 +188,7 @@ namespace pwdvault.Forms
             if (!connectionString.Contains(parameterName + "="))
             {
                 connectionString += $"{parameterName}={parameterValue};";
-            } 
+            }
             else
             {
                 var parameterStart = connectionString.IndexOf(parameterName + "=", StringComparison.OrdinalIgnoreCase);

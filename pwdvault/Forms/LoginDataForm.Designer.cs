@@ -194,7 +194,7 @@
             checkBoxInfo.UseVisualStyleBackColor = true;
             checkBoxInfo.CheckedChanged += CheckBoxInfo_CheckedChanged;
             // 
-            // InfoConnectionForm
+            // LoginDataForm
             // 
             AcceptButton = btnLogin;
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -216,7 +216,7 @@
             Controls.Add(btnCancel);
             Controls.Add(btnLogin);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "InfoConnectionForm";
+            Name = "LoginDataForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Additional login information";
             ResumeLayout(false);

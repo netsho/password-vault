@@ -623,16 +623,6 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap lock_main {
-            get {
-                object obj = ResourceManager.GetObject("lock_main", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap logo_digiposte {
             get {
                 object obj = ResourceManager.GetObject("logo_digiposte", resourceCulture);

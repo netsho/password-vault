@@ -56,7 +56,7 @@ namespace pwdvault.Forms
                         Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
                     }
 
-                } 
+                }
                 else
                 {
                     Show();
