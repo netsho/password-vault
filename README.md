@@ -1,7 +1,7 @@
 
 # Password Vault
 ![Static Badge](https://img.shields.io/badge/In_development-blue) 
-![Static Badge](https://custom-icon-badges.demolab.com/badge/-password_vault-green?logo=lock_icon)
+![Static Badge](https://custom-icon-badges.demolab.com/badge/-password_vault-pink?logo=cadenas)
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/netsho/password-vault?color=blue)
 ![GitHub](https://img.shields.io/github/license/netsho/password-vault)
 
