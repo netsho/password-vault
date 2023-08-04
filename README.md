@@ -127,3 +127,6 @@ This project is licensed under the [GNU GPLv3 License](https://choosealicense.co
 
 1. [PostgreSQL on .NET - Npgsql](https://www.npgsql.org/efcore/index.html)
 2. [Vault on .NET - VaultSharp](https://rajanadar.github.io/VaultSharp/)
+
+
+Password Vault's icon : <a href="https://www.flaticon.com/free-icons/lock" title="lock icons">Lock icons created by Pixel perfect - Flaticon</a>
