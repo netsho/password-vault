@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Resources\cadenas.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,6 +37,10 @@
     <None Remove="Resources\AppIcons\icons8-zalando-48.png" />
     <None Remove="Resources\AppIcons\icons8-zoom-48.png" />
     <None Remove="Resources\ed8a3323-2e23-4d7d-b292-f9d2bafb5d92.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\cadenas.ico" />
   </ItemGroup>
 
   <ItemGroup>
