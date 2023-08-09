@@ -50,9 +50,10 @@
             // btnLogin
             // 
             btnLogin.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnLogin.Location = new Point(168, 396);
+            btnLogin.Location = new Point(210, 495);
+            btnLogin.Margin = new Padding(4, 4, 4, 4);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(130, 27);
+            btnLogin.Size = new Size(162, 34);
             btnLogin.TabIndex = 0;
             btnLogin.Text = "LOGIN";
             btnLogin.UseVisualStyleBackColor = true;
@@ -61,9 +62,10 @@
             // btnCancel
             // 
             btnCancel.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCancel.Location = new Point(328, 396);
+            btnCancel.Location = new Point(410, 495);
+            btnCancel.Margin = new Padding(4, 4, 4, 4);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(130, 27);
+            btnCancel.Size = new Size(162, 34);
             btnCancel.TabIndex = 1;
             btnCancel.Text = "CANCEL";
             btnCancel.UseVisualStyleBackColor = true;
@@ -71,10 +73,10 @@
             // 
             // txtBoxCA
             // 
-            txtBoxCA.Location = new Point(75, 62);
+            txtBoxCA.Location = new Point(94, 78);
             txtBoxCA.Margin = new Padding(2);
             txtBoxCA.Name = "txtBoxCA";
-            txtBoxCA.Size = new Size(456, 27);
+            txtBoxCA.Size = new Size(569, 31);
             txtBoxCA.TabIndex = 18;
             // 
             // lbDbCA
@@ -82,19 +84,19 @@
             lbDbCA.AutoSize = true;
             lbDbCA.FlatStyle = FlatStyle.System;
             lbDbCA.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbDbCA.Location = new Point(75, 34);
+            lbDbCA.Location = new Point(94, 42);
             lbDbCA.Margin = new Padding(2, 0, 2, 0);
             lbDbCA.Name = "lbDbCA";
-            lbDbCA.Size = new Size(126, 28);
+            lbDbCA.Size = new Size(154, 32);
             lbDbCA.TabIndex = 17;
             lbDbCA.Text = "Database CA";
             // 
             // txtBoxSecretId
             // 
-            txtBoxSecretId.Location = new Point(75, 296);
+            txtBoxSecretId.Location = new Point(94, 370);
             txtBoxSecretId.Margin = new Padding(2);
             txtBoxSecretId.Name = "txtBoxSecretId";
-            txtBoxSecretId.Size = new Size(456, 27);
+            txtBoxSecretId.Size = new Size(569, 31);
             txtBoxSecretId.TabIndex = 20;
             // 
             // lbSecretId
@@ -102,19 +104,20 @@
             lbSecretId.AutoSize = true;
             lbSecretId.FlatStyle = FlatStyle.System;
             lbSecretId.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbSecretId.Location = new Point(75, 268);
+            lbSecretId.Location = new Point(94, 335);
             lbSecretId.Margin = new Padding(2, 0, 2, 0);
             lbSecretId.Name = "lbSecretId";
-            lbSecretId.Size = new Size(146, 28);
+            lbSecretId.Size = new Size(175, 32);
             lbSecretId.TabIndex = 19;
             lbSecretId.Text = "Vault Secret ID";
             // 
             // btnFileDialogCA
             // 
             btnFileDialogCA.BackgroundImage = Properties.Resources.icons8_folder_48;
-            btnFileDialogCA.Location = new Point(536, 62);
+            btnFileDialogCA.Location = new Point(670, 78);
+            btnFileDialogCA.Margin = new Padding(4, 4, 4, 4);
             btnFileDialogCA.Name = "btnFileDialogCA";
-            btnFileDialogCA.Size = new Size(32, 29);
+            btnFileDialogCA.Size = new Size(40, 36);
             btnFileDialogCA.TabIndex = 21;
             toolTipFolder.SetToolTip(btnFileDialogCA, "Browse");
             btnFileDialogCA.UseVisualStyleBackColor = true;
@@ -123,9 +126,10 @@
             // btnFileDialogCert
             // 
             btnFileDialogCert.BackgroundImage = Properties.Resources.icons8_folder_48;
-            btnFileDialogCert.Location = new Point(536, 140);
+            btnFileDialogCert.Location = new Point(670, 175);
+            btnFileDialogCert.Margin = new Padding(4, 4, 4, 4);
             btnFileDialogCert.Name = "btnFileDialogCert";
-            btnFileDialogCert.Size = new Size(32, 29);
+            btnFileDialogCert.Size = new Size(40, 36);
             btnFileDialogCert.TabIndex = 24;
             toolTipFolder.SetToolTip(btnFileDialogCert, "Browse");
             btnFileDialogCert.UseVisualStyleBackColor = true;
@@ -133,10 +137,10 @@
             // 
             // txtBoxCertificate
             // 
-            txtBoxCertificate.Location = new Point(75, 140);
+            txtBoxCertificate.Location = new Point(94, 175);
             txtBoxCertificate.Margin = new Padding(2);
             txtBoxCertificate.Name = "txtBoxCertificate";
-            txtBoxCertificate.Size = new Size(456, 27);
+            txtBoxCertificate.Size = new Size(569, 31);
             txtBoxCertificate.TabIndex = 23;
             // 
             // lbDbCertificate
@@ -144,19 +148,20 @@
             lbDbCertificate.AutoSize = true;
             lbDbCertificate.FlatStyle = FlatStyle.System;
             lbDbCertificate.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbDbCertificate.Location = new Point(75, 112);
+            lbDbCertificate.Location = new Point(94, 140);
             lbDbCertificate.Margin = new Padding(2, 0, 2, 0);
             lbDbCertificate.Name = "lbDbCertificate";
-            lbDbCertificate.Size = new Size(193, 28);
+            lbDbCertificate.Size = new Size(236, 32);
             lbDbCertificate.TabIndex = 22;
             lbDbCertificate.Text = "Database Certificate";
             // 
             // btnFileDialogKey
             // 
             btnFileDialogKey.BackgroundImage = Properties.Resources.icons8_folder_48;
-            btnFileDialogKey.Location = new Point(536, 219);
+            btnFileDialogKey.Location = new Point(670, 274);
+            btnFileDialogKey.Margin = new Padding(4, 4, 4, 4);
             btnFileDialogKey.Name = "btnFileDialogKey";
-            btnFileDialogKey.Size = new Size(32, 27);
+            btnFileDialogKey.Size = new Size(40, 34);
             btnFileDialogKey.TabIndex = 27;
             toolTipFolder.SetToolTip(btnFileDialogKey, "Browse");
             btnFileDialogKey.UseVisualStyleBackColor = true;
@@ -164,10 +169,10 @@
             // 
             // txtBoxKey
             // 
-            txtBoxKey.Location = new Point(75, 219);
+            txtBoxKey.Location = new Point(94, 274);
             txtBoxKey.Margin = new Padding(2);
             txtBoxKey.Name = "txtBoxKey";
-            txtBoxKey.Size = new Size(456, 27);
+            txtBoxKey.Size = new Size(569, 31);
             txtBoxKey.TabIndex = 26;
             // 
             // lbDbKey
@@ -175,10 +180,10 @@
             lbDbKey.AutoSize = true;
             lbDbKey.FlatStyle = FlatStyle.System;
             lbDbKey.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbDbKey.Location = new Point(75, 191);
+            lbDbKey.Location = new Point(94, 239);
             lbDbKey.Margin = new Padding(2, 0, 2, 0);
             lbDbKey.Name = "lbDbKey";
-            lbDbKey.Size = new Size(134, 28);
+            lbDbKey.Size = new Size(163, 32);
             lbDbKey.TabIndex = 25;
             lbDbKey.Text = "Database Key";
             // 
@@ -186,9 +191,10 @@
             // 
             checkBoxInfo.AutoSize = true;
             checkBoxInfo.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            checkBoxInfo.Location = new Point(75, 342);
+            checkBoxInfo.Location = new Point(94, 428);
+            checkBoxInfo.Margin = new Padding(4, 4, 4, 4);
             checkBoxInfo.Name = "checkBoxInfo";
-            checkBoxInfo.Size = new Size(170, 22);
+            checkBoxInfo.Size = new Size(207, 26);
             checkBoxInfo.TabIndex = 28;
             checkBoxInfo.Text = "Remember the fields";
             checkBoxInfo.UseVisualStyleBackColor = true;
@@ -197,10 +203,10 @@
             // LoginDataForm
             // 
             AcceptButton = btnLogin;
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
-            ClientSize = new Size(620, 435);
+            ClientSize = new Size(775, 544);
             Controls.Add(checkBoxInfo);
             Controls.Add(btnFileDialogKey);
             Controls.Add(txtBoxKey);
@@ -215,7 +221,11 @@
             Controls.Add(lbDbCA);
             Controls.Add(btnCancel);
             Controls.Add(btnLogin);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4, 4, 4, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "LoginDataForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Additional login information";

@@ -50,10 +50,10 @@
             lbApp.AutoSize = true;
             lbApp.FlatStyle = FlatStyle.System;
             lbApp.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbApp.Location = new Point(80, 83);
+            lbApp.Location = new Point(100, 104);
             lbApp.Margin = new Padding(2, 0, 2, 0);
             lbApp.Name = "lbApp";
-            lbApp.Size = new Size(114, 28);
+            lbApp.Size = new Size(137, 32);
             lbApp.TabIndex = 0;
             lbApp.Text = "Application";
             // 
@@ -62,10 +62,10 @@
             lbCategory.AutoSize = true;
             lbCategory.FlatStyle = FlatStyle.System;
             lbCategory.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbCategory.Location = new Point(80, 160);
+            lbCategory.Location = new Point(100, 200);
             lbCategory.Margin = new Padding(2, 0, 2, 0);
             lbCategory.Name = "lbCategory";
-            lbCategory.Size = new Size(94, 28);
+            lbCategory.Size = new Size(114, 32);
             lbCategory.TabIndex = 1;
             lbCategory.Text = "Category";
             // 
@@ -74,10 +74,10 @@
             lbUser.AutoSize = true;
             lbUser.FlatStyle = FlatStyle.System;
             lbUser.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbUser.Location = new Point(80, 246);
+            lbUser.Location = new Point(100, 308);
             lbUser.Margin = new Padding(2, 0, 2, 0);
             lbUser.Name = "lbUser";
-            lbUser.Size = new Size(172, 28);
+            lbUser.Size = new Size(206, 32);
             lbUser.TabIndex = 2;
             lbUser.Text = "Username / Email";
             // 
@@ -86,10 +86,10 @@
             lbPwd.AutoSize = true;
             lbPwd.FlatStyle = FlatStyle.System;
             lbPwd.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbPwd.Location = new Point(80, 330);
+            lbPwd.Location = new Point(100, 412);
             lbPwd.Margin = new Padding(2, 0, 2, 0);
             lbPwd.Name = "lbPwd";
-            lbPwd.Size = new Size(97, 28);
+            lbPwd.Size = new Size(115, 32);
             lbPwd.TabIndex = 3;
             lbPwd.Text = "Password";
             // 
@@ -97,10 +97,10 @@
             // 
             btnAdd.FlatStyle = FlatStyle.System;
             btnAdd.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAdd.Location = new Point(127, 497);
+            btnAdd.Location = new Point(159, 621);
             btnAdd.Margin = new Padding(2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(130, 27);
+            btnAdd.Size = new Size(162, 34);
             btnAdd.TabIndex = 4;
             btnAdd.Text = "ADD";
             btnAdd.UseVisualStyleBackColor = true;
@@ -108,10 +108,10 @@
             // 
             // txtBoxApp
             // 
-            txtBoxApp.Location = new Point(80, 111);
+            txtBoxApp.Location = new Point(100, 139);
             txtBoxApp.Margin = new Padding(2);
             txtBoxApp.Name = "txtBoxApp";
-            txtBoxApp.Size = new Size(228, 27);
+            txtBoxApp.Size = new Size(284, 31);
             txtBoxApp.TabIndex = 5;
             // 
             // comBoxCat
@@ -119,27 +119,27 @@
             comBoxCat.DropDownStyle = ComboBoxStyle.DropDownList;
             comBoxCat.FlatStyle = FlatStyle.System;
             comBoxCat.FormattingEnabled = true;
-            comBoxCat.Location = new Point(80, 188);
+            comBoxCat.Location = new Point(100, 235);
             comBoxCat.Margin = new Padding(2);
             comBoxCat.Name = "comBoxCat";
-            comBoxCat.Size = new Size(228, 28);
+            comBoxCat.Size = new Size(284, 33);
             comBoxCat.TabIndex = 6;
             // 
             // txtBoxUser
             // 
-            txtBoxUser.Location = new Point(80, 274);
+            txtBoxUser.Location = new Point(100, 342);
             txtBoxUser.Margin = new Padding(2);
             txtBoxUser.Name = "txtBoxUser";
-            txtBoxUser.Size = new Size(228, 27);
+            txtBoxUser.Size = new Size(284, 31);
             txtBoxUser.TabIndex = 7;
             // 
             // txtBoxPwd
             // 
             errorProvider.SetIconPadding(txtBoxPwd, 5);
-            txtBoxPwd.Location = new Point(80, 358);
+            txtBoxPwd.Location = new Point(100, 448);
             txtBoxPwd.Margin = new Padding(2);
             txtBoxPwd.Name = "txtBoxPwd";
-            txtBoxPwd.Size = new Size(228, 27);
+            txtBoxPwd.Size = new Size(284, 31);
             txtBoxPwd.TabIndex = 8;
             txtBoxPwd.TextChanged += TxtBoxPwd_TextChanged;
             // 
@@ -147,10 +147,10 @@
             // 
             btnGenerate.FlatStyle = FlatStyle.System;
             btnGenerate.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnGenerate.Location = new Point(89, 398);
+            btnGenerate.Location = new Point(111, 498);
             btnGenerate.Margin = new Padding(2);
             btnGenerate.Name = "btnGenerate";
-            btnGenerate.Size = new Size(208, 53);
+            btnGenerate.Size = new Size(260, 66);
             btnGenerate.TabIndex = 9;
             btnGenerate.Text = "GENERATE RANDOM PASSWORD";
             btnGenerate.UseVisualStyleBackColor = true;
@@ -160,10 +160,10 @@
             // 
             lbTitle.AutoSize = true;
             lbTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lbTitle.Location = new Point(26, 20);
+            lbTitle.Location = new Point(32, 25);
             lbTitle.Margin = new Padding(2, 0, 2, 0);
             lbTitle.Name = "lbTitle";
-            lbTitle.Size = new Size(231, 32);
+            lbTitle.Size = new Size(264, 38);
             lbTitle.TabIndex = 10;
             lbTitle.Text = "Add new password";
             // 
@@ -175,10 +175,10 @@
             // AddPassword
             // 
             AcceptButton = btnAdd;
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
-            ClientSize = new Size(382, 555);
+            ClientSize = new Size(478, 694);
             Controls.Add(lbTitle);
             Controls.Add(btnGenerate);
             Controls.Add(txtBoxPwd);
@@ -190,7 +190,11 @@
             Controls.Add(lbUser);
             Controls.Add(lbCategory);
             Controls.Add(lbApp);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4, 4, 4, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "AddPassword";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "New password";

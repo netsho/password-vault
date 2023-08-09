@@ -47,10 +47,10 @@
             // 
             lbTitle.AutoSize = true;
             lbTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lbTitle.Location = new Point(75, 25);
+            lbTitle.Location = new Point(94, 31);
             lbTitle.Margin = new Padding(2, 0, 2, 0);
             lbTitle.Name = "lbTitle";
-            lbTitle.Size = new Size(239, 32);
+            lbTitle.Size = new Size(274, 38);
             lbTitle.TabIndex = 21;
             lbTitle.Text = "Create new account";
             // 
@@ -58,10 +58,10 @@
             // 
             btnGenerate.FlatStyle = FlatStyle.System;
             btnGenerate.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnGenerate.Location = new Point(101, 246);
+            btnGenerate.Location = new Point(126, 308);
             btnGenerate.Margin = new Padding(2);
             btnGenerate.Name = "btnGenerate";
-            btnGenerate.Size = new Size(197, 54);
+            btnGenerate.Size = new Size(246, 68);
             btnGenerate.TabIndex = 20;
             btnGenerate.Text = "GENERATE RANDOM PASSWORD";
             btnGenerate.UseVisualStyleBackColor = true;
@@ -70,29 +70,29 @@
             // txtBoxPwd
             // 
             errorProvider.SetIconPadding(txtBoxPwd, 5);
-            txtBoxPwd.Location = new Point(86, 215);
+            txtBoxPwd.Location = new Point(108, 269);
             txtBoxPwd.Margin = new Padding(2);
             txtBoxPwd.Name = "txtBoxPwd";
-            txtBoxPwd.Size = new Size(228, 27);
+            txtBoxPwd.Size = new Size(284, 31);
             txtBoxPwd.TabIndex = 19;
             txtBoxPwd.TextChanged += TxtBoxPwd_TextChanged;
             // 
             // txtBoxUser
             // 
-            txtBoxUser.Location = new Point(86, 138);
+            txtBoxUser.Location = new Point(108, 172);
             txtBoxUser.Margin = new Padding(2);
             txtBoxUser.Name = "txtBoxUser";
-            txtBoxUser.Size = new Size(228, 27);
+            txtBoxUser.Size = new Size(284, 31);
             txtBoxUser.TabIndex = 16;
             // 
             // btnSign
             // 
             btnSign.FlatStyle = FlatStyle.System;
             btnSign.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSign.Location = new Point(86, 354);
+            btnSign.Location = new Point(108, 442);
             btnSign.Margin = new Padding(2);
             btnSign.Name = "btnSign";
-            btnSign.Size = new Size(105, 27);
+            btnSign.Size = new Size(131, 34);
             btnSign.TabIndex = 15;
             btnSign.Text = "SIGN UP";
             btnSign.UseVisualStyleBackColor = true;
@@ -103,10 +103,10 @@
             lbPwd.AutoSize = true;
             lbPwd.FlatStyle = FlatStyle.System;
             lbPwd.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbPwd.Location = new Point(86, 187);
+            lbPwd.Location = new Point(108, 234);
             lbPwd.Margin = new Padding(2, 0, 2, 0);
             lbPwd.Name = "lbPwd";
-            lbPwd.Size = new Size(97, 28);
+            lbPwd.Size = new Size(115, 32);
             lbPwd.TabIndex = 14;
             lbPwd.Text = "Password";
             // 
@@ -115,10 +115,10 @@
             lbUsername.AutoSize = true;
             lbUsername.FlatStyle = FlatStyle.System;
             lbUsername.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbUsername.Location = new Point(86, 110);
+            lbUsername.Location = new Point(108, 138);
             lbUsername.Margin = new Padding(2, 0, 2, 0);
             lbUsername.Name = "lbUsername";
-            lbUsername.Size = new Size(104, 28);
+            lbUsername.Size = new Size(124, 32);
             lbUsername.TabIndex = 11;
             lbUsername.Text = "Username";
             // 
@@ -131,10 +131,10 @@
             // 
             btnCancel.FlatStyle = FlatStyle.System;
             btnCancel.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCancel.Location = new Point(209, 354);
+            btnCancel.Location = new Point(261, 442);
             btnCancel.Margin = new Padding(2);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(105, 27);
+            btnCancel.Size = new Size(131, 34);
             btnCancel.TabIndex = 22;
             btnCancel.Text = "CANCEL";
             btnCancel.UseVisualStyleBackColor = true;
@@ -143,9 +143,9 @@
             // SignUpForm
             // 
             AcceptButton = btnSign;
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(382, 409);
+            ClientSize = new Size(478, 511);
             Controls.Add(btnCancel);
             Controls.Add(lbTitle);
             Controls.Add(btnGenerate);
@@ -154,8 +154,11 @@
             Controls.Add(btnSign);
             Controls.Add(lbPwd);
             Controls.Add(lbUsername);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "SignUpForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sign in";
