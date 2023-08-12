@@ -4,7 +4,7 @@
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/netsho/password-vault?color=blue)
 ![GitHub](https://img.shields.io/github/license/netsho/password-vault)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)<p align="center">
+![App Screenshot](https://github.com/netsho/password-vault/assets/67299616/abd62ab8-3f47-4184-b33b-5d37ce551426)<p align="center">
 [Overview](#overview) |
 [Features](#features) |
 [Technologies](#technologies) |
