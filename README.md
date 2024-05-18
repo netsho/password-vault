@@ -38,7 +38,7 @@ This project is intended to serve as both a learning resource and a practical pa
 
 Ensure you have the following components installed before running the application:
 
-* [.NET](https://dotnet.microsoft.com/en-us/download/dotnet/7.0): Version 7.0
+* [.NET](https://dotnet.microsoft.com/en-us/download/dotnet/7.0): Version 8.0
 * [PostgreSQL](https://www.postgresql.org/download/): Version 14.8+
 * [HashiCorp Vault](https://developer.hashicorp.com/vault/downloads): Version 1.14.0
 ## Installation
