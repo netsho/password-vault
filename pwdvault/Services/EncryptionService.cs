@@ -44,7 +44,6 @@ namespace pwdvault.Services
         {
             try
             {
-                Log.Logger.Information("Encrypting the password...");
                 if (String.IsNullOrEmpty(password))
                 {
                     throw new ArgumentException("The password is empty.");
@@ -95,7 +94,6 @@ namespace pwdvault.Services
         {
             try
             {
-                Log.Logger.Information("Decrypting password...");
                 if (encryptedPassword == null || encryptedPassword.Length == 0)
                 {
                     throw new ArgumentException("The encrypted password is either null or empty.");
@@ -145,7 +143,6 @@ namespace pwdvault.Services
         /// <returns></returns>
         public static byte[] GenerateKey(string password)
         {
-            Log.Logger.Information("Generating encryption key...");
             if (String.IsNullOrEmpty(password))
             {
                 throw new ArgumentException("The password is empty.");

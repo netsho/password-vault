@@ -35,11 +35,11 @@ namespace pwdvault.Forms
                 lbTitle.Text = $"Edit {appName} password";
                 using var context = new PasswordVaultContext();
                 appPassword = new PasswordController(context).GetPassword(appName, username);
-                txtBoxApp.Text = appPassword.AppName;
                 txtBoxApp.ReadOnly = true;
+                txtBoxApp.Text = appPassword.AppName;
                 comBoxCat.Text = appPassword.AppCategory;
-                txtBoxUser.Text = appPassword.UserName;
                 txtBoxUser.ReadOnly = true;
+                txtBoxUser.Text = appPassword.UserName;
                 var vaultController = VaultController.GetInstance();
                 txtBoxPwd.Text = EncryptionService.DecryptPassword(appPassword.Password, vaultController.GetEncryptionKey(appName, username), appPassword.Bytes);
             }

@@ -18,7 +18,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 using Microsoft.EntityFrameworkCore;
 using pwdvault.Modeles;
 using pwdvault.Services.Exceptions;
-using Serilog;
 
 namespace pwdvault.Controllers
 {
@@ -40,7 +39,6 @@ namespace pwdvault.Controllers
         {
             if(!PasswordExists(password.AppName, password.UserName))
             {
-                Log.Logger.Information("Adding a new password on database...");
                 _dbContext.Add(password);
                 _dbContext.SaveChanges();
             }
@@ -57,7 +55,6 @@ namespace pwdvault.Controllers
         /// <exception cref="PasswordException"></exception>
         public void DeletePassword(int id)
         {
-            Log.Logger.Information("Deleting a password from database...");
             // If AppPassword is null, throw the exception
             var password = _dbContext.Passwords.Find(id) ?? throw new PasswordException("The password for this account was not found. Please check the account name and try again.");
             _dbContext.Remove(password);
@@ -70,7 +67,6 @@ namespace pwdvault.Controllers
         /// <param name="passwordEdited"></param>
         public void UpdatePassword(AppPassword passwordEdited)
         {
-            Log.Logger.Information("Updating a password on database...");
             _dbContext.Update(passwordEdited);
             _dbContext.SaveChanges();
         }
@@ -85,7 +81,6 @@ namespace pwdvault.Controllers
         /// <exception cref="PasswordException"></exception>
         public AppPassword GetPassword(string appName, string username)
         {
-            Log.Logger.Information($"Getting the {appName}'s password from database...");
             var password = _dbContext.Passwords.FirstOrDefault(password => password.AppName == appName && password.UserName == username);
             return password ?? throw new PasswordException($"The password for the {appName} was not found. Please check the account name and try again.");
         }
@@ -114,7 +109,6 @@ namespace pwdvault.Controllers
         /// <returns></returns>
         public List<AppPassword> GetAllPasswords()
         {
-            Log.Logger.Information("Retrieving all passwords from database...");
             return _dbContext.Passwords.ToList();
         }
 

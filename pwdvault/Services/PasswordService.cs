@@ -36,7 +36,6 @@ namespace pwdvault.Services
         {
             try
             {
-                Log.Logger.Information("Generating new password...");
                 const int length = 20;
                 const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$€%^&*()_+-=[]{}|;:,.<>?";
 
@@ -110,7 +109,6 @@ namespace pwdvault.Services
         {
             try
             {
-                Log.Logger.Information("Retrieving icon name...");
                 var resources = Properties.Resources.ResourceManager.GetResourceSet(System.Globalization.CultureInfo.CurrentCulture, true, true);
                 if (resources != null)
                 {

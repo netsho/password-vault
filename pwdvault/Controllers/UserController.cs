@@ -18,7 +18,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 using Microsoft.EntityFrameworkCore;
 using pwdvault.Modeles;
 using pwdvault.Services.Exceptions;
-using Serilog;
 
 namespace pwdvault.Controllers
 {
@@ -40,7 +39,6 @@ namespace pwdvault.Controllers
         {
             if (!UserExists(user.Username))
             {
-                Log.Logger.Information("Creating a new user in database...");
                 _dbContext.Add(user);
                 _dbContext.SaveChanges();
             }
@@ -57,7 +55,7 @@ namespace pwdvault.Controllers
         /// <returns></returns>
         public bool UserExists(string username)
         {
-            foreach (var user in GetUsers())
+            foreach (var user in GetAllUsers())
             {
                 if (user.Username.ToLower().Equals(username.ToLower()))
                 {
@@ -75,7 +73,7 @@ namespace pwdvault.Controllers
         /// <exception cref="UserException"></exception>
         public User GetUserByUsername(string username)
         {
-            foreach (var user in GetUsers())
+            foreach (var user in GetAllUsers())
             {
                 if (user.Username.ToLower().Equals(username.ToLower()))
                 {
@@ -89,9 +87,8 @@ namespace pwdvault.Controllers
         /// Gets the user from database.
         /// </summary>
         /// <returns></returns>
-        public List<User> GetUsers()
+        public List<User> GetAllUsers()
         {
-            Log.Logger.Information("Retrieving users from database...");
             return _dbContext.Users.ToList();
         }
 

@@ -19,7 +19,6 @@ using pwdvault.Modeles;
 using pwdvault.Services;
 using pwdvault.Controllers;
 using Serilog;
-using System.Text;
 using pwdvault.Services.Exceptions;
 
 namespace pwdvault.Forms
@@ -90,10 +89,9 @@ namespace pwdvault.Forms
             try
             {
                 Cursor = Cursors.WaitCursor;
-                // Encrypt password and store it, success message and hide the form
+                // Encrypt password and store it, display success message and hide the form
                 var encryptionKey = EncryptionService.GenerateKey(txtBoxPwd.Text);
                 var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, encryptionKey, out byte[] bytes);
-                var str = Encoding.Default.GetString(encryptionKey);
                 var appPassword = new AppPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text), bytes) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
 
                 using var context = new PasswordVaultContext();

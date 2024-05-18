@@ -19,9 +19,6 @@ using VaultSharp;
 using VaultSharp.V1.AuthMethods;
 using VaultSharp.V1.AuthMethods.AppRole;
 using Serilog;
-using VaultSharp.V1.SecretsEngines.KeyValue.V2;
-using System.Text;
-using System.Text.Json;
 
 namespace pwdvault.Controllers
 {
@@ -88,7 +85,7 @@ namespace pwdvault.Controllers
 
         /// <summary>
         /// This method stores the encryption key at the specified location: /secretPath/appName
-        /// The checkAndSet param in WriteSecretAsync is set to 0 so the write is only allowed ifthe encryption key doesn't exist.
+        /// The checkAndSet param in WriteSecretAsync is set to 0 so the write is only allowed if the encryption key doesn't exist.
         /// </summary>
         /// <param name="appName"></param>
         /// <param name="encryptionKey"></param>
@@ -152,10 +149,8 @@ namespace pwdvault.Controllers
                 var newEncodedKey = Convert.ToBase64String(newEncryptionKey);
                 var newSecret = new Dictionary<string, object>
                 {
-                    //{ DATA_KEY, Convert.ToBase64String(GetEncryptionKey(appName, username)) },
                     { DATA_KEY,  newEncodedKey }
                 };
-                //var patchSecretDataRequest = new PatchSecretDataRequest() { Data = newSecret };
                 await _vaultClient!.V1.Secrets.KeyValue.V2.WriteSecretAsync($"{_secretPath}/{appName}/{username}", newSecret, mountPoint: MOUNT_POINT);
             }
             catch (Exception ex)

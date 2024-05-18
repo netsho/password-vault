@@ -47,9 +47,7 @@ namespace pwdvault.Forms
                         Cursor = Cursors.WaitCursor;
 
                         /* --------------------- Create the new user while salting and hashing the user's password */
-                        Log.Logger.Information("Generating salt for user's password...");
                         var salt = UserPasswordSecurity.GenerateSalt();
-                        Log.Logger.Information("Generating hash for user's password...");
                         var hash = UserPasswordSecurity.GenerateHash(txtBoxPwd.Text, salt);
                         var user = new User(txtBoxUser.Text, hash, salt);
 
