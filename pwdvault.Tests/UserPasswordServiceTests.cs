@@ -2,7 +2,7 @@
 
 namespace pwdvault.Tests
 {
-    public class UserPasswordSecurityTests
+    public class UserPasswordServiceTests
     {
         [Fact]
         public void GenerateSalt_ShouldReturnNonNullOrNotEmpty()

@@ -1,6 +1,8 @@
-﻿namespace pwdvault.Tests
+﻿using pwdvault.Services;
+
+namespace pwdvault.Tests
 {
-    internal class EncryptionServiceTests
+    public class EncryptionServiceTests
     {
 
     }
