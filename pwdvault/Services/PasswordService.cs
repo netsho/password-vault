@@ -23,7 +23,7 @@ using System.Text.RegularExpressions;
 
 namespace pwdvault.Services
 {
-    internal class PasswordService
+    public class PasswordService
     {
         /// <summary>
         /// <para>
@@ -64,7 +64,7 @@ namespace pwdvault.Services
 
 
         /// <summary>
-        /// Function that defines regular expressions to check if the password is strong by meeting the criteria : At least 1 lowercase, 1 uppercase letter, 1 number and 1 special character.
+        /// Function that defines regular expressions to check if the password is strong by meeting the criteria : At least 16 characters and at least 1 lowercase, 1 uppercase letter, 1 number and 1 special character.
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>

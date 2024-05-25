@@ -16,7 +16,7 @@ namespace pwdvault.Tests
         }
 
         [Fact]
-        public void GenerateSalt_ShouldReturnExceptedSize()
+        public void GenerateSalt_ShouldReturnExpectedSize()
         {
             // Act
             byte[] result = UserPasswordSecurity.GenerateSalt();
@@ -26,7 +26,7 @@ namespace pwdvault.Tests
         }
 
         [Fact]
-        public void GenerateSalt_ShouldReturnDifferentSaltOn2Results()
+        public void GenerateSalt_ShouldReturnDifferentSalt()
         {
             // Act
             byte[] result1 = UserPasswordSecurity.GenerateSalt();
