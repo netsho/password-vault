@@ -49,7 +49,7 @@ namespace pwdvault.Forms
                         var userController = new UserController(context);
                         var user = userController.GetUserByUsername(txtBoxUser.Text);
                         if (txtBoxUser.Text.Equals(user.Username) &&
-                            UserPasswordSecurity.VerifyPassword(txtBoxPwd.Text, user.PasswordSalt, user.PasswordHash))
+                            UserPasswordService.VerifyPassword(txtBoxPwd.Text, user.PasswordSalt, user.PasswordHash))
                         {
                             new MainForm().Show();
                             Hide();

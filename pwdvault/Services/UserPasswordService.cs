@@ -21,7 +21,7 @@ using System.Text;
 
 namespace pwdvault.Services
 {
-    public class UserPasswordSecurity
+    public class UserPasswordService
     {
         private const int SALT_SIZE = 32; // 256 bit
         private const int HASH_SIZE = 32; // 256 bit
