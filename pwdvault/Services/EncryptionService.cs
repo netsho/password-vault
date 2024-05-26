@@ -46,9 +46,9 @@ namespace pwdvault.Services
             {
                 throw new ArgumentException("The password is empty.");
             }
-            if (key == null || key.Length == 0)
+            if (key == null || key.Length != 16)
             {
-                throw new ArgumentException("The encryption key is either null or empty.");
+                throw new ArgumentException("The encryption key is either null or not a valid size.");
             }
 
             try
@@ -91,13 +91,17 @@ namespace pwdvault.Services
         /// <exception cref="ArgumentException"></exception>
         public static string DecryptPassword(byte[] encryptedPassword, byte[] key, byte[] iv)
         {
-            if (encryptedPassword == null || encryptedPassword.Length == 0)
+            if (encryptedPassword == null || encryptedPassword.Length != 16)
             {
-                throw new ArgumentException("The encrypted password is either null or empty.");
+                throw new ArgumentException("The encrypted password is either null or not a valid size.");
             }
-            if (key == null || key.Length == 0)
+            if (key == null || key.Length != 16)
             {
-                throw new ArgumentException("The decryption key is either null or empty.");
+                throw new ArgumentException("The decryption key is either null or not a valid size.");
+            }
+            if (iv == null || iv.Length != 16)
+            {
+                throw new ArgumentException("The IV used to decrypt the password is either null or not a valid size.");
             }
 
             try

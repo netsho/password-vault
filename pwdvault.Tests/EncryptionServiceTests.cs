@@ -5,6 +5,22 @@ namespace pwdvault.Tests
     public class EncryptionServiceTests
     {
         [Fact]
+        public void EncryptPassword_ShouldReturnNotNullAndNotEmptyAndValidSize()
+        {
+            // Arrange
+            string password = "password";
+            byte[] key = EncryptionService.GenerateKey(password);
+
+            // Act
+            byte[] encryptedPassword = EncryptionService.EncryptPassword(password, key, out _);
+
+            // Assert
+            Assert.NotNull(encryptedPassword);
+            Assert.NotEmpty(encryptedPassword);
+            Assert.Equal(16, encryptedPassword.Length);
+        }
+
+        [Fact]
         public void EncryptPassword_ShouldReturnDifferentResultsForSamePasswordAndKey()
         {
             // Arrange
@@ -103,6 +119,20 @@ namespace pwdvault.Tests
         }
 
         [Fact]
+        public void EncryptPassword_ShouldReturnIvOfValidSize()
+        {
+            // Arrange
+            string password = "password";
+            byte[] key = EncryptionService.GenerateKey(password);
+
+            // Act
+            _ = EncryptionService.EncryptPassword(password, key, out byte[] iv);
+
+            // Assert
+            Assert.Equal(16, iv.Length);
+        }
+
+        [Fact]
         public void EncryptPassword_ShouldThrowExceptionWhenPasswordIsNullOrEmpty()
         {
             // Arrange
@@ -118,7 +148,7 @@ namespace pwdvault.Tests
         }
 
         [Fact]
-        public void EncryptPassword_ShouldThrowExceptionWhenKeyIsNullOrEmpty()
+        public void EncryptPassword_ShouldThrowExceptionWhenEncryptionKeyIsNullOrNotValidSize()
         {
             // Arrange
             string password = "password";
@@ -132,15 +162,121 @@ namespace pwdvault.Tests
         }
 
         [Fact]
-        public void DecryptPassword_ShouldReturnSamePasswordForSameEncryptedPasswordAndKeyAndIv()
+        public void DecryptPassword_ShouldReturnNotNullAndNotEmpty()
         {
-            
+            // Arrange
+            string password = "password";
+            byte[] key = EncryptionService.GenerateKey(password);
+            byte[] encryptedPassword = EncryptionService.EncryptPassword(password, key, out byte[] iv);
+
+            // Act
+            string decryptedPassword = EncryptionService.DecryptPassword(encryptedPassword, key, iv);
+
+            // Assert
+            Assert.NotNull(decryptedPassword);
+            Assert.NotEmpty(decryptedPassword);
         }
 
+        [Fact]
+        public void DecryptPassword_ShouldReturnCorrectPasswordWhenDecrypting()
+        {
+            // Arrange
+            string password = "password";
+            byte[] key = EncryptionService.GenerateKey(password);
+            byte[] encryptedPassword = EncryptionService.EncryptPassword(password, key, out byte[] iv);
 
+            // Act
+            string decryptedPassword = EncryptionService.DecryptPassword(encryptedPassword, key, iv);
+
+            // Assert
+            Assert.Equal("password", decryptedPassword);
+        }
 
         [Fact]
-        public void GenerateKey_ShouldReturnNonNullOrNotEmpty()
+        public void DecryptPassword_ShouldReturnSameResultForSameParameters()
+        {
+            // Arrange
+            string password = "password";
+            byte[] key = EncryptionService.GenerateKey(password);
+            byte[] encryptedPassword = EncryptionService.EncryptPassword(password, key, out byte[] iv);
+
+            // Act
+            string decryptedPassword1 = EncryptionService.DecryptPassword(encryptedPassword, key, iv);
+            string decryptedPassword2 = EncryptionService.DecryptPassword(encryptedPassword, key, iv);
+
+            // Assert
+            Assert.Equal(decryptedPassword1, decryptedPassword2);
+        }
+
+        [Fact]
+        public void DecryptPassword_ShouldReturnDifferentResultsForDifferentDifferentParameters()
+        {
+            // Arrange
+            string password1 = "password1";
+            string password2 = "password2";
+            byte[] key1 = EncryptionService.GenerateKey(password1);
+            byte[] key2 = EncryptionService.GenerateKey(password2);
+            byte[] encryptedPassword1 = EncryptionService.EncryptPassword(password1, key1, out byte[] iv1);
+            byte[] encryptedPassword2 = EncryptionService.EncryptPassword(password2, key2, out byte[] iv2);
+
+            // Act
+            string decryptedPassword1 = EncryptionService.DecryptPassword(encryptedPassword1, key1, iv1);
+            string decryptedPassword2 = EncryptionService.DecryptPassword(encryptedPassword2, key2 , iv2);
+
+            // Assert
+            Assert.NotEqual(decryptedPassword1, decryptedPassword2);
+        }
+
+        [Fact]
+        public void DecryptPassword_ShouldThrowExceptionWhenEncryptedPasswordIsNullOrNotValidSize()
+        {
+            // Arrange
+            string password = "password";
+            byte[] encryptedPassword1 = new byte[0];
+            byte[]? encryptedPassword2 = null;
+            byte[] key = EncryptionService.GenerateKey(password);
+            _ = EncryptionService.EncryptPassword(password, key, out byte[] iv);
+            Type exceptionType = typeof(ArgumentException);
+
+            // Assert & act
+            Assert.Throws(exceptionType, () => _ = EncryptionService.DecryptPassword(encryptedPassword1, key, iv));
+            Assert.Throws(exceptionType, () => _ = EncryptionService.DecryptPassword(encryptedPassword2, key, iv));
+        }
+
+        [Fact]
+        public void DecryptPassword_ShouldThrowExceptionWhenDecryptionKeyIsNullOrNotValidSize()
+        {
+            // Arrange
+            string password = "password";
+            byte[] key = EncryptionService.GenerateKey(password);
+            byte[] encryptedPassword = EncryptionService.EncryptPassword(password, key, out byte[] iv);
+            byte[]? key1 = null;
+            byte[] key2 = new byte[1];
+            Type exceptionType = typeof(ArgumentException);
+
+            // Assert & act
+            Assert.Throws(exceptionType, () => _ = EncryptionService.DecryptPassword(encryptedPassword, key1, iv));
+            Assert.Throws(exceptionType, () => _ = EncryptionService.DecryptPassword(encryptedPassword, key2, iv));
+        }
+
+        [Fact]
+        public void DecryptPassword_ShouldThrowExceptionWhenIVIsNullOrNotValidSize()
+        {
+            // Arrange
+            string password = "password";
+            byte[] key = EncryptionService.GenerateKey(password);
+            byte[] encryptedPassword = EncryptionService.EncryptPassword(password, key, out _);
+            byte[]? iv1 = null;
+            byte[]? iv2 = new byte[1];
+            Type exceptionType = typeof(ArgumentException);
+
+            // Assert & act
+            Assert.Throws(exceptionType, () => _ = EncryptionService.DecryptPassword(encryptedPassword, key, iv1));
+            Assert.Throws(exceptionType, () => _ = EncryptionService.DecryptPassword(encryptedPassword, key, iv2));
+        }
+
+        [Fact]
+        public void GenerateKey_ShouldReturnNonNullAndNotEmptyAndValidSize()
         {
             // Arrange
             string password = "password";
@@ -151,6 +287,7 @@ namespace pwdvault.Tests
             // Assert
             Assert.NotNull(result);
             Assert.NotEmpty(result);
+            Assert.Equal(16, result.Length);
         }
 
         [Fact]
