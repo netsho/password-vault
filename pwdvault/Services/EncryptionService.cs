@@ -22,7 +22,7 @@ using Serilog;
 
 namespace pwdvault.Services
 {
-    internal class EncryptionService
+    public class EncryptionService
     {
         private const int SALT_SIZE = 16; // 128 bit
         private const int HASH_SIZE = 16; // 128 bit
@@ -42,18 +42,17 @@ namespace pwdvault.Services
         /// <exception cref="ArgumentException"></exception>
         public static byte[] EncryptPassword(string password, byte[] key, out byte[] iv)
         {
+            if (String.IsNullOrEmpty(password))
+            {
+                throw new ArgumentException("The password is empty.");
+            }
+            if (key == null || key.Length == 0)
+            {
+                throw new ArgumentException("The encryption key is either null or empty.");
+            }
+
             try
             {
-                if (String.IsNullOrEmpty(password))
-                {
-                    throw new ArgumentException("The password is empty.");
-                }
-                if (key == null || key.Length == 0)
-                {
-                    throw new ArgumentException("The encryption key is either null or empty.");
-                }
-
-
                 using var aes = Aes.Create();
                 aes.Key = key;
                 aes.GenerateIV();
@@ -92,17 +91,17 @@ namespace pwdvault.Services
         /// <exception cref="ArgumentException"></exception>
         public static string DecryptPassword(byte[] encryptedPassword, byte[] key, byte[] iv)
         {
+            if (encryptedPassword == null || encryptedPassword.Length == 0)
+            {
+                throw new ArgumentException("The encrypted password is either null or empty.");
+            }
+            if (key == null || key.Length == 0)
+            {
+                throw new ArgumentException("The decryption key is either null or empty.");
+            }
+
             try
             {
-                if (encryptedPassword == null || encryptedPassword.Length == 0)
-                {
-                    throw new ArgumentException("The encrypted password is either null or empty.");
-                }
-                if (key == null || key.Length == 0)
-                {
-                    throw new ArgumentException("The decryption key is either null or empty.");
-                }
-
                 using Aes aes = Aes.Create();
                 aes.Key = key;
                 aes.IV = iv;
@@ -160,7 +159,7 @@ namespace pwdvault.Services
         /// <param name="password"></param>
         /// <param name="salt"></param>
         /// <returns></returns>
-        public static byte[] GenerateHash(string password)
+        private static byte[] GenerateHash(string password)
         {
             using var argon2id = new Argon2id(Encoding.UTF8.GetBytes(password));
             argon2id.Salt = GenerateSalt();
