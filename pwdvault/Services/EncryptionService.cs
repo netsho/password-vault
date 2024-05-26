@@ -64,11 +64,6 @@ namespace pwdvault.Services
                     var passwordBytes = Encoding.UTF8.GetBytes(password);
                     cryptoStream.Write(passwordBytes, 0, passwordBytes.Length);
                 }
-
-                /*using var cryptoStream = new CryptoStream(memoryStream, aes.CreateEncryptor(aes.Key, aes.IV), CryptoStreamMode.Write);
-                var passwordBytes = Encoding.UTF32.GetBytes(password);
-                cryptoStream.Write(passwordBytes, 0, passwordBytes.Length);
-                */
                 return memoryStream.ToArray();
             }
             catch (Exception ex)
@@ -115,20 +110,6 @@ namespace pwdvault.Services
                 using var msPlain = new MemoryStream();
                 cryptoStream.CopyTo(msPlain);
                 return Encoding.UTF8.GetString(msPlain.ToArray());
-
-                /*using var aes = Aes.Create();
-                aes.Key = key;
-
-                using var memoryStream = new MemoryStream(encryptedPassword);
-                var iv = new byte[IV_SIZE];
-                memoryStream.Read(iv, 0, IV_SIZE);
-                aes.IV = iv;
-
-                using var cryptoStream = new CryptoStream(memoryStream, aes.CreateDecryptor(), CryptoStreamMode.Read);
-                var decryptedPasswordByte = new byte[encryptedPassword.Length];
-                var byteCountPassword = cryptoStream.Read(decryptedPasswordByte, 0, encryptedPassword.Length);
-
-                return Encoding.UTF32.GetString(decryptedPasswordByte, 0, byteCountPassword);*/
             }
             catch (Exception ex)
             {
