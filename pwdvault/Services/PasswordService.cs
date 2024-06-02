@@ -15,8 +15,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
+using CsvHelper;
+using pwdvault.Modeles;
 using Serilog;
 using System.Collections;
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -27,7 +30,7 @@ namespace pwdvault.Services
     {
         /// <summary>
         /// <para>
-        /// Method that generate a password of fixed length : 20 characters. It uses RandomNumberGenerator to generate a sequence of random bytes,
+        /// Function that generate a password of fixed length : 20 characters. It uses RandomNumberGenerator to generate a sequence of random bytes,
         /// which are used to selectrandom characters from the validchars string.
         /// </para>
         /// </summary>
@@ -128,6 +131,22 @@ namespace pwdvault.Services
                 Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
                 return String.Empty;
             }
+        }
+
+        /// <summary>
+        /// Function that export all the passwords in the database to a CSV file located in the AppData/Local/PasswordVault. The CSV file name contains the actual date.
+        /// </summary>
+        /// <param name="passwords"></param>
+        public static void ExportPasswords(List<AppPassword> passwords)
+        {
+            // Define CSV file + location
+            string csvName = $"pwdvault_export.csv";
+            var passwordVaultFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault");
+
+            // Write to CSV file
+            using var writer = new StreamWriter($"{passwordVaultFolder}\\{csvName}");
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.WriteRecords(passwords);
         }
     }
 }

@@ -18,6 +18,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 using pwdvault.Modeles;
 using pwdvault.Controllers;
 using System.Data;
+using pwdvault.Services;
 
 namespace pwdvault.Forms
 {
@@ -127,6 +128,19 @@ namespace pwdvault.Forms
         private void BtnExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            List<AppPassword> passwords;
+            // Get all the passwords
+            using (var context = new PasswordVaultContext())
+            {
+                var passwordController = new PasswordController(context);
+                passwords = passwordController.GetAllPasswords();
+            }
+            // Export the passwords in a CSV file
+            PasswordService.ExportPasswords(passwords);
         }
 
         private void TxtBoxFilter_TextChanged(object sender, EventArgs e)
