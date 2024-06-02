@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 using CsvHelper;
+using pwdvault.Controllers;
+using pwdvault.Forms;
 using pwdvault.Modeles;
 using Serilog;
 using System.Collections;
@@ -23,6 +25,7 @@ using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace pwdvault.Services
 {
@@ -139,6 +142,17 @@ namespace pwdvault.Services
         /// <param name="passwords"></param>
         public static void ExportPasswords(List<AppPassword> passwords)
         {
+            // Decrypt all passwords
+            var vaultController = VaultController.GetInstance();
+
+            var passwordExports = passwords.Select(p => new ExportImportData
+            (p.AppCategory, 
+            p.AppName,
+            p.UserName,
+            EncryptionService.DecryptPassword(p.Password, vaultController.GetEncryptionKey(p.AppName, p.UserName), p.Bytes),
+            p.IconName
+            )).ToList();
+
             // Define CSV file + location
             string csvName = $"pwdvault_export.csv";
             var passwordVaultFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault");
@@ -146,7 +160,7 @@ namespace pwdvault.Services
             // Write to CSV file
             using var writer = new StreamWriter($"{passwordVaultFolder}\\{csvName}");
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-            csv.WriteRecords(passwords);
+            csv.WriteRecords(passwordExports);
         }
     }
 }
