@@ -18,6 +18,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 using pwdvault.Modeles;
 using pwdvault.Controllers;
 using System.Data;
+using pwdvault.Services;
+using Serilog;
+using pwdvault.Services.Exceptions;
 
 namespace pwdvault.Forms
 {
@@ -127,6 +130,40 @@ namespace pwdvault.Forms
         private void BtnExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                List<AppPassword> passwords;
+                // Get all the passwords
+                using (var context = new PasswordVaultContext())
+                {
+                    var passwordController = new PasswordController(context);
+                    passwords = passwordController.GetAllPasswords();
+                }
+                // Export the passwords in a CSV file
+                PasswordService.ExportPasswords(passwords);
+                Cursor = Cursors.Default;
+                MessageBox.Show($"Passwords successfully exported.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                Cursor = Cursors.Default;
+                if (ex is ArgumentException)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                Close();
+            }
+
         }
 
         private void TxtBoxFilter_TextChanged(object sender, EventArgs e)

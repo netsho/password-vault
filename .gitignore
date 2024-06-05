@@ -101,3 +101,4 @@ artifacts/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/pwdvault.Tests/TestResults/42717183-a93c-4a52-be24-9e9d8c7dd542/coverage.cobertura.xml

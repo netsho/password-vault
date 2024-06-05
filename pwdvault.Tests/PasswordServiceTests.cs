@@ -1,4 +1,5 @@
-﻿using pwdvault.Services;
+﻿using pwdvault.Modeles;
+using pwdvault.Services;
 
 namespace pwdvault.Tests
 {
@@ -195,5 +196,36 @@ namespace pwdvault.Tests
             // Assert
             Assert.Equal("icons8_image_48", result);
         }
+
+        //[Fact]
+        //public void ExportPasswords_ShouldCreateNonEmptyCsvForExistantPasswords()
+        //{
+        //    // Arrange
+        //    string csvFile = $"{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault")}\\pwdvault_export.csv";
+        //    File.Delete(csvFile);
+        //    List<AppPassword> passwords = new() { new AppPassword("test1", "test2", "test3", [0, 1, 5, 6], "test4", [0, 1, 5, 6]),
+        //    new AppPassword("test5", "test6", "test7", [0, 1, 5, 6], "test8", [0, 1, 5, 6])};
+        //    // Act
+        //    PasswordService.ExportPasswords(passwords);
+
+        //    // Assert
+        //    Assert.True(File.Exists(csvFile));
+        //    Assert.NotEmpty(File.ReadAllBytes(csvFile));
+        //}
+
+        //[Fact]
+        //public void ExportPasswords_ShouldCreateOnlyHeaderInCsvForNonExistantPasswords()
+        //{
+        //    // Arrange
+        //    string csvFile = $"{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault")}\\pwdvault_export.csv";
+        //    File.Delete(csvFile);
+        //    List<AppPassword> passwords = [];
+        //    // Act
+        //    PasswordService.ExportPasswords(passwords);
+
+        //    // Assert
+        //    Assert.True(File.Exists(csvFile));
+        //    Assert.Equal("Id,AppCategory,AppName,UserName,Password,IconName,Bytes,CreationTime,UpdateTime\r\n", File.ReadAllText(csvFile));
+        //}
     }
 }

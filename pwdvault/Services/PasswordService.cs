@@ -15,11 +15,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
+using CsvHelper;
+using pwdvault.Controllers;
+using pwdvault.Forms;
+using pwdvault.Modeles;
 using Serilog;
 using System.Collections;
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace pwdvault.Services
 {
@@ -27,7 +33,7 @@ namespace pwdvault.Services
     {
         /// <summary>
         /// <para>
-        /// Method that generate a password of fixed length : 20 characters. It uses RandomNumberGenerator to generate a sequence of random bytes,
+        /// Function that generate a password of fixed length : 20 characters. It uses RandomNumberGenerator to generate a sequence of random bytes,
         /// which are used to selectrandom characters from the validchars string.
         /// </para>
         /// </summary>
@@ -128,6 +134,32 @@ namespace pwdvault.Services
                 Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
                 return String.Empty;
             }
+        }
+
+        /// <summary>
+        /// Function that export all the passwords in the database to a CSV file located in the AppData/Local/PasswordVault. The CSV file name contains the actual date.
+        /// </summary>
+        /// <param name="passwords"></param>
+        public static void ExportPasswords(List<AppPassword> passwords)
+        {
+            // Decrypt all passwords
+            var vaultController = VaultController.GetInstance();
+
+            var passwordExports = passwords.Select(p => new ExportImportData
+            (p.AppCategory, 
+            p.AppName,
+            p.UserName,
+            EncryptionService.DecryptPassword(p.Password, vaultController.GetEncryptionKey(p.AppName, p.UserName), p.Bytes)
+            )).ToList();
+
+            // Define CSV file + location
+            string csvName = $"pwdvault_export.csv";
+            var passwordVaultFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault");
+
+            // Write to CSV file
+            using var writer = new StreamWriter($"{passwordVaultFolder}\\{csvName}");
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.WriteRecords(passwordExports);
         }
     }
 }

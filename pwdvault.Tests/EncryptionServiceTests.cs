@@ -228,7 +228,7 @@ namespace pwdvault.Tests
         }
 
         [Fact]
-        public void DecryptPassword_ShouldThrowExceptionWhenEncryptedPasswordIsNullOrNotValidSize()
+        public void DecryptPassword_ShouldThrowExceptionWhenEncryptedPasswordIsNullOrEmpty()
         {
             // Arrange
             string password = "password";
