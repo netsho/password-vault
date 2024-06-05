@@ -149,8 +149,7 @@ namespace pwdvault.Services
             (p.AppCategory, 
             p.AppName,
             p.UserName,
-            EncryptionService.DecryptPassword(p.Password, vaultController.GetEncryptionKey(p.AppName, p.UserName), p.Bytes),
-            p.IconName
+            EncryptionService.DecryptPassword(p.Password, vaultController.GetEncryptionKey(p.AppName, p.UserName), p.Bytes)
             )).ToList();
 
             // Define CSV file + location

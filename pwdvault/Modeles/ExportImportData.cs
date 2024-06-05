@@ -23,15 +23,13 @@ namespace pwdvault.Modeles
         public string AppName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string IconName { get; set; }
 
-        public ExportImportData(string appCategory, string appName, string userName, string password, string iconName)
+        public ExportImportData(string appCategory, string appName, string userName, string password)
         {
             AppCategory = appCategory;
             AppName = appName;
             UserName = userName;
             Password = password;
-            IconName = iconName;
         }
     }
 }
