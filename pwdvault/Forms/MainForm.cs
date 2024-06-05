@@ -19,6 +19,8 @@ using pwdvault.Modeles;
 using pwdvault.Controllers;
 using System.Data;
 using pwdvault.Services;
+using Serilog;
+using pwdvault.Services.Exceptions;
 
 namespace pwdvault.Forms
 {
@@ -132,15 +134,36 @@ namespace pwdvault.Forms
 
         private void BtnExport_Click(object sender, EventArgs e)
         {
-            List<AppPassword> passwords;
-            // Get all the passwords
-            using (var context = new PasswordVaultContext())
+            try
             {
-                var passwordController = new PasswordController(context);
-                passwords = passwordController.GetAllPasswords();
+                Cursor = Cursors.WaitCursor;
+                List<AppPassword> passwords;
+                // Get all the passwords
+                using (var context = new PasswordVaultContext())
+                {
+                    var passwordController = new PasswordController(context);
+                    passwords = passwordController.GetAllPasswords();
+                }
+                // Export the passwords in a CSV file
+                PasswordService.ExportPasswords(passwords);
+                Cursor = Cursors.Default;
+                MessageBox.Show($"Passwords successfully exported.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            // Export the passwords in a CSV file
-            PasswordService.ExportPasswords(passwords);
+            catch (Exception ex)
+            {
+                Cursor = Cursors.Default;
+                if (ex is ArgumentException)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                Close();
+            }
+
         }
 
         private void TxtBoxFilter_TextChanged(object sender, EventArgs e)

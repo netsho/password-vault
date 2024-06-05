@@ -148,17 +148,17 @@ namespace pwdvault.Forms
                 MessageBox.Show($"{appPasswordEdited.AppName}'s password successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();
             }
-            catch (PasswordException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Cursor = Cursors.Default;
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
-                Close();
-            }
             catch (Exception ex)
             {
-                MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Cursor = Cursors.Default;
+                if (ex is PasswordException || ex is ArgumentException)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("An unexpected error occured. Please check the log file or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
                 Close();
             }
