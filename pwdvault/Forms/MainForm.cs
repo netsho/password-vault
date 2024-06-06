@@ -147,7 +147,7 @@ namespace pwdvault.Forms
                 // Export the passwords in a CSV file
                 PasswordService.ExportPasswords(passwords);
                 Cursor = Cursors.Default;
-                MessageBox.Show($"Passwords successfully exported.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Passwords successfully exported at {Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault")}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -161,9 +161,42 @@ namespace pwdvault.Forms
                     MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
-                Close();
             }
 
+        }
+
+        private void BtnImport_Click(object sender, EventArgs e)
+        {
+            var openFileDialogCSV = new OpenFileDialog
+            {
+                Filter = "CSV files (*.csv)|*.csv"
+            };
+
+            if (openFileDialogCSV.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Cursor = Cursors.WaitCursor;
+                    PasswordService.ImportPasswords(openFileDialogCSV.FileName);
+                    Cursor = Cursors.Default;
+                    MessageBox.Show($"Passwords successfully imported.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ShowSelectedCategory(lbAll);
+                    UpdatePasswordControls(GetPasswordControls(lbAll.Text));
+                }
+                catch (Exception ex)
+                {
+                    Cursor = Cursors.Default;
+                    if (ex is ArgumentException)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                }
+            }
         }
 
         private void TxtBoxFilter_TextChanged(object sender, EventArgs e)

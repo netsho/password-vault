@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 using CsvHelper;
+using CsvHelper.Configuration;
 using pwdvault.Controllers;
 using pwdvault.Forms;
 using pwdvault.Modeles;
@@ -137,7 +138,7 @@ namespace pwdvault.Services
         }
 
         /// <summary>
-        /// Function that export all the passwords in the database to a CSV file located in the AppData/Local/PasswordVault. The CSV file name contains the actual date.
+        /// Function that exports all the passwords in the database to a CSV file located in the AppData/Local/PasswordVault.
         /// </summary>
         /// <param name="passwords"></param>
         public static void ExportPasswords(List<AppPassword> passwords)
@@ -145,12 +146,12 @@ namespace pwdvault.Services
             // Decrypt all passwords
             var vaultController = VaultController.GetInstance();
 
-            var passwordExports = passwords.Select(p => new ExportImportData
-            (p.AppCategory, 
-            p.AppName,
-            p.UserName,
-            EncryptionService.DecryptPassword(p.Password, vaultController.GetEncryptionKey(p.AppName, p.UserName), p.Bytes)
-            )).ToList();
+            var passwordExports = passwords.Select(p => new ExportImportData(
+                p.AppCategory, 
+                p.AppName,
+                p.UserName,
+                EncryptionService.DecryptPassword(p.Password, vaultController.GetEncryptionKey(p.AppName, p.UserName), p.Bytes)
+                )).ToList();
 
             // Define CSV file + location
             string csvName = $"pwdvault_export.csv";
@@ -160,6 +161,37 @@ namespace pwdvault.Services
             using var writer = new StreamWriter($"{passwordVaultFolder}\\{csvName}");
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
             csv.WriteRecords(passwordExports);
+        }
+
+        /// <summary>
+        /// Function that imports all the passwords from the choosen CSV file and stores them in the database, along with their encryption keys. 
+        /// </summary>
+        /// <param name="csvPasswordsFile"></param>
+        public static void ImportPasswords(string csvPasswordsFile)
+        {
+            // Read the CSV file
+            using var reader = new StreamReader(csvPasswordsFile);
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                Delimiter = ",", // Enforce ',' as delimiter
+                PrepareHeaderForMatch = header => header.Header.ToLower() // Ignore casing
+            };
+            using var csv = new CsvReader(reader, config);
+            List<ExportImportData> importedPasswordsCSV = csv.GetRecords<ExportImportData>().ToList();
+
+            // Initialising the contexts to store the passwords in DB and encryption keys in vault
+            using var context = new PasswordVaultContext();
+            var passwordController = new PasswordController(context);
+            var vaultController = VaultController.GetInstance();
+
+            // Store all the passwords in the database and their corresponding encryption keys
+            foreach (var passwordCSV in importedPasswordsCSV)
+            {
+                byte[] encryptionKey = EncryptionService.GenerateKey(passwordCSV.Password);
+                var password = new AppPassword(passwordCSV.AppCategory, passwordCSV.AppName, passwordCSV.UserName, EncryptionService.EncryptPassword(passwordCSV.Password, encryptionKey, out byte[] iv), GetIconName(passwordCSV.AppName), iv) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
+                passwordController.CreatePassword(password);
+                vaultController.StoreEncryptionKey(password.AppName, password.UserName, encryptionKey);
+            }
         }
     }
 }
