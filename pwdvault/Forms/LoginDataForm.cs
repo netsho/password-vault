@@ -135,15 +135,14 @@ namespace pwdvault.Forms
             try
             {
                 var loginData = new List<LoginData>
-            {
-                new LoginData()
-                {
-                    CaFilePath = txtBoxCA.Text,
-                    CertificateFilePath = txtBoxCertificate.Text,
-                    KeyFilePath = txtBoxKey.Text,
-                    SecretID = txtBoxSecretId.Text
-                }
-            };
+                { new LoginData() 
+                    {
+                        CaFilePath = txtBoxCA.Text,
+                        CertificateFilePath = txtBoxCertificate.Text,
+                        KeyFilePath = txtBoxKey.Text,
+                        SecretID = txtBoxSecretId.Text
+                    }
+                };
                 var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
                 string jsonLogin = JsonSerializer.Serialize(loginData, jsonOptions);
                 File.WriteAllText(_loginDataPath, jsonLogin);
