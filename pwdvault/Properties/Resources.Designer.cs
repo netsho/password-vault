@@ -63,9 +63,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap aliexpress {
+        internal static System.Drawing.Bitmap aliexpress_logo {
             get {
-                object obj = ResourceManager.GetObject("aliexpress", resourceCulture);
+                object obj = ResourceManager.GetObject("aliexpress_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ameli_lassurance_maladie {
+        internal static System.Drawing.Bitmap ameli_logo {
             get {
-                object obj = ResourceManager.GetObject("ameli_lassurance_maladie", resourceCulture);
+                object obj = ResourceManager.GetObject("ameli_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,19 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cdiscount {
+        internal static System.Drawing.Bitmap canva_logo {
             get {
-                object obj = ResourceManager.GetObject("cdiscount", resourceCulture);
+                object obj = ResourceManager.GetObject("canva_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cdiscount_logo {
+            get {
+                object obj = ResourceManager.GetObject("cdiscount_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +193,39 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap digiposte_logo {
+            get {
+                object obj = ResourceManager.GetObject("digiposte_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap digital_secure_background_lock_circle_icons_dark_blue_6837396 {
             get {
                 object obj = ResourceManager.GetObject("digital_secure_background_lock_circle_icons_dark_blue_6837396", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap discord_logo {
+            get {
+                object obj = ResourceManager.GetObject("discord_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap disney_logo {
+            get {
+                object obj = ResourceManager.GetObject("disney_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -216,6 +256,16 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap eye {
             get {
                 object obj = ResourceManager.GetObject("eye", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap facebook_logo {
+            get {
+                object obj = ResourceManager.GetObject("facebook_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -263,9 +313,49 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_amazon_48 {
+        internal static System.Drawing.Bitmap github_logo {
             get {
-                object obj = ResourceManager.GetObject("icons8_amazon_48", resourceCulture);
+                object obj = ResourceManager.GetObject("github_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gmail_logo {
+            get {
+                object obj = ResourceManager.GetObject("gmail_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap henner_logo {
+            get {
+                object obj = ResourceManager.GetObject("henner_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_amazon {
+            get {
+                object obj = ResourceManager.GetObject("icons8_amazon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_application {
+            get {
+                object obj = ResourceManager.GetObject("icons8_application", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -313,16 +403,6 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_canva_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_canva_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icons8_console_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-console-48", resourceCulture);
@@ -353,26 +433,6 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_discord_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_discord_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_disney_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_disney_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icons8_download_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8_download_48", resourceCulture);
@@ -386,16 +446,6 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap icons8_edit_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-edit-48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_facebook_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_facebook_48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -423,9 +473,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_github_48 {
+        internal static System.Drawing.Bitmap icons8_hbo_logo {
             get {
-                object obj = ResourceManager.GetObject("icons8_github_48", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_hbo_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -433,39 +483,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_gmail_48 {
+        internal static System.Drawing.Bitmap icons8_instagram_logo {
             get {
-                object obj = ResourceManager.GetObject("icons8_gmail_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_hbo_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_hbo_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_image_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_image_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_instagram_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_instagram_48", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_instagram_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -483,26 +503,6 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_league_of_legends_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_league_of_legends_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_linkedin_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_linkedin_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icons8_logout_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-logout-48", resourceCulture);
@@ -513,9 +513,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_netflix_48 {
+        internal static System.Drawing.Bitmap icons8_noimage {
             get {
-                object obj = ResourceManager.GetObject("icons8_netflix_48", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_noimage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -523,49 +523,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_outlook_48 {
+        internal static System.Drawing.Bitmap icons8_reddit {
             get {
-                object obj = ResourceManager.GetObject("icons8_outlook_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_paypal_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_paypal_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_playstation_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_playstation_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_plex_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_plex_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_reddit_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_reddit_48", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_reddit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -593,39 +553,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_stackoverflow_48 {
+        internal static System.Drawing.Bitmap icons8_stackoverflow {
             get {
-                object obj = ResourceManager.GetObject("icons8_stackoverflow_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_steam_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_steam_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_twitch_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_twitch_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_twitter_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_twitter_48", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_stackoverflow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -643,49 +573,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_winrar_48 {
+        internal static System.Drawing.Bitmap imdb_logo {
             get {
-                object obj = ResourceManager.GetObject("icons8_winrar_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_xbox_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_xbox_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_zalando_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_zalando_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_zoom_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_zoom_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap imdb_logo_2016 {
-            get {
-                object obj = ResourceManager.GetObject("imdb_logo_2016", resourceCulture);
+                object obj = ResourceManager.GetObject("imdb_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -703,29 +593,29 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap league_of_legends_logo {
+            get {
+                object obj = ResourceManager.GetObject("league_of_legends_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap linkedin_logo {
+            get {
+                object obj = ResourceManager.GetObject("linkedin_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap littoral_nautic_logo {
             get {
                 object obj = ResourceManager.GetObject("littoral_nautic_logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap logo_digiposte {
-            get {
-                object obj = ResourceManager.GetObject("logo_digiposte", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap logo_henner {
-            get {
-                object obj = ResourceManager.GetObject("logo_henner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -743,9 +633,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap messervices_etudiant_gouv_fr {
+        internal static System.Drawing.Bitmap navco_logo {
             get {
-                object obj = ResourceManager.GetObject("messervices_etudiant_gouv_fr", resourceCulture);
+                object obj = ResourceManager.GetObject("navco_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -753,9 +643,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap navco_logo {
+        internal static System.Drawing.Bitmap netflix_logo {
             get {
-                object obj = ResourceManager.GetObject("navco_logo", resourceCulture);
+                object obj = ResourceManager.GetObject("netflix_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -773,6 +663,46 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap outlook_logo {
+            get {
+                object obj = ResourceManager.GetObject("outlook_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap paypal_logo {
+            get {
+                object obj = ResourceManager.GetObject("paypal_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap playstation_logo {
+            get {
+                object obj = ResourceManager.GetObject("playstation_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plex_logo {
+            get {
+                object obj = ResourceManager.GetObject("plex_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pluxee_logo {
             get {
                 object obj = ResourceManager.GetObject("pluxee_logo", resourceCulture);
@@ -783,9 +713,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prefecture_de_l_isère {
+        internal static System.Drawing.Bitmap prefecture_de_l_isere_logo {
             get {
-                object obj = ResourceManager.GetObject("prefecture_de_l_isère", resourceCulture);
+                object obj = ResourceManager.GetObject("prefecture_de_l_isere_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -833,9 +763,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap société_générale {
+        internal static System.Drawing.Bitmap societe_generale_logo {
             get {
-                object obj = ResourceManager.GetObject("société_générale", resourceCulture);
+                object obj = ResourceManager.GetObject("societe_generale_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -846,6 +776,16 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap sohappy_logo {
             get {
                 object obj = ResourceManager.GetObject("sohappy_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap steam_logo {
+            get {
+                object obj = ResourceManager.GetObject("steam_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -883,9 +823,19 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap uber_eats {
+        internal static System.Drawing.Bitmap twitch_logo {
             get {
-                object obj = ResourceManager.GetObject("uber_eats", resourceCulture);
+                object obj = ResourceManager.GetObject("twitch_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap uber_eats_logo {
+            get {
+                object obj = ResourceManager.GetObject("uber_eats_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -903,9 +853,9 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap uga {
+        internal static System.Drawing.Bitmap uga_logo {
             get {
-                object obj = ResourceManager.GetObject("uga", resourceCulture);
+                object obj = ResourceManager.GetObject("uga_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -926,6 +876,46 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap vnc_logo {
             get {
                 object obj = ResourceManager.GetObject("vnc_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap x_app_logo {
+            get {
+                object obj = ResourceManager.GetObject("x_app_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap xbox_logo {
+            get {
+                object obj = ResourceManager.GetObject("xbox_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zalando_logo {
+            get {
+                object obj = ResourceManager.GetObject("zalando_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zoom_logo {
+            get {
+                object obj = ResourceManager.GetObject("zoom_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
