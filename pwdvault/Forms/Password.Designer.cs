@@ -44,7 +44,7 @@
             // lbApp
             // 
             lbApp.AutoSize = true;
-            lbApp.Font = new Font("Bahnschrift SemiBold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            lbApp.Font = new Font("Bahnschrift SemiBold", 13F, FontStyle.Bold);
             lbApp.ForeColor = Color.Black;
             lbApp.Location = new Point(136, 10);
             lbApp.Margin = new Padding(2, 0, 2, 0);
@@ -114,15 +114,14 @@
             // 
             // pictureBoxApp
             // 
-            pictureBoxApp.BackColor = Color.WhiteSmoke;
+            pictureBoxApp.BackColor = Color.White;
             pictureBoxApp.BackgroundImageLayout = ImageLayout.Center;
-            pictureBoxApp.ErrorImage = Properties.Resources.icons8_image_48;
-            pictureBoxApp.Image = Properties.Resources.icons8_image_48;
-            pictureBoxApp.Location = new Point(44, 4);
+            pictureBoxApp.ErrorImage = Properties.Resources.icons8_noimage;
+            pictureBoxApp.Image = Properties.Resources.icons8_noimage;
+            pictureBoxApp.Location = new Point(73, 11);
             pictureBoxApp.Margin = new Padding(2);
             pictureBoxApp.Name = "pictureBoxApp";
-            pictureBoxApp.Size = new Size(60, 62);
-            pictureBoxApp.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBoxApp.Size = new Size(48, 48);
             pictureBoxApp.TabIndex = 8;
             pictureBoxApp.TabStop = false;
             pictureBoxApp.MouseEnter += Password_MouseEnter;
@@ -141,7 +140,7 @@
             Controls.Add(lbApp);
             Margin = new Padding(2);
             Name = "Password";
-            Size = new Size(840, 74);
+            Size = new Size(814, 74);
             MouseEnter += Password_MouseEnter;
             MouseLeave += Password_MouseLeave;
             ((System.ComponentModel.ISupportInitialize)pictureBoxApp).EndInit();

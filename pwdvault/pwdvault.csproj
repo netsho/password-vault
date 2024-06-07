@@ -61,35 +61,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\AppIcons\icons8-amazon-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-canva-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-discord-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-disney-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-facebook-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-github-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-gmail-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-hbo-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-image-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-instagram-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-league-of-legends-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-linkedin-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-outlook-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-netflix-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-paypal-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-playstation-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-plex-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-reddit-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-stackoverflow-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-steam-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-twitch-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-twitter-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-winrar-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-xbox-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-zalando-48.png" />
-    <Resource Include="Resources\AppIcons\icons8-zoom-48.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
