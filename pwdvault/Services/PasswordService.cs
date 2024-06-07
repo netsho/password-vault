@@ -100,7 +100,7 @@ namespace pwdvault.Services
 
         /// <summary>
         /// <para>
-        /// Get the icon name from the resource manager based on the app name the user typed (The first part of the app name before 'space').
+        /// Get the icon name from the resource manager based on the app name the user typed, by checking for the exact match, if not found, checking for partial match.
         /// The Properties.Resources property represents the default resource file for the project, which is Resources.resx. 
         /// The ResourceManager property of this object allows access to the resource manager, which is responsible for retrieving resources from the resource file.
         /// The GetResourceSet method of the resource manager returns a ResourceSet object that contains all of the resources in the specified culture and assembly.
@@ -116,18 +116,32 @@ namespace pwdvault.Services
             {
                 var resources = Properties.Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentCulture, true, true);
                 string appNameLower = AppName.ToLower();
+                string? partialMatch = null;
                 if (resources != null)
                 {
                     foreach (var resource in resources)
                     {
                         var resourceName = ((DictionaryEntry)resource).Key.ToString()!.ToLower();
-                        if (resourceName.Contains(appNameLower.Split(' ')[0]))
+
+                        // Check for exact match first
+                        if (resourceName.Replace("_", " ") == appNameLower)
                         {
                             return resourceName;
                         }
+
+                        // Check for partial match
+                        if (resourceName.Contains(appNameLower.Split(' ')[0]))
+                        {
+                            if(partialMatch == null || resourceName.Length < partialMatch.Length)
+                            {
+                                partialMatch = resourceName;
+                            }
+                        }
                     }
                 }
-                return "icons8_application";
+
+                // Return the best match found, or default if no matches
+                return partialMatch ?? "icons8_application";
             }
             catch (Exception ex)
             {
