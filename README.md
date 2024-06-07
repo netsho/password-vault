@@ -4,7 +4,7 @@
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/netsho/password-vault?color=blue)
 ![GitHub](https://img.shields.io/github/license/netsho/password-vault)
 
-![App Screenshot](https://github.com/netsho/password-vault/assets/67299616/abd62ab8-3f47-4184-b33b-5d37ce551426)<p align="center">
+![App Screenshot](https://github.com/netsho/password-vault/assets/67299616/16bdbddf-614f-4ac7-ad85-96a9b04dc720)<p align="center">
 [Overview](#overview) |
 [Features](#features) |
 [Technologies](#technologies) |
@@ -33,6 +33,7 @@ This project is intended to serve as both a learning resource and a practical pa
 - Password generation functionality
 - Multi-factor authentication (MFA): username/password and SSL certificates
 - Hashicorp Vault for encryption key management
+- Import / Export into CSV file
 
 ## Technologies
 
