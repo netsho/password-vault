@@ -128,7 +128,7 @@ namespace pwdvault.Services
                         }
                     }
                 }
-                return "icons8_image_48";
+                return "icons8_application";
             }
             catch (Exception ex)
             {
