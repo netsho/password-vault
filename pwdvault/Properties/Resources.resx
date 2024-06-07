@@ -121,9 +121,6 @@
   <data name="icons8_folder_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\icons8-folder-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sodexo_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\appicons\sodexo_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icons8_outlook_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\icons8-outlook-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,9 +132,6 @@
   </data>
   <data name="icons8_zalando_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\icons8-zalando-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="boursorama" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\appicons\boursorama.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8_twitter_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\icons8-twitter-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -165,9 +159,6 @@
   </data>
   <data name="icons8_stackoverflow_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\icons8-stackoverflow-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ebay_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\appicons\ebay_logo.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8_reddit_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\icons8-reddit-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -198,9 +189,6 @@
   </data>
   <data name="icons8-shopping-bag-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-shopping-bag-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dofus_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\appicons\dofus_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8_disney_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\icons8-disney-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -304,9 +292,6 @@
   <data name="icons8_paypal_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\icons8-paypal-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="matmut_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\appicons\matmut_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icons8_league_of_legends_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\appicons\icons8-league-of-legends-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -327,5 +312,71 @@
   </data>
   <data name="icons8_download_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-download-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ancv_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\ancv_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ants_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\ants_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="boursobank_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\boursobank_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cpf_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\cpf_logo.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dofus_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\dofus_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ebay_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\ebay_logo.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fnac_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\fnac_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fortuneo_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\fortuneo_logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="impots_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\impots_logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="littoral_nautic_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\littoral_nautic_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="matmut_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\matmut_logo.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="navco_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\navco_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ouigo_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\ouigo_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pluxee_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\pluxee_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="proton_vpn_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\proton_vpn_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="saal_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\saal_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sohappy_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\sohappy_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="syncthing_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\syncthing_logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tgv_inoui_pro_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\tgv_inoui_pro_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="turo_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\turo_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="uber_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\uber_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vnc_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\vnc_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
