@@ -18,7 +18,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 using CsvHelper;
 using CsvHelper.Configuration;
 using pwdvault.Controllers;
-using pwdvault.Forms;
 using pwdvault.Modeles;
 using Serilog;
 using System.Collections;
@@ -26,7 +25,6 @@ using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace pwdvault.Services
 {
@@ -116,13 +114,14 @@ namespace pwdvault.Services
         {
             try
             {
-                var resources = Properties.Resources.ResourceManager.GetResourceSet(System.Globalization.CultureInfo.CurrentCulture, true, true);
+                var resources = Properties.Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentCulture, true, true);
+                string appNameLower = AppName.ToLower();
                 if (resources != null)
                 {
                     foreach (var resource in resources)
                     {
-                        var resourceName = ((DictionaryEntry)resource).Key.ToString()!;
-                        if (resourceName.Contains(AppName.Split(' ')[0].ToLower()))
+                        var resourceName = ((DictionaryEntry)resource).Key.ToString()!.ToLower();
+                        if (resourceName.Contains(appNameLower.Split(' ')[0]))
                         {
                             return resourceName;
                         }
