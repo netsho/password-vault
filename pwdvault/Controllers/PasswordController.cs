@@ -32,7 +32,7 @@ namespace pwdvault.Controllers
         }
 
         /// <summary>
-        /// Add an application's password in database.
+        /// Adds an application's password in database.
         /// </summary>
         /// <param name="password"></param>
         public void CreatePassword(AppPassword password)

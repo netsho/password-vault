@@ -28,8 +28,9 @@ namespace pwdvault.Controllers
         private readonly string _secretPath;
         private const string MOUNT_POINT = "secret";
         private const string DATA_KEY = "encryption_key";
+
         /// <summary>
-        /// Lock object that will be used to synchronize threads during first access to the Singleton.
+        /// Locks object that will be used to synchronize threads during first access to the Singleton.
         /// </summary>
         private static readonly object _lock = new();
         private static VaultController? _instance;
@@ -69,7 +70,7 @@ namespace pwdvault.Controllers
         }
 
         /// <summary>
-        /// This method allows getting the instance without providing parameters.
+        /// Gets the instance without providing parameters.
         /// If the instance is not already initialized, an exception is thrown.
         /// </summary>
         /// <returns></returns>
@@ -84,8 +85,8 @@ namespace pwdvault.Controllers
         }
 
         /// <summary>
-        /// This method stores the encryption key at the specified location: /secretPath/appName
-        /// The checkAndSet param in WriteSecretAsync is set to 0 so the write is only allowed if the encryption key doesn't exist.
+        /// Stores the encryption key at the specified location: /secretPath/appName.
+        /// The checkAndSet parameter in WriteSecretAsync is set to 0 so the write is only allowed if the encryption key doesn't exist.
         /// </summary>
         /// <param name="appName"></param>
         /// <param name="encryptionKey"></param>
@@ -109,7 +110,7 @@ namespace pwdvault.Controllers
         }
 
         /// <summary>
-        /// This method gets the encryption key at the specified location: /secretpath/appName
+        /// Gets the encryption key at the specified location: /secretpath/appName.
         /// </summary>
         /// <param name="appName"></param>
         /// <returns></returns>
@@ -137,7 +138,7 @@ namespace pwdvault.Controllers
         }
 
         /// <summary>
-        /// Update a secret at the specified location: /secretpath/appName, using the patch update.
+        /// Updates a secret at the specified location: /secretpath/appName, using the patch update.
         /// The patch means updating only a part of the secret, the encryption key in this case, without having to manage all the metadata of the secret.
         /// </summary>
         /// <param name="appName"></param>
@@ -161,8 +162,8 @@ namespace pwdvault.Controllers
         }
 
         /// <summary>
-        /// This method deletes, permanently, the secret at the specified location and all it's versions.
-        /// All version history is removed.
+        /// Deletes, permanently, the secret at the specified location and all it's versions.
+        /// All version's history is removed.
         /// </summary>
         /// <param name="appName"></param>
         public async void DeleteEncryptionKey(string appName, string username)

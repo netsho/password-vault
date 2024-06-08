@@ -32,8 +32,7 @@ namespace pwdvault.Services
     {
         /// <summary>
         /// <para>
-        /// Function that generate a password of fixed length : 20 characters. It uses RandomNumberGenerator to generate a sequence of random bytes,
-        /// which are used to selectrandom characters from the validchars string.
+        /// Generates a password of fixed length : 20 characters. It uses RandomNumberGenerator to generate a sequence of random bytes, which are used to selectrandom characters from the validchars string.
         /// </para>
         /// </summary>
         /// <returns>The method returns a string that containes the random characters.</returns>
@@ -69,7 +68,7 @@ namespace pwdvault.Services
 
 
         /// <summary>
-        /// Function that defines regular expressions to check if the password is strong by meeting the criteria : At least 16 characters and at least 1 lowercase, 1 uppercase letter, 1 number and 1 special character.
+        /// Defines regular expressions to check if the password is strong by meeting the criteria : At least 16 characters and at least 1 lowercase, 1 uppercase letter, 1 number and 1 special character.
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
@@ -100,7 +99,7 @@ namespace pwdvault.Services
 
         /// <summary>
         /// <para>
-        /// Get the icon name from the resource manager based on the app name the user typed, by checking for the exact match, if not found, checking for partial match.
+        /// Gets the icon name from the resource manager based on the app name the user typed, by checking for the exact match, if not found, checking for partial match.
         /// The Properties.Resources property represents the default resource file for the project, which is Resources.resx. 
         /// The ResourceManager property of this object allows access to the resource manager, which is responsible for retrieving resources from the resource file.
         /// The GetResourceSet method of the resource manager returns a ResourceSet object that contains all of the resources in the specified culture and assembly.
@@ -151,7 +150,7 @@ namespace pwdvault.Services
         }
 
         /// <summary>
-        /// Function that exports all the passwords in the database to a CSV file located in the AppData/Local/PasswordVault.
+        /// Exports all the passwords from the database to the CSV file located in the AppData/Local/PasswordVault.
         /// </summary>
         /// <param name="passwords"></param>
         public static void ExportPasswords(List<AppPassword> passwords)
@@ -177,7 +176,7 @@ namespace pwdvault.Services
         }
 
         /// <summary>
-        /// Function that imports all the passwords from the choosen CSV file and stores them in the database, along with their encryption keys. 
+        /// Imports all the passwords from the choosen CSV file and stores them in the database, along with their encryption keys. 
         /// </summary>
         /// <param name="csvPasswordsFile"></param>
         public static void ImportPasswords(string csvPasswordsFile)

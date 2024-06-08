@@ -145,7 +145,7 @@ namespace pwdvault.Forms
 
         /// <summary>
         /// <para>
-        /// This method creates a new thread that waits for 10 seconds and then clear the clipboard.
+        /// Creates a new thread that waits for 10 seconds, and then clears the clipboard.
         /// The apartment state of the thread is set to STA (single-threaded apartment) as to interact with only one thread, the clipboard one.
         /// </para>
         /// </summary>
@@ -172,7 +172,7 @@ namespace pwdvault.Forms
         }
 
         /// <summary>
-        /// Function responsible for raising an event after editing a password.
+        /// Raises PasswordEdited event after editing the password.
         /// </summary>
         protected virtual void OnPasswordEdited()
         {
@@ -180,7 +180,7 @@ namespace pwdvault.Forms
         }
 
         /// <summary>
-        /// Function responsible for raising an event after deleting a password.
+        /// Raises PasswordDeleted event after deleting the password.
         /// </summary>
         protected virtual void OnPasswordDeleted()
         {
