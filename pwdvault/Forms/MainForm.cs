@@ -57,9 +57,10 @@ namespace pwdvault.Forms
         {
             if (new AddPassword().ShowDialog() == DialogResult.OK)
             {
-                if (listPwdPanel.Controls.Count != GetPasswordControls(_selectedCategory).Count)
+                var passwordsCategory = GetPasswordControls(_selectedCategory);
+                if (listPwdPanel.Controls.Count != passwordsCategory.Count || _selectedCategory.Equals(lbAll.Text))
                 {
-                    UpdatePasswordControls(GetPasswordControls(_selectedCategory));
+                    UpdatePasswordControls(passwordsCategory);
                 }
             }
         }
