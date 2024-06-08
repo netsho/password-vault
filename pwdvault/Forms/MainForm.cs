@@ -299,29 +299,23 @@ namespace pwdvault.Forms
         private static List<Password> GetPasswordControls(string selectedCategory)
         {
             var passwordControls = new List<Password>();
-            List<AppPassword> passwords;
+            var passwords = new List<AppPassword>();
+
             using (var context = new PasswordVaultContext())
             {
                 var passwordController = new PasswordController(context);
-                passwords = passwordController.GetAllPasswords();
+
+                passwords = selectedCategory.Equals("All") 
+                    ? passwordController.GetAllPasswords() 
+                    : passwordController.GetPasswordByCategory(selectedCategory);
             }
-            if (selectedCategory.Equals("All"))
+
+            foreach (var appPassword in passwords)
             {
-                foreach (var appPassword in passwords)
-                {
-                    var password = new Password(appPassword.AppName, appPassword.UserName, appPassword.IconName);
-                    passwordControls.Add(password);
-                }
+                var password = new Password(appPassword.AppName, appPassword.UserName, appPassword.IconName);
+                passwordControls.Add(password);
             }
-            else
-            {
-                passwords = passwords.Where(password => password.AppCategory.Equals(selectedCategory)).ToList();
-                foreach (var appPassword in passwords)
-                {
-                    var password = new Password(appPassword.AppName, appPassword.UserName, appPassword.IconName);
-                    passwordControls.Add(password);
-                }
-            }
+
             return passwordControls;
         }
 
@@ -398,23 +392,21 @@ namespace pwdvault.Forms
         /// <param name="sender"></param>
         private void ShowSelectedCategory(object sender)
         {
+            Control senderControl = (Control)sender;
+            bool isAllCategory = senderControl.Name.Equals("lbAll") || senderControl.Name.Equals("allPicture");
             if (_selectedRowIndex == ALL_ROW_INDEX)
             {
                 // if the sender is not the category "All", else do nothing.
-                if (!((Control)sender).Name.Equals("lbAll") && !((Control)sender).Name.Equals("allPicture"))
+                if (!isAllCategory)
                 {
                     allTable.GetControlFromPosition(0, 0)!.BackColor = Color.FromArgb(195, 141, 158);
-                    // Get the row index of the control that raised the event
-                    var row = categoriesTable.GetRow((Control)sender);
-                    // Change the back color of left column to show which category is selected
-                    categoriesTable.GetControlFromPosition(0, row)!.BackColor = Color.White;
-                    _selectedRowIndex = row;
+                    UpdateSelectedCategory(senderControl);
                 }
             }
             else
             {
                 // If the sender is category "All"
-                if (((Control)sender).Name.Equals("lbAll") || ((Control)sender).Name.Equals("allPicture"))
+                if (isAllCategory)
                 {
                     categoriesTable.GetControlFromPosition(0, _selectedRowIndex)!.BackColor = Color.FromArgb(195, 141, 158);
                     // Change the back color of left column to show which category is selected
@@ -424,12 +416,22 @@ namespace pwdvault.Forms
                 else
                 {
                     categoriesTable.GetControlFromPosition(0, _selectedRowIndex)!.BackColor = Color.FromArgb(195, 141, 158);
-                    // Get the row index of the control that raised the event
-                    var row = categoriesTable.GetRow((Control)sender);
-                    categoriesTable.GetControlFromPosition(0, row)!.BackColor = Color.White;
-                    _selectedRowIndex = row;
+                    UpdateSelectedCategory(senderControl);
                 }
             }
+        }
+
+        /// <summary>
+        /// Updates the selected category by changing the background color and setting the new selected row index.
+        /// </summary>
+        /// <param name="senderControl">The Control that raised the event</param>
+        private void UpdateSelectedCategory(Control senderControl)
+        {
+            // Get the row index of the control that raised the event
+            var row = categoriesTable.GetRow(senderControl);
+            // Change the back color of left column to show which category is selected
+            categoriesTable.GetControlFromPosition(0, row)!.BackColor = Color.White;
+            _selectedRowIndex = row;
         }
     }
 }

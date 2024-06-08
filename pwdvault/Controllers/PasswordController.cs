@@ -112,6 +112,16 @@ namespace pwdvault.Controllers
             return _dbContext.Passwords.ToList();
         }
 
+        /// <summary>
+        /// Gets the passwords by selected category in the form from database
+        /// </summary>
+        /// <param name="selectedCategory"></param>
+        /// <returns></returns>
+        public List<AppPassword> GetPasswordByCategory(string selectedCategory)
+        {
+            return _dbContext.Passwords.Where(password => password.AppCategory.Equals(selectedCategory)).ToList();
+        }
+
         public void SaveChangesOnFail(object? sender, SaveChangesFailedEventArgs e)
         {
             throw new Exception($"Saving failed due to :\n {e.Exception}.");
