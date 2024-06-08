@@ -30,7 +30,8 @@ namespace pwdvault.Forms
         private string _iconName = "";
 
         // Define the event to raise after editing or deleting a password.
-        public event EventHandler? PasswordEditedOrDeleted;
+        public event EventHandler? PasswordEdited;
+        public event EventHandler? PasswordDeleted;
 
         public string AppName
         {
@@ -72,7 +73,7 @@ namespace pwdvault.Forms
             try
             {
                 new EditPassword(AppName, Username).ShowDialog();
-                OnPasswordEditedOrDeleted();
+                OnPasswordEdited();
             }
             catch (Exception ex)
             {
@@ -99,7 +100,7 @@ namespace pwdvault.Forms
                     passwordController.DeletePassword(password.Id);
                     vaultController.DeleteEncryptionKey(AppName, Username);
 
-                    OnPasswordEditedOrDeleted();
+                    OnPasswordDeleted();
                     Cursor = Cursors.Default;
                 }
                 catch (Exception ex)
@@ -144,7 +145,7 @@ namespace pwdvault.Forms
 
         /// <summary>
         /// <para>
-        /// This method creates a new thread that waits for 10 seconds and then clear the clipboard.
+        /// Creates a new thread that waits for 10 seconds, and then clears the clipboard.
         /// The apartment state of the thread is set to STA (single-threaded apartment) as to interact with only one thread, the clipboard one.
         /// </para>
         /// </summary>
@@ -171,11 +172,19 @@ namespace pwdvault.Forms
         }
 
         /// <summary>
-        /// Function responsible for raising an event after editing or deleting a password.
+        /// Raises PasswordEdited event after editing the password.
         /// </summary>
-        protected virtual void OnPasswordEditedOrDeleted()
+        protected virtual void OnPasswordEdited()
         {
-            PasswordEditedOrDeleted?.Invoke(this, EventArgs.Empty);
+            PasswordEdited?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Raises PasswordDeleted event after deleting the password.
+        /// </summary>
+        protected virtual void OnPasswordDeleted()
+        {
+            PasswordDeleted?.Invoke(this, EventArgs.Empty);
         }
     }
 }

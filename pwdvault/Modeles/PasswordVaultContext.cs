@@ -23,7 +23,7 @@ using System.Configuration;
 namespace pwdvault.Modeles
 {
     /// <summary>
-    /// Setting the Db Context of Entity Framework on AppPassword Model, to create the corresponding table in the database.
+    /// Setting the Db Context of Entity Framework on AppPassword Model to create the corresponding table in the database.
     /// </summary>
     public class PasswordVaultContext : DbContext
     {
@@ -46,7 +46,7 @@ namespace pwdvault.Modeles
         }
 
         /// <summary>
-        /// Configuring the logging to dbLog.txt file, and configuring the usage of the PostgreSQL connection string from app.config
+        /// Configures the logging to dbLog.txt file, and configures the usage of the PostgreSQL connection string from app.config
         /// </summary>
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -60,7 +60,7 @@ namespace pwdvault.Modeles
         }
 
         /// <summary>
-        /// Create the auto incremental primary key on the User Password Id.
+        /// Creates the auto incremental primary key on the User Password Id.
         /// </summary>
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)

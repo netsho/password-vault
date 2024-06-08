@@ -122,6 +122,7 @@
             pictureBoxApp.Margin = new Padding(2);
             pictureBoxApp.Name = "pictureBoxApp";
             pictureBoxApp.Size = new Size(48, 48);
+            pictureBoxApp.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxApp.TabIndex = 8;
             pictureBoxApp.TabStop = false;
             pictureBoxApp.MouseEnter += Password_MouseEnter;

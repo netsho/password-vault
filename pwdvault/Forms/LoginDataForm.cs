@@ -135,7 +135,7 @@ namespace pwdvault.Forms
             try
             {
                 var loginData = new List<LoginData>
-                { new LoginData() 
+                { new() 
                     {
                         CaFilePath = txtBoxCA.Text,
                         CertificateFilePath = txtBoxCertificate.Text,
@@ -143,7 +143,8 @@ namespace pwdvault.Forms
                         SecretID = txtBoxSecretId.Text
                     }
                 };
-                var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
+                JsonSerializerOptions jsonSerializerOptions = new() { WriteIndented = true };
+                var jsonOptions = jsonSerializerOptions;
                 string jsonLogin = JsonSerializer.Serialize(loginData, jsonOptions);
                 File.WriteAllText(_loginDataPath, jsonLogin);
             }
@@ -175,7 +176,7 @@ namespace pwdvault.Forms
         }
 
         /// <summary>
-        /// Updates the connection string in the application's configuration file by adding the username and needed certificates for SSL connection.
+        /// Updates the connection string in the application's configuration file by adding the username and the certificates needed for SSL connection.
         /// </summary>
         private void AddLoginDataConfig()
         {
@@ -193,7 +194,7 @@ namespace pwdvault.Forms
         }
 
         /// <summary>
-        /// Checks if a parameter already exists in the connection string. If it does, we update its value; otherwise, we add the parameter with its value to the connection string.
+        /// Checks if a parameter already exists in the connection string. If it does, it updates its value; otherwise, it adds the parameter with its value to the connection string.
         /// </summary>
         /// <param name="connectionString"></param>
         /// <param name="parameterName"></param>
