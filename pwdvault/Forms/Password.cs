@@ -30,7 +30,8 @@ namespace pwdvault.Forms
         private string _iconName = "";
 
         // Define the event to raise after editing or deleting a password.
-        public event EventHandler? PasswordEditedOrDeleted;
+        public event EventHandler? PasswordEdited;
+        public event EventHandler? PasswordDeleted;
 
         public string AppName
         {
@@ -72,7 +73,7 @@ namespace pwdvault.Forms
             try
             {
                 new EditPassword(AppName, Username).ShowDialog();
-                OnPasswordEditedOrDeleted();
+                OnPasswordEdited();
             }
             catch (Exception ex)
             {
@@ -99,7 +100,7 @@ namespace pwdvault.Forms
                     passwordController.DeletePassword(password.Id);
                     vaultController.DeleteEncryptionKey(AppName, Username);
 
-                    OnPasswordEditedOrDeleted();
+                    OnPasswordDeleted();
                     Cursor = Cursors.Default;
                 }
                 catch (Exception ex)
@@ -171,11 +172,19 @@ namespace pwdvault.Forms
         }
 
         /// <summary>
-        /// Function responsible for raising an event after editing or deleting a password.
+        /// Function responsible for raising an event after editing a password.
         /// </summary>
-        protected virtual void OnPasswordEditedOrDeleted()
+        protected virtual void OnPasswordEdited()
         {
-            PasswordEditedOrDeleted?.Invoke(this, EventArgs.Empty);
+            PasswordEdited?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Function responsible for raising an event after deleting a password.
+        /// </summary>
+        protected virtual void OnPasswordDeleted()
+        {
+            PasswordDeleted?.Invoke(this, EventArgs.Empty);
         }
     }
 }
