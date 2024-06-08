@@ -54,8 +54,13 @@ namespace pwdvault.Forms
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            new AddPassword().ShowDialog();
-            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
+            if (new AddPassword().ShowDialog() == DialogResult.OK)
+            {
+                if (listPwdPanel.Controls.Count != GetPasswordControls(_selectedCategory).Count)
+                {
+                    UpdatePasswordControls(GetPasswordControls(_selectedCategory));
+                }
+            }
         }
 
         /*------------------------------------------------------------------------------------------------------------------------------*/
@@ -333,18 +338,29 @@ namespace pwdvault.Forms
             {
                 passwordControl.Width = listPwdPanel.Width - 30;
                 passwordControl.Location = new Point(0, controlTop);
-                passwordControl.PasswordEditedOrDeleted += OnPasswordEditOrDelete;
+                passwordControl.PasswordEdited += OnPasswordEdit;
+                passwordControl.PasswordDeleted += OnPasswordDelete;
                 controlTop += passwordControl.Height + 5;
                 listPwdPanel.Controls.Add(passwordControl);
             }
         }
 
         /// <summary>
-        /// Event handler raised when a appPassword is edited or deleted to update the passwords list.
+        /// Event handler raised when an appPassword is edited to update the passwords list.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnPasswordEditOrDelete(object? sender, EventArgs e)
+        private void OnPasswordEdit(object? sender, EventArgs e)
+        {
+            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
+        }
+
+        /// <summary>
+        /// Event handler raised when an appPassword is deleted to update the passwords list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPasswordDelete(object? sender, EventArgs e)
         {
             UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
