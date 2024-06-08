@@ -207,21 +207,18 @@ namespace pwdvault.Forms
         private void TxtBoxFilter_TextChanged(object sender, EventArgs e)
         {
             string filterText = txtBoxFilter.Text.ToLower();
-            listPwdPanel.Controls.Clear();
-            var passwordUserControls = GetPasswordControls(_selectedCategory);
-            var passwordUserControlsFiltred = new List<Password>();
-            foreach (Password passwordUserControl in passwordUserControls)
-            {
-                if (passwordUserControl.AppName.ToLower().Contains(filterText))
-                {
-                    passwordUserControlsFiltred.Add(passwordUserControl);
-                }
-            }
-            UpdatePasswordControls(passwordUserControlsFiltred);
+            List<Password> passwordUserControls = GetPasswordControls(_selectedCategory);
 
             if (string.IsNullOrWhiteSpace(txtBoxFilter.Text))
             {
-                UpdatePasswordControls(GetPasswordControls(_selectedCategory));
+                // If the filter text is empty, display all controls
+                UpdatePasswordControls(passwordUserControls);
+            }
+            else
+            {
+                // Filter the controls based on the filter text
+                List<Password> passwordUserControlsFiltred = passwordUserControls.Where(p => p.AppName.Contains(filterText, StringComparison.CurrentCultureIgnoreCase)).ToList();
+                UpdatePasswordControls(passwordUserControlsFiltred);
             }
         }
 
