@@ -20,6 +20,7 @@ using pwdvault.Controllers;
 using System.Data;
 using pwdvault.Services;
 using Serilog;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace pwdvault.Forms
 {
@@ -365,7 +366,12 @@ namespace pwdvault.Forms
         /// <param name="e"></param>
         private void OnPasswordEdit(object? sender, EventArgs e)
         {
-            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
+            using var context = new PasswordVaultContext();
+            AppPassword appPassword = new PasswordController(context).GetPassword(((Password)sender!).AppName, ((Password)sender!).Username);
+            if (_selectedCategory != lbAll.Text && _selectedCategory != appPassword.AppCategory)
+            {
+                OnPasswordDelete(sender, e);
+            }
         }
 
         /// <summary>
