@@ -331,7 +331,7 @@ namespace pwdvault.Forms
             passwordControls.Sort((p1,p2) => p1.AppName.CompareTo(p2.AppName));
             foreach (Password passwordControl in passwordControls)
             {
-                passwordControl.Width = listPwdPanel.Width - 30;
+                passwordControl.Width = listPwdPanel.Width - 40;
                 passwordControl.Location = new Point(0, controlTop);
                 passwordControl.PasswordEdited += OnPasswordEdit;
                 passwordControl.PasswordDeleted += OnPasswordDelete;
