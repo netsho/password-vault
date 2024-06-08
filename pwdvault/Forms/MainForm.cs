@@ -289,7 +289,7 @@ namespace pwdvault.Forms
 
         /// <summary>
         /// <para>
-        /// Function to get the list of appPassword user controls based on the selected category of the user.
+        /// Gets the list of appPassword user controls based on the selected category of the user.
         /// The passwords are retrieved from the database, and then filtred by selected category.
         /// When creating each appPassword user control, we're subscribing to passwordEdited and passwordDeleted events to update the appPassword user controls list.
         /// </para>
@@ -326,13 +326,13 @@ namespace pwdvault.Forms
         }
 
         /// <summary>
-        /// Function to clear the panel and update the appPassword user controls in the panel
+        /// Clears the panel and update the appPassword user controls in the panel.
         /// </summary>
         /// <param name="passwords"></param>
         private void UpdatePasswordControls(List<Password> passwordControls)
         {
             listPwdPanel.Controls.Clear();
-            var controlTop = 5;
+            int controlTop = 5;
             passwordControls.Sort((p1,p2) => p1.AppName.CompareTo(p2.AppName));
             foreach (Password passwordControl in passwordControls)
             {
@@ -342,6 +342,25 @@ namespace pwdvault.Forms
                 passwordControl.PasswordDeleted += OnPasswordDelete;
                 controlTop += passwordControl.Height + 5;
                 listPwdPanel.Controls.Add(passwordControl);
+            }
+        }
+
+        /// <summary>
+        /// Repositions the password controls in the panel starting from the given index.
+        /// </summary>
+        /// <param name="startIndex"></param>
+        private void RepositionPasswordControls(int startIndex)
+        {
+            // Get the Y point of the Control before the start.
+            int controlTop = startIndex > 0 ?
+                listPwdPanel.Controls[startIndex - 1].Location.Y + listPwdPanel.Controls[startIndex - 1].Height + 5
+                : 5;
+
+            for (int i = startIndex; i < listPwdPanel.Controls.Count; i++)
+            {
+                Control control = listPwdPanel.Controls[i];
+                control.Location = new Point(0, controlTop);
+                controlTop += control.Height + 5;            
             }
         }
 
@@ -356,18 +375,24 @@ namespace pwdvault.Forms
         }
 
         /// <summary>
-        /// Event handler raised when an appPassword is deleted to update the passwords list.
+        /// Event handler raised when an appPassword is deleted to update the passwords list, without clearing the list to improve performance.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnPasswordDelete(object? sender, EventArgs e)
         {
-            UpdatePasswordControls(GetPasswordControls(_selectedCategory));
+            // Find the index of the Password to delete
+            int passwordIndex = listPwdPanel.Controls.IndexOf((Password)sender!);
+            if(passwordIndex != -1)
+            {
+                listPwdPanel.Controls.RemoveAt(passwordIndex);
+                RepositionPasswordControls(passwordIndex);
+            }
         }
 
         /// <summary>
         /// <para>
-        /// Function that adds a white strip left of the selected category, to highlight to the user which category is selected.
+        /// Adds a white strip left of the selected category, to highlight to the user which category is selected.
         /// </para>
         /// </summary>
         /// <param name="sender"></param>
