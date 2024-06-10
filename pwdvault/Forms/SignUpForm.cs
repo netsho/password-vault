@@ -35,48 +35,51 @@ namespace pwdvault.Forms
         private void BtnSign_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrWhiteSpace(txtBoxUser.Text) &&
-                !String.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
-                !errorProvider.HasErrors
-                )
+                !String.IsNullOrWhiteSpace(txtBoxPwd.Text))
             {
-                var dialogResult = new LoginDataForm().ShowDialog();
-                if (dialogResult == DialogResult.OK)
+                if (errorProvider.HasErrors)
                 {
-                    try
+                    var result = MessageBox.Show("The password does not meet the criteria. Are you sure you want to save it?", "Password criteria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
                     {
-                        Cursor = Cursors.WaitCursor;
-
-                        /* --------------------- Create the new user while salting and hashing the user's password */
-                        var salt = UserPasswordService.GenerateSalt();
-                        var hash = UserPasswordService.GenerateHash(txtBoxPwd.Text, salt);
-                        var user = new User(txtBoxUser.Text, hash, salt);
-
-                        /* --------------------- Add the user in database */
-                        using var context = new PasswordVaultContext();
-                        context.Database.Migrate();
-                        var userController = new UserController(context);
-                        userController.CreateUser(user);
-
-                        Cursor = Cursors.Default;
-                        MessageBox.Show("New account successfully created!\nYou can now login to the application.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        Cursor = Cursors.Default;
-                        if (ex is UserException)
+                        var dialogResult = new LoginDataForm().ShowDialog();
+                        if (dialogResult == DialogResult.OK)
                         {
-                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            try
+                            {
+                                Cursor = Cursors.WaitCursor;
+
+                                /* --------------------- Create the new user while salting and hashing the user's password */
+                                var salt = UserPasswordService.GenerateSalt();
+                                var hash = UserPasswordService.GenerateHash(txtBoxPwd.Text, salt);
+                                var user = new User(txtBoxUser.Text, hash, salt);
+
+                                /* --------------------- Add the user in database */
+                                using var context = new PasswordVaultContext();
+                                context.Database.Migrate();
+                                var userController = new UserController(context);
+                                userController.CreateUser(user);
+
+                                Cursor = Cursors.Default;
+                                MessageBox.Show("New account successfully created!\nYou can now login to the application.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                Cursor = Cursors.Default;
+                                if (ex is UserException)
+                                {
+                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                            }
                         }
-                        else
-                        {
-                            MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
                     }
                 }
-
-
             }
             else
             {
