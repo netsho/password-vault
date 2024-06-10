@@ -1,6 +1,6 @@
 ﻿/*
 Netsho - Sign up form. 
-Copyright (C) 2023 Netsho
+Copyright (C) 2023-2024 Netsho
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
