@@ -74,6 +74,7 @@
             btnExit = new Button();
             saveFileDialog1 = new SaveFileDialog();
             toolTipExit = new ToolTip(components);
+            lbVersion = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -104,6 +105,7 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.BackColor = Color.FromArgb(195, 141, 158);
+            splitContainer1.Panel1.Controls.Add(lbVersion);
             splitContainer1.Panel1.Controls.Add(allTable);
             splitContainer1.Panel1.Controls.Add(lbCatTitle);
             splitContainer1.Panel1.Controls.Add(categoriesTable);
@@ -724,6 +726,16 @@
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += BtnExit_Click;
             // 
+            // lbVersion
+            // 
+            lbVersion.AutoSize = true;
+            lbVersion.Font = new Font("Bahnschrift", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbVersion.Location = new Point(217, 50);
+            lbVersion.Name = "lbVersion";
+            lbVersion.Size = new Size(38, 18);
+            lbVersion.TabIndex = 19;
+            lbVersion.Text = "V1.1.1";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -808,5 +820,6 @@
         private Label lbSelectedCoding;
         private Button btnExport;
         private Button btnImport;
+        private Label lbVersion;
     }
 }
