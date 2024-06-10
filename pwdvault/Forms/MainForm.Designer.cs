@@ -31,6 +31,8 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             splitContainer1 = new SplitContainer();
+            lbTitleCount = new Label();
+            lbVersion = new Label();
             allTable = new TableLayoutPanel();
             allPicture = new PictureBox();
             lbAll = new Label();
@@ -74,7 +76,7 @@
             btnExit = new Button();
             saveFileDialog1 = new SaveFileDialog();
             toolTipExit = new ToolTip(components);
-            lbVersion = new Label();
+            lbCount = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -126,6 +128,26 @@
             splitContainer1.SplitterDistance = 268;
             splitContainer1.SplitterWidth = 1;
             splitContainer1.TabIndex = 0;
+            // 
+            // lbTitleCount
+            // 
+            lbTitleCount.AutoSize = true;
+            lbTitleCount.Font = new Font("Bahnschrift", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbTitleCount.Location = new Point(299, 51);
+            lbTitleCount.Name = "lbTitleCount";
+            lbTitleCount.Size = new Size(49, 18);
+            lbTitleCount.TabIndex = 20;
+            lbTitleCount.Text = "Count:";
+            // 
+            // lbVersion
+            // 
+            lbVersion.AutoSize = true;
+            lbVersion.Font = new Font("Bahnschrift", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbVersion.Location = new Point(217, 50);
+            lbVersion.Name = "lbVersion";
+            lbVersion.Size = new Size(38, 18);
+            lbVersion.TabIndex = 19;
+            lbVersion.Text = "V1.1.1";
             // 
             // allTable
             // 
@@ -646,6 +668,8 @@
             // 
             // panelTop
             // 
+            panelTop.Controls.Add(lbCount);
+            panelTop.Controls.Add(lbTitleCount);
             panelTop.Controls.Add(btnImport);
             panelTop.Controls.Add(btnExport);
             panelTop.Controls.Add(txtBoxFilter);
@@ -726,15 +750,15 @@
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += BtnExit_Click;
             // 
-            // lbVersion
+            // lbCount
             // 
-            lbVersion.AutoSize = true;
-            lbVersion.Font = new Font("Bahnschrift", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbVersion.Location = new Point(217, 50);
-            lbVersion.Name = "lbVersion";
-            lbVersion.Size = new Size(38, 18);
-            lbVersion.TabIndex = 19;
-            lbVersion.Text = "V1.1.1";
+            lbCount.AutoSize = true;
+            lbCount.Font = new Font("Bahnschrift", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbCount.Location = new Point(344, 51);
+            lbCount.Name = "lbCount";
+            lbCount.Size = new Size(16, 18);
+            lbCount.TabIndex = 21;
+            lbCount.Text = "0";
             // 
             // MainForm
             // 
@@ -821,5 +845,7 @@
         private Button btnExport;
         private Button btnImport;
         private Label lbVersion;
+        private Label lbTitleCount;
+        private Label lbCount;
     }
 }

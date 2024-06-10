@@ -300,8 +300,8 @@ namespace pwdvault.Forms
             {
                 var passwordController = new PasswordController(context);
 
-                passwords = selectedCategory.Equals("All") 
-                    ? passwordController.GetAllPasswords() 
+                passwords = selectedCategory.Equals("All")
+                    ? passwordController.GetAllPasswords()
                     : passwordController.GetPasswordByCategory(selectedCategory);
             }
 
@@ -321,8 +321,9 @@ namespace pwdvault.Forms
         private void UpdatePasswordControls(List<Password> passwordControls)
         {
             listPwdPanel.Controls.Clear();
+            lbCount.Text = passwordControls.Count.ToString();
             int controlTop = 5;
-            passwordControls.Sort((p1,p2) => p1.AppName.CompareTo(p2.AppName));
+            passwordControls.Sort((p1, p2) => p1.AppName.CompareTo(p2.AppName));
             foreach (Password passwordControl in passwordControls)
             {
                 passwordControl.Width = listPwdPanel.Width - 40;
@@ -349,7 +350,7 @@ namespace pwdvault.Forms
             {
                 Control control = listPwdPanel.Controls[i];
                 control.Location = new Point(0, controlTop);
-                controlTop += control.Height + 5;            
+                controlTop += control.Height + 5;
             }
         }
 
@@ -377,9 +378,10 @@ namespace pwdvault.Forms
         {
             // Find the index of the Password to delete
             int passwordIndex = listPwdPanel.Controls.IndexOf((Password)sender!);
-            if(passwordIndex != -1)
+            if (passwordIndex != -1)
             {
                 listPwdPanel.Controls.RemoveAt(passwordIndex);
+                lbCount.Text = (int.Parse(lbCount.Text) - 1).ToString();
                 RepositionPasswordControls(passwordIndex);
             }
         }
