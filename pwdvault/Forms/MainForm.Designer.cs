@@ -137,7 +137,7 @@
             lbVersion.Name = "lbVersion";
             lbVersion.Size = new Size(33, 18);
             lbVersion.TabIndex = 19;
-            lbVersion.Text = "V1.3";
+            lbVersion.Text = "V1.2";
             // 
             // allTable
             // 
