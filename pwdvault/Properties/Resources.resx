@@ -376,4 +376,13 @@
   <data name="stackoverflow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\stackoverflow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bnp_paribas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\bnp_paribas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lenovo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\lenovo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="natixis_interepargne" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\natixis_interepargne.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

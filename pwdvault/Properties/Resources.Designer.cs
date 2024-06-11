@@ -123,6 +123,16 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bnp_paribas {
+            get {
+                object obj = ResourceManager.GetObject("bnp_paribas", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap boursobank {
             get {
                 object obj = ResourceManager.GetObject("boursobank", resourceCulture);
@@ -583,6 +593,16 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lenovo {
+            get {
+                object obj = ResourceManager.GetObject("lenovo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap linkedin {
             get {
                 object obj = ResourceManager.GetObject("linkedin", resourceCulture);
@@ -606,6 +626,16 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap matmut {
             get {
                 object obj = ResourceManager.GetObject("matmut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap natixis_interepargne {
+            get {
+                object obj = ResourceManager.GetObject("natixis_interepargne", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
