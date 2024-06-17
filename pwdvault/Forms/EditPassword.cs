@@ -51,18 +51,6 @@ namespace pwdvault.Forms
 
         }
 
-        private void BtnEye_MouseUp(object sender, MouseEventArgs e)
-        {
-            txtBoxPwd.PasswordChar = '*';
-            txtBoxPwd.UseSystemPasswordChar = true;
-        }
-
-        private void BtnEye_MouseDown(object sender, MouseEventArgs e)
-        {
-            txtBoxPwd.PasswordChar = '\0';
-            txtBoxPwd.UseSystemPasswordChar = false;
-        }
-
         /// <summary>
         /// Encrypts the updated password and updates it on the database.
         /// </summary>

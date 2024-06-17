@@ -41,7 +41,6 @@
             lbUser = new Label();
             lbCategory = new Label();
             lbApp = new Label();
-            btnEye = new Button();
             errorProvider = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
@@ -50,10 +49,9 @@
             // 
             lbTitle.AutoSize = true;
             lbTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lbTitle.Location = new Point(41, 24);
-            lbTitle.Margin = new Padding(2, 0, 2, 0);
+            lbTitle.Location = new Point(67, 38);
             lbTitle.Name = "lbTitle";
-            lbTitle.Size = new Size(205, 32);
+            lbTitle.Size = new Size(320, 51);
             lbTitle.TabIndex = 21;
             lbTitle.Text = "Edit \"\" password";
             // 
@@ -61,10 +59,9 @@
             // 
             btnGenerate.FlatStyle = FlatStyle.System;
             btnGenerate.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold);
-            btnGenerate.Location = new Point(102, 389);
-            btnGenerate.Margin = new Padding(2, 2, 2, 2);
+            btnGenerate.Location = new Point(166, 622);
             btnGenerate.Name = "btnGenerate";
-            btnGenerate.Size = new Size(190, 54);
+            btnGenerate.Size = new Size(309, 86);
             btnGenerate.TabIndex = 20;
             btnGenerate.Text = "GENERATE RANDOM PASSWORD";
             btnGenerate.UseVisualStyleBackColor = true;
@@ -72,21 +69,18 @@
             // 
             // txtBoxPwd
             // 
-            txtBoxPwd.Location = new Point(87, 358);
-            txtBoxPwd.Margin = new Padding(2, 2, 2, 2);
+            txtBoxPwd.Location = new Point(141, 573);
             txtBoxPwd.Name = "txtBoxPwd";
-            txtBoxPwd.Size = new Size(257, 27);
+            txtBoxPwd.Size = new Size(368, 39);
             txtBoxPwd.TabIndex = 19;
-            txtBoxPwd.UseSystemPasswordChar = true;
             txtBoxPwd.TextChanged += TxtBoxPwd_TextChanged;
             // 
             // txtBoxUser
             // 
             txtBoxUser.BackColor = Color.LightGray;
-            txtBoxUser.Location = new Point(87, 274);
-            txtBoxUser.Margin = new Padding(2, 2, 2, 2);
+            txtBoxUser.Location = new Point(141, 438);
             txtBoxUser.Name = "txtBoxUser";
-            txtBoxUser.Size = new Size(228, 27);
+            txtBoxUser.Size = new Size(368, 39);
             txtBoxUser.TabIndex = 18;
             // 
             // comBoxCat
@@ -94,19 +88,17 @@
             comBoxCat.DropDownStyle = ComboBoxStyle.DropDownList;
             comBoxCat.FlatStyle = FlatStyle.System;
             comBoxCat.FormattingEnabled = true;
-            comBoxCat.Location = new Point(87, 188);
-            comBoxCat.Margin = new Padding(2, 2, 2, 2);
+            comBoxCat.Location = new Point(141, 301);
             comBoxCat.Name = "comBoxCat";
-            comBoxCat.Size = new Size(228, 28);
+            comBoxCat.Size = new Size(368, 40);
             comBoxCat.TabIndex = 17;
             // 
             // txtBoxApp
             // 
             txtBoxApp.BackColor = Color.LightGray;
-            txtBoxApp.Location = new Point(87, 111);
-            txtBoxApp.Margin = new Padding(2, 2, 2, 2);
+            txtBoxApp.Location = new Point(141, 178);
             txtBoxApp.Name = "txtBoxApp";
-            txtBoxApp.Size = new Size(228, 27);
+            txtBoxApp.Size = new Size(368, 39);
             txtBoxApp.TabIndex = 16;
             // 
             // btnEdit
@@ -114,10 +106,9 @@
             btnEdit.DialogResult = DialogResult.OK;
             btnEdit.FlatStyle = FlatStyle.System;
             btnEdit.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold);
-            btnEdit.Location = new Point(129, 496);
-            btnEdit.Margin = new Padding(2, 2, 2, 2);
+            btnEdit.Location = new Point(210, 794);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(130, 28);
+            btnEdit.Size = new Size(211, 45);
             btnEdit.TabIndex = 15;
             btnEdit.Text = "SAVE";
             btnEdit.UseVisualStyleBackColor = true;
@@ -128,10 +119,9 @@
             lbPwd.AutoSize = true;
             lbPwd.FlatStyle = FlatStyle.System;
             lbPwd.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            lbPwd.Location = new Point(87, 329);
-            lbPwd.Margin = new Padding(2, 0, 2, 0);
+            lbPwd.Location = new Point(141, 526);
             lbPwd.Name = "lbPwd";
-            lbPwd.Size = new Size(97, 28);
+            lbPwd.Size = new Size(157, 45);
             lbPwd.TabIndex = 14;
             lbPwd.Text = "Password";
             // 
@@ -140,10 +130,9 @@
             lbUser.AutoSize = true;
             lbUser.FlatStyle = FlatStyle.System;
             lbUser.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            lbUser.Location = new Point(87, 246);
-            lbUser.Margin = new Padding(2, 0, 2, 0);
+            lbUser.Location = new Point(141, 394);
             lbUser.Name = "lbUser";
-            lbUser.Size = new Size(172, 28);
+            lbUser.Size = new Size(276, 45);
             lbUser.TabIndex = 13;
             lbUser.Text = "Username / Email";
             // 
@@ -152,10 +141,9 @@
             lbCategory.AutoSize = true;
             lbCategory.FlatStyle = FlatStyle.System;
             lbCategory.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            lbCategory.Location = new Point(87, 160);
-            lbCategory.Margin = new Padding(2, 0, 2, 0);
+            lbCategory.Location = new Point(141, 256);
             lbCategory.Name = "lbCategory";
-            lbCategory.Size = new Size(94, 28);
+            lbCategory.Size = new Size(153, 45);
             lbCategory.TabIndex = 12;
             lbCategory.Text = "Category";
             // 
@@ -164,26 +152,11 @@
             lbApp.AutoSize = true;
             lbApp.FlatStyle = FlatStyle.System;
             lbApp.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            lbApp.Location = new Point(87, 83);
-            lbApp.Margin = new Padding(2, 0, 2, 0);
+            lbApp.Location = new Point(141, 133);
             lbApp.Name = "lbApp";
-            lbApp.Size = new Size(114, 28);
+            lbApp.Size = new Size(185, 45);
             lbApp.TabIndex = 11;
             lbApp.Text = "Application";
-            // 
-            // btnEye
-            // 
-            btnEye.BackColor = Color.Transparent;
-            btnEye.BackgroundImage = Properties.Resources.eye;
-            btnEye.BackgroundImageLayout = ImageLayout.Stretch;
-            btnEye.Location = new Point(318, 358);
-            btnEye.Margin = new Padding(2, 2, 2, 2);
-            btnEye.Name = "btnEye";
-            btnEye.Size = new Size(25, 26);
-            btnEye.TabIndex = 23;
-            btnEye.UseVisualStyleBackColor = false;
-            btnEye.MouseDown += BtnEye_MouseDown;
-            btnEye.MouseUp += BtnEye_MouseUp;
             // 
             // errorProvider
             // 
@@ -193,11 +166,10 @@
             // EditPassword
             // 
             AcceptButton = btnEdit;
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(382, 534);
-            Controls.Add(btnEye);
+            ClientSize = new Size(621, 854);
             Controls.Add(lbTitle);
             Controls.Add(btnGenerate);
             Controls.Add(txtBoxPwd);
@@ -211,6 +183,7 @@
             Controls.Add(lbApp);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(5);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "EditPassword";
@@ -234,7 +207,6 @@
         private Label lbUser;
         private Label lbCategory;
         private Label lbApp;
-        private Button btnEye;
         private ErrorProvider errorProvider;
     }
 }
