@@ -253,6 +253,16 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap doctolib {
+            get {
+                object obj = ResourceManager.GetObject("doctolib", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dofus {
             get {
                 object obj = ResourceManager.GetObject("dofus", resourceCulture);
@@ -576,6 +586,26 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap instagram {
             get {
                 object obj = ResourceManager.GetObject("instagram", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kinguin {
+            get {
+                object obj = ResourceManager.GetObject("kinguin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kraken {
+            get {
+                object obj = ResourceManager.GetObject("kraken", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
