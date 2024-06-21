@@ -763,6 +763,16 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap portfolio_performance {
+            get {
+                object obj = ResourceManager.GetObject("portfolio_performance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap prefecture_de_l_isere {
             get {
                 object obj = ResourceManager.GetObject("prefecture_de_l_isere", resourceCulture);

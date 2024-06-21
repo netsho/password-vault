@@ -101,7 +101,6 @@
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.IsSplitterFixed = true;
             splitContainer1.Location = new Point(0, 0);
-            splitContainer1.Margin = new Padding(2);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -124,20 +123,21 @@
             splitContainer1.Panel2.Controls.Add(listPwdPanel);
             splitContainer1.Panel2.Controls.Add(separator);
             splitContainer1.Panel2.Controls.Add(panelTop);
-            splitContainer1.Size = new Size(1111, 600);
-            splitContainer1.SplitterDistance = 268;
-            splitContainer1.SplitterWidth = 1;
+            splitContainer1.Size = new Size(1805, 960);
+            splitContainer1.SplitterDistance = 435;
+            splitContainer1.SplitterWidth = 2;
             splitContainer1.TabIndex = 0;
             // 
             // lbVersion
             // 
             lbVersion.AutoSize = true;
             lbVersion.Font = new Font("Bahnschrift", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbVersion.Location = new Point(217, 50);
+            lbVersion.Location = new Point(353, 80);
+            lbVersion.Margin = new Padding(5, 0, 5, 0);
             lbVersion.Name = "lbVersion";
-            lbVersion.Size = new Size(33, 18);
+            lbVersion.Size = new Size(66, 29);
             lbVersion.TabIndex = 19;
-            lbVersion.Text = "V1.2";
+            lbVersion.Text = "V1.3.1";
             // 
             // allTable
             // 
@@ -148,12 +148,11 @@
             allTable.Controls.Add(allPicture, 1, 0);
             allTable.Controls.Add(lbAll, 2, 0);
             allTable.Controls.Add(lbSelectedAll, 0, 0);
-            allTable.Location = new Point(45, 98);
-            allTable.Margin = new Padding(2);
+            allTable.Location = new Point(73, 157);
             allTable.Name = "allTable";
             allTable.RowCount = 1;
             allTable.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            allTable.Size = new Size(202, 42);
+            allTable.Size = new Size(328, 67);
             allTable.TabIndex = 18;
             // 
             // allPicture
@@ -161,10 +160,10 @@
             allPicture.Cursor = Cursors.Hand;
             allPicture.Dock = DockStyle.Fill;
             allPicture.Image = Properties.Resources.icons8_apps_tab_48;
-            allPicture.Location = new Point(10, 0);
+            allPicture.Location = new Point(16, 0);
             allPicture.Margin = new Padding(0);
             allPicture.Name = "allPicture";
-            allPicture.Size = new Size(55, 42);
+            allPicture.Size = new Size(90, 67);
             allPicture.SizeMode = PictureBoxSizeMode.CenterImage;
             allPicture.TabIndex = 0;
             allPicture.TabStop = false;
@@ -179,10 +178,10 @@
             lbAll.Font = new Font("Bahnschrift SemiBold", 14F, FontStyle.Bold);
             lbAll.ForeColor = Color.Black;
             lbAll.ImageAlign = ContentAlignment.MiddleLeft;
-            lbAll.Location = new Point(65, 0);
+            lbAll.Location = new Point(106, 0);
             lbAll.Margin = new Padding(0);
             lbAll.Name = "lbAll";
-            lbAll.Size = new Size(137, 42);
+            lbAll.Size = new Size(222, 67);
             lbAll.TabIndex = 6;
             lbAll.Text = "All";
             lbAll.TextAlign = ContentAlignment.MiddleCenter;
@@ -192,10 +191,9 @@
             // 
             lbSelectedAll.AutoSize = true;
             lbSelectedAll.Dock = DockStyle.Fill;
-            lbSelectedAll.Location = new Point(2, 0);
-            lbSelectedAll.Margin = new Padding(2, 0, 2, 0);
+            lbSelectedAll.Location = new Point(3, 0);
             lbSelectedAll.Name = "lbSelectedAll";
-            lbSelectedAll.Size = new Size(6, 42);
+            lbSelectedAll.Size = new Size(10, 67);
             lbSelectedAll.TabIndex = 7;
             // 
             // lbCatTitle
@@ -204,10 +202,9 @@
             lbCatTitle.BackColor = Color.FromArgb(195, 141, 158);
             lbCatTitle.Font = new Font("Bahnschrift", 18F, FontStyle.Bold);
             lbCatTitle.ForeColor = Color.White;
-            lbCatTitle.Location = new Point(18, 152);
-            lbCatTitle.Margin = new Padding(2, 0, 2, 0);
+            lbCatTitle.Location = new Point(29, 243);
             lbCatTitle.Name = "lbCatTitle";
-            lbCatTitle.Size = new Size(161, 36);
+            lbCatTitle.Size = new Size(258, 58);
             lbCatTitle.TabIndex = 17;
             lbCatTitle.Text = "Categories";
             // 
@@ -241,8 +238,7 @@
             categoriesTable.Controls.Add(lbSelectedFinance, 0, 5);
             categoriesTable.Controls.Add(lbSelectedGames, 0, 6);
             categoriesTable.Controls.Add(lbSelectedCoding, 0, 7);
-            categoriesTable.Location = new Point(45, 203);
-            categoriesTable.Margin = new Padding(2);
+            categoriesTable.Location = new Point(73, 325);
             categoriesTable.Name = "categoriesTable";
             categoriesTable.RowCount = 8;
             categoriesTable.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
@@ -253,7 +249,7 @@
             categoriesTable.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
             categoriesTable.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
             categoriesTable.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            categoriesTable.Size = new Size(202, 369);
+            categoriesTable.Size = new Size(328, 590);
             categoriesTable.TabIndex = 0;
             // 
             // lbSocial
@@ -264,10 +260,10 @@
             lbSocial.Dock = DockStyle.Fill;
             lbSocial.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold);
             lbSocial.ImageAlign = ContentAlignment.MiddleLeft;
-            lbSocial.Location = new Point(65, 138);
+            lbSocial.Location = new Point(106, 219);
             lbSocial.Margin = new Padding(0);
             lbSocial.Name = "lbSocial";
-            lbSocial.Size = new Size(137, 46);
+            lbSocial.Size = new Size(222, 73);
             lbSocial.TabIndex = 10;
             lbSocial.Text = "Socials";
             lbSocial.TextAlign = ContentAlignment.MiddleCenter;
@@ -282,10 +278,10 @@
             lbAdmini.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold);
             lbAdmini.ForeColor = Color.Black;
             lbAdmini.ImageAlign = ContentAlignment.MiddleLeft;
-            lbAdmini.Location = new Point(65, 0);
+            lbAdmini.Location = new Point(106, 0);
             lbAdmini.Margin = new Padding(0);
             lbAdmini.Name = "lbAdmini";
-            lbAdmini.Size = new Size(137, 46);
+            lbAdmini.Size = new Size(222, 73);
             lbAdmini.TabIndex = 9;
             lbAdmini.Text = "Administrative";
             lbAdmini.TextAlign = ContentAlignment.MiddleCenter;
@@ -299,10 +295,10 @@
             lbRetail.Dock = DockStyle.Fill;
             lbRetail.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold);
             lbRetail.ImageAlign = ContentAlignment.MiddleLeft;
-            lbRetail.Location = new Point(65, 184);
+            lbRetail.Location = new Point(106, 292);
             lbRetail.Margin = new Padding(0);
             lbRetail.Name = "lbRetail";
-            lbRetail.Size = new Size(137, 46);
+            lbRetail.Size = new Size(222, 73);
             lbRetail.TabIndex = 11;
             lbRetail.Text = "Retail";
             lbRetail.TextAlign = ContentAlignment.MiddleCenter;
@@ -316,10 +312,10 @@
             lbCoding.Dock = DockStyle.Fill;
             lbCoding.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold);
             lbCoding.ImageAlign = ContentAlignment.MiddleLeft;
-            lbCoding.Location = new Point(65, 322);
+            lbCoding.Location = new Point(106, 511);
             lbCoding.Margin = new Padding(0);
             lbCoding.Name = "lbCoding";
-            lbCoding.Size = new Size(137, 47);
+            lbCoding.Size = new Size(222, 79);
             lbCoding.TabIndex = 15;
             lbCoding.Text = "Coding";
             lbCoding.TextAlign = ContentAlignment.MiddleCenter;
@@ -330,10 +326,10 @@
             pictureAdmin.Cursor = Cursors.Hand;
             pictureAdmin.Dock = DockStyle.Fill;
             pictureAdmin.Image = Properties.Resources.icons8_stack_of_paper_48;
-            pictureAdmin.Location = new Point(10, 0);
+            pictureAdmin.Location = new Point(16, 0);
             pictureAdmin.Margin = new Padding(0);
             pictureAdmin.Name = "pictureAdmin";
-            pictureAdmin.Size = new Size(55, 46);
+            pictureAdmin.Size = new Size(90, 73);
             pictureAdmin.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureAdmin.TabIndex = 17;
             pictureAdmin.TabStop = false;
@@ -347,10 +343,10 @@
             lbFinance.Dock = DockStyle.Fill;
             lbFinance.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold);
             lbFinance.ImageAlign = ContentAlignment.MiddleLeft;
-            lbFinance.Location = new Point(65, 230);
+            lbFinance.Location = new Point(106, 365);
             lbFinance.Margin = new Padding(0);
             lbFinance.Name = "lbFinance";
-            lbFinance.Size = new Size(137, 46);
+            lbFinance.Size = new Size(222, 73);
             lbFinance.TabIndex = 12;
             lbFinance.Text = "Finance";
             lbFinance.TextAlign = ContentAlignment.MiddleCenter;
@@ -361,10 +357,10 @@
             pictureWork.Cursor = Cursors.Hand;
             pictureWork.Dock = DockStyle.Fill;
             pictureWork.Image = Properties.Resources.icons8_briefcase_48;
-            pictureWork.Location = new Point(10, 46);
+            pictureWork.Location = new Point(16, 73);
             pictureWork.Margin = new Padding(0);
             pictureWork.Name = "pictureWork";
-            pictureWork.Size = new Size(55, 46);
+            pictureWork.Size = new Size(90, 73);
             pictureWork.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureWork.TabIndex = 18;
             pictureWork.TabStop = false;
@@ -375,10 +371,10 @@
             pictureStudy.Cursor = Cursors.Hand;
             pictureStudy.Dock = DockStyle.Fill;
             pictureStudy.Image = Properties.Resources.icons8_books_48;
-            pictureStudy.Location = new Point(10, 92);
+            pictureStudy.Location = new Point(16, 146);
             pictureStudy.Margin = new Padding(0);
             pictureStudy.Name = "pictureStudy";
-            pictureStudy.Size = new Size(55, 46);
+            pictureStudy.Size = new Size(90, 73);
             pictureStudy.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureStudy.TabIndex = 19;
             pictureStudy.TabStop = false;
@@ -389,10 +385,10 @@
             pictureSocials.Cursor = Cursors.Hand;
             pictureSocials.Dock = DockStyle.Fill;
             pictureSocials.Image = Properties.Resources.icons8_internet_48;
-            pictureSocials.Location = new Point(10, 138);
+            pictureSocials.Location = new Point(16, 219);
             pictureSocials.Margin = new Padding(0);
             pictureSocials.Name = "pictureSocials";
-            pictureSocials.Size = new Size(55, 46);
+            pictureSocials.Size = new Size(90, 73);
             pictureSocials.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureSocials.TabIndex = 20;
             pictureSocials.TabStop = false;
@@ -403,10 +399,10 @@
             pictureRetail.Cursor = Cursors.Hand;
             pictureRetail.Dock = DockStyle.Fill;
             pictureRetail.Image = Properties.Resources.icons8_shopping_bag_48;
-            pictureRetail.Location = new Point(10, 184);
+            pictureRetail.Location = new Point(16, 292);
             pictureRetail.Margin = new Padding(0);
             pictureRetail.Name = "pictureRetail";
-            pictureRetail.Size = new Size(55, 46);
+            pictureRetail.Size = new Size(90, 73);
             pictureRetail.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureRetail.TabIndex = 21;
             pictureRetail.TabStop = false;
@@ -417,10 +413,10 @@
             pictureFinance.Cursor = Cursors.Hand;
             pictureFinance.Dock = DockStyle.Fill;
             pictureFinance.Image = Properties.Resources.icons8_banknotes_48;
-            pictureFinance.Location = new Point(10, 230);
+            pictureFinance.Location = new Point(16, 365);
             pictureFinance.Margin = new Padding(0);
             pictureFinance.Name = "pictureFinance";
-            pictureFinance.Size = new Size(55, 46);
+            pictureFinance.Size = new Size(90, 73);
             pictureFinance.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureFinance.TabIndex = 16;
             pictureFinance.TabStop = false;
@@ -434,10 +430,10 @@
             lbStudy.Dock = DockStyle.Fill;
             lbStudy.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold);
             lbStudy.ImageAlign = ContentAlignment.MiddleLeft;
-            lbStudy.Location = new Point(65, 92);
+            lbStudy.Location = new Point(106, 146);
             lbStudy.Margin = new Padding(0);
             lbStudy.Name = "lbStudy";
-            lbStudy.Size = new Size(137, 46);
+            lbStudy.Size = new Size(222, 73);
             lbStudy.TabIndex = 9;
             lbStudy.Text = "Study";
             lbStudy.TextAlign = ContentAlignment.MiddleCenter;
@@ -448,10 +444,10 @@
             pictureGames.Cursor = Cursors.Hand;
             pictureGames.Dock = DockStyle.Fill;
             pictureGames.Image = Properties.Resources.icons8_game_controller_48;
-            pictureGames.Location = new Point(10, 276);
+            pictureGames.Location = new Point(16, 438);
             pictureGames.Margin = new Padding(0);
             pictureGames.Name = "pictureGames";
-            pictureGames.Size = new Size(55, 46);
+            pictureGames.Size = new Size(90, 73);
             pictureGames.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureGames.TabIndex = 0;
             pictureGames.TabStop = false;
@@ -466,10 +462,10 @@
             lbWork.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold);
             lbWork.ForeColor = Color.Black;
             lbWork.ImageAlign = ContentAlignment.MiddleLeft;
-            lbWork.Location = new Point(65, 46);
+            lbWork.Location = new Point(106, 73);
             lbWork.Margin = new Padding(0);
             lbWork.Name = "lbWork";
-            lbWork.Size = new Size(137, 46);
+            lbWork.Size = new Size(222, 73);
             lbWork.TabIndex = 8;
             lbWork.Text = "Work";
             lbWork.TextAlign = ContentAlignment.MiddleCenter;
@@ -483,10 +479,10 @@
             lbGames.Dock = DockStyle.Fill;
             lbGames.Font = new Font("Bahnschrift SemiBold", 11F, FontStyle.Bold);
             lbGames.ImageAlign = ContentAlignment.MiddleLeft;
-            lbGames.Location = new Point(65, 276);
+            lbGames.Location = new Point(106, 438);
             lbGames.Margin = new Padding(0);
             lbGames.Name = "lbGames";
-            lbGames.Size = new Size(137, 46);
+            lbGames.Size = new Size(222, 73);
             lbGames.TabIndex = 14;
             lbGames.Text = "Games";
             lbGames.TextAlign = ContentAlignment.MiddleCenter;
@@ -497,10 +493,10 @@
             pictureCoding.Cursor = Cursors.Hand;
             pictureCoding.Dock = DockStyle.Fill;
             pictureCoding.Image = Properties.Resources.icons8_console_48;
-            pictureCoding.Location = new Point(10, 322);
+            pictureCoding.Location = new Point(16, 511);
             pictureCoding.Margin = new Padding(0);
             pictureCoding.Name = "pictureCoding";
-            pictureCoding.Size = new Size(55, 47);
+            pictureCoding.Size = new Size(90, 79);
             pictureCoding.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureCoding.TabIndex = 22;
             pictureCoding.TabStop = false;
@@ -510,89 +506,80 @@
             // 
             lbSelectedAdmini.AutoSize = true;
             lbSelectedAdmini.Dock = DockStyle.Fill;
-            lbSelectedAdmini.Location = new Point(2, 0);
-            lbSelectedAdmini.Margin = new Padding(2, 0, 2, 0);
+            lbSelectedAdmini.Location = new Point(3, 0);
             lbSelectedAdmini.Name = "lbSelectedAdmini";
-            lbSelectedAdmini.Size = new Size(6, 46);
+            lbSelectedAdmini.Size = new Size(10, 73);
             lbSelectedAdmini.TabIndex = 23;
             // 
             // lbSelectedWork
             // 
             lbSelectedWork.AutoSize = true;
             lbSelectedWork.Dock = DockStyle.Fill;
-            lbSelectedWork.Location = new Point(2, 46);
-            lbSelectedWork.Margin = new Padding(2, 0, 2, 0);
+            lbSelectedWork.Location = new Point(3, 73);
             lbSelectedWork.Name = "lbSelectedWork";
-            lbSelectedWork.Size = new Size(6, 46);
+            lbSelectedWork.Size = new Size(10, 73);
             lbSelectedWork.TabIndex = 24;
             // 
             // lbSelectedStudy
             // 
             lbSelectedStudy.AutoSize = true;
             lbSelectedStudy.Dock = DockStyle.Fill;
-            lbSelectedStudy.Location = new Point(2, 92);
-            lbSelectedStudy.Margin = new Padding(2, 0, 2, 0);
+            lbSelectedStudy.Location = new Point(3, 146);
             lbSelectedStudy.Name = "lbSelectedStudy";
-            lbSelectedStudy.Size = new Size(6, 46);
+            lbSelectedStudy.Size = new Size(10, 73);
             lbSelectedStudy.TabIndex = 25;
             // 
             // lbSelectedSocials
             // 
             lbSelectedSocials.AutoSize = true;
             lbSelectedSocials.Dock = DockStyle.Fill;
-            lbSelectedSocials.Location = new Point(2, 138);
-            lbSelectedSocials.Margin = new Padding(2, 0, 2, 0);
+            lbSelectedSocials.Location = new Point(3, 219);
             lbSelectedSocials.Name = "lbSelectedSocials";
-            lbSelectedSocials.Size = new Size(6, 46);
+            lbSelectedSocials.Size = new Size(10, 73);
             lbSelectedSocials.TabIndex = 26;
             // 
             // lbSelectedRetail
             // 
             lbSelectedRetail.AutoSize = true;
             lbSelectedRetail.Dock = DockStyle.Fill;
-            lbSelectedRetail.Location = new Point(2, 184);
-            lbSelectedRetail.Margin = new Padding(2, 0, 2, 0);
+            lbSelectedRetail.Location = new Point(3, 292);
             lbSelectedRetail.Name = "lbSelectedRetail";
-            lbSelectedRetail.Size = new Size(6, 46);
+            lbSelectedRetail.Size = new Size(10, 73);
             lbSelectedRetail.TabIndex = 27;
             // 
             // lbSelectedFinance
             // 
             lbSelectedFinance.AutoSize = true;
             lbSelectedFinance.Dock = DockStyle.Fill;
-            lbSelectedFinance.Location = new Point(2, 230);
-            lbSelectedFinance.Margin = new Padding(2, 0, 2, 0);
+            lbSelectedFinance.Location = new Point(3, 365);
             lbSelectedFinance.Name = "lbSelectedFinance";
-            lbSelectedFinance.Size = new Size(6, 46);
+            lbSelectedFinance.Size = new Size(10, 73);
             lbSelectedFinance.TabIndex = 28;
             // 
             // lbSelectedGames
             // 
             lbSelectedGames.AutoSize = true;
             lbSelectedGames.Dock = DockStyle.Fill;
-            lbSelectedGames.Location = new Point(2, 276);
-            lbSelectedGames.Margin = new Padding(2, 0, 2, 0);
+            lbSelectedGames.Location = new Point(3, 438);
             lbSelectedGames.Name = "lbSelectedGames";
-            lbSelectedGames.Size = new Size(6, 46);
+            lbSelectedGames.Size = new Size(10, 73);
             lbSelectedGames.TabIndex = 29;
             // 
             // lbSelectedCoding
             // 
             lbSelectedCoding.AutoSize = true;
             lbSelectedCoding.Dock = DockStyle.Fill;
-            lbSelectedCoding.Location = new Point(2, 322);
-            lbSelectedCoding.Margin = new Padding(2, 0, 2, 0);
+            lbSelectedCoding.Location = new Point(3, 511);
             lbSelectedCoding.Name = "lbSelectedCoding";
-            lbSelectedCoding.Size = new Size(6, 47);
+            lbSelectedCoding.Size = new Size(10, 79);
             lbSelectedCoding.TabIndex = 30;
             // 
             // picBoxLogo
             // 
             picBoxLogo.Image = (Image)resources.GetObject("picBoxLogo.Image");
-            picBoxLogo.Location = new Point(40, 7);
-            picBoxLogo.Margin = new Padding(2);
+            picBoxLogo.Location = new Point(65, 11);
             picBoxLogo.Name = "picBoxLogo";
-            picBoxLogo.Size = new Size(62, 62);
+            picBoxLogo.Size = new Size(101, 99);
             picBoxLogo.SizeMode = PictureBoxSizeMode.StretchImage;
             picBoxLogo.TabIndex = 4;
             picBoxLogo.TabStop = false;
@@ -606,10 +593,9 @@
             lbTitlePwd.BackColor = Color.FromArgb(195, 141, 158);
             lbTitlePwd.Font = new Font("Bahnschrift SemiBold SemiConden", 16F, FontStyle.Bold);
             lbTitlePwd.ForeColor = Color.White;
-            lbTitlePwd.Location = new Point(107, 7);
-            lbTitlePwd.Margin = new Padding(2, 0, 2, 0);
+            lbTitlePwd.Location = new Point(174, 11);
             lbTitlePwd.Name = "lbTitlePwd";
-            lbTitlePwd.Size = new Size(133, 33);
+            lbTitlePwd.Size = new Size(210, 52);
             lbTitlePwd.TabIndex = 2;
             lbTitlePwd.Text = "PASSWORD";
             lbTitlePwd.TextAlign = ContentAlignment.TopCenter;
@@ -623,10 +609,9 @@
             lbTitleVault.BackColor = Color.FromArgb(195, 141, 158);
             lbTitleVault.Font = new Font("Bahnschrift SemiLight", 16F);
             lbTitleVault.ForeColor = Color.White;
-            lbTitleVault.Location = new Point(126, 38);
-            lbTitleVault.Margin = new Padding(2, 0, 2, 0);
+            lbTitleVault.Location = new Point(205, 61);
             lbTitleVault.Name = "lbTitleVault";
-            lbTitleVault.Size = new Size(91, 33);
+            lbTitleVault.Size = new Size(144, 52);
             lbTitleVault.TabIndex = 3;
             lbTitleVault.Text = "VAULT";
             lbTitleVault.TextAlign = ContentAlignment.TopCenter;
@@ -638,10 +623,9 @@
             // 
             listPwdPanel.AutoScroll = true;
             listPwdPanel.Dock = DockStyle.Fill;
-            listPwdPanel.Location = new Point(0, 72);
-            listPwdPanel.Margin = new Padding(2);
+            listPwdPanel.Location = new Point(0, 115);
             listPwdPanel.Name = "listPwdPanel";
-            listPwdPanel.Size = new Size(842, 528);
+            listPwdPanel.Size = new Size(1368, 845);
             listPwdPanel.TabIndex = 4;
             listPwdPanel.MouseDown += MainForm_MouseDown;
             listPwdPanel.MouseMove += MainForm_MouseMove;
@@ -650,10 +634,9 @@
             // separator
             // 
             separator.BorderStyle = BorderStyle.Fixed3D;
-            separator.Location = new Point(12, 71);
-            separator.Margin = new Padding(2, 0, 2, 0);
+            separator.Location = new Point(20, 114);
             separator.Name = "separator";
-            separator.Size = new Size(820, 2);
+            separator.Size = new Size(1332, 3);
             separator.TabIndex = 3;
             // 
             // panelTop
@@ -667,9 +650,8 @@
             panelTop.Controls.Add(btnExit);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
-            panelTop.Margin = new Padding(2);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(842, 72);
+            panelTop.Size = new Size(1368, 115);
             panelTop.TabIndex = 0;
             panelTop.MouseDown += MainForm_MouseDown;
             panelTop.MouseMove += MainForm_MouseMove;
@@ -679,9 +661,10 @@
             // 
             lbCount.AutoSize = true;
             lbCount.Font = new Font("Bahnschrift", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbCount.Location = new Point(344, 51);
+            lbCount.Location = new Point(559, 82);
+            lbCount.Margin = new Padding(5, 0, 5, 0);
             lbCount.Name = "lbCount";
-            lbCount.Size = new Size(16, 18);
+            lbCount.Size = new Size(26, 29);
             lbCount.TabIndex = 21;
             lbCount.Text = "0";
             // 
@@ -689,9 +672,10 @@
             // 
             lbTitleCount.AutoSize = true;
             lbTitleCount.Font = new Font("Bahnschrift", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbTitleCount.Location = new Point(299, 51);
+            lbTitleCount.Location = new Point(486, 82);
+            lbTitleCount.Margin = new Padding(5, 0, 5, 0);
             lbTitleCount.Name = "lbTitleCount";
-            lbTitleCount.Size = new Size(49, 18);
+            lbTitleCount.Size = new Size(80, 29);
             lbTitleCount.TabIndex = 20;
             lbTitleCount.Text = "Count:";
             // 
@@ -699,10 +683,9 @@
             // 
             btnImport.BackgroundImage = Properties.Resources.icons8_upload_48;
             btnImport.BackgroundImageLayout = ImageLayout.Stretch;
-            btnImport.Location = new Point(711, 17);
-            btnImport.Margin = new Padding(2);
+            btnImport.Location = new Point(1155, 27);
             btnImport.Name = "btnImport";
-            btnImport.Size = new Size(38, 38);
+            btnImport.Size = new Size(62, 61);
             btnImport.TabIndex = 7;
             toolTipExit.SetToolTip(btnImport, "Import the passwords");
             btnImport.UseVisualStyleBackColor = true;
@@ -712,10 +695,9 @@
             // 
             btnExport.BackgroundImage = Properties.Resources.icons8_download_48;
             btnExport.BackgroundImageLayout = ImageLayout.Stretch;
-            btnExport.Location = new Point(665, 17);
-            btnExport.Margin = new Padding(2);
+            btnExport.Location = new Point(1081, 27);
             btnExport.Name = "btnExport";
-            btnExport.Size = new Size(38, 38);
+            btnExport.Size = new Size(62, 61);
             btnExport.TabIndex = 6;
             toolTipExit.SetToolTip(btnExport, "Export all the passwords");
             btnExport.UseVisualStyleBackColor = true;
@@ -723,11 +705,10 @@
             // 
             // txtBoxFilter
             // 
-            txtBoxFilter.Location = new Point(241, 22);
-            txtBoxFilter.Margin = new Padding(2);
+            txtBoxFilter.Location = new Point(392, 35);
             txtBoxFilter.Name = "txtBoxFilter";
             txtBoxFilter.PlaceholderText = "Filter by application or website name";
-            txtBoxFilter.Size = new Size(384, 27);
+            txtBoxFilter.Size = new Size(622, 39);
             txtBoxFilter.TabIndex = 1;
             toolTipExit.SetToolTip(txtBoxFilter, "Filter the passwords by typing the application or website name");
             txtBoxFilter.TextChanged += TxtBoxFilter_TextChanged;
@@ -737,10 +718,9 @@
             btnAdd.BackColor = SystemColors.HotTrack;
             btnAdd.FlatStyle = FlatStyle.System;
             btnAdd.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            btnAdd.Location = new Point(66, 13);
-            btnAdd.Margin = new Padding(2);
+            btnAdd.Location = new Point(107, 21);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(126, 42);
+            btnAdd.Size = new Size(205, 67);
             btnAdd.TabIndex = 0;
             btnAdd.Text = "Add password";
             toolTipExit.SetToolTip(btnAdd, "Add a new password");
@@ -751,10 +731,9 @@
             // 
             btnExit.BackgroundImage = Properties.Resources.icons8_logout_48;
             btnExit.BackgroundImageLayout = ImageLayout.Stretch;
-            btnExit.Location = new Point(771, 17);
-            btnExit.Margin = new Padding(2);
+            btnExit.Location = new Point(1253, 27);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(38, 38);
+            btnExit.Size = new Size(62, 61);
             btnExit.TabIndex = 5;
             toolTipExit.SetToolTip(btnExit, "Exit the application");
             btnExit.UseVisualStyleBackColor = true;
@@ -762,12 +741,13 @@
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1111, 600);
+            ClientSize = new Size(1805, 960);
             Controls.Add(splitContainer1);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(5, 5, 5, 5);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Password Vault";
