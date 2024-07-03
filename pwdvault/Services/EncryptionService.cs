@@ -18,16 +18,17 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 using System.Security.Cryptography;
 using System.Text;
 using Konscious.Security.Cryptography;
+using pwdvault.Services.Exceptions;
 using Serilog;
 
 namespace pwdvault.Services
 {
-    public class EncryptionService
+    public static class EncryptionService
     {
-        private const int SALT_SIZE = 16; // 128 bit
-        private const int HASH_SIZE = 16; // 128 bit
-        private const int ITERATIONS = 4; // Recommanded minimum value
-        private const int MEMORY_SIZE = 512000; // 512 MB
+        private const int SaltSize = 16; // 128 bit
+        private const int HashSize = 16; // 128 bit
+        private const int Iterations = 4; // Recommended minimum value
+        private const int MemorySize = 512000; // 512 MB
 
         /// <summary>
         /// <para>
@@ -42,11 +43,11 @@ namespace pwdvault.Services
         /// <exception cref="ArgumentException"></exception>
         public static byte[] EncryptPassword(string password, byte[] key, out byte[] iv)
         {
-            if (String.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(password))
             {
                 throw new ArgumentException("The password is empty.");
             }
-            if (key == null || key.Length != 16)
+            if (key is null || key.Length != 16)
             {
                 throw new ArgumentException("The encryption key is either null or not a valid size.");
             }
@@ -68,8 +69,8 @@ namespace pwdvault.Services
             }
             catch (Exception ex)
             {
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
-                throw new Exception(ex.Message, ex);
+                Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
+                throw new PasswordException(ex.Message, ex);
             }
             
         }
@@ -90,18 +91,18 @@ namespace pwdvault.Services
             {
                 throw new ArgumentException("The encrypted password is either null or empty.");
             }
-            if (key == null || key.Length != 16)
+            if (key is null || key.Length != 16)
             {
                 throw new ArgumentException("The decryption key is either null or not a valid size.");
             }
-            if (iv == null || iv.Length != 16)
+            if (iv is null || iv.Length != 16)
             {
                 throw new ArgumentException("The IV used to decrypt the password is either null or not a valid size.");
             }
 
             try
             {
-                using Aes aes = Aes.Create();
+                using var aes = Aes.Create();
                 aes.Key = key;
                 aes.IV = iv;
 
@@ -113,21 +114,21 @@ namespace pwdvault.Services
             }
             catch (Exception ex)
             {
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
-                throw new Exception(ex.Message, ex);
+                Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
+                throw new PasswordException(ex.Message, ex);
             }
         }
 
         /// <summary>
         /// <para>
-        /// Ggenerates a new encrypting key to encrypt the password. The key generation is derived from the password.
+        /// Generates a new encrypting key to encrypt the password. The key generation is derived from the password.
         /// </para>
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
         public static byte[] GenerateKey(string password)
         {
-            if (String.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(password))
             {
                 throw new ArgumentException("The password is empty.");
             }
@@ -142,17 +143,16 @@ namespace pwdvault.Services
         /// The time used for the hashing should not be lower than 0,5 seconds and not greater than 5 seconds.
         /// </summary>
         /// <param name="password"></param>
-        /// <param name="salt"></param>
         /// <returns></returns>
         private static byte[] GenerateHash(string password)
         {
-            using var argon2id = new Argon2id(Encoding.UTF8.GetBytes(password));
-            argon2id.Salt = GenerateSalt();
+            using var argon2Id = new Argon2id(Encoding.UTF8.GetBytes(password));
+            argon2Id.Salt = GenerateSalt();
             // Number of CPU Cores x2
-            argon2id.DegreeOfParallelism = Environment.ProcessorCount * 2;
-            argon2id.Iterations = ITERATIONS;
-            argon2id.MemorySize = MEMORY_SIZE;
-            return argon2id.GetBytes(HASH_SIZE);
+            argon2Id.DegreeOfParallelism = Environment.ProcessorCount * 2;
+            argon2Id.Iterations = Iterations;
+            argon2Id.MemorySize = MemorySize;
+            return argon2Id.GetBytes(HashSize);
         }
 
         /// <summary>
@@ -161,8 +161,8 @@ namespace pwdvault.Services
         /// <returns></returns>
         private static byte[] GenerateSalt()
         {
-            var salt = new byte[SALT_SIZE];
-            using RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
+            var salt = new byte[SaltSize];
+            using var randomNumberGenerator = RandomNumberGenerator.Create();
             randomNumberGenerator.GetBytes(salt);
             return salt;
         }

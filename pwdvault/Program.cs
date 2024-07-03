@@ -26,7 +26,7 @@ namespace pwdvault
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
@@ -50,12 +50,12 @@ namespace pwdvault
             Log.Logger = logger;
 
             /* --------------------- Delete logs older than 1 month */
-            var OneMonthOld = DateTime.Now.AddMonths(-1).Month;
+            var oneMonthOld = DateTime.Now.AddMonths(-1).Month;
             var files = Directory.GetFiles(passwordVaultFolder);
             foreach(var file in files )
             {
                 var fileInfo = new FileInfo(file);
-                if(fileInfo.CreationTime.Month < OneMonthOld)
+                if(fileInfo.CreationTime.Month < oneMonthOld)
                 {
                     fileInfo.Delete();
                 }
