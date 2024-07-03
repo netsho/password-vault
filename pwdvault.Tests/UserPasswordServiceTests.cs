@@ -102,12 +102,12 @@ namespace pwdvault.Tests
         public void VerifyPassword_ShouldReturnTrueForMatchingPasswordsAndSalts()
         {
             // Arrange
-            string samepassword = "password";
+            string samePassword = "password";
             byte[] salt = UserPasswordService.GenerateSalt();
-            byte[] hash = UserPasswordService.GenerateHash(samepassword, salt);
+            byte[] hash = UserPasswordService.GenerateHash(samePassword, salt);
 
             // Act
-            bool result = UserPasswordService.VerifyPassword(samepassword, salt, hash);
+            bool result = UserPasswordService.VerifyPassword(samePassword, salt, hash);
 
             // Assert
             Assert.True(result);
@@ -133,12 +133,12 @@ namespace pwdvault.Tests
         public void VerifyPassword_ShouldReturnTrueForNullSalt()
         {
             // Arrange
-            string samepassword = "password";
+            string samePassword = "password";
             byte[]? salt = null;
-            byte[] hash = UserPasswordService.GenerateHash(samepassword, salt);
+            byte[] hash = UserPasswordService.GenerateHash(samePassword, salt);
 
             // Act
-            bool result = UserPasswordService.VerifyPassword(samepassword, salt, hash);
+            bool result = UserPasswordService.VerifyPassword(samePassword, salt, hash);
 
             // Assert
             Assert.True(result);
@@ -148,13 +148,13 @@ namespace pwdvault.Tests
         public void VerifyPassword_ShouldThrowExceptionForNullHash()
         {
             // Arrange
-            string samepassword = "password";
+            string samePassword = "password";
             byte[] salt = UserPasswordService.GenerateSalt();
             byte[]? hash = null;
             var exception = typeof(NullReferenceException);
 
             // Assert & act
-            Assert.Throws(exception, () => UserPasswordService.VerifyPassword(samepassword, salt, hash));
+            Assert.Throws(exception, () => UserPasswordService.VerifyPassword(samePassword, salt, hash));
         }
     }
 }
