@@ -75,19 +75,19 @@ namespace pwdvault.Models
         [Key]
         public int Id { get; set; }
 
-        [MaxLength(20)]
+        [MaxLength(32)]
         public string AppCategory { get; set; } = appCategory;
 
-        [MaxLength(50)]
+        [MaxLength(124)]
         public string AppName { get; set; } = appName;
 
-        [MaxLength(50)]
+        [MaxLength(124)]
         public string UserName { get; set; } = userName;
 
-        [MaxLength(50)]
+        [MaxLength(254)]
         public byte[] Password { get; set; } = password;
 
-        [MaxLength(100)]
+        [MaxLength(124)]
         public string IconName { get; set; } = iconName;
         public byte[] Bytes { get; set; } = bytes;
         public DateTime CreationTime { get; set; }
@@ -99,7 +99,7 @@ namespace pwdvault.Models
         [Key]
         public int Id { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(124)]
         public string Username { get; set; } = username;
         public byte[] PasswordHash { get; set; } = passwordHash;
         public byte[] PasswordSalt { get; set; } = passwordSalt;
