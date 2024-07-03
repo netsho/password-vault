@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 using Microsoft.EntityFrameworkCore;
-using pwdvault.Modeles;
+using pwdvault.Models;
 using pwdvault.Services;
 using pwdvault.Services.Exceptions;
 using pwdvault.Controllers;

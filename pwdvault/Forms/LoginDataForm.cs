@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
-using pwdvault.Modeles;
+using pwdvault.Models;
 using System.Configuration;
 using System.Text.Json;
 using Serilog;
@@ -36,7 +36,7 @@ namespace pwdvault.Forms
                 txtBoxCA.Text = loginData.CaFilePath;
                 txtBoxCertificate.Text = loginData.CertificateFilePath;
                 txtBoxKey.Text = loginData.KeyFilePath;
-                txtBoxSecretId.Text = loginData.SecretID;
+                txtBoxSecretId.Text = loginData.SecretId;
             }
         }
 
@@ -140,7 +140,7 @@ namespace pwdvault.Forms
                         CaFilePath = txtBoxCA.Text,
                         CertificateFilePath = txtBoxCertificate.Text,
                         KeyFilePath = txtBoxKey.Text,
-                        SecretID = txtBoxSecretId.Text
+                        SecretId = txtBoxSecretId.Text
                     }
                 };
                 JsonSerializerOptions jsonSerializerOptions = new() { WriteIndented = true };
