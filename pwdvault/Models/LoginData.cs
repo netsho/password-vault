@@ -1,5 +1,5 @@
 ﻿/*
-Netsho - Defines password data in a form suitable for export / import. 
+Netsho - Defines additional login data. 
 Copyright (C) 2023-2024 Netsho
 
 This program is free software: you can redistribute it and/or modify
@@ -15,21 +15,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
-namespace pwdvault.Modeles
+namespace pwdvault.Models
 {
-    internal class ExportImportData
+    internal class LoginData
     {
-        public string AppCategory { get; set; }
-        public string AppName { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-
-        public ExportImportData(string appCategory, string appName, string userName, string password)
-        {
-            AppCategory = appCategory;
-            AppName = appName;
-            UserName = userName;
-            Password = password;
-        }
+        public string? CaFilePath { get; set; }
+        public string? CertificateFilePath { get; set; }
+        public string? KeyFilePath { get; set; }
+        public string? SecretId { get; set; }
     }
 }
