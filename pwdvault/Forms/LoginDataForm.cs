@@ -30,14 +30,12 @@ namespace pwdvault.Forms
         public LoginDataForm()
         {
             InitializeComponent();
-            if (File.Exists(_loginDataPath))
-            {
-                var loginData = RetrieveLoginData();
-                txtBoxCA.Text = loginData.CaFilePath;
-                txtBoxCertificate.Text = loginData.CertificateFilePath;
-                txtBoxKey.Text = loginData.KeyFilePath;
-                txtBoxSecretId.Text = loginData.SecretId;
-            }
+            if (!File.Exists(_loginDataPath)) return;
+            var loginData = RetrieveLoginData();
+            txtBoxCA.Text = loginData.CaFilePath;
+            txtBoxCertificate.Text = loginData.CertificateFilePath;
+            txtBoxKey.Text = loginData.KeyFilePath;
+            txtBoxSecretId.Text = loginData.SecretId;
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)
