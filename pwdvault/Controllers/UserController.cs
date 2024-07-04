@@ -55,14 +55,7 @@ namespace pwdvault.Controllers
         /// <returns></returns>
         public bool UserExists(string username)
         {
-            foreach (var user in GetAllUsers())
-            {
-                if (user.Username.ToLower().Equals(username.ToLower()))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return GetAllUsers().Exists(user => user.Username.ToLower().Equals(username.ToLower()));
         }
 
         /// <summary>
@@ -73,18 +66,16 @@ namespace pwdvault.Controllers
         /// <exception cref="UserException"></exception>
         public User GetUserByUsername(string username)
         {
-            foreach (var user in GetAllUsers())
+            var user = GetAllUsers().Find(user => user.Username.ToLower().Equals(username.ToLower()));
+            if (user is not null)
             {
-                if (user.Username.ToLower().Equals(username.ToLower()))
-                {
-                    return _dbContext.Users.Find(user.Id)!;
-                }
+                return _dbContext.Users.Find(user.Id)!;
             }
-            throw new UserException("No account found with this _username. Please ensure the _username is correct or sign up for a new account.");
+            throw new UserException($"No account is found with the username \"{username}\". Please ensure the username is correct or sign up for a new account.");
         }
 
         /// <summary>
-        /// Gets the user from database.
+        /// Gets the users from database.
         /// </summary>
         /// <returns></returns>
         public List<User> GetAllUsers()
@@ -94,7 +85,7 @@ namespace pwdvault.Controllers
 
         public void SaveChangesOnFail(object? sender, SaveChangesFailedEventArgs e)
         {
-            throw new Exception($"Saving failed due to :\n {e.Exception}.");
+            throw new InvalidOperationException($"Saving failed due to :\n {e.Exception}.");
         }
     }
 }

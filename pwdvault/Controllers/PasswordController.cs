@@ -27,7 +27,7 @@ namespace pwdvault.Controllers
 
         public PasswordController(PasswordVaultContext dbContext)
         {
-            this._dbContext = dbContext;
+            _dbContext = dbContext;
             dbContext.SaveChangesFailed += SaveChangesOnFail;
         }
 
@@ -72,7 +72,7 @@ namespace pwdvault.Controllers
         }
 
         /// <summary>
-        /// Gets the application's password by it's name and user's name from database.
+        /// Gets the application's password by its name and user's name from database.
         /// Returns the user password if not null, else throw an exception.
         /// </summary>
         /// <param name="appName"></param>
@@ -93,14 +93,7 @@ namespace pwdvault.Controllers
         /// <returns></returns>
         public bool PasswordExists(string appName, string username)
         {
-            foreach (var password in GetAllPasswords())
-            {
-                if (password.AppName.ToLower().Equals(appName.ToLower()) && password.UserName.ToLower().Equals(username.ToLower()))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return GetAllPasswords().Exists(password => password.AppName.ToLower().Equals(appName.ToLower()) && password.UserName.ToLower().Equals(username.ToLower()));
         }
 
         /// <summary>
@@ -124,7 +117,7 @@ namespace pwdvault.Controllers
 
         public void SaveChangesOnFail(object? sender, SaveChangesFailedEventArgs e)
         {
-            throw new Exception($"Saving failed due to :\n {e.Exception}.");
+            throw new InvalidOperationException($"Saving failed due to :\n {e.Exception}.");
         }
     }
 }
