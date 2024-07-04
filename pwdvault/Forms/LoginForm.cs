@@ -38,44 +38,40 @@ namespace pwdvault.Forms
             }
             else
             {
-                try
+                var dialogResult = new LoginDataForm().ShowDialog();
+                if (dialogResult == DialogResult.OK)
                 {
-                    Cursor = Cursors.WaitCursor;
-
-                    using var context = new PasswordVaultContext();
-                    var userController = new UserController(context);
-                    var user = userController.GetUserByUsername(txtBoxUser.Text);
-                    if (UserPasswordService.VerifyPassword(txtBoxPwd.Text, user.PasswordSalt, user.PasswordHash))
+                    try
                     {
-                        var dialogResult = new LoginDataForm().ShowDialog();
-                        if (dialogResult == DialogResult.OK)
+                        Cursor = Cursors.WaitCursor;
+
+                        using var context = new PasswordVaultContext();
+                        var userController = new UserController(context);
+                        var user = userController.GetUserByUsername(txtBoxUser.Text);
+                        if (UserPasswordService.VerifyPassword(txtBoxPwd.Text, user.PasswordSalt, user.PasswordHash))
                         {
                             new MainForm().Show();
                             Hide();
                         }
                         else
                         {
-                            Show();
+                            MessageBox.Show("Invalid username or password. Please try again.", "Invalid user's credentiels", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                        Cursor = Cursors.Default;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Invalid username or password. Please try again.", "Invalid user's credentiels", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Cursor = Cursors.Default;
+                        if (ex is UserException)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                     }
-                    Cursor = Cursors.Default;
-                }
-                catch (Exception ex)
-                {
-                    Cursor = Cursors.Default;
-                    if (ex is UserException)
-                    {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                 }
             }
         }

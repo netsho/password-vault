@@ -20,6 +20,7 @@ using System.Configuration;
 using System.Text.Json;
 using Serilog;
 using pwdvault.Controllers;
+using Npgsql;
 
 namespace pwdvault.Forms
 {
@@ -38,7 +39,7 @@ namespace pwdvault.Forms
             txtBoxSecretId.Text = loginData.SecretId;
         }
 
-        private void BtnLogin_Click(object sender, EventArgs e)
+        private async void BtnLogin_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtBoxCA.Text) ||
                 string.IsNullOrWhiteSpace(txtBoxCertificate.Text) ||
@@ -54,13 +55,21 @@ namespace pwdvault.Forms
                 {
                     AddLoginDataConfig();
 
-                    var vaultServerUri = ConfigurationManager.AppSettings["VaultServerUri"];
-                    var roleId = ConfigurationManager.AppSettings["RoleID"];
-                    var secretPath = ConfigurationManager.AppSettings["SecretPath"];
-                    VaultController.GetInstance(roleId!, txtBoxSecretId.Text, vaultServerUri!, secretPath!);
+                    if (await TestPgSqlConnection())
+                    {
+                        var vaultServerUri = ConfigurationManager.AppSettings["VaultServerUri"];
+                        var roleId = ConfigurationManager.AppSettings["RoleID"];
+                        var secretPath = ConfigurationManager.AppSettings["SecretPath"];
+                        VaultController.GetInstance(roleId!, txtBoxSecretId.Text, vaultServerUri!, secretPath!);
 
-                    DialogResult = DialogResult.OK;
-                    Close();
+                        DialogResult = DialogResult.OK;
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to connect to the database. Please check your network connection and ensure that your SSL certificates are valid and correctly installed.", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DialogResult = DialogResult.None;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -216,6 +225,19 @@ namespace pwdvault.Forms
                 connectionString = connectionString.Replace(currentValue, parameterValue);
             }
             return connectionString;
+        }
+
+        private static async Task<bool> TestPgSqlConnection()
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionDb"].ConnectionString;
+
+            await using var npgsqlConnection = new NpgsqlConnection(connectionString);
+            await npgsqlConnection.OpenAsync();
+            if (npgsqlConnection.State == System.Data.ConnectionState.Open)
+            {
+                return true;
+            }
+            else { return false; }
         }
     }
 }
