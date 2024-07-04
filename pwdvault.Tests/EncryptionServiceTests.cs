@@ -232,7 +232,7 @@ namespace pwdvault.Tests
         {
             // Arrange
             string password = "password";
-            byte[] encryptedPassword1 = new byte[0];
+            byte[] encryptedPassword1 = [];
             byte[]? encryptedPassword2 = null;
             byte[] key = EncryptionService.GenerateKey(password);
             _ = EncryptionService.EncryptPassword(password, key, out byte[] iv);
@@ -267,7 +267,7 @@ namespace pwdvault.Tests
             byte[] key = EncryptionService.GenerateKey(password);
             byte[] encryptedPassword = EncryptionService.EncryptPassword(password, key, out _);
             byte[]? iv1 = null;
-            byte[]? iv2 = new byte[1];
+            byte[] iv2 = new byte[1];
             Type exceptionType = typeof(ArgumentException);
 
             // Assert & act

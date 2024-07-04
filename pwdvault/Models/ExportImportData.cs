@@ -1,5 +1,5 @@
 ﻿/*
-Netsho - Defines password categories enum. 
+Netsho - Defines password data in a form suitable for export / import. 
 Copyright (C) 2023-2024 Netsho
 
 This program is free software: you can redistribute it and/or modify
@@ -15,17 +15,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
-namespace pwdvault.Modeles
+namespace pwdvault.Models
 {
-    internal enum Categories
+    internal class ExportImportData(string appCategory, string appName, string userName, string password)
     {
-        Administrative,
-        Work,
-        Study,
-        Socials,
-        Retail,
-        Finance,
-        Games,
-        Coding
+        public string AppCategory { get; set; } = appCategory;
+        public string AppName { get; set; } = appName;
+        public string UserName { get; set; } = userName;
+        public string Password { get; set; } = password;
     }
 }

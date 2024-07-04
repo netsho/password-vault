@@ -20,7 +20,7 @@ using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 
-namespace pwdvault.Modeles
+namespace pwdvault.Models
 {
     /// <summary>
     /// Setting the Db Context of Entity Framework on AppPassword Model to create the corresponding table in the database.
@@ -32,7 +32,7 @@ namespace pwdvault.Modeles
 
 
         // Delegate that writes database logs to the dbLog.txt in Local AppData folder
-        private readonly Action<string> writeLogsToFile = (message) =>
+        private readonly Action<string> _writeLogsToFile = (message) =>
         {
             string dbLogFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault");
             string dbLogFilePath = Path.Combine(dbLogFolderPath, "dbLog.txt");
@@ -40,27 +40,27 @@ namespace pwdvault.Modeles
             File.AppendAllText(dbLogFilePath, message + Environment.NewLine);
         };
 
-        public PasswordVaultContext() : base()
+        public PasswordVaultContext()
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
         /// <summary>
-        /// Configures the logging to dbLog.txt file, and configures the usage of the PostgreSQL connection string from app.config
+        /// Configures the logging to dbLog.txt file, and configures the usage of the PostGreSQL connection string from app.config
         /// </summary>
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.EnableDetailedErrors(true)
-                    .LogTo(writeLogsToFile, LogLevel.Warning)
+                optionsBuilder.EnableDetailedErrors()
+                    .LogTo(_writeLogsToFile, LogLevel.Warning)
                     .UseNpgsql(ConfigurationManager.ConnectionStrings["ConnectionDb"].ConnectionString);
             }
         }
 
         /// <summary>
-        /// Creates the auto incremental primary key on the User Password Id.
+        /// Creates the auto incremental primary key on the User Password ID.
         /// </summary>
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -70,43 +70,38 @@ namespace pwdvault.Modeles
         }
     }
 
-    public class AppPassword
+    public class AppPassword(string appCategory, string appName, string userName, byte[] password, string iconName, byte[] bytes)
     {
         [Key]
         public int Id { get; set; }
-        public string AppCategory { get; set; }
-        public string AppName { get; set; }
-        public string UserName { get; set; }
-        public byte[] Password { get; set; }
-        public string IconName { get; set; }
-        public byte[] Bytes { get; set; }
+
+        [MaxLength(32)]
+        public string AppCategory { get; set; } = appCategory;
+
+        [MaxLength(124)]
+        public string AppName { get; set; } = appName;
+
+        [MaxLength(124)]
+        public string UserName { get; set; } = userName;
+
+        [MaxLength(254)]
+        public byte[] Password { get; set; } = password;
+
+        [MaxLength(124)]
+        public string IconName { get; set; } = iconName;
+        public byte[] Bytes { get; set; } = bytes;
         public DateTime CreationTime { get; set; }
         public DateTime UpdateTime { get; set; }
-
-        public AppPassword(string appCategory, string appName, string userName, byte[] password, string iconName, byte[] bytes)
-        {
-            AppCategory = appCategory;
-            AppName = appName;
-            UserName = userName;
-            Password = password;
-            IconName = iconName;
-            Bytes = bytes;
-        }
     }
 
-    public class User
+    public class User(string username, byte[] passwordHash, byte[] passwordSalt)
     {
         [Key]
         public int Id { get; set; }
-        public string Username { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
 
-        public User(string username, byte[] passwordHash, byte[] passwordSalt)
-        {
-            Username = username;
-            PasswordHash = passwordHash;
-            PasswordSalt = passwordSalt;
-        }
+        [MaxLength(124)]
+        public string Username { get; set; } = username;
+        public byte[] PasswordHash { get; set; } = passwordHash;
+        public byte[] PasswordSalt { get; set; } = passwordSalt;
     }
 }

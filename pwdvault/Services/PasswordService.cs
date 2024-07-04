@@ -18,24 +18,25 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 using CsvHelper;
 using CsvHelper.Configuration;
 using pwdvault.Controllers;
-using pwdvault.Modeles;
+using pwdvault.Models;
 using Serilog;
 using System.Collections;
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using pwdvault.Services.Exceptions;
 
 namespace pwdvault.Services
 {
-    public class PasswordService
+    public static class PasswordService
     {
         /// <summary>
         /// <para>
-        /// Generates a password of fixed length : 20 characters. It uses RandomNumberGenerator to generate a sequence of random bytes, which are used to selectrandom characters from the validchars string.
+        /// Generates a password of fixed length : 20 characters. It uses RandomNumberGenerator to generate a sequence of random bytes, which are used to select random characters from the validChars string.
         /// </para>
         /// </summary>
-        /// <returns>The method returns a string that containes the random characters.</returns>
+        /// <returns>The method returns a string that contains the random characters.</returns>
         public static string GeneratePassword()
         {
             try
@@ -46,7 +47,6 @@ namespace pwdvault.Services
                 var byteArray = new byte[length * 4];
                 var randomNumberGenerator = RandomNumberGenerator.Create();
                 randomNumberGenerator.GetBytes(byteArray);
-
 
                 var stringBuilder = new StringBuilder(length);
                 for (int i = 0; i < length; i++)
@@ -61,21 +61,21 @@ namespace pwdvault.Services
             }
             catch (Exception ex)
             {
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
-                throw new Exception(ex.Message, ex);
+                Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
+                throw new PasswordException(ex.Message, ex);
             }
         }
 
 
         /// <summary>
-        /// Defines regular expressions to check if the password is strong by meeting the criteria : At least 16 characters and at least 1 lowercase, 1 uppercase letter, 1 number and 1 special character.
+        /// Defines regular expressions to check if the password is strong by meeting the criteria : At least 12 characters and at least 1 lowercase, 1 uppercase letter, 1 number and 1 special character.
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
         #pragma warning disable SYSLIB1045 // Convert to 'GeneratedRegexAttribute'.
         public static bool IsPasswordStrong(string password)
         {
-            // Minimum length of 16 characters
+            // Minimum length of 12 characters
             var lengthRegex = new Regex(@".{12,}$");
             // Uppercase letter
             var upperRegex = new Regex(@"[A-Z]");
@@ -102,40 +102,36 @@ namespace pwdvault.Services
         /// Gets the icon name from the resource manager based on the app name the user typed, by checking for the exact match, if not found, checking for partial match.
         /// The Properties.Resources property represents the default resource file for the project, which is Resources.resx. 
         /// The ResourceManager property of this object allows access to the resource manager, which is responsible for retrieving resources from the resource file.
-        /// The GetResourceSet method of the resource manager returns a ResourceSet object that contains all of the resources in the specified culture and assembly.
+        /// The GetResourceSet method of the resource manager returns a ResourceSet object that contains all the resources in the specified culture and assembly.
         /// The System.Globalization.CultureInfo.CurrentCulture parameter specifies the culture to use when retrieving resources (in this case, the current culture of the application). 
         /// The true parameters indicate that the method should look for resources in the satellite assemblies and use the resource fallback process if a resource is not found for the specified culture.
         /// </para>
         /// </summary>
-        /// <param name="AppName"></param>
+        /// <param name="appName"></param>
         /// <returns></returns>
-        public static string GetIconName(string AppName)
+        public static string GetIconName(string appName)
         {
             try
             {
                 var resources = Properties.Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentCulture, true, true);
-                string appNameLower = AppName.ToLower();
+                string appNameLower = appName.ToLower();
                 string? partialMatch = null;
-                if (resources != null)
+                if (resources == null) return "icons8_application";
+                
+                foreach (DictionaryEntry resource in resources)
                 {
-                    foreach (var resource in resources)
+                    var resourceName = resource.Key.ToString()!.ToLower();
+
+                    // Check for exact match first
+                    if (resourceName.Replace("_", " ") == appNameLower)
                     {
-                        var resourceName = ((DictionaryEntry)resource).Key.ToString()!.ToLower();
+                        return resourceName;
+                    }
 
-                        // Check for exact match first
-                        if (resourceName.Replace("_", " ") == appNameLower)
-                        {
-                            return resourceName;
-                        }
-
-                        // Check for partial match
-                        if (resourceName.Contains(appNameLower.Split(' ')[0]))
-                        {
-                            if(partialMatch == null || resourceName.Length < partialMatch.Length)
-                            {
-                                partialMatch = resourceName;
-                            }
-                        }
+                    // Check for partial match
+                    if (resourceName.Contains(appNameLower.Split(' ')[0]) && (partialMatch == null || resourceName.Length < partialMatch.Length))
+                    { 
+                        partialMatch = resourceName;
                     }
                 }
 
@@ -144,8 +140,8 @@ namespace pwdvault.Services
             }
             catch (Exception ex)
             {
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
-                return String.Empty;
+                Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
+                return string.Empty;
             }
         }
 
@@ -166,7 +162,7 @@ namespace pwdvault.Services
                 )).ToList();
 
             // Define CSV file + location
-            string csvName = $"pwdvault_export.csv";
+            const string csvName = "pwdvault_export.csv";
             var passwordVaultFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault");
 
             // Write to CSV file
@@ -176,7 +172,7 @@ namespace pwdvault.Services
         }
 
         /// <summary>
-        /// Imports all the passwords from the choosen CSV file and stores them in the database, along with their encryption keys. 
+        /// Imports all the passwords from the chosen CSV file and stores them in the database, along with their encryption keys. 
         /// </summary>
         /// <param name="csvPasswordsFile"></param>
         public static void ImportPasswords(string csvPasswordsFile)
@@ -189,7 +185,7 @@ namespace pwdvault.Services
                 PrepareHeaderForMatch = header => header.Header.ToLower() // Ignore casing
             };
             using var csv = new CsvReader(reader, config);
-            List<ExportImportData> importedPasswordsCSV = csv.GetRecords<ExportImportData>().ToList();
+            var importedPasswordsCsv = csv.GetRecords<ExportImportData>().ToList();
 
             // Initialising the contexts to store the passwords in DB and encryption keys in vault
             using var context = new PasswordVaultContext();
@@ -197,10 +193,10 @@ namespace pwdvault.Services
             var vaultController = VaultController.GetInstance();
 
             // Store all the passwords in the database and their corresponding encryption keys
-            foreach (var passwordCSV in importedPasswordsCSV)
+            foreach (var passwordCsv in importedPasswordsCsv)
             {
-                byte[] encryptionKey = EncryptionService.GenerateKey(passwordCSV.Password);
-                var password = new AppPassword(passwordCSV.AppCategory, passwordCSV.AppName, passwordCSV.UserName, EncryptionService.EncryptPassword(passwordCSV.Password, encryptionKey, out byte[] iv), GetIconName(passwordCSV.AppName), iv) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
+                byte[] encryptionKey = EncryptionService.GenerateKey(passwordCsv.Password);
+                var password = new AppPassword(passwordCsv.AppCategory, passwordCsv.AppName, passwordCsv.UserName, EncryptionService.EncryptPassword(passwordCsv.Password, encryptionKey, out byte[] iv), GetIconName(passwordCsv.AppName), iv) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
                 passwordController.CreatePassword(password);
                 vaultController.StoreEncryptionKey(password.AppName, password.UserName, encryptionKey);
             }

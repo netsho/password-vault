@@ -21,12 +21,12 @@ using System.Text;
 
 namespace pwdvault.Services
 {
-    public class UserPasswordService
+    public static class UserPasswordService
     {
-        private const int SALT_SIZE = 32; // 256 bit
-        private const int HASH_SIZE = 32; // 256 bit
-        private const int ITERATIONS = 4; // Recommanded minimum value
-        private const int MEMORY_SIZE = 512000; // 512 MB
+        private const int SaltSize = 32; // 256 bit
+        private const int HashSize = 32; // 256 bit
+        private const int Iterations = 4; // Recommended minimum value
+        private const int MemorySize = 512000; // 512 MB
 
         /// <summary>
         /// Generates 32 bytes salt for user's password.
@@ -34,8 +34,8 @@ namespace pwdvault.Services
         /// <returns></returns>
         public static byte[] GenerateSalt()
         {
-            var salt = new byte[SALT_SIZE];
-            using RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
+            var salt = new byte[SaltSize];
+            using var randomNumberGenerator = RandomNumberGenerator.Create();
             randomNumberGenerator.GetBytes(salt);
             return salt;
         }
@@ -52,13 +52,13 @@ namespace pwdvault.Services
         /// <returns></returns>
         public static byte[] GenerateHash(string password, byte[] salt)
         {
-            using var argon2id = new Argon2id(Encoding.UTF8.GetBytes(password));
-            argon2id.Salt = salt;
+            using var argon2Id = new Argon2id(Encoding.UTF8.GetBytes(password));
+            argon2Id.Salt = salt;
             // Number of CPU Cores x2
-            argon2id.DegreeOfParallelism = Environment.ProcessorCount * 2;
-            argon2id.Iterations = ITERATIONS;
-            argon2id.MemorySize = MEMORY_SIZE;
-            return argon2id.GetBytes(HASH_SIZE);
+            argon2Id.DegreeOfParallelism = Environment.ProcessorCount * 2;
+            argon2Id.Iterations = Iterations;
+            argon2Id.MemorySize = MemorySize;
+            return argon2Id.GetBytes(HashSize);
         }
 
         /// <summary>
@@ -66,8 +66,8 @@ namespace pwdvault.Services
         /// The verification is made by comparing the salt and hash of both the passwords.
         /// </summary>
         /// <param name="newPassword"></param>
-        /// <param name="salt"></param>
-        /// <param name="hash"></param>
+        /// <param name="oldSalt"></param>
+        /// <param name="oldHash"></param>
         /// <returns></returns>
         public static bool VerifyPassword(string newPassword, byte[] oldSalt, byte[] oldHash)
         {

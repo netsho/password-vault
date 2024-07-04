@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
-using pwdvault.Modeles;
+using pwdvault.Models;
 using pwdvault.Services;
 using pwdvault.Controllers;
 using Serilog;
@@ -25,7 +25,7 @@ namespace pwdvault.Forms
 {
     public partial class EditPassword : Form
     {
-        private readonly AppPassword appPassword;
+        private readonly AppPassword _appPassword;
         public EditPassword(string appName, string username)
         {
             try
@@ -34,19 +34,19 @@ namespace pwdvault.Forms
                 comBoxCat.DataSource = Enum.GetValues(typeof(Categories));
                 lbTitle.Text = $"Edit {appName} password";
                 using var context = new PasswordVaultContext();
-                appPassword = new PasswordController(context).GetPassword(appName, username);
+                _appPassword = new PasswordController(context).GetPassword(appName, username);
                 txtBoxApp.ReadOnly = true;
-                txtBoxApp.Text = appPassword.AppName;
-                comBoxCat.Text = appPassword.AppCategory;
+                txtBoxApp.Text = _appPassword.AppName;
+                comBoxCat.Text = _appPassword.AppCategory;
                 txtBoxUser.ReadOnly = true;
-                txtBoxUser.Text = appPassword.UserName;
+                txtBoxUser.Text = _appPassword.UserName;
                 var vaultController = VaultController.GetInstance();
-                txtBoxPwd.Text = EncryptionService.DecryptPassword(appPassword.Password, vaultController.GetEncryptionKey(appName, username), appPassword.Bytes);
+                txtBoxPwd.Text = EncryptionService.DecryptPassword(_appPassword.Password, vaultController.GetEncryptionKey(appName, username), _appPassword.Bytes);
             }
             catch (Exception ex)
             {
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
-                throw new Exception(ex.Message);
+                Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
+                throw new InvalidOperationException(ex.Message);
             }
 
         }
@@ -56,24 +56,28 @@ namespace pwdvault.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnEdit_Click(object sender, EventArgs e)
+        private async void BtnEdit_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(txtBoxApp.Text) &&
-                !String.IsNullOrWhiteSpace(txtBoxUser.Text) &&
-                !String.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
-                !String.IsNullOrWhiteSpace(comBoxCat.Text))
+            if (!string.IsNullOrWhiteSpace(txtBoxApp.Text) &&
+                !string.IsNullOrWhiteSpace(txtBoxUser.Text) &&
+                !string.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
+                !string.IsNullOrWhiteSpace(comBoxCat.Text))
             {
-                if (errorProvider.HasErrors)
+                switch (errorProvider.HasErrors)
                 {
-                    var result = MessageBox.Show("The password does not meet the criteria. Are you sure you want to save it?", "Password criteria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (result == DialogResult.Yes)
+                    case true:
                     {
-                        EditPasswordDb();
+                        var result = MessageBox.Show("The password does not meet the criteria. Are you sure you want to save it?", "Password criteria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (result == DialogResult.Yes)
+                        {
+                            await EditPasswordDb();
+                        }
+
+                        break;
                     }
-                }
-                else if (!errorProvider.HasErrors)
-                {
-                    EditPasswordDb();
+                    case false:
+                        await EditPasswordDb();
+                        break;
                 }
             }
             else
@@ -97,20 +101,20 @@ namespace pwdvault.Forms
         {
             if (!PasswordService.IsPasswordStrong(txtBoxPwd.Text))
             {
-                errorProvider.SetError(txtBoxPwd, "Password must be atleast 12 characters long and contain the following : " + Environment.NewLine +
+                errorProvider.SetError(txtBoxPwd, "Password should be at least 12 characters long and contain the following : " + Environment.NewLine +
                         "- Uppercase" + Environment.NewLine + "- Lowercase" + Environment.NewLine + "- Numbers" + Environment.NewLine + "- Symbols");
             }
             else
             {
-                errorProvider.SetError(txtBoxPwd, String.Empty);
+                errorProvider.SetError(txtBoxPwd, string.Empty);
                 errorProvider.Clear();
             }
         }
 
         /// <summary>
-        /// Encrypts the newly password, gets the corresponding object and updates it in the database, while updating the encryption key in vault.
+        /// Encrypts the new password, gets the corresponding object and updates it in the database, while updating the encryption key in vault.
         /// </summary>
-        private void EditPasswordDb()
+        private async Task EditPasswordDb()
         {
             try
             {
@@ -118,19 +122,19 @@ namespace pwdvault.Forms
 
                 var encryptionKey = EncryptionService.GenerateKey(txtBoxPwd.Text);
                 var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, encryptionKey, out byte[] bytes);
-                var appPasswordEdited = new AppPassword(comBoxCat.Text, appPassword.AppName, appPassword.UserName, encryptedPassword, appPassword.IconName, bytes)
+                var appPasswordEdited = new AppPassword(comBoxCat.Text, _appPassword.AppName, _appPassword.UserName, encryptedPassword, _appPassword.IconName, bytes)
                 {
-                    Id = appPassword.Id,
-                    CreationTime = appPassword.CreationTime,
+                    Id = _appPassword.Id,
+                    CreationTime = _appPassword.CreationTime,
                     UpdateTime = DateTime.Now
                 };
 
-                using var context = new PasswordVaultContext();
+                await using var context = new PasswordVaultContext();
                 var passwordController = new PasswordController(context);
                 passwordController.UpdatePassword(appPasswordEdited);
 
                 var vaultController = VaultController.GetInstance();
-                vaultController.UpdateEncryptionKey(appPassword.AppName, appPassword.UserName, encryptionKey);
+                await vaultController.UpdateEncryptionKey(_appPassword.AppName, _appPassword.UserName, encryptionKey);
 
                 Cursor = Cursors.Default;
                 MessageBox.Show($"{appPasswordEdited.AppName}'s password successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -139,15 +143,12 @@ namespace pwdvault.Forms
             catch (Exception ex)
             {
                 Cursor = Cursors.Default;
-                if (ex is PasswordException || ex is ArgumentException)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    MessageBox.Show("An unexpected error occured. Please check the log file or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                MessageBox.Show(
+                    ex is PasswordException or ArgumentException
+                        ? ex.Message
+                        : "An unexpected error occured. Please check the log file or contact the administrator.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                 Close();
             }
         }

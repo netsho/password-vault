@@ -1,5 +1,5 @@
 ﻿/*
-Netsho - Defines additional login data. 
+Netsho - Defines password categories enum. 
 Copyright (C) 2023-2024 Netsho
 
 This program is free software: you can redistribute it and/or modify
@@ -15,13 +15,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
-namespace pwdvault.Modeles
+namespace pwdvault.Models
 {
-    internal class LoginData
+    internal enum Categories
     {
-        public string? CaFilePath { get; set; }
-        public string? CertificateFilePath { get; set; }
-        public string? KeyFilePath { get; set; }
-        public string? SecretID { get; set; }
+        Administrative,
+        Work,
+        Study,
+        Socials,
+        Retail,
+        Finance,
+        Games,
+        Coding
     }
 }

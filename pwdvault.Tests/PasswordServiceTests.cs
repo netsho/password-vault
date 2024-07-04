@@ -1,5 +1,4 @@
-﻿using pwdvault.Modeles;
-using pwdvault.Services;
+﻿using pwdvault.Services;
 
 namespace pwdvault.Tests
 {
@@ -116,7 +115,7 @@ namespace pwdvault.Tests
         }
 
         [Fact]
-        public void IsPasswordStrong_ShouldReturnFalseForValidPassword()
+        public void IsPasswordStrong_ShouldReturnTrueForValidPassword()
         {
             // Arrange
             string password = "Password123@!Password";
@@ -132,10 +131,10 @@ namespace pwdvault.Tests
         public void GetIconName_ShouldReturnNotNullOrNotEmpty()
         {
             // Arrange
-            string appname = "appname";
+            string appName = "appname";
 
             // Act
-            string result = PasswordService.GetIconName(appname);
+            string result = PasswordService.GetIconName(appName);
 
             // Assert
             Assert.NotNull(result);
@@ -146,11 +145,11 @@ namespace pwdvault.Tests
         public void GetIconName_ShouldReturnSameIconNameForSameAppName()
         {
             // Arrange
-            string appname = "appname";
+            string appName = "appname";
 
             // Act
-            string result1 = PasswordService.GetIconName(appname);
-            string result2 = PasswordService.GetIconName(appname);
+            string result1 = PasswordService.GetIconName(appName);
+            string result2 = PasswordService.GetIconName(appName);
 
             // Assert
             Assert.Equal(result1, result2);
@@ -160,45 +159,45 @@ namespace pwdvault.Tests
         public void GetIconName_ShouldReturnDifferentIconNamesForDifferentAppName()
         {
             // Arrange
-            string appname1 = "github";
-            string appname2 = "gmail";
+            string appName1 = "github";
+            string appName2 = "gmail";
 
             // Act
-            string result1 = PasswordService.GetIconName(appname1);
-            string result2 = PasswordService.GetIconName(appname2);
+            string result1 = PasswordService.GetIconName(appName1);
+            string result2 = PasswordService.GetIconName(appName2);
 
             // Assert
             Assert.NotEqual(result1, result2);
         }
 
         [Fact]
-        public void GetIconName_ShouldReturnCorrectIconNameForExistantAppName()
+        public void GetIconName_ShouldReturnCorrectIconNameForExistentAppName()
         {
             // Arrange
-            string appname = "github";
+            string appName = "github";
 
             // Act
-            string result = PasswordService.GetIconName(appname);
+            string result = PasswordService.GetIconName(appName);
 
             // Assert
-            Assert.Equal("icons8_github_48", result);
+            Assert.Equal("github", result);
         }
 
         [Fact]
-        public void GetIconName_ShouldReturnGenericIconNameForNonExistantAppName()
+        public void GetIconName_ShouldReturnGenericIconNameForNonExistentAppName()
         {
             // Arrange
-            string appname = "appname";
+            string appName = "appname";
 
             // Act
-            string result = PasswordService.GetIconName(appname);
+            string result = PasswordService.GetIconName(appName);
 
             // Assert
-            Assert.Equal("icons8_image_48", result);
+            Assert.Equal("icons8_application", result);
         }
 
         //[Fact]
-        //public void ExportPasswords_ShouldCreateNonEmptyCsvForExistantPasswords()
+        //public void ExportPasswords_ShouldCreateNonEmptyCsvForExistentPasswords()
         //{
         //    // Arrange
         //    string csvFile = $"{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault")}\\pwdvault_export.csv";
@@ -214,7 +213,7 @@ namespace pwdvault.Tests
         //}
 
         //[Fact]
-        //public void ExportPasswords_ShouldCreateOnlyHeaderInCsvForNonExistantPasswords()
+        //public void ExportPasswords_ShouldCreateOnlyHeaderInCsvForNonExistentPasswords()
         //{
         //    // Arrange
         //    string csvFile = $"{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault")}\\pwdvault_export.csv";

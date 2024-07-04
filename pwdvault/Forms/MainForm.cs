@@ -15,23 +15,21 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
-using pwdvault.Modeles;
+using pwdvault.Models;
 using pwdvault.Controllers;
-using System.Data;
 using pwdvault.Services;
 using Serilog;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace pwdvault.Forms
 {
     public partial class MainForm : Form
     {
-        private bool _dragging = false;
+        private bool _dragging;
         private Point _dragCursorPoint;
         private Point _dragFormPoint;
-        public string _selectedCategory = String.Empty;
-        private const int ALL_ROW_INDEX = 10;
-        private int _selectedRowIndex = ALL_ROW_INDEX;
+        private string _selectedCategory;
+        private const int AllRowIndex = 10;
+        private int _selectedRowIndex = AllRowIndex;
 
         public MainForm()
         {
@@ -120,11 +118,9 @@ namespace pwdvault.Forms
         /*---  With each mouse movement, the window moves by adding values to the location points -------------------------*/
         private void MainForm_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_dragging)
-            {
-                var difference = Point.Subtract(Cursor.Position, new Size(_dragCursorPoint));
-                Location = Point.Add(_dragFormPoint, new Size(difference));
-            }
+            if (!_dragging) return;
+            var difference = Point.Subtract(Cursor.Position, new Size(_dragCursorPoint));
+            Location = Point.Add(_dragFormPoint, new Size(difference));
         }
         /*-----------------------------------------------------------------------------------------------------------------*/
         /*-----------------------------------------------------------------------------------------------------------------*/
@@ -154,32 +150,28 @@ namespace pwdvault.Forms
             catch (Exception ex)
             {
                 Cursor = Cursors.Default;
-                if (ex is ArgumentException)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                MessageBox.Show(
+                    ex is ArgumentException
+                        ? ex.Message
+                        : "An unexpected error occured. Please try again later or contact the administrator.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
             }
-
         }
 
         private void BtnImport_Click(object sender, EventArgs e)
         {
-            var openFileDialogCSV = new OpenFileDialog
+            var openFileDialogCsv = new OpenFileDialog
             {
                 Filter = "CSV files (*.csv)|*.csv"
             };
 
-            if (openFileDialogCSV.ShowDialog() == DialogResult.OK)
+            if (openFileDialogCsv.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
                     Cursor = Cursors.WaitCursor;
-                    PasswordService.ImportPasswords(openFileDialogCSV.FileName);
+                    PasswordService.ImportPasswords(openFileDialogCsv.FileName);
                     Cursor = Cursors.Default;
                     MessageBox.Show($"Passwords successfully imported.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ShowSelectedCategory(lbAll);
@@ -188,15 +180,12 @@ namespace pwdvault.Forms
                 catch (Exception ex)
                 {
                     Cursor = Cursors.Default;
-                    if (ex is ArgumentException)
-                    {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                    MessageBox.Show(
+                        ex is ArgumentException
+                            ? ex.Message
+                            : "An unexpected error occured. Please try again later or contact the administrator.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                 }
             }
         }
@@ -214,8 +203,8 @@ namespace pwdvault.Forms
             else
             {
                 // Filter the controls based on the filter text
-                List<Password> passwordUserControlsFiltred = passwordUserControls.Where(p => p.AppName.Contains(filterText, StringComparison.CurrentCultureIgnoreCase)).ToList();
-                UpdatePasswordControls(passwordUserControlsFiltred);
+                List<Password> passwordUserControlsFiltered = passwordUserControls.Where(p => p.AppName.Contains(filterText, StringComparison.CurrentCultureIgnoreCase)).ToList();
+                UpdatePasswordControls(passwordUserControlsFiltered);
             }
         }
 
@@ -226,7 +215,7 @@ namespace pwdvault.Forms
             UpdatePasswordControls(GetPasswordControls(_selectedCategory));
         }
 
-        private void LbAdmini_Click(object sender, EventArgs e)
+        private void LbAdministrative_Click(object sender, EventArgs e)
         {
             ShowSelectedCategory(sender);
             _selectedCategory = lbAdmini.Text;
@@ -285,7 +274,7 @@ namespace pwdvault.Forms
         /// <summary>
         /// <para>
         /// Gets the list of appPassword user controls based on the selected category of the user.
-        /// The passwords are retrieved from the database, and then filtred by selected category.
+        /// The passwords are retrieved from the database, and then filtered by selected category.
         /// When creating each appPassword user control, we're subscribing to passwordEdited and passwordDeleted events to update the appPassword user controls list.
         /// </para>
         /// </summary>
@@ -294,7 +283,7 @@ namespace pwdvault.Forms
         private static List<Password> GetPasswordControls(string selectedCategory)
         {
             var passwordControls = new List<Password>();
-            var passwords = new List<AppPassword>();
+            List<AppPassword> passwords;
 
             using (var context = new PasswordVaultContext())
             {
@@ -317,14 +306,14 @@ namespace pwdvault.Forms
         /// <summary>
         /// Clears the panel and update the appPassword user controls in the panel.
         /// </summary>
-        /// <param name="passwords"></param>
+        /// <param name="passwordControls"></param>
         private void UpdatePasswordControls(List<Password> passwordControls)
         {
             listPwdPanel.Controls.Clear();
             lbCount.Text = passwordControls.Count.ToString();
             int controlTop = 5;
-            passwordControls.Sort((p1, p2) => p1.AppName.CompareTo(p2.AppName));
-            foreach (Password passwordControl in passwordControls)
+            passwordControls.Sort((p1, p2) => string.Compare(p1.AppName, p2.AppName, StringComparison.OrdinalIgnoreCase));
+            foreach (var passwordControl in passwordControls)
             {
                 passwordControl.Width = listPwdPanel.Width - 40;
                 passwordControl.Location = new Point(0, controlTop);
@@ -362,7 +351,7 @@ namespace pwdvault.Forms
         private void OnPasswordEdit(object? sender, EventArgs e)
         {
             using var context = new PasswordVaultContext();
-            AppPassword appPassword = new PasswordController(context).GetPassword(((Password)sender!).AppName, ((Password)sender!).Username);
+            AppPassword appPassword = new PasswordController(context).GetPassword(((Password)sender!).AppName, ((Password)sender).Username);
             if (_selectedCategory != lbAll.Text && _selectedCategory != appPassword.AppCategory)
             {
                 OnPasswordDelete(sender, e);
@@ -378,12 +367,10 @@ namespace pwdvault.Forms
         {
             // Find the index of the Password to delete
             int passwordIndex = listPwdPanel.Controls.IndexOf((Password)sender!);
-            if (passwordIndex != -1)
-            {
-                listPwdPanel.Controls.RemoveAt(passwordIndex);
-                lbCount.Text = (int.Parse(lbCount.Text) - 1).ToString();
-                RepositionPasswordControls(passwordIndex);
-            }
+            if (passwordIndex == -1) return;
+            listPwdPanel.Controls.RemoveAt(passwordIndex);
+            lbCount.Text = (int.Parse(lbCount.Text) - 1).ToString();
+            RepositionPasswordControls(passwordIndex);
         }
 
         /// <summary>
@@ -396,14 +383,12 @@ namespace pwdvault.Forms
         {
             Control senderControl = (Control)sender;
             bool isAllCategory = senderControl.Name.Equals("lbAll") || senderControl.Name.Equals("allPicture");
-            if (_selectedRowIndex == ALL_ROW_INDEX)
+            if (_selectedRowIndex == AllRowIndex)
             {
                 // if the sender is not the category "All", else do nothing.
-                if (!isAllCategory)
-                {
-                    allTable.GetControlFromPosition(0, 0)!.BackColor = Color.FromArgb(195, 141, 158);
-                    UpdateSelectedCategory(senderControl);
-                }
+                if (isAllCategory) return;
+                allTable.GetControlFromPosition(0, 0)!.BackColor = Color.FromArgb(195, 141, 158);
+                UpdateSelectedCategory(senderControl);
             }
             else
             {
@@ -413,7 +398,7 @@ namespace pwdvault.Forms
                     categoriesTable.GetControlFromPosition(0, _selectedRowIndex)!.BackColor = Color.FromArgb(195, 141, 158);
                     // Change the back color of left column to show which category is selected
                     allTable.GetControlFromPosition(0, 0)!.BackColor = Color.White;
-                    _selectedRowIndex = ALL_ROW_INDEX;
+                    _selectedRowIndex = AllRowIndex;
                 }
                 else
                 {

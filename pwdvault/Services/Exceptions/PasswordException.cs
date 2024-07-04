@@ -17,7 +17,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 namespace pwdvault.Services.Exceptions
 {
-    internal class PasswordException : Exception
+    public class PasswordException : Exception
     {
         public PasswordException() { }
 

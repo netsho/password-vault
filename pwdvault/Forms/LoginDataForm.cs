@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
-using pwdvault.Modeles;
+using pwdvault.Models;
 using System.Configuration;
 using System.Text.Json;
 using Serilog;
@@ -36,16 +36,16 @@ namespace pwdvault.Forms
                 txtBoxCA.Text = loginData.CaFilePath;
                 txtBoxCertificate.Text = loginData.CertificateFilePath;
                 txtBoxKey.Text = loginData.KeyFilePath;
-                txtBoxSecretId.Text = loginData.SecretID;
+                txtBoxSecretId.Text = loginData.SecretId;
             }
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(txtBoxCA.Text) ||
-                String.IsNullOrWhiteSpace(txtBoxCertificate.Text) ||
-                String.IsNullOrWhiteSpace(txtBoxKey.Text) ||
-                String.IsNullOrWhiteSpace(txtBoxSecretId.Text))
+            if (string.IsNullOrWhiteSpace(txtBoxCA.Text) ||
+                string.IsNullOrWhiteSpace(txtBoxCertificate.Text) ||
+                string.IsNullOrWhiteSpace(txtBoxKey.Text) ||
+                string.IsNullOrWhiteSpace(txtBoxSecretId.Text))
             {
                 MessageBox.Show("Please complete all fields.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -56,16 +56,16 @@ namespace pwdvault.Forms
                     AddLoginDataConfig();
 
                     var vaultServerUri = ConfigurationManager.AppSettings["VaultServerUri"];
-                    var roleID = ConfigurationManager.AppSettings["RoleID"];
+                    var roleId = ConfigurationManager.AppSettings["RoleID"];
                     var secretPath = ConfigurationManager.AppSettings["SecretPath"];
-                    VaultController.GetInstance(roleID!, txtBoxSecretId.Text, vaultServerUri!, secretPath!);
+                    VaultController.GetInstance(roleId!, txtBoxSecretId.Text, vaultServerUri!, secretPath!);
 
                     DialogResult = DialogResult.OK;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                    Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                 }
             }
         }
@@ -80,14 +80,14 @@ namespace pwdvault.Forms
         /*------------ File dialogs buttons to retrieve certificates -------------------------------------------------------------------*/
         private void BtnFileDialogCA_Click(object sender, EventArgs e)
         {
-            var openFileDialogCA = new OpenFileDialog
+            var openFileDialogCa = new OpenFileDialog
             {
                 Filter = "CA files (*.crt)|*.crt|All files (*.*)|*.*"
             };
 
-            if (openFileDialogCA.ShowDialog() == DialogResult.OK)
+            if (openFileDialogCa.ShowDialog() == DialogResult.OK)
             {
-                txtBoxCA.Text = openFileDialogCA.FileName;
+                txtBoxCA.Text = openFileDialogCa.FileName;
             }
         }
 
@@ -140,18 +140,17 @@ namespace pwdvault.Forms
                         CaFilePath = txtBoxCA.Text,
                         CertificateFilePath = txtBoxCertificate.Text,
                         KeyFilePath = txtBoxKey.Text,
-                        SecretID = txtBoxSecretId.Text
+                        SecretId = txtBoxSecretId.Text
                     }
                 };
                 JsonSerializerOptions jsonSerializerOptions = new() { WriteIndented = true };
-                var jsonOptions = jsonSerializerOptions;
-                string jsonLogin = JsonSerializer.Serialize(loginData, jsonOptions);
+                string jsonLogin = JsonSerializer.Serialize(loginData, jsonSerializerOptions);
                 File.WriteAllText(_loginDataPath, jsonLogin);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
             }
         }
 
@@ -170,7 +169,7 @@ namespace pwdvault.Forms
             catch (Exception ex)
             {
                 MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                 return new LoginData();
             }
         }
