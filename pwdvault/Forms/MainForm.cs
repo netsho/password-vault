@@ -159,7 +159,7 @@ namespace pwdvault.Forms
             }
         }
 
-        private void BtnImport_Click(object sender, EventArgs e)
+        private async void BtnImport_Click(object sender, EventArgs e)
         {
             var openFileDialogCsv = new OpenFileDialog
             {
@@ -171,7 +171,7 @@ namespace pwdvault.Forms
                 try
                 {
                     Cursor = Cursors.WaitCursor;
-                    PasswordService.ImportPasswords(openFileDialogCsv.FileName);
+                    await PasswordService.ImportPasswords(openFileDialogCsv.FileName);
                     Cursor = Cursors.Default;
                     MessageBox.Show($"Passwords successfully imported.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ShowSelectedCategory(lbAll);

@@ -175,7 +175,7 @@ namespace pwdvault.Services
         /// Imports all the passwords from the chosen CSV file and stores them in the database, along with their encryption keys. 
         /// </summary>
         /// <param name="csvPasswordsFile"></param>
-        public static void ImportPasswords(string csvPasswordsFile)
+        public async static Task ImportPasswords(string csvPasswordsFile)
         {
             // Read the CSV file
             using var reader = new StreamReader(csvPasswordsFile);
@@ -198,7 +198,7 @@ namespace pwdvault.Services
                 byte[] encryptionKey = EncryptionService.GenerateKey(passwordCsv.Password);
                 var password = new AppPassword(passwordCsv.AppCategory, passwordCsv.AppName, passwordCsv.UserName, EncryptionService.EncryptPassword(passwordCsv.Password, encryptionKey, out byte[] iv), GetIconName(passwordCsv.AppName), iv) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
                 passwordController.CreatePassword(password);
-                vaultController.StoreEncryptionKey(password.AppName, password.UserName, encryptionKey);
+                await vaultController.StoreEncryptionKey(password.AppName, password.UserName, encryptionKey);
             }
         }
     }
