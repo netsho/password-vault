@@ -160,7 +160,6 @@ namespace pwdvault.Forms
                 }
                 Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
             }
-
         }
 
         private void BtnImport_Click(object sender, EventArgs e)
