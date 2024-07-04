@@ -46,6 +46,7 @@ namespace pwdvault.Forms
                 string.IsNullOrWhiteSpace(txtBoxSecretId.Text))
             {
                 MessageBox.Show("Please complete all fields.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                DialogResult = DialogResult.None;
             }
             else
             {
@@ -59,6 +60,7 @@ namespace pwdvault.Forms
                     VaultController.GetInstance(roleId!, txtBoxSecretId.Text, vaultServerUri!, secretPath!);
 
                     DialogResult = DialogResult.OK;
+                    Close();
                 }
                 catch (Exception ex)
                 {
