@@ -150,14 +150,11 @@ namespace pwdvault.Forms
             catch (Exception ex)
             {
                 Cursor = Cursors.Default;
-                if (ex is ArgumentException)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show(
+                    ex is ArgumentException
+                        ? ex.Message
+                        : "An unexpected error occured. Please try again later or contact the administrator.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
             }
         }
@@ -315,7 +312,7 @@ namespace pwdvault.Forms
             listPwdPanel.Controls.Clear();
             lbCount.Text = passwordControls.Count.ToString();
             int controlTop = 5;
-            passwordControls.Sort((p1, p2) => p1.AppName.CompareTo(p2.AppName));
+            passwordControls.Sort((p1, p2) => string.Compare(p1.AppName, p2.AppName, StringComparison.OrdinalIgnoreCase));
             foreach (var passwordControl in passwordControls)
             {
                 passwordControl.Width = listPwdPanel.Width - 40;
