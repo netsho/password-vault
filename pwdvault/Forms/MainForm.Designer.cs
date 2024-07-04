@@ -285,7 +285,7 @@
             lbAdmini.TabIndex = 9;
             lbAdmini.Text = "Administrative";
             lbAdmini.TextAlign = ContentAlignment.MiddleCenter;
-            lbAdmini.Click += LbAdmini_Click;
+            lbAdmini.Click += LbAdministrative_Click;
             // 
             // lbRetail
             // 
@@ -333,7 +333,7 @@
             pictureAdmin.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureAdmin.TabIndex = 17;
             pictureAdmin.TabStop = false;
-            pictureAdmin.Click += LbAdmini_Click;
+            pictureAdmin.Click += LbAdministrative_Click;
             // 
             // lbFinance
             // 

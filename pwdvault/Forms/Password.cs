@@ -78,12 +78,12 @@ namespace pwdvault.Forms
             catch (Exception ex)
             {
                 MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
             }
 
         }
 
-        private void BtnDelete_Click(object sender, EventArgs e)
+        private async void BtnDelete_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show($"Are you sure to delete {AppName} password?", "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
@@ -91,14 +91,14 @@ namespace pwdvault.Forms
                 try
                 {
                     Cursor = Cursors.WaitCursor;
-                    using var context = new PasswordVaultContext();
+                    await using var context = new PasswordVaultContext();
                     var vaultController = VaultController.GetInstance();
 
                     var passwordController = new PasswordController(context);
                     var password = passwordController.GetPassword(AppName, Username);
 
                     passwordController.DeletePassword(password.Id);
-                    vaultController.DeleteEncryptionKey(AppName, Username);
+                    await vaultController.DeleteEncryptionKey(AppName, Username);
 
                     OnPasswordDeleted();
                     Cursor = Cursors.Default;
@@ -106,15 +106,12 @@ namespace pwdvault.Forms
                 catch (Exception ex)
                 {
                     Cursor = Cursors.Default;
-                    if (ex is PasswordException)
-                    {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                    MessageBox.Show(
+                        ex is PasswordException
+                            ? ex.Message
+                            : "An unexpected error occured. Please try again later or contact the administrator.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                 }
             }
         }
@@ -131,15 +128,14 @@ namespace pwdvault.Forms
                 Clipboard.SetText(EncryptionService.DecryptPassword(password.Password, vaultController.GetEncryptionKey(AppName, Username), password.Bytes));
                 ClearClipboardDelayed();
             }
-            catch (PasswordException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
-            }
             catch (Exception ex)
             {
-                MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                MessageBox.Show(
+                    ex is PasswordException
+                        ? ex.Message
+                        : "An unexpected error occured. Please try again later or contact the administrator.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
             }
         }
 
@@ -167,7 +163,7 @@ namespace pwdvault.Forms
             catch (Exception ex)
             {
                 MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
             }
         }
 

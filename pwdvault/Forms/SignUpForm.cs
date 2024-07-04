@@ -34,51 +34,42 @@ namespace pwdvault.Forms
 
         private void BtnSign_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(txtBoxUser.Text) &&
-                !String.IsNullOrWhiteSpace(txtBoxPwd.Text))
+            if (!string.IsNullOrWhiteSpace(txtBoxUser.Text) &&
+                !string.IsNullOrWhiteSpace(txtBoxPwd.Text))
             {
-                if (errorProvider.HasErrors)
+                if (!errorProvider.HasErrors) return;
+                var result = MessageBox.Show("The password does not meet the criteria. Are you sure you want to save it?", "Password criteria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes) return;
+                var dialogResult = new LoginDataForm().ShowDialog();
+                if (dialogResult != DialogResult.OK) return;
+                try
                 {
-                    var result = MessageBox.Show("The password does not meet the criteria. Are you sure you want to save it?", "Password criteria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (result == DialogResult.Yes)
-                    {
-                        var dialogResult = new LoginDataForm().ShowDialog();
-                        if (dialogResult == DialogResult.OK)
-                        {
-                            try
-                            {
-                                Cursor = Cursors.WaitCursor;
+                    Cursor = Cursors.WaitCursor;
 
-                                /* --------------------- Create the new user while salting and hashing the user's password */
-                                var salt = UserPasswordService.GenerateSalt();
-                                var hash = UserPasswordService.GenerateHash(txtBoxPwd.Text, salt);
-                                var user = new User(txtBoxUser.Text, hash, salt);
+                    /* --------------------- Create the new user while salting and hashing the user's password */
+                    var salt = UserPasswordService.GenerateSalt();
+                    var hash = UserPasswordService.GenerateHash(txtBoxPwd.Text, salt);
+                    var user = new User(txtBoxUser.Text, hash, salt);
 
-                                /* --------------------- Add the user in database */
-                                using var context = new PasswordVaultContext();
-                                context.Database.Migrate();
-                                var userController = new UserController(context);
-                                userController.CreateUser(user);
+                    /* --------------------- Add the user in database */
+                    using var context = new PasswordVaultContext();
+                    context.Database.Migrate();
+                    var userController = new UserController(context);
+                    userController.CreateUser(user);
 
-                                Cursor = Cursors.Default;
-                                MessageBox.Show("New account successfully created!\nYou can now login to the application.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                Close();
-                            }
-                            catch (Exception ex)
-                            {
-                                Cursor = Cursors.Default;
-                                if (ex is UserException)
-                                {
-                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                else
-                                {
-                                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
-                            }
-                        }
-                    }
+                    Cursor = Cursors.Default;
+                    MessageBox.Show("New account successfully created!\nYou can now login to the application.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    Cursor = Cursors.Default;
+                    MessageBox.Show(
+                        ex is UserException
+                            ? ex.Message
+                            : "An unexpected error occured. Please try again later or contact the administrator.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                 }
             }
             else
@@ -96,12 +87,12 @@ namespace pwdvault.Forms
         {
             if (!PasswordService.IsPasswordStrong(txtBoxPwd.Text))
             {
-                errorProvider.SetError(txtBoxPwd, "Password must be atleast 16 characters long and contain the following : " + Environment.NewLine +
+                errorProvider.SetError(txtBoxPwd, "Password should be at least 12 characters long and contain the following : " + Environment.NewLine +
                         "- Uppercase" + Environment.NewLine + "- Lowercase" + Environment.NewLine + "- Numbers" + Environment.NewLine + "- Symbols");
             }
             else
             {
-                errorProvider.SetError(txtBoxPwd, String.Empty);
+                errorProvider.SetError(txtBoxPwd, string.Empty);
                 errorProvider.Clear();
             }
         }

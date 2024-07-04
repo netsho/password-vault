@@ -36,24 +36,28 @@ namespace pwdvault.Forms
             txtBoxPwd.Text = PasswordService.GeneratePassword();
         }
 
-        private void BtnAdd_Click(object sender, EventArgs e)
+        private async void BtnAdd_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(txtBoxApp.Text) &&
-                !String.IsNullOrWhiteSpace(txtBoxUser.Text) &&
-                !String.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
-                !String.IsNullOrWhiteSpace(comBoxCat.Text))
+            if (!string.IsNullOrWhiteSpace(txtBoxApp.Text) &&
+                !string.IsNullOrWhiteSpace(txtBoxUser.Text) &&
+                !string.IsNullOrWhiteSpace(txtBoxPwd.Text) &&
+                !string.IsNullOrWhiteSpace(comBoxCat.Text))
             {
-                if (errorProvider.HasErrors)
+                switch (errorProvider.HasErrors)
                 {
-                    var result = MessageBox.Show("The password does not meet the criteria. Are you sure you want to save it?", "Password criteria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (result == DialogResult.Yes)
+                    case true:
                     {
-                        AddPasswordDb();
+                        var result = MessageBox.Show("The password does not meet the criteria. Are you sure you want to save it?", "Password criteria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (result == DialogResult.Yes)
+                        {
+                            await AddPasswordDb();
+                        }
+
+                        break;
                     }
-                }
-                else if (!errorProvider.HasErrors)
-                {
-                    AddPasswordDb();
+                    case false:
+                        await AddPasswordDb();
+                        break;
                 }
             }
             else
@@ -71,20 +75,20 @@ namespace pwdvault.Forms
         {
             if (!PasswordService.IsPasswordStrong(txtBoxPwd.Text))
             {
-                errorProvider.SetError(txtBoxPwd, "Password must be atleast 12 characters long and contain the following : " + Environment.NewLine +
+                errorProvider.SetError(txtBoxPwd, "Password should be at least 12 characters long and contain the following : " + Environment.NewLine +
                         "- Uppercase" + Environment.NewLine + "- Lowercase" + Environment.NewLine + "- Numbers" + Environment.NewLine + "- Symbols");
             }
             else
             {
-                errorProvider.SetError(txtBoxPwd, String.Empty);
+                errorProvider.SetError(txtBoxPwd, string.Empty);
                 errorProvider.Clear();
             }
         }
 
         /// <summary>
-        /// Encrypts the newly password, creates the corresponding object and saves it in the database, while saving the encryption key in vault.
+        /// Encrypts the new password, creates the corresponding object and saves it in the database, while saving the encryption key in vault.
         /// </summary>
-        private void AddPasswordDb()
+        private async Task AddPasswordDb()
         {
             try
             {
@@ -94,12 +98,12 @@ namespace pwdvault.Forms
                 var encryptedPassword = EncryptionService.EncryptPassword(txtBoxPwd.Text, encryptionKey, out byte[] bytes);
                 var appPassword = new AppPassword(comBoxCat.Text, txtBoxApp.Text, txtBoxUser.Text, encryptedPassword, PasswordService.GetIconName(txtBoxApp.Text), bytes) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
 
-                using var context = new PasswordVaultContext();
+                await using var context = new PasswordVaultContext();
                 var passwordController = new PasswordController(context);
                 passwordController.CreatePassword(appPassword);
 
                 var vaultController = VaultController.GetInstance();
-                vaultController.StoreEncryptionKey(txtBoxApp.Text, txtBoxUser.Text, encryptionKey);
+                await vaultController.StoreEncryptionKey(txtBoxApp.Text, txtBoxUser.Text, encryptionKey);
 
                 Cursor = Cursors.Default;
                 MessageBox.Show($"{appPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -108,15 +112,12 @@ namespace pwdvault.Forms
             catch (Exception ex)
             {
                 Cursor = Cursors.Default;
-                if (ex is PasswordException || ex is ArgumentException)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                Log.Logger.Error("Source : " + ex.Source + ", Message : " + ex.Message + "\n" + ex.StackTrace);
+                MessageBox.Show(
+                    ex is PasswordException or ArgumentException
+                        ? ex.Message
+                        : "An unexpected error occured. Please try again later or contact the administrator.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                 Close();
             }
         }
