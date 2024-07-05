@@ -55,15 +55,16 @@ namespace pwdvault.Forms
                 {
                     AddLoginDataConfig();
 
-                    if (await TestPgSqlConnection())
-                    {
-                        var vaultServerUri = ConfigurationManager.AppSettings["VaultServerUri"];
-                        var roleId = ConfigurationManager.AppSettings["RoleID"];
-                        var secretPath = ConfigurationManager.AppSettings["SecretPath"];
-                        VaultController.GetInstance(roleId!, txtBoxSecretId.Text, vaultServerUri!, secretPath!);
+                    var vaultServerUri = ConfigurationManager.AppSettings["VaultServerUri"];
+                    var roleId = ConfigurationManager.AppSettings["RoleID"];
+                    var secretPath = ConfigurationManager.AppSettings["SecretPath"];
+                    VaultController.GetInstance(roleId!, txtBoxSecretId.Text, vaultServerUri!, secretPath!);
 
-                        DialogResult = DialogResult.OK;
-                        Close();
+                    bool isDbConnected = await TestPgSqlConnection();
+                    if (isDbConnected)
+                    {
+                        //DialogResult = DialogResult.OK;
+                        //Close();
                     }
                     else
                     {
@@ -227,6 +228,10 @@ namespace pwdvault.Forms
             return connectionString;
         }
 
+        /// <summary>
+        /// Tests the connection to PostGreSql database using the SSL certificates provided by the user.
+        /// </summary>
+        /// <returns></returns>
         private static async Task<bool> TestPgSqlConnection()
         {
             var connectionString = ConfigurationManager.ConnectionStrings["ConnectionDb"].ConnectionString;
