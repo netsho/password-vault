@@ -72,7 +72,6 @@ namespace pwdvault.Services
                 Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                 throw new PasswordException(ex.Message, ex);
             }
-            
         }
 
         /// <summary>

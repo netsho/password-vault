@@ -27,7 +27,7 @@ namespace pwdvault.Controllers
 
         public UserController(PasswordVaultContext dbContext)
         {
-            this._dbContext = dbContext;
+            _dbContext = dbContext;
             dbContext.SaveChangesFailed += SaveChangesOnFail;
         }
 
