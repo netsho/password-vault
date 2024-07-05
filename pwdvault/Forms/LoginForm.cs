@@ -20,6 +20,7 @@ using pwdvault.Services;
 using pwdvault.Services.Exceptions;
 using pwdvault.Controllers;
 using Serilog;
+using System.Drawing.Drawing2D;
 
 namespace pwdvault.Forms
 {
@@ -30,7 +31,7 @@ namespace pwdvault.Forms
             InitializeComponent();
         }
 
-        private void BtnLogin_Click(object sender, EventArgs e)
+        private async void BtnLogin_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtBoxUser.Text) || string.IsNullOrWhiteSpace(txtBoxPwd.Text))
             {
@@ -38,7 +39,8 @@ namespace pwdvault.Forms
             }
             else
             {
-                var dialogResult = new LoginDataForm().ShowDialog();
+                var loginDataForm = new LoginDataForm();
+                var dialogResult = await Task.Run(() => loginDataForm.ShowDialog());
                 if (dialogResult == DialogResult.OK)
                 {
                     try
@@ -50,8 +52,8 @@ namespace pwdvault.Forms
                         var user = userController.GetUserByUsername(txtBoxUser.Text);
                         if (UserPasswordService.VerifyPassword(txtBoxPwd.Text, user.PasswordSalt, user.PasswordHash))
                         {
-                            new MainForm().Show();
-                            Hide();
+                            //new MainForm().Show();
+                            //Hide();
                         }
                         else
                         {
@@ -88,9 +90,72 @@ namespace pwdvault.Forms
             txtBoxPwd.UseSystemPasswordChar = false;
         }
 
-        private void BtnSignUp_Click(object sender, EventArgs e)
+        private void PanelBanner_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics graphics = e.Graphics;
+            Pen pen = new(Color.FromArgb(0, 57, 115), 1);
+
+            Rectangle rectangleArea = new(0, 0, this.Width - 1, this.Height - 1);
+            LinearGradientBrush lgb = new(rectangleArea, Color.FromArgb(0, 57, 115), Color.FromArgb(229, 229, 190), LinearGradientMode.Horizontal);
+            graphics.FillRectangle(lgb, rectangleArea);
+            graphics.DrawRectangle(pen, rectangleArea);
+        }
+
+        private void LinkLbSignUp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new SignUpForm().Show();
         }
+
+        /*------------------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------------------*/
+        /*------------ Additional login information events -------------------------------------------------------------------*/
+        private void BtnFileDialogCA_Click(object sender, EventArgs e)
+        {
+            var openFileDialogCa = new OpenFileDialog
+            {
+                Filter = "CA files (*.crt)|*.crt|All files (*.*)|*.*"
+            };
+
+            if (openFileDialogCa.ShowDialog() == DialogResult.OK)
+            {
+                txtBoxCA.Text = openFileDialogCa.FileName;
+            }
+        }
+
+        private void BtnFileDialogCert_Click(object sender, EventArgs e)
+        {
+            var openFileDialogCertificate = new OpenFileDialog
+            {
+                Filter = "Certificate files (*.crt)|*.crt|All files (*.*)|*.*"
+            };
+
+            if (openFileDialogCertificate.ShowDialog() == DialogResult.OK)
+            {
+                txtBoxCertificate.Text = openFileDialogCertificate.FileName;
+            }
+        }
+
+        private void BtnFileDialogKey_Click(object sender, EventArgs e)
+        {
+            var openFileDialogKey = new OpenFileDialog
+            {
+                Filter = "Key files (*.key)|*.key|All files (*.*)|*.*"
+            };
+
+            if (openFileDialogKey.ShowDialog() == DialogResult.OK)
+            {
+                txtBoxKey.Text = openFileDialogKey.FileName;
+            }
+        }
+
+        private void CheckBoxInfo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxInfo.Checked)
+            {
+                StoreLoginData();
+            }
+        }
+        /*------------------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------------------*/
     }
 }
