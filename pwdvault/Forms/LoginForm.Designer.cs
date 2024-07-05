@@ -294,7 +294,7 @@
             // 
             LinkLbSignUp.ActiveLinkColor = Color.FromArgb(43, 88, 118);
             LinkLbSignUp.AutoSize = true;
-            LinkLbSignUp.BackColor = SystemColors.ButtonFace;
+            LinkLbSignUp.BackColor = SystemColors.Window;
             LinkLbSignUp.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold);
             LinkLbSignUp.ForeColor = SystemColors.ActiveCaptionText;
             LinkLbSignUp.LinkColor = Color.FromArgb(43, 88, 118);
@@ -310,7 +310,7 @@
             // 
             LbSignUp.AutoSize = true;
             LbSignUp.Font = new Font("Segoe UI", 9F);
-            LbSignUp.Location = new Point(200, 44);
+            LbSignUp.Location = new Point(200, 43);
             LbSignUp.Name = "LbSignUp";
             LbSignUp.Size = new Size(163, 20);
             LbSignUp.TabIndex = 17;
