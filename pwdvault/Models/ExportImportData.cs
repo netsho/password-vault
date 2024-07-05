@@ -17,7 +17,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 namespace pwdvault.Models
 {
-    internal class ExportImportData(string appCategory, string appName, string userName, string password)
+    public class ExportImportData(string appCategory, string appName, string userName, string password)
     {
         public string AppCategory { get; set; } = appCategory;
         public string AppName { get; set; } = appName;
