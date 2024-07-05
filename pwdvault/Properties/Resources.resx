@@ -184,9 +184,6 @@
   <data name="littoral_nautic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\littoral_nautic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="digital_secure_background_lock_circle_icons_dark_blue_6837396" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\digital_secure_background_lock_circle_icons_dark_blue_6837396.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="netflix" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\netflix.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -378,9 +375,6 @@
   </data>
   <data name="syncthing" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\syncthing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Horizon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Horizon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ameli" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\ameli.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
