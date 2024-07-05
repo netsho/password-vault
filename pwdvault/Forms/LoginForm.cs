@@ -66,28 +66,37 @@ namespace pwdvault.Forms
                     var vaultServerUri = ConfigurationManager.AppSettings["VaultServerUri"];
                     var roleId = ConfigurationManager.AppSettings["RoleID"];
                     var secretPath = ConfigurationManager.AppSettings["SecretPath"];
-                    VaultController.GetInstance(roleId!, txtBoxSecretId.Text, vaultServerUri!, secretPath!);
-
-                    if (await LoginService.TestPgSqlConnection())
+                    if (string.IsNullOrWhiteSpace(vaultServerUri) || string.IsNullOrWhiteSpace(secretPath) ||
+                        string.IsNullOrWhiteSpace(roleId))
                     {
-                        await using var context = new PasswordVaultContext();
-                        var userController = new UserController(context);
-                        var user = userController.GetUserByUsername(txtBoxUser.Text);
-                        if (UserPasswordService.VerifyPassword(txtBoxPwd.Text, user.PasswordSalt, user.PasswordHash))
-                        {
-                            new MainForm().Show();
-                            Hide();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Invalid username or password. Please try again.", "Invalid user's credentials", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        MessageBox.Show("The configuration file doesn't contain either the vault server URI, role ID or secret path. Please check the file before logging in.", "Invalid configuration file", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Cursor = Cursors.Default;
                     }
                     else
                     {
-                        MessageBox.Show("Failed to connect to the database. Please check your network connection and ensure that your SSL certificates are valid and correctly installed.", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Cursor = Cursors.Default;
+                        VaultController.GetInstance(roleId, txtBoxSecretId.Text, vaultServerUri, secretPath);
+
+                        if (await LoginService.TestPgSqlConnection())
+                        {
+                            await using var context = new PasswordVaultContext();
+                            var userController = new UserController(context);
+                            var user = userController.GetUserByUsername(txtBoxUser.Text);
+                            if (UserPasswordService.VerifyPassword(txtBoxPwd.Text, user.PasswordSalt, user.PasswordHash))
+                            {
+                                new MainForm().Show();
+                                Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Invalid username or password. Please try again.", "Invalid user's credentials", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            Cursor = Cursors.Default;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to connect to the database. Please check your network connection and ensure that your SSL certificates are valid and correctly installed.", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Cursor = Cursors.Default;
+                        }
                     }
                 }
                 catch (Exception ex)
