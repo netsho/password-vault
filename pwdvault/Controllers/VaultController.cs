@@ -122,12 +122,9 @@ namespace pwdvault.Controllers
             {
                 var kv2Secret = _vaultClient!.V1.Secrets.KeyValue.V2.ReadSecretAsync($"{_secretPath}/{appName}/{username}", mountPoint: MountPoint);
                 var secret = (Dictionary<string, object>)kv2Secret.Result.Data.Data;
-                foreach(var kv in secret)
+                foreach (var kv in secret.Where(kv => kv.Key == DataKey))
                 {
-                    if(kv.Key == DataKey)
-                    {
-                        encryptionKey = Convert.FromBase64String(kv.Value.ToString()!);
-                    }
+                    encryptionKey = Convert.FromBase64String(kv.Value.ToString()!);
                 }
                 return encryptionKey;
             }

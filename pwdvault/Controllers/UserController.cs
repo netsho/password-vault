@@ -27,7 +27,7 @@ namespace pwdvault.Controllers
 
         public UserController(PasswordVaultContext dbContext)
         {
-            this._dbContext = dbContext;
+            _dbContext = dbContext;
             dbContext.SaveChangesFailed += SaveChangesOnFail;
         }
 
@@ -66,10 +66,9 @@ namespace pwdvault.Controllers
         /// <exception cref="UserException"></exception>
         public User GetUserByUsername(string username)
         {
-            var user = GetAllUsers().Find(user => user.Username.ToLower().Equals(username.ToLower()));
-            if (user is not null)
+            if (UserExists(username))
             {
-                return _dbContext.Users.Find(user.Id)!;
+                return _dbContext.Users.FirstOrDefault(user => user.Username.ToLower().Equals(username.ToLower()))!;
             }
             throw new UserException($"No account is found with the username \"{username}\". Please ensure the username is correct or sign up for a new account.");
         }

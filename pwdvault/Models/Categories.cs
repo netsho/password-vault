@@ -17,7 +17,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 namespace pwdvault.Models
 {
-    internal enum Categories
+    public enum Categories
     {
         Administrative,
         Work,

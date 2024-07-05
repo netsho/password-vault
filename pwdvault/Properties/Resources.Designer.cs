@@ -223,16 +223,6 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap digital_secure_background_lock_circle_icons_dark_blue_6837396 {
-            get {
-                object obj = ResourceManager.GetObject("digital_secure_background_lock_circle_icons_dark_blue_6837396", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap discord {
             get {
                 object obj = ResourceManager.GetObject("discord", resourceCulture);
@@ -896,6 +886,16 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap steam {
             get {
                 object obj = ResourceManager.GetObject("steam", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Summer {
+            get {
+                object obj = ResourceManager.GetObject("Summer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

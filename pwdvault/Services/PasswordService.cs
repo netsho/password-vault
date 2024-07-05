@@ -76,11 +76,11 @@ namespace pwdvault.Services
         public static bool IsPasswordStrong(string password)
         {
             // Minimum length of 12 characters
-            var lengthRegex = new Regex(@".{12,}$");
+            var lengthRegex = new Regex(".{12,}$");
             // Uppercase letter
-            var upperRegex = new Regex(@"[A-Z]");
+            var upperRegex = new Regex("[A-Z]");
             // Lowercase letter
-            var lowerRegex = new Regex(@"[a-z]");
+            var lowerRegex = new Regex("[a-z]");
             // Number
             var numberRegex = new Regex(@"\d");
             // Special character
@@ -175,7 +175,7 @@ namespace pwdvault.Services
         /// Imports all the passwords from the chosen CSV file and stores them in the database, along with their encryption keys. 
         /// </summary>
         /// <param name="csvPasswordsFile"></param>
-        public static void ImportPasswords(string csvPasswordsFile)
+        public static async Task ImportPasswords(string csvPasswordsFile)
         {
             // Read the CSV file
             using var reader = new StreamReader(csvPasswordsFile);
@@ -188,7 +188,7 @@ namespace pwdvault.Services
             var importedPasswordsCsv = csv.GetRecords<ExportImportData>().ToList();
 
             // Initialising the contexts to store the passwords in DB and encryption keys in vault
-            using var context = new PasswordVaultContext();
+            await using var context = new PasswordVaultContext();
             var passwordController = new PasswordController(context);
             var vaultController = VaultController.GetInstance();
 
@@ -198,7 +198,7 @@ namespace pwdvault.Services
                 byte[] encryptionKey = EncryptionService.GenerateKey(passwordCsv.Password);
                 var password = new AppPassword(passwordCsv.AppCategory, passwordCsv.AppName, passwordCsv.UserName, EncryptionService.EncryptPassword(passwordCsv.Password, encryptionKey, out byte[] iv), GetIconName(passwordCsv.AppName), iv) { CreationTime = DateTime.Now, UpdateTime = DateTime.Now };
                 passwordController.CreatePassword(password);
-                vaultController.StoreEncryptionKey(password.AppName, password.UserName, encryptionKey);
+                await vaultController.StoreEncryptionKey(password.AppName, password.UserName, encryptionKey);
             }
         }
     }

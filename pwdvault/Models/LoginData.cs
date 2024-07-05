@@ -17,7 +17,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 namespace pwdvault.Models
 {
-    internal class LoginData
+    public class LoginData
     {
         public string? CaFilePath { get; set; }
         public string? CertificateFilePath { get; set; }
