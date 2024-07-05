@@ -121,9 +121,6 @@
   <data name="icons8_folder_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\icons8-folder-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ancv" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\ancv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="prefecture_de_l_isere" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\prefecture_de_l_isere.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,6 +132,9 @@
   </data>
   <data name="fortuneo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\fortuneo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-books-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-books-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="lenovo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\lenovo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -181,20 +181,26 @@
   <data name="navco" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\navco.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cpf" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\cpf.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="littoral_nautic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\littoral_nautic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bnp_paribas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\bnp_paribas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="digital_secure_background_lock_circle_icons_dark_blue_6837396" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\digital_secure_background_lock_circle_icons_dark_blue_6837396.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-internet-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-internet-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="netflix" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\netflix.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fnac" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\fnac.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="leboncoin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\leboncoin.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="digiposte" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\digiposte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="discord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\discord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="kinguin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\kinguin.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,17 +214,14 @@
   <data name="icons8-banknotes-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-banknotes-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="doctolib" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\doctolib.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="league_of_legends" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\league_of_legends.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imdb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\imdb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="discord" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\discord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="home_by_me" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\home_by_me.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="plex" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\plex.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -231,9 +234,6 @@
   </data>
   <data name="amazon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="saal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\saal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ants" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\ants.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -262,9 +262,6 @@
   <data name="ebay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\ebay.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="leboncoin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\leboncoin.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="matmut" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\matmut.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -282,9 +279,6 @@
   </data>
   <data name="boursobank" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\boursobank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="home_by_me" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\home_by_me.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="uga" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\uga.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -313,11 +307,14 @@
   <data name="twitch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\twitch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-internet-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-internet-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="henner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\henner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="syncthing" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\syncthing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="aws" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\aws.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pluxee" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\pluxee.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -325,8 +322,8 @@
   <data name="icons8-apps-tab-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-apps-tab-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="aws" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\aws.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bnp_paribas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\bnp_paribas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="linkedin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\linkedin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -334,11 +331,8 @@
   <data name="icons8-edit-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-edit-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="facebook" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\facebook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ameli" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\ameli.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="saal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\saal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="veepee" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\veepee.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -373,17 +367,23 @@
   <data name="proton_vpn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\proton_vpn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="netflix" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\netflix.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cpf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\cpf.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="electrum" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\electrum.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="digital_secure_background_lock_circle_icons_dark_blue_6837396" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\digital_secure_background_lock_circle_icons_dark_blue_6837396.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ouigo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\ouigo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-copy-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-copy-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="syncthing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\syncthing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Horizon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Horizon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ameli" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\ameli.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-delete-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-delete-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -394,8 +394,11 @@
   <data name="paypal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\paypal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fnac" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\fnac.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-copy-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-copy-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="doctolib" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\doctolib.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sohappy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\sohappy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -403,13 +406,13 @@
   <data name="canva" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppIcons\canva.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ouigo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcons\ouigo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ancv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\ancv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-books-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-books-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="facebook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcons\facebook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Horizon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Horizon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Summer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Summer.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

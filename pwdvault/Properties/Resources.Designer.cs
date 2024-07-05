@@ -913,6 +913,16 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Summer {
+            get {
+                object obj = ResourceManager.GetObject("Summer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap syncthing {
             get {
                 object obj = ResourceManager.GetObject("syncthing", resourceCulture);

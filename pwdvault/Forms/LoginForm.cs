@@ -21,14 +21,25 @@ using pwdvault.Services.Exceptions;
 using pwdvault.Controllers;
 using Serilog;
 using System.Drawing.Drawing2D;
+using System.Configuration;
 
 namespace pwdvault.Forms
 {
     public partial class LoginForm : Form
     {
+        private readonly string _loginDataPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault"), "LoginData.json");
+
         public LoginForm()
         {
             InitializeComponent();
+            if (!File.Exists(_loginDataPath)) return;
+            var loginData = LoginService.RetrieveLoginData();
+            txtBoxCA.Text = loginData.CaFilePath;
+            txtBoxCertificate.Text = loginData.CertificateFilePath;
+            txtBoxKey.Text = loginData.KeyFilePath;
+            txtBoxSecretId.Text = loginData.SecretId;
+            splitCollapsing.Panel1Collapsed = true;
+            Height = 370;
         }
 
         private async void BtnLogin_Click(object sender, EventArgs e)
@@ -37,43 +48,57 @@ namespace pwdvault.Forms
             {
                 MessageBox.Show("Please fill in username and password.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if (string.IsNullOrWhiteSpace(txtBoxCA.Text) ||
+                string.IsNullOrWhiteSpace(txtBoxCertificate.Text) ||
+                string.IsNullOrWhiteSpace(txtBoxKey.Text) ||
+                string.IsNullOrWhiteSpace(txtBoxSecretId.Text))
+            {
+                MessageBox.Show("Please complete all additional login information fields.", "Incomplete form", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             else
             {
-                var loginDataForm = new LoginDataForm();
-                var dialogResult = await Task.Run(() => loginDataForm.ShowDialog());
-                if (dialogResult == DialogResult.OK)
+                try
                 {
-                    try
-                    {
-                        Cursor = Cursors.WaitCursor;
+                    Cursor = Cursors.WaitCursor;
 
-                        using var context = new PasswordVaultContext();
+                    LoginService.AddLoginDataConfig(txtBoxCA.Text, txtBoxCertificate.Text, txtBoxKey.Text);
+
+                    var vaultServerUri = ConfigurationManager.AppSettings["VaultServerUri"];
+                    var roleId = ConfigurationManager.AppSettings["RoleID"];
+                    var secretPath = ConfigurationManager.AppSettings["SecretPath"];
+                    VaultController.GetInstance(roleId!, txtBoxSecretId.Text, vaultServerUri!, secretPath!);
+
+                    if (await LoginService.TestPgSqlConnection())
+                    {
+                        await using var context = new PasswordVaultContext();
                         var userController = new UserController(context);
                         var user = userController.GetUserByUsername(txtBoxUser.Text);
                         if (UserPasswordService.VerifyPassword(txtBoxPwd.Text, user.PasswordSalt, user.PasswordHash))
                         {
-                            //new MainForm().Show();
-                            //Hide();
+                            new MainForm().Show();
+                            Hide();
                         }
                         else
                         {
-                            MessageBox.Show("Invalid username or password. Please try again.", "Invalid user's credentiels", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Invalid username or password. Please try again.", "Invalid user's credentials", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         Cursor = Cursors.Default;
                     }
-                    catch (Exception ex)
+                    else
                     {
+                        MessageBox.Show("Failed to connect to the database. Please check your network connection and ensure that your SSL certificates are valid and correctly installed.", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Cursor = Cursors.Default;
-                        if (ex is UserException)
-                        {
-                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        else
-                        {
-                            MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                     }
+                }
+                catch (Exception ex)
+                {
+                    Cursor = Cursors.Default;
+                    MessageBox.Show(
+                        ex is UserException
+                            ? ex.Message
+                            : "An unexpected error occured. Please try again later or contact the administrator.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                 }
             }
         }
@@ -93,10 +118,10 @@ namespace pwdvault.Forms
         private void PanelBanner_Paint(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
-            Pen pen = new(Color.FromArgb(0, 57, 115), 1);
+            Pen pen = new(Color.FromArgb(34, 193, 195), 1);
 
             Rectangle rectangleArea = new(0, 0, this.Width - 1, this.Height - 1);
-            LinearGradientBrush lgb = new(rectangleArea, Color.FromArgb(0, 57, 115), Color.FromArgb(229, 229, 190), LinearGradientMode.Horizontal);
+            LinearGradientBrush lgb = new(rectangleArea, Color.FromArgb(34, 193, 195), Color.FromArgb(253, 187, 45), LinearGradientMode.Horizontal);
             graphics.FillRectangle(lgb, rectangleArea);
             graphics.DrawRectangle(pen, rectangleArea);
         }
@@ -150,9 +175,34 @@ namespace pwdvault.Forms
 
         private void CheckBoxInfo_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxInfo.Checked)
+            if (!checkBoxInfo.Checked) return;
+            if (!string.IsNullOrWhiteSpace(txtBoxCA.Text) &&
+                !string.IsNullOrWhiteSpace(txtBoxCertificate.Text) &&
+                !string.IsNullOrWhiteSpace(txtBoxKey.Text) &&
+                !string.IsNullOrWhiteSpace(txtBoxSecretId.Text))
             {
-                StoreLoginData();
+                LoginService.StoreLoginData(txtBoxCA.Text, txtBoxCertificate.Text, txtBoxKey.Text,
+                    txtBoxSecretId.Text);
+            }
+            else
+            {
+                MessageBox.Show("Please complete all additional login information fields before saving.",
+                    "Incomplete login data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void BtnLoginData_Click(object sender, EventArgs e)
+        {
+            switch (splitCollapsing.Panel1Collapsed)
+            {
+                case false:
+                    splitCollapsing.Panel1Collapsed = true;
+                    Height = 370;
+                    break;
+                case true:
+                    splitCollapsing.Panel1Collapsed = false;
+                    Height = 710;
+                    break;
             }
         }
         /*------------------------------------------------------------------------------------------------------------------------------*/

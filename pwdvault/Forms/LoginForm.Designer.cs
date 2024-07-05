@@ -62,7 +62,7 @@
             // 
             btnEye.BackgroundImage = Properties.Resources.eye;
             btnEye.BackgroundImageLayout = ImageLayout.Stretch;
-            btnEye.Location = new Point(450, 172);
+            btnEye.Location = new Point(450, 147);
             btnEye.Margin = new Padding(2);
             btnEye.Name = "btnEye";
             btnEye.Size = new Size(25, 25);
@@ -74,7 +74,7 @@
             // txtBoxPwd
             // 
             txtBoxPwd.Font = new Font("Segoe UI", 9F);
-            txtBoxPwd.Location = new Point(181, 172);
+            txtBoxPwd.Location = new Point(181, 147);
             txtBoxPwd.Margin = new Padding(2);
             txtBoxPwd.Name = "txtBoxPwd";
             txtBoxPwd.Size = new Size(265, 27);
@@ -86,7 +86,7 @@
             lbPwd.AutoSize = true;
             lbPwd.FlatStyle = FlatStyle.System;
             lbPwd.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            lbPwd.Location = new Point(73, 174);
+            lbPwd.Location = new Point(73, 149);
             lbPwd.Margin = new Padding(2, 0, 2, 0);
             lbPwd.Name = "lbPwd";
             lbPwd.Size = new Size(91, 25);
@@ -99,7 +99,7 @@
             lbUser.FlatStyle = FlatStyle.System;
             lbUser.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             lbUser.ForeColor = SystemColors.MenuText;
-            lbUser.Location = new Point(73, 119);
+            lbUser.Location = new Point(73, 94);
             lbUser.Margin = new Padding(2, 0, 2, 0);
             lbUser.Name = "lbUser";
             lbUser.Size = new Size(98, 25);
@@ -110,7 +110,7 @@
             // 
             txtBoxUser.BackColor = SystemColors.Window;
             txtBoxUser.Font = new Font("Segoe UI", 9F);
-            txtBoxUser.Location = new Point(181, 117);
+            txtBoxUser.Location = new Point(181, 92);
             txtBoxUser.Margin = new Padding(2);
             txtBoxUser.Name = "txtBoxUser";
             txtBoxUser.Size = new Size(265, 27);
@@ -120,13 +120,13 @@
             // 
             PanelBanner.Location = new Point(0, 0);
             PanelBanner.Name = "PanelBanner";
-            PanelBanner.Size = new Size(543, 107);
+            PanelBanner.Size = new Size(543, 66);
             PanelBanner.TabIndex = 17;
             PanelBanner.Paint += PanelBanner_Paint;
             // 
             // splitCollapsing
             // 
-            splitCollapsing.Location = new Point(12, 261);
+            splitCollapsing.Location = new Point(12, 240);
             splitCollapsing.Name = "splitCollapsing";
             splitCollapsing.Orientation = Orientation.Horizontal;
             // 
@@ -150,8 +150,8 @@
             splitCollapsing.Panel2.Controls.Add(BtnLogin);
             splitCollapsing.Panel2.Controls.Add(LinkLbSignUp);
             splitCollapsing.Panel2.Controls.Add(LbSignUp);
-            splitCollapsing.Size = new Size(518, 402);
-            splitCollapsing.SplitterDistance = 341;
+            splitCollapsing.Size = new Size(518, 423);
+            splitCollapsing.SplitterDistance = 345;
             splitCollapsing.TabIndex = 18;
             // 
             // checkBoxInfo
@@ -164,6 +164,7 @@
             checkBoxInfo.TabIndex = 40;
             checkBoxInfo.Text = "Remember the fields";
             checkBoxInfo.UseVisualStyleBackColor = true;
+            checkBoxInfo.CheckedChanged += CheckBoxInfo_CheckedChanged;
             // 
             // btnFileDialogKey
             // 
@@ -173,6 +174,7 @@
             btnFileDialogKey.Size = new Size(32, 28);
             btnFileDialogKey.TabIndex = 39;
             btnFileDialogKey.UseVisualStyleBackColor = true;
+            btnFileDialogKey.Click += BtnFileDialogKey_Click;
             // 
             // txtBoxKey
             // 
@@ -202,6 +204,7 @@
             btnFileDialogCert.Size = new Size(32, 29);
             btnFileDialogCert.TabIndex = 36;
             btnFileDialogCert.UseVisualStyleBackColor = true;
+            btnFileDialogCert.Click += BtnFileDialogCert_Click;
             // 
             // txtBoxCertificate
             // 
@@ -231,6 +234,7 @@
             btnFileDialogCA.Size = new Size(32, 29);
             btnFileDialogCA.TabIndex = 33;
             btnFileDialogCA.UseVisualStyleBackColor = true;
+            btnFileDialogCA.Click += BtnFileDialogCA_Click;
             // 
             // txtBoxSecretId
             // 
@@ -275,12 +279,12 @@
             // BtnLogin
             // 
             BtnLogin.BackColor = SystemColors.ButtonFace;
-            BtnLogin.BackgroundImage = Properties.Resources.Horizon;
+            BtnLogin.BackgroundImage = Properties.Resources.Summer;
             BtnLogin.BackgroundImageLayout = ImageLayout.Stretch;
             BtnLogin.Font = new Font("Bahnschrift SemiBold", 9F);
-            BtnLogin.Location = new Point(61, 3);
+            BtnLogin.Location = new Point(61, 12);
             BtnLogin.Name = "BtnLogin";
-            BtnLogin.Size = new Size(373, 29);
+            BtnLogin.Size = new Size(373, 30);
             BtnLogin.TabIndex = 20;
             BtnLogin.Text = "LOGIN";
             BtnLogin.UseVisualStyleBackColor = false;
@@ -294,7 +298,7 @@
             LinkLbSignUp.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold);
             LinkLbSignUp.ForeColor = SystemColors.ActiveCaptionText;
             LinkLbSignUp.LinkColor = Color.FromArgb(43, 88, 118);
-            LinkLbSignUp.Location = new Point(369, 36);
+            LinkLbSignUp.Location = new Point(369, 45);
             LinkLbSignUp.Name = "LinkLbSignUp";
             LinkLbSignUp.Size = new Size(65, 18);
             LinkLbSignUp.TabIndex = 18;
@@ -306,7 +310,7 @@
             // 
             LbSignUp.AutoSize = true;
             LbSignUp.Font = new Font("Segoe UI", 9F);
-            LbSignUp.Location = new Point(200, 35);
+            LbSignUp.Location = new Point(200, 44);
             LbSignUp.Name = "LbSignUp";
             LbSignUp.Size = new Size(163, 20);
             LbSignUp.TabIndex = 17;
@@ -315,22 +319,24 @@
             // BtnLoginData
             // 
             BtnLoginData.BackColor = SystemColors.ButtonFace;
-            BtnLoginData.BackgroundImage = Properties.Resources.Horizon;
+            BtnLoginData.BackgroundImage = Properties.Resources.Summer;
             BtnLoginData.BackgroundImageLayout = ImageLayout.Stretch;
             BtnLoginData.Font = new Font("Bahnschrift SemiBold", 9F);
-            BtnLoginData.Location = new Point(42, 226);
+            BtnLoginData.ForeColor = SystemColors.ActiveCaptionText;
+            BtnLoginData.Location = new Point(42, 200);
             BtnLoginData.Name = "BtnLoginData";
-            BtnLoginData.Size = new Size(458, 29);
+            BtnLoginData.Size = new Size(458, 34);
             BtnLoginData.TabIndex = 19;
             BtnLoginData.Text = "ADDITIONAL LOGIN INFORMATION";
             BtnLoginData.UseVisualStyleBackColor = false;
+            BtnLoginData.Click += BtnLoginData_Click;
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ButtonFace;
-            ClientSize = new Size(542, 666);
+            BackColor = SystemColors.Window;
+            ClientSize = new Size(542, 663);
             Controls.Add(BtnLoginData);
             Controls.Add(splitCollapsing);
             Controls.Add(PanelBanner);
@@ -362,7 +368,6 @@
         private Button btnEye;
         private TextBox txtBoxPwd;
         private Label lbPwd;
-        private Button btnLogin;
         private Label lbUser;
         private TextBox txtBoxUser;
         private Panel PanelBanner;
