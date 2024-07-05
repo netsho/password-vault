@@ -173,7 +173,7 @@ namespace pwdvault.Forms
                     Cursor = Cursors.WaitCursor;
                     await PasswordService.ImportPasswords(openFileDialogCsv.FileName);
                     Cursor = Cursors.Default;
-                    MessageBox.Show($"Passwords successfully imported.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Passwords successfully imported.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ShowSelectedCategory(lbAll);
                     UpdatePasswordControls(GetPasswordControls(lbAll.Text));
                 }
