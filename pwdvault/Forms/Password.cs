@@ -77,7 +77,7 @@ namespace pwdvault.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An unexpected error occured. Please try again later or refer to the logs for more details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
             }
 
@@ -109,7 +109,7 @@ namespace pwdvault.Forms
                     MessageBox.Show(
                         ex is PasswordException
                             ? ex.Message
-                            : "An unexpected error occured. Please try again later or contact the administrator.",
+                            : "An unexpected error occured. Please try again later or refer to the logs for more details.",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                 }
@@ -133,7 +133,7 @@ namespace pwdvault.Forms
                 MessageBox.Show(
                     ex is PasswordException
                         ? ex.Message
-                        : "An unexpected error occured. Please try again later or contact the administrator.",
+                        : "An unexpected error occured. Please try again later or refer to the logs for more details.",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
             }
@@ -162,7 +162,7 @@ namespace pwdvault.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An unexpected error occured. Please try again later or contact the administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An unexpected error occured. Please try again later or refer to the logs for more details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
             }
         }
