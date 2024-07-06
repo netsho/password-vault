@@ -3,6 +3,7 @@
 ![Static Badge](https://custom-icon-badges.demolab.com/badge/-password_vault-pink?logo=cadenas)
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/netsho/password-vault?color=blue)
 ![GitHub](https://img.shields.io/github/license/netsho/password-vault)
+[![.NET](https://github.com/netsho/password-vault/actions/workflows/dotnet.yml/badge.svg)](https://github.com/netsho/password-vault/actions/workflows/dotnet.yml)
 
 ![App Screenshot](https://github.com/netsho/password-vault/assets/67299616/16bdbddf-614f-4ac7-ad85-96a9b04dc720)<p align="center">
 [Overview](#overview) |
