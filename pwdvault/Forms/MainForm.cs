@@ -142,10 +142,20 @@ namespace pwdvault.Forms
                     var passwordController = new PasswordController(context);
                     passwords = passwordController.GetAllPasswords();
                 }
-                // Export the passwords in a CSV file
-                PasswordService.ExportPasswords(passwords);
-                Cursor = Cursors.Default;
-                MessageBox.Show($"Passwords successfully exported at {Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault")}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                using var openFolderDialog = new FolderBrowserDialog();
+                if (openFolderDialog.ShowDialog() == DialogResult.OK && !string.IsNullOrWhiteSpace(openFolderDialog.SelectedPath))
+                {
+                    // Export the passwords in a CSV file
+                    PasswordService.ExportPasswords(passwords, openFolderDialog.SelectedPath);
+                    Cursor = Cursors.Default;
+                    MessageBox.Show($"Passwords successfully exported at {openFolderDialog.SelectedPath}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    Cursor = Cursors.Default;
+                    MessageBox.Show("Please select a folder to export your passwords.", "Folder not selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {

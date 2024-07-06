@@ -149,7 +149,7 @@ namespace pwdvault.Services
         /// Exports all the passwords from the database to the CSV file located in the AppData/Local/PasswordVault.
         /// </summary>
         /// <param name="passwords"></param>
-        public static void ExportPasswords(List<AppPassword> passwords)
+        public static void ExportPasswords(List<AppPassword> passwords, string exportFolderPath)
         {
             // Decrypt all passwords
             var vaultController = VaultController.GetInstance();
@@ -161,12 +161,11 @@ namespace pwdvault.Services
                 EncryptionService.DecryptPassword(p.Password, vaultController.GetEncryptionKey(p.AppName, p.UserName), p.Bytes)
                 )).ToList();
 
-            // Define CSV file + location
+            // Define CSV file name
             const string csvName = "pwdvault_export.csv";
-            var passwordVaultFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PasswordVault");
 
             // Write to CSV file
-            using var writer = new StreamWriter($"{passwordVaultFolder}\\{csvName}");
+            using var writer = new StreamWriter($"{exportFolderPath}\\{csvName}");
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
             csv.WriteRecords(passwordExports);
         }
