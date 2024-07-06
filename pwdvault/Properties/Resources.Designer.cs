@@ -475,7 +475,7 @@ namespace pwdvault.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icons8_download_48 {
             get {
-                object obj = ResourceManager.GetObject("icons8_download_48", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8-download-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -495,7 +495,7 @@ namespace pwdvault.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icons8_folder_48 {
             get {
-                object obj = ResourceManager.GetObject("icons8_folder_48", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8-folder-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
