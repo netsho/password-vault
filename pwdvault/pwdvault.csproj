@@ -14,36 +14,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\AppIcons\icons8-amazon-48.png" />
-    <None Remove="Resources\AppIcons\icons8-canva-48.png" />
-    <None Remove="Resources\AppIcons\icons8-discord-48.png" />
-    <None Remove="Resources\AppIcons\icons8-disney-48.png" />
-    <None Remove="Resources\AppIcons\icons8-facebook-48.png" />
-    <None Remove="Resources\AppIcons\icons8-github-48.png" />
-    <None Remove="Resources\AppIcons\icons8-gmail-48.png" />
-    <None Remove="Resources\AppIcons\icons8-hbo-48.png" />
-    <None Remove="Resources\AppIcons\icons8-image-48.png" />
-    <None Remove="Resources\AppIcons\icons8-instagram-48.png" />
-    <None Remove="Resources\AppIcons\icons8-league-of-legends-48.png" />
-    <None Remove="Resources\AppIcons\icons8-linkedin-48.png" />
-    <None Remove="Resources\AppIcons\icons8-netflix-48.png" />
-    <None Remove="Resources\AppIcons\icons8-outlook-48.png" />
-    <None Remove="Resources\AppIcons\icons8-paypal-48.png" />
-    <None Remove="Resources\AppIcons\icons8-playstation-48.png" />
-    <None Remove="Resources\AppIcons\icons8-plex-48.png" />
-    <None Remove="Resources\AppIcons\icons8-reddit-48.png" />
-    <None Remove="Resources\AppIcons\icons8-stackoverflow-48.png" />
-    <None Remove="Resources\AppIcons\icons8-steam-48.png" />
-    <None Remove="Resources\AppIcons\icons8-twitch-48.png" />
-    <None Remove="Resources\AppIcons\icons8-twitter-48.png" />
-    <None Remove="Resources\AppIcons\icons8-winrar-48.png" />
-    <None Remove="Resources\AppIcons\icons8-xbox-48.png" />
-    <None Remove="Resources\AppIcons\icons8-zalando-48.png" />
-    <None Remove="Resources\AppIcons\icons8-zoom-48.png" />
-    <None Remove="Resources\ed8a3323-2e23-4d7d-b292-f9d2bafb5d92.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Resources\cadenas.ico" />
   </ItemGroup>
 
