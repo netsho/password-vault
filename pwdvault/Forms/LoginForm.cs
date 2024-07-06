@@ -38,8 +38,8 @@ namespace pwdvault.Forms
             txtBoxCertificate.Text = loginData.CertificateFilePath;
             txtBoxKey.Text = loginData.KeyFilePath;
             txtBoxSecretId.Text = loginData.SecretId;
+            Height -= splitCollapsing.Panel1.Height;
             splitCollapsing.Panel1Collapsed = true;
-            Height = 370;
         }
 
         private async void BtnLogin_Click(object sender, EventArgs e)
@@ -205,12 +205,12 @@ namespace pwdvault.Forms
             switch (splitCollapsing.Panel1Collapsed)
             {
                 case false:
+                    Height -= splitCollapsing.Panel1.Height;
                     splitCollapsing.Panel1Collapsed = true;
-                    Height = 370;
                     break;
                 case true:
                     splitCollapsing.Panel1Collapsed = false;
-                    Height = 710;
+                    Height += splitCollapsing.Panel1.Height;
                     break;
             }
         }
