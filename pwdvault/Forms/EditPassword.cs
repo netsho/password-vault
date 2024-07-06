@@ -146,7 +146,7 @@ namespace pwdvault.Forms
                 MessageBox.Show(
                     ex is PasswordException or ArgumentException
                         ? ex.Message
-                        : "An unexpected error occured. Please check the log file or contact the administrator.",
+                        : "An unexpected error occured. Please check the log file or refer to the logs for more details.",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                 Close();

@@ -111,11 +111,7 @@ namespace pwdvault.Services
 
             await using var npgsqlConnection = new NpgsqlConnection(connectionString);
             await npgsqlConnection.OpenAsync();
-            if (npgsqlConnection.State == System.Data.ConnectionState.Open)
-            {
-                return true;
-            }
-            else { return false; }
+            return npgsqlConnection.State == System.Data.ConnectionState.Open;
         }
     }
 }

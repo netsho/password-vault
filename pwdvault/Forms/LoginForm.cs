@@ -69,7 +69,7 @@ namespace pwdvault.Forms
                     if (string.IsNullOrWhiteSpace(vaultServerUri) || string.IsNullOrWhiteSpace(secretPath) ||
                         string.IsNullOrWhiteSpace(roleId))
                     {
-                        MessageBox.Show("The configuration file doesn't contain either the vault server URI, role ID or secret path. Please check the file before logging in.", "Invalid configuration file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("The configuration file is missing the Vault server URI, Role ID, or Secret Path. Please check the file before logging in.", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Cursor = Cursors.Default;
                     }
                     else
@@ -88,7 +88,7 @@ namespace pwdvault.Forms
                             }
                             else
                             {
-                                MessageBox.Show("Invalid username or password. Please try again.", "Invalid user's credentials", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Invalid username or password. Please try again.", "Invalid User Credentials", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             Cursor = Cursors.Default;
                         }
@@ -105,7 +105,7 @@ namespace pwdvault.Forms
                     MessageBox.Show(
                         ex is UserException
                             ? ex.Message
-                            : "An unexpected error occured. Please try again later or contact the administrator.",
+                            : "An unexpected error occured. Please try again later or refer to the logs for more details.",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Log.Logger.Error(ex, "Source : {Source}, Message : {Message}\n {StackTrace}", ex.Source, ex.Message, ex.StackTrace);
                 }
@@ -196,7 +196,7 @@ namespace pwdvault.Forms
             else
             {
                 MessageBox.Show("Please complete all additional login information fields before saving.",
-                    "Incomplete login data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "Incomplete login form", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
