@@ -15,6 +15,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
+
+using System.Transactions;
 using pwdvault.Models;
 using pwdvault.Services;
 using pwdvault.Controllers;
@@ -90,6 +92,7 @@ namespace pwdvault.Forms
         /// </summary>
         private async Task AddPasswordDb()
         {
+            using TransactionScope transaction = new ();
             try
             {
                 Cursor = Cursors.WaitCursor;
@@ -108,6 +111,7 @@ namespace pwdvault.Forms
                 Cursor = Cursors.Default;
                 MessageBox.Show($"{appPassword.AppName}'s password successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();
+                transaction.Complete();
             }
             catch (Exception ex)
             {
