@@ -101,7 +101,7 @@
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.IsSplitterFixed = true;
             splitContainer1.Location = new Point(0, 0);
-            splitContainer1.Margin = new Padding(2, 2, 2, 2);
+            splitContainer1.Margin = new Padding(2);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -149,7 +149,7 @@
             allTable.Controls.Add(lbAll, 2, 0);
             allTable.Controls.Add(lbSelectedAll, 0, 0);
             allTable.Location = new Point(45, 98);
-            allTable.Margin = new Padding(2, 2, 2, 2);
+            allTable.Margin = new Padding(2);
             allTable.Name = "allTable";
             allTable.RowCount = 1;
             allTable.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -242,7 +242,7 @@
             categoriesTable.Controls.Add(lbSelectedGames, 0, 6);
             categoriesTable.Controls.Add(lbSelectedCoding, 0, 7);
             categoriesTable.Location = new Point(45, 203);
-            categoriesTable.Margin = new Padding(2, 2, 2, 2);
+            categoriesTable.Margin = new Padding(2);
             categoriesTable.Name = "categoriesTable";
             categoriesTable.RowCount = 8;
             categoriesTable.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
@@ -590,7 +590,7 @@
             // 
             picBoxLogo.Image = (Image)resources.GetObject("picBoxLogo.Image");
             picBoxLogo.Location = new Point(40, 7);
-            picBoxLogo.Margin = new Padding(2, 2, 2, 2);
+            picBoxLogo.Margin = new Padding(2);
             picBoxLogo.Name = "picBoxLogo";
             picBoxLogo.Size = new Size(62, 62);
             picBoxLogo.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -639,7 +639,7 @@
             listPwdPanel.AutoScroll = true;
             listPwdPanel.Dock = DockStyle.Fill;
             listPwdPanel.Location = new Point(0, 72);
-            listPwdPanel.Margin = new Padding(2, 2, 2, 2);
+            listPwdPanel.Margin = new Padding(2);
             listPwdPanel.Name = "listPwdPanel";
             listPwdPanel.Size = new Size(843, 528);
             listPwdPanel.TabIndex = 4;
@@ -667,7 +667,7 @@
             panelTop.Controls.Add(btnExit);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
-            panelTop.Margin = new Padding(2, 2, 2, 2);
+            panelTop.Margin = new Padding(2);
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(843, 72);
             panelTop.TabIndex = 0;
@@ -679,7 +679,7 @@
             // 
             lbCount.AutoSize = true;
             lbCount.Font = new Font("Bahnschrift", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbCount.Location = new Point(344, 51);
+            lbCount.Location = new Point(492, 51);
             lbCount.Name = "lbCount";
             lbCount.Size = new Size(16, 18);
             lbCount.TabIndex = 21;
@@ -689,18 +689,19 @@
             // 
             lbTitleCount.AutoSize = true;
             lbTitleCount.Font = new Font("Bahnschrift", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbTitleCount.Location = new Point(299, 51);
+            lbTitleCount.ForeColor = Color.FromArgb(195, 141, 158);
+            lbTitleCount.Location = new Point(373, 51);
             lbTitleCount.Name = "lbTitleCount";
-            lbTitleCount.Size = new Size(49, 18);
+            lbTitleCount.Size = new Size(121, 18);
             lbTitleCount.TabIndex = 20;
-            lbTitleCount.Text = "Count:";
+            lbTitleCount.Text = "Total Passwords:";
             // 
             // btnImport
             // 
             btnImport.BackgroundImage = Properties.Resources.icons8_upload_48;
             btnImport.BackgroundImageLayout = ImageLayout.Stretch;
             btnImport.Location = new Point(711, 17);
-            btnImport.Margin = new Padding(2, 2, 2, 2);
+            btnImport.Margin = new Padding(2);
             btnImport.Name = "btnImport";
             btnImport.Size = new Size(38, 38);
             btnImport.TabIndex = 7;
@@ -713,7 +714,7 @@
             btnExport.BackgroundImage = Properties.Resources.icons8_download_48;
             btnExport.BackgroundImageLayout = ImageLayout.Stretch;
             btnExport.Location = new Point(665, 17);
-            btnExport.Margin = new Padding(2, 2, 2, 2);
+            btnExport.Margin = new Padding(2);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(38, 38);
             btnExport.TabIndex = 6;
@@ -724,7 +725,7 @@
             // txtBoxFilter
             // 
             txtBoxFilter.Location = new Point(241, 22);
-            txtBoxFilter.Margin = new Padding(2, 2, 2, 2);
+            txtBoxFilter.Margin = new Padding(2);
             txtBoxFilter.Name = "txtBoxFilter";
             txtBoxFilter.PlaceholderText = "Filter by application or website name";
             txtBoxFilter.Size = new Size(384, 27);
@@ -738,7 +739,7 @@
             btnAdd.FlatStyle = FlatStyle.System;
             btnAdd.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             btnAdd.Location = new Point(66, 13);
-            btnAdd.Margin = new Padding(2, 2, 2, 2);
+            btnAdd.Margin = new Padding(2);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(126, 42);
             btnAdd.TabIndex = 0;
@@ -752,7 +753,7 @@
             btnExit.BackgroundImage = Properties.Resources.icons8_logout_48;
             btnExit.BackgroundImageLayout = ImageLayout.Stretch;
             btnExit.Location = new Point(771, 17);
-            btnExit.Margin = new Padding(2, 2, 2, 2);
+            btnExit.Margin = new Padding(2);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(38, 38);
             btnExit.TabIndex = 5;
