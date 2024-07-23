@@ -62,10 +62,9 @@
             // 
             btnEye.BackgroundImage = Properties.Resources.eye;
             btnEye.BackgroundImageLayout = ImageLayout.Stretch;
-            btnEye.Location = new Point(450, 147);
-            btnEye.Margin = new Padding(2);
+            btnEye.Location = new Point(731, 235);
             btnEye.Name = "btnEye";
-            btnEye.Size = new Size(25, 25);
+            btnEye.Size = new Size(41, 40);
             btnEye.TabIndex = 15;
             btnEye.UseVisualStyleBackColor = true;
             btnEye.MouseDown += BtnEye_MouseDown;
@@ -74,10 +73,9 @@
             // txtBoxPwd
             // 
             txtBoxPwd.Font = new Font("Segoe UI", 9F);
-            txtBoxPwd.Location = new Point(181, 147);
-            txtBoxPwd.Margin = new Padding(2);
+            txtBoxPwd.Location = new Point(294, 235);
             txtBoxPwd.Name = "txtBoxPwd";
-            txtBoxPwd.Size = new Size(265, 27);
+            txtBoxPwd.Size = new Size(428, 39);
             txtBoxPwd.TabIndex = 11;
             txtBoxPwd.UseSystemPasswordChar = true;
             // 
@@ -86,10 +84,9 @@
             lbPwd.AutoSize = true;
             lbPwd.FlatStyle = FlatStyle.System;
             lbPwd.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            lbPwd.Location = new Point(73, 149);
-            lbPwd.Margin = new Padding(2, 0, 2, 0);
+            lbPwd.Location = new Point(119, 238);
             lbPwd.Name = "lbPwd";
-            lbPwd.Size = new Size(91, 25);
+            lbPwd.Size = new Size(147, 41);
             lbPwd.TabIndex = 13;
             lbPwd.Text = "Password";
             // 
@@ -99,10 +96,9 @@
             lbUser.FlatStyle = FlatStyle.System;
             lbUser.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             lbUser.ForeColor = SystemColors.MenuText;
-            lbUser.Location = new Point(73, 94);
-            lbUser.Margin = new Padding(2, 0, 2, 0);
+            lbUser.Location = new Point(119, 150);
             lbUser.Name = "lbUser";
-            lbUser.Size = new Size(98, 25);
+            lbUser.Size = new Size(156, 41);
             lbUser.TabIndex = 12;
             lbUser.Text = "Username";
             // 
@@ -110,23 +106,24 @@
             // 
             txtBoxUser.BackColor = SystemColors.Window;
             txtBoxUser.Font = new Font("Segoe UI", 9F);
-            txtBoxUser.Location = new Point(181, 92);
-            txtBoxUser.Margin = new Padding(2);
+            txtBoxUser.Location = new Point(294, 147);
             txtBoxUser.Name = "txtBoxUser";
-            txtBoxUser.Size = new Size(265, 27);
+            txtBoxUser.Size = new Size(428, 39);
             txtBoxUser.TabIndex = 10;
             // 
             // PanelBanner
             // 
             PanelBanner.Location = new Point(0, 0);
+            PanelBanner.Margin = new Padding(5);
             PanelBanner.Name = "PanelBanner";
-            PanelBanner.Size = new Size(543, 66);
+            PanelBanner.Size = new Size(882, 106);
             PanelBanner.TabIndex = 17;
             PanelBanner.Paint += PanelBanner_Paint;
             // 
             // splitCollapsing
             // 
-            splitCollapsing.Location = new Point(12, 240);
+            splitCollapsing.Location = new Point(20, 384);
+            splitCollapsing.Margin = new Padding(5);
             splitCollapsing.Name = "splitCollapsing";
             splitCollapsing.Orientation = Orientation.Horizontal;
             // 
@@ -150,17 +147,19 @@
             splitCollapsing.Panel2.Controls.Add(BtnLogin);
             splitCollapsing.Panel2.Controls.Add(LinkLbSignUp);
             splitCollapsing.Panel2.Controls.Add(LbSignUp);
-            splitCollapsing.Size = new Size(518, 423);
-            splitCollapsing.SplitterDistance = 345;
+            splitCollapsing.Size = new Size(842, 677);
+            splitCollapsing.SplitterDistance = 552;
+            splitCollapsing.SplitterWidth = 6;
             splitCollapsing.TabIndex = 18;
             // 
             // checkBoxInfo
             // 
             checkBoxInfo.AutoSize = true;
             checkBoxInfo.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold);
-            checkBoxInfo.Location = new Point(30, 317);
+            checkBoxInfo.Location = new Point(49, 507);
+            checkBoxInfo.Margin = new Padding(5);
             checkBoxInfo.Name = "checkBoxInfo";
-            checkBoxInfo.Size = new Size(170, 22);
+            checkBoxInfo.Size = new Size(270, 33);
             checkBoxInfo.TabIndex = 40;
             checkBoxInfo.Text = "Remember the fields";
             checkBoxInfo.UseVisualStyleBackColor = true;
@@ -169,19 +168,19 @@
             // btnFileDialogKey
             // 
             btnFileDialogKey.BackgroundImage = Properties.Resources.icons8_folder_48;
-            btnFileDialogKey.Location = new Point(456, 194);
+            btnFileDialogKey.Location = new Point(741, 310);
+            btnFileDialogKey.Margin = new Padding(5);
             btnFileDialogKey.Name = "btnFileDialogKey";
-            btnFileDialogKey.Size = new Size(32, 28);
+            btnFileDialogKey.Size = new Size(52, 45);
             btnFileDialogKey.TabIndex = 39;
             btnFileDialogKey.UseVisualStyleBackColor = true;
             btnFileDialogKey.Click += BtnFileDialogKey_Click;
             // 
             // txtBoxKey
             // 
-            txtBoxKey.Location = new Point(30, 194);
-            txtBoxKey.Margin = new Padding(2);
+            txtBoxKey.Location = new Point(49, 310);
             txtBoxKey.Name = "txtBoxKey";
-            txtBoxKey.Size = new Size(421, 27);
+            txtBoxKey.Size = new Size(682, 39);
             txtBoxKey.TabIndex = 38;
             // 
             // lbDbKey
@@ -189,29 +188,28 @@
             lbDbKey.AutoSize = true;
             lbDbKey.FlatStyle = FlatStyle.System;
             lbDbKey.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            lbDbKey.Location = new Point(30, 166);
-            lbDbKey.Margin = new Padding(2, 0, 2, 0);
+            lbDbKey.Location = new Point(49, 266);
             lbDbKey.Name = "lbDbKey";
-            lbDbKey.Size = new Size(129, 25);
+            lbDbKey.Size = new Size(203, 41);
             lbDbKey.TabIndex = 37;
             lbDbKey.Text = "Database Key";
             // 
             // btnFileDialogCert
             // 
             btnFileDialogCert.BackgroundImage = Properties.Resources.icons8_folder_48;
-            btnFileDialogCert.Location = new Point(456, 115);
+            btnFileDialogCert.Location = new Point(741, 184);
+            btnFileDialogCert.Margin = new Padding(5);
             btnFileDialogCert.Name = "btnFileDialogCert";
-            btnFileDialogCert.Size = new Size(32, 29);
+            btnFileDialogCert.Size = new Size(52, 46);
             btnFileDialogCert.TabIndex = 36;
             btnFileDialogCert.UseVisualStyleBackColor = true;
             btnFileDialogCert.Click += BtnFileDialogCert_Click;
             // 
             // txtBoxCertificate
             // 
-            txtBoxCertificate.Location = new Point(30, 115);
-            txtBoxCertificate.Margin = new Padding(2);
+            txtBoxCertificate.Location = new Point(49, 184);
             txtBoxCertificate.Name = "txtBoxCertificate";
-            txtBoxCertificate.Size = new Size(421, 27);
+            txtBoxCertificate.Size = new Size(682, 39);
             txtBoxCertificate.TabIndex = 35;
             // 
             // lbDbCertificate
@@ -219,29 +217,28 @@
             lbDbCertificate.AutoSize = true;
             lbDbCertificate.FlatStyle = FlatStyle.System;
             lbDbCertificate.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            lbDbCertificate.Location = new Point(30, 87);
-            lbDbCertificate.Margin = new Padding(2, 0, 2, 0);
+            lbDbCertificate.Location = new Point(49, 139);
             lbDbCertificate.Name = "lbDbCertificate";
-            lbDbCertificate.Size = new Size(187, 25);
+            lbDbCertificate.Size = new Size(295, 41);
             lbDbCertificate.TabIndex = 34;
             lbDbCertificate.Text = "Database Certificate";
             // 
             // btnFileDialogCA
             // 
             btnFileDialogCA.BackgroundImage = Properties.Resources.icons8_folder_48;
-            btnFileDialogCA.Location = new Point(456, 35);
+            btnFileDialogCA.Location = new Point(741, 56);
+            btnFileDialogCA.Margin = new Padding(5);
             btnFileDialogCA.Name = "btnFileDialogCA";
-            btnFileDialogCA.Size = new Size(32, 29);
+            btnFileDialogCA.Size = new Size(52, 46);
             btnFileDialogCA.TabIndex = 33;
             btnFileDialogCA.UseVisualStyleBackColor = true;
             btnFileDialogCA.Click += BtnFileDialogCA_Click;
             // 
             // txtBoxSecretId
             // 
-            txtBoxSecretId.Location = new Point(30, 271);
-            txtBoxSecretId.Margin = new Padding(2);
+            txtBoxSecretId.Location = new Point(49, 434);
             txtBoxSecretId.Name = "txtBoxSecretId";
-            txtBoxSecretId.Size = new Size(421, 27);
+            txtBoxSecretId.Size = new Size(682, 39);
             txtBoxSecretId.TabIndex = 32;
             // 
             // lbSecretId
@@ -249,19 +246,17 @@
             lbSecretId.AutoSize = true;
             lbSecretId.FlatStyle = FlatStyle.System;
             lbSecretId.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            lbSecretId.Location = new Point(30, 243);
-            lbSecretId.Margin = new Padding(2, 0, 2, 0);
+            lbSecretId.Location = new Point(49, 389);
             lbSecretId.Name = "lbSecretId";
-            lbSecretId.Size = new Size(139, 25);
+            lbSecretId.Size = new Size(219, 41);
             lbSecretId.TabIndex = 31;
             lbSecretId.Text = "Vault Secret ID";
             // 
             // txtBoxCA
             // 
-            txtBoxCA.Location = new Point(30, 37);
-            txtBoxCA.Margin = new Padding(2);
+            txtBoxCA.Location = new Point(49, 59);
             txtBoxCA.Name = "txtBoxCA";
-            txtBoxCA.Size = new Size(421, 27);
+            txtBoxCA.Size = new Size(682, 39);
             txtBoxCA.TabIndex = 30;
             // 
             // lbDbCA
@@ -269,10 +264,9 @@
             lbDbCA.AutoSize = true;
             lbDbCA.FlatStyle = FlatStyle.System;
             lbDbCA.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            lbDbCA.Location = new Point(30, 7);
-            lbDbCA.Margin = new Padding(2, 0, 2, 0);
+            lbDbCA.Location = new Point(49, 11);
             lbDbCA.Name = "lbDbCA";
-            lbDbCA.Size = new Size(122, 25);
+            lbDbCA.Size = new Size(193, 41);
             lbDbCA.TabIndex = 29;
             lbDbCA.Text = "Database CA";
             // 
@@ -282,9 +276,10 @@
             BtnLogin.BackgroundImage = Properties.Resources.Summer;
             BtnLogin.BackgroundImageLayout = ImageLayout.Stretch;
             BtnLogin.Font = new Font("Bahnschrift SemiBold", 9F);
-            BtnLogin.Location = new Point(61, 12);
+            BtnLogin.Location = new Point(99, 19);
+            BtnLogin.Margin = new Padding(5);
             BtnLogin.Name = "BtnLogin";
-            BtnLogin.Size = new Size(373, 30);
+            BtnLogin.Size = new Size(606, 48);
             BtnLogin.TabIndex = 20;
             BtnLogin.Text = "LOGIN";
             BtnLogin.UseVisualStyleBackColor = false;
@@ -298,9 +293,10 @@
             LinkLbSignUp.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold);
             LinkLbSignUp.ForeColor = SystemColors.ActiveCaptionText;
             LinkLbSignUp.LinkColor = Color.FromArgb(43, 88, 118);
-            LinkLbSignUp.Location = new Point(369, 45);
+            LinkLbSignUp.Location = new Point(600, 72);
+            LinkLbSignUp.Margin = new Padding(5, 0, 5, 0);
             LinkLbSignUp.Name = "LinkLbSignUp";
-            LinkLbSignUp.Size = new Size(65, 18);
+            LinkLbSignUp.Size = new Size(105, 29);
             LinkLbSignUp.TabIndex = 18;
             LinkLbSignUp.TabStop = true;
             LinkLbSignUp.Text = "SIGN UP";
@@ -310,9 +306,10 @@
             // 
             LbSignUp.AutoSize = true;
             LbSignUp.Font = new Font("Segoe UI", 9F);
-            LbSignUp.Location = new Point(200, 43);
+            LbSignUp.Location = new Point(325, 69);
+            LbSignUp.Margin = new Padding(5, 0, 5, 0);
             LbSignUp.Name = "LbSignUp";
-            LbSignUp.Size = new Size(163, 20);
+            LbSignUp.Size = new Size(266, 32);
             LbSignUp.TabIndex = 17;
             LbSignUp.Text = "Don't have an account?";
             // 
@@ -323,9 +320,10 @@
             BtnLoginData.BackgroundImageLayout = ImageLayout.Stretch;
             BtnLoginData.Font = new Font("Bahnschrift SemiBold", 9F);
             BtnLoginData.ForeColor = SystemColors.ActiveCaptionText;
-            BtnLoginData.Location = new Point(42, 200);
+            BtnLoginData.Location = new Point(68, 320);
+            BtnLoginData.Margin = new Padding(5);
             BtnLoginData.Name = "BtnLoginData";
-            BtnLoginData.Size = new Size(458, 34);
+            BtnLoginData.Size = new Size(744, 54);
             BtnLoginData.TabIndex = 19;
             BtnLoginData.Text = "ADDITIONAL LOGIN INFORMATION";
             BtnLoginData.UseVisualStyleBackColor = false;
@@ -334,10 +332,10 @@
             // LoginForm
             // 
             AcceptButton = BtnLogin;
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(542, 663);
+            ClientSize = new Size(881, 1061);
             Controls.Add(BtnLoginData);
             Controls.Add(splitCollapsing);
             Controls.Add(PanelBanner);
@@ -349,12 +347,12 @@
             ForeColor = SystemColors.ActiveCaptionText;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(5);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login - Password Vault";
-            WindowState = FormWindowState.Minimized;
             splitCollapsing.Panel1.ResumeLayout(false);
             splitCollapsing.Panel1.PerformLayout();
             splitCollapsing.Panel2.ResumeLayout(false);
