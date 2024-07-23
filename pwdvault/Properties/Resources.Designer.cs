@@ -63,6 +63,16 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap adguard_home {
+            get {
+                object obj = ResourceManager.GetObject("adguard_home", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap aliexpress {
             get {
                 object obj = ResourceManager.GetObject("aliexpress", resourceCulture);
@@ -366,6 +376,16 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap gmail {
             get {
                 object obj = ResourceManager.GetObject("gmail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap grafana {
+            get {
+                object obj = ResourceManager.GetObject("grafana", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -686,6 +706,16 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap matmut {
             get {
                 object obj = ResourceManager.GetObject("matmut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mon_espace_sante {
+            get {
+                object obj = ResourceManager.GetObject("mon_espace_sante", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
