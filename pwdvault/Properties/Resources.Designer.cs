@@ -73,6 +73,16 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap agpm {
+            get {
+                object obj = ResourceManager.GetObject("agpm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap aliexpress {
             get {
                 object obj = ResourceManager.GetObject("aliexpress", resourceCulture);
@@ -753,6 +763,16 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap openvas {
+            get {
+                object obj = ResourceManager.GetObject("openvas", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ouigo {
             get {
                 object obj = ResourceManager.GetObject("ouigo", resourceCulture);
@@ -913,6 +933,16 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sonarqube {
+            get {
+                object obj = ResourceManager.GetObject("sonarqube", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap stackoverflow {
             get {
                 object obj = ResourceManager.GetObject("stackoverflow", resourceCulture);
@@ -1006,6 +1036,16 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap uga {
             get {
                 object obj = ResourceManager.GetObject("uga", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap uptime_kuma {
+            get {
+                object obj = ResourceManager.GetObject("uptime_kuma", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
