@@ -153,6 +153,16 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bookstack {
+            get {
+                object obj = ResourceManager.GetObject("bookstack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap boursobank {
             get {
                 object obj = ResourceManager.GetObject("boursobank", resourceCulture);
@@ -786,6 +796,16 @@ namespace pwdvault.Properties {
         internal static System.Drawing.Bitmap outlook {
             get {
                 object obj = ResourceManager.GetObject("outlook", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap paperless_ngx {
+            get {
+                object obj = ResourceManager.GetObject("paperless_ngx", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
