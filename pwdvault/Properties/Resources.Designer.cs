@@ -733,6 +733,16 @@ namespace pwdvault.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap marseille_aeroport {
+            get {
+                object obj = ResourceManager.GetObject("marseille_aeroport", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap matmut {
             get {
                 object obj = ResourceManager.GetObject("matmut", resourceCulture);
